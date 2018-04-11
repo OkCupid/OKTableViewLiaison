@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="JiN-QW-2sc" customClass="PostTableViewSectionHeaderView" customModule="TableViewLiaison_Example" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="535" height="84"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tx2-ma-BY3">
+                    <rect key="frame" x="16" y="16" width="52" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Tx2-ma-BY3" secondAttribute="height" multiplier="1:1" priority="999" id="MNi-fW-Rvo"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6O-hK-hhD">
+                    <rect key="frame" x="76" y="32" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="a6O-hK-hhD" firstAttribute="leading" secondItem="Tx2-ma-BY3" secondAttribute="trailing" constant="8" id="COs-sm-t9x"/>
+                <constraint firstItem="a6O-hK-hhD" firstAttribute="centerY" secondItem="JiN-QW-2sc" secondAttribute="centerY" id="M9b-yk-9zK"/>
+                <constraint firstAttribute="bottom" secondItem="Tx2-ma-BY3" secondAttribute="bottom" priority="999" constant="16" id="RMG-oR-474"/>
+                <constraint firstItem="Tx2-ma-BY3" firstAttribute="leading" secondItem="Tus-Vq-gEf" secondAttribute="leading" constant="16" id="dcT-cF-cZq"/>
+                <constraint firstItem="Tx2-ma-BY3" firstAttribute="top" secondItem="JiN-QW-2sc" secondAttribute="top" priority="999" constant="16" id="ooP-FG-iOZ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Tus-Vq-gEf"/>
+            <connections>
+                <outlet property="imageView" destination="Tx2-ma-BY3" id="YNW-SQ-5DB"/>
+                <outlet property="titleLabel" destination="a6O-hK-hhD" id="KK3-UV-84m"/>
+            </connections>
+            <point key="canvasLocation" x="-734.5" y="-311"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,22 @@
+{
+  "name": "OKTableViewLiaison",
+  "version": "0.1.0",
+  "summary": "A short description of OKTableViewLiaison.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/\u001b[01;31m\u001b[Kacct\u001b[m\u001b[K<blob>=dylanshine/OKTableViewLiaison",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "\u001b[01;31m\u001b[Kacct\u001b[m\u001b[K<blob>=dylanshine": "dylan@okcupid.com"
+  },
+  "source": {
+    "git": "https://github.com/\u001b[01;31m\u001b[Kacct\u001b[m\u001b[K<blob>=dylanshine/OKTableViewLiaison.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "OKTableViewLiaison/Classes/**/*"
+}

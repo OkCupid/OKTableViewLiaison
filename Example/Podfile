@@ -1,11 +1,11 @@
 use_frameworks!
 
 target 'OKTableViewLiaison_Example' do
-  pod 'OKTableViewLiaison', :path => '../'
-
-  target 'OKTableViewLiaison_Tests' do
-    inherit! :search_paths
-
+    pod 'OKTableViewLiaison', :path => '../'
     
-  end
+end
+
+target 'OKTableViewLiaison_Tests' do
+    pod 'OKTableViewLiaison', :path => '../'
+    
 end

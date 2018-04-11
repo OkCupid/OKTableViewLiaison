@@ -1,0 +1,6 @@
+framework module OKTableViewLiaison {
+  umbrella header "OKTableViewLiaison-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -14,7 +14,26 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		FC6E84D7207EB21600BF0E58 /* Int+SecondConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84D6207EB21500BF0E58 /* Int+SecondConversion.swift */; };
+		FC6E84DB207EB26F00BF0E58 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84DA207EB26F00BF0E58 /* Post.swift */; };
+		FC6E84E1207EB28100BF0E58 /* PostActionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC6E84DD207EB28100BF0E58 /* PostActionsTableViewCell.xib */; };
+		FC6E84E2207EB28100BF0E58 /* PostActionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84DE207EB28100BF0E58 /* PostActionsTableViewCell.swift */; };
+		FC6E84E3207EB28100BF0E58 /* PostImageContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC6E84DF207EB28100BF0E58 /* PostImageContentTableViewCell.xib */; };
+		FC6E84E4207EB28100BF0E58 /* PostImageContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84E0207EB28100BF0E58 /* PostImageContentTableViewCell.swift */; };
+		FC6E84E9207EB29000BF0E58 /* PostTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84E5207EB28F00BF0E58 /* PostTableViewSectionHeaderView.swift */; };
+		FC6E84EA207EB29000BF0E58 /* PostTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC6E84E6207EB28F00BF0E58 /* PostTextTableViewCell.xib */; };
+		FC6E84EB207EB29000BF0E58 /* PostTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84E7207EB28F00BF0E58 /* PostTextTableViewCell.swift */; };
+		FC6E84EC207EB29000BF0E58 /* PostTableViewSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC6E84E8207EB29000BF0E58 /* PostTableViewSectionHeaderView.xib */; };
+		FC6E84EE207EB29800BF0E58 /* PostTextTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84ED207EB29800BF0E58 /* PostTextTableViewRow.swift */; };
+		FC6E84F1207EB2B600BF0E58 /* PostTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84F0207EB2B600BF0E58 /* PostTableViewSection.swift */; };
+		FCF38FE3207EAEB300E119FB /* TestTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF38FDE207EAEB300E119FB /* TestTableViewRow.swift */; };
+		FCF38FE4207EAEB300E119FB /* TestTableViewLiaisonPaginationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF38FDF207EAEB300E119FB /* TestTableViewLiaisonPaginationDelegate.swift */; };
+		FCF38FE5207EAEB300E119FB /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF38FE0207EAEB300E119FB /* TestTableViewCell.swift */; };
+		FCF38FE6207EAEB300E119FB /* TestTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF38FE1207EAEB300E119FB /* TestTableViewSection.swift */; };
+		FCF38FE7207EAEB300E119FB /* UITableView+SwizzleTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF38FE2207EAEB300E119FB /* UITableView+SwizzleTesting.swift */; };
+		FCF38FEB207EAF5500E119FB /* OKTableViewSection+UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF38FE8207EAF5400E119FB /* OKTableViewSection+UnitTests.swift */; };
+		FCF38FEC207EAF5500E119FB /* OKTableViewRow+UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF38FE9207EAF5400E119FB /* OKTableViewRow+UnitTests.swift */; };
+		FCF38FED207EAF5500E119FB /* OKTableViewLiaison+UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF38FEA207EAF5500E119FB /* OKTableViewLiaison+UnitTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +48,7 @@
 
 /* Begin PBXFileReference section */
 		23269C76472F62EBE85FEF6A /* Pods-OKTableViewLiaison_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OKTableViewLiaison_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OKTableViewLiaison_Example/Pods-OKTableViewLiaison_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		3476D746ADE32463FF8737B1 /* OKTableViewLiaison.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = OKTableViewLiaison.podspec; path = ../OKTableViewLiaison.podspec; sourceTree = "<group>"; };
+		3476D746ADE32463FF8737B1 /* OKTableViewLiaison.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = OKTableViewLiaison.podspec; path = ../OKTableViewLiaison.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4CAE7467FC0E80A2910D1804 /* Pods-OKTableViewLiaison_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OKTableViewLiaison_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OKTableViewLiaison_Tests/Pods-OKTableViewLiaison_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* OKTableViewLiaison_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OKTableViewLiaison_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,13 +59,32 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* OKTableViewLiaison_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OKTableViewLiaison_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		A3C46C6EECC245864C7195AE /* Pods_OKTableViewLiaison_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OKTableViewLiaison_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF3804755C87B88FEAC5E1C2 /* Pods_OKTableViewLiaison_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OKTableViewLiaison_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E463C16FA1EBC5DDB312AAA3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		E463C16FA1EBC5DDB312AAA3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E49A645534585F79782DD5CF /* Pods-OKTableViewLiaison_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OKTableViewLiaison_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OKTableViewLiaison_Tests/Pods-OKTableViewLiaison_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		EE6677B6AFC2832B5DBAC071 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		EE6677B6AFC2832B5DBAC071 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F6351EA9623B9FC2F8F18E5E /* Pods-OKTableViewLiaison_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OKTableViewLiaison_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-OKTableViewLiaison_Example/Pods-OKTableViewLiaison_Example.release.xcconfig"; sourceTree = "<group>"; };
+		FC6E84D6207EB21500BF0E58 /* Int+SecondConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+SecondConversion.swift"; sourceTree = "<group>"; };
+		FC6E84DA207EB26F00BF0E58 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		FC6E84DD207EB28100BF0E58 /* PostActionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostActionsTableViewCell.xib; sourceTree = "<group>"; };
+		FC6E84DE207EB28100BF0E58 /* PostActionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostActionsTableViewCell.swift; sourceTree = "<group>"; };
+		FC6E84DF207EB28100BF0E58 /* PostImageContentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostImageContentTableViewCell.xib; sourceTree = "<group>"; };
+		FC6E84E0207EB28100BF0E58 /* PostImageContentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostImageContentTableViewCell.swift; sourceTree = "<group>"; };
+		FC6E84E5207EB28F00BF0E58 /* PostTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
+		FC6E84E6207EB28F00BF0E58 /* PostTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTextTableViewCell.xib; sourceTree = "<group>"; };
+		FC6E84E7207EB28F00BF0E58 /* PostTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTextTableViewCell.swift; sourceTree = "<group>"; };
+		FC6E84E8207EB29000BF0E58 /* PostTableViewSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewSectionHeaderView.xib; sourceTree = "<group>"; };
+		FC6E84ED207EB29800BF0E58 /* PostTextTableViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTextTableViewRow.swift; sourceTree = "<group>"; };
+		FC6E84F0207EB2B600BF0E58 /* PostTableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewSection.swift; sourceTree = "<group>"; };
+		FCF38FDE207EAEB300E119FB /* TestTableViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewRow.swift; sourceTree = "<group>"; };
+		FCF38FDF207EAEB300E119FB /* TestTableViewLiaisonPaginationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewLiaisonPaginationDelegate.swift; sourceTree = "<group>"; };
+		FCF38FE0207EAEB300E119FB /* TestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
+		FCF38FE1207EAEB300E119FB /* TestTableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewSection.swift; sourceTree = "<group>"; };
+		FCF38FE2207EAEB300E119FB /* UITableView+SwizzleTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+SwizzleTesting.swift"; sourceTree = "<group>"; };
+		FCF38FE8207EAF5400E119FB /* OKTableViewSection+UnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OKTableViewSection+UnitTests.swift"; sourceTree = "<group>"; };
+		FCF38FE9207EAF5400E119FB /* OKTableViewRow+UnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OKTableViewRow+UnitTests.swift"; sourceTree = "<group>"; };
+		FCF38FEA207EAF5500E119FB /* OKTableViewLiaison+UnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+UnitTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +131,11 @@
 		607FACD21AFB9204008FA782 /* Example for OKTableViewLiaison */ = {
 			isa = PBXGroup;
 			children = (
+				FC6E84EF207EB29B00BF0E58 /* Sections */,
+				FC6E84DC207EB27600BF0E58 /* Views */,
+				FC6E84D9207EB25F00BF0E58 /* Models */,
+				FC6E84D8207EB22900BF0E58 /* Rows */,
+				FC6E84D5207EB20800BF0E58 /* Extensions */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -115,7 +158,10 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				FCF38FEA207EAF5500E119FB /* OKTableViewLiaison+UnitTests.swift */,
+				FCF38FE9207EAF5400E119FB /* OKTableViewRow+UnitTests.swift */,
+				FCF38FE8207EAF5400E119FB /* OKTableViewSection+UnitTests.swift */,
+				FCF38FDD207EAE9900E119FB /* Fixtures */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -157,6 +203,65 @@
 				BF3804755C87B88FEAC5E1C2 /* Pods_OKTableViewLiaison_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC6E84D5207EB20800BF0E58 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FC6E84D6207EB21500BF0E58 /* Int+SecondConversion.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		FC6E84D8207EB22900BF0E58 /* Rows */ = {
+			isa = PBXGroup;
+			children = (
+				FC6E84ED207EB29800BF0E58 /* PostTextTableViewRow.swift */,
+			);
+			name = Rows;
+			sourceTree = "<group>";
+		};
+		FC6E84D9207EB25F00BF0E58 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FC6E84DA207EB26F00BF0E58 /* Post.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FC6E84DC207EB27600BF0E58 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FC6E84DE207EB28100BF0E58 /* PostActionsTableViewCell.swift */,
+				FC6E84DD207EB28100BF0E58 /* PostActionsTableViewCell.xib */,
+				FC6E84E0207EB28100BF0E58 /* PostImageContentTableViewCell.swift */,
+				FC6E84DF207EB28100BF0E58 /* PostImageContentTableViewCell.xib */,
+				FC6E84E5207EB28F00BF0E58 /* PostTableViewSectionHeaderView.swift */,
+				FC6E84E8207EB29000BF0E58 /* PostTableViewSectionHeaderView.xib */,
+				FC6E84E7207EB28F00BF0E58 /* PostTextTableViewCell.swift */,
+				FC6E84E6207EB28F00BF0E58 /* PostTextTableViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FC6E84EF207EB29B00BF0E58 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				FC6E84F0207EB2B600BF0E58 /* PostTableViewSection.swift */,
+			);
+			name = Sections;
+			sourceTree = "<group>";
+		};
+		FCF38FDD207EAE9900E119FB /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				FCF38FE0207EAEB300E119FB /* TestTableViewCell.swift */,
+				FCF38FDF207EAEB300E119FB /* TestTableViewLiaisonPaginationDelegate.swift */,
+				FCF38FDE207EAEB300E119FB /* TestTableViewRow.swift */,
+				FCF38FE1207EAEB300E119FB /* TestTableViewSection.swift */,
+				FCF38FE2207EAEB300E119FB /* UITableView+SwizzleTesting.swift */,
+			);
+			name = Fixtures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,10 +320,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 886ZPWDXTP;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 886ZPWDXTP;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -248,9 +355,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6E84E3207EB28100BF0E58 /* PostImageContentTableViewCell.xib in Resources */,
+				FC6E84EC207EB29000BF0E58 /* PostTableViewSectionHeaderView.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				FC6E84EA207EB29000BF0E58 /* PostTextTableViewCell.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				FC6E84E1207EB28100BF0E58 /* PostActionsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,9 +465,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OKTableViewLiaison_Tests/Pods-OKTableViewLiaison_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/OKTableViewLiaison/OKTableViewLiaison.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OKTableViewLiaison.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -370,8 +484,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6E84D7207EB21600BF0E58 /* Int+SecondConversion.swift in Sources */,
+				FC6E84E9207EB29000BF0E58 /* PostTableViewSectionHeaderView.swift in Sources */,
+				FC6E84EE207EB29800BF0E58 /* PostTextTableViewRow.swift in Sources */,
+				FC6E84F1207EB2B600BF0E58 /* PostTableViewSection.swift in Sources */,
+				FC6E84E4207EB28100BF0E58 /* PostImageContentTableViewCell.swift in Sources */,
+				FC6E84E2207EB28100BF0E58 /* PostActionsTableViewCell.swift in Sources */,
+				FC6E84EB207EB29000BF0E58 /* PostTextTableViewCell.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				FC6E84DB207EB26F00BF0E58 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +501,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				FCF38FE3207EAEB300E119FB /* TestTableViewRow.swift in Sources */,
+				FCF38FE5207EAEB300E119FB /* TestTableViewCell.swift in Sources */,
+				FCF38FE4207EAEB300E119FB /* TestTableViewLiaisonPaginationDelegate.swift in Sources */,
+				FCF38FE6207EAEB300E119FB /* TestTableViewSection.swift in Sources */,
+				FCF38FEB207EAF5500E119FB /* OKTableViewSection+UnitTests.swift in Sources */,
+				FCF38FE7207EAEB300E119FB /* UITableView+SwizzleTesting.swift in Sources */,
+				FCF38FED207EAF5500E119FB /* OKTableViewLiaison+UnitTests.swift in Sources */,
+				FCF38FEC207EAF5500E119FB /* OKTableViewRow+UnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,7 +587,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -504,7 +633,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -517,6 +646,7 @@
 			baseConfigurationReference = 23269C76472F62EBE85FEF6A /* Pods-OKTableViewLiaison_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 886ZPWDXTP;
 				INFOPLIST_FILE = OKTableViewLiaison/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -532,6 +662,7 @@
 			baseConfigurationReference = F6351EA9623B9FC2F8F18E5E /* Pods-OKTableViewLiaison_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 886ZPWDXTP;
 				INFOPLIST_FILE = OKTableViewLiaison/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -546,6 +677,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4CAE7467FC0E80A2910D1804 /* Pods-OKTableViewLiaison_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 886ZPWDXTP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -567,6 +699,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E49A645534585F79782DD5CF /* Pods-OKTableViewLiaison_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 886ZPWDXTP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

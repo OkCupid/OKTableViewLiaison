@@ -1,0 +1,16 @@
+PODS:
+  - OKTableViewLiaison (0.1.0)
+
+DEPENDENCIES:
+  - OKTableViewLiaison (from `../`)
+
+EXTERNAL SOURCES:
+  OKTableViewLiaison:
+    :path: ../
+
+SPEC CHECKSUMS:
+  OKTableViewLiaison: 1123a18229f4a0475a1a65da840e0e8f567efe0c
+
+PODFILE CHECKSUM: 9150dd9310401db4896273bd584c73be0d2714d2
+
+COCOAPODS: 1.4.0
