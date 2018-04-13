@@ -206,7 +206,7 @@ By default, `OKTableViewRow` is instantiated with `.defaultClassRegistration(for
 
 `func isPaginationEnabled() -> Bool`, notifies the liaison if it should show the pagination spinner when the user scrolls past the last cell.
 
-`func paginationStarted(at indexPath: IndexPath)`, passes through the indexPath of the last `TableViewRow` managed by the liaison.
+`func paginationStarted(indexPath: IndexPath)`, passes through the indexPath of the last `TableViewRow` managed by the liaison.
 
 `func paginationEnded(indexPath: IndexPath)`, passes the indexPath of the first new `TableViewRow` appended by the liaison.
 
