@@ -104,7 +104,7 @@ section.setHeight(for: .header) { (model) -> CGFloat in
 
 In the event a height is not provided for a supplementary view, the liaison will assume the supplementary view is self sizing and return `UITableViewAutomaticDimension`.
 
-The `TableViewSection` supplementary views can be customized using `func setHeader(command: TableViewSectionCommand, with closure: ((Header, Model, _ section: Int) -> Void)?)` or `func setFooter(command: OKTableViewSectionCommand, with closure: ((Footer, Model, _ section: Int) -> Void)?)` at all the following lifecycle events:
+The `OKTableViewSection` supplementary views can be customized using `func setHeader(command: OKTableViewSectionCommand, with closure: ((Header, Model, _ section: Int) -> Void)?)` or `func setFooter(command: OKTableViewSectionCommand, with closure: ((Footer, Model, _ section: Int) -> Void)?)` at all the following lifecycle events:
 
 - configuration
 - didEndDisplaying
@@ -122,25 +122,25 @@ print("Header: \(header) will display for Section: \(section) with Model: \(mode
 ```
 
 ### Rows
-`class TableViewRow<Cell: UITableViewCell, Model>`
+`class OKTableViewRow<Cell: UITableViewCell, Model>`
 
-To add a row for a section, create an instance of `TableViewRow` and pass it to the initializer for a `TableViewSection` or if the row is added after instantiation you can perform that action via the liaison:
+To add a row for a section, create an instance of `OKTableViewRow` and pass it to the initializer for a `OKTableViewSection` or if the row is added after instantiation you can perform that action via the liaison:
 
 ```swift
-let row = TableViewRow<RowTableViewCell, RowModel>(model: RowModel(type: .small))
-let section = PlainTableViewSection(rows: [row])
+let row = OKTableViewRow<RowTableViewCell, RowModel>(model: RowModel(type: .small))
+let section = OKPlainTableViewSection(rows: [row])
 liaison.append(section: section)
 ```
 or
 
 ```swift
-let row = TableViewRow<RowTableViewCell, RowModel>(model: RowModel(type: .small))
-let section = PlainTableViewSection()
+let row = OKTableViewRow<RowTableViewCell, RowModel>(model: RowModel(type: .small))
+let section = OKPlainTableViewSection()
 liaison.append(section: section)
 liaison.append(row: row)
 ```
 
-`TableViewRow` heights are similarly configured to `TableViewSection`:
+`OKTableViewRow` heights are similarly configured to `OKTableViewSection`:
 
 ```swift
 row.set(height: .height, value: 300)
@@ -159,7 +159,7 @@ row.set(height: .height) { (model) -> CGFloat in
 
 In the event a height is not provided, the liaison will assume the cell is self sizing and return `UITableViewAutomaticDimension`.
 
-The `TableViewRow` can be customized using `func set(command: TableViewRowCommand, with closure: ((Cell, Model, IndexPath) -> Void)?) ` at all the following lifecycle events:
+The `OKTableViewRow` can be customized using `func set(command: OKTableViewRowCommand, with closure: ((Cell, Model, IndexPath) -> Void)?) ` at all the following lifecycle events:
 
 -  accessoryButtonTapped
 -  configuration
@@ -200,26 +200,26 @@ By default, `OKTableViewRow` is instantiated with `.defaultClassRegistration(for
 `OKTableViewSection` supplementary view registration is encapsulated by its`OKTableViewSectionSupplementaryViewDisplayOption`. By default, `OKTableViewSection` `supplementaryViewDisplay` is instantiated with `.none`.
 
 ### Pagination
-`TableViewLiaison` comes equipped to handle your pagination needs. To configure the liaison for pagination, simply set its `paginationDelegate` to an instance of `TableViewLiaisonPaginationDelegate`.
+`OKTableViewLiaison` comes equipped to handle your pagination needs. To configure the liaison for pagination, simply set its `paginationDelegate` to an instance of `OKTableViewLiaisonPaginationDelegate`.
 
-`TableViewLiaisonPaginationDelegate` declares three methods:
+`OKTableViewLiaisonPaginationDelegate` declares three methods:
 
 `func isPaginationEnabled() -> Bool`, notifies the liaison if it should show the pagination spinner when the user scrolls past the last cell.
 
-`func paginationStarted(indexPath: IndexPath)`, passes through the indexPath of the last `TableViewRow` managed by the liaison.
+`func paginationStarted(indexPath: IndexPath)`, passes through the indexPath of the last `OKTableViewRow` managed by the liaison.
 
-`func paginationEnded(indexPath: IndexPath)`, passes the indexPath of the first new `TableViewRow` appended by the liaison.
+`func paginationEnded(indexPath: IndexPath)`, passes the indexPath of the first new `OKTableViewRow` appended by the liaison.
 
-To update the liaisons results during pagination, simply use `append(sections: [AbstractTableViewSection])` or `func append(rows: [AnyTableViewRow])` and the liaison will automatically handle the removal of the pagination spinner.
+To update the liaisons results during pagination, simply use `append(sections: [OKAnyTableViewSection])` or `func append(rows: [OKAnyTableViewRow])` and the liaison will automatically handle the removal of the pagination spinner.
 
-To use a custom pagination spinner, you can pass an instance `AnyTableViewRow` during the initialization of your `TableViewLiaison`. By default it uses `PaginationTableViewRow` provided by the framework. 
+To use a custom pagination spinner, you can pass an instance `OKAnyTableViewRow` during the initialization of your `OKTableViewLiaison`. By default it uses `OKPaginationTableViewRow` provided by the framework. 
 
 ### Tips & Tricks 
 
-Because `TableViewSection` and `TableViewRow` utilize generic types and manage view/cell type registration, instantiating multiple different configurations of sections and rows can get verbose. Creating a subclass or utilizing a factory to create your various `TableViewSection`/`TableViewRow` may be useful.
+Because `OKTableViewSection` and `OKTableViewRow` utilize generic types and manage view/cell type registration, instantiating multiple different configurations of sections and rows can get verbose. Creating a subclass or utilizing a factory to create your various `OKTableViewSection`/`OKTableViewRow` may be useful.
 
 ```swift
-final class PostTextTableViewRow: TableViewRow<PostTextTableViewCell, String> {
+final class PostTextTableViewRow: OKTableViewRow<PostTextTableViewCell, String> {
 	init(text: String) {
 		super.init(text,
 		registrationType: .defaultNibRegistration(for: PostTextTableViewCell.self))
@@ -229,7 +229,7 @@ final class PostTextTableViewRow: TableViewRow<PostTextTableViewCell, String> {
 
 ```swift
 static func contentRow(with image: UIImage, width: CGFloat) -> AnyTableViewRow {
-	let row = TableViewRow<PostImageContentTableViewCell, UIImage>(image,
+	let row = OKTableViewRow<PostImageContentTableViewCell, UIImage>(image,
 	registrationType: .defaultNibRegistration(for: PostImageContentTableViewCell.self))
 
 	row.set(height: .height) { (image) -> CGFloat in
@@ -248,12 +248,11 @@ static func contentRow(with image: UIImage, width: CGFloat) -> AnyTableViewRow {
 
 ## Contribution
 
-`TableViewLiaison` is a framework in its infancy. It's implementation is not perfect. Not all `UITableView` functionality has been `liaised` just yet. If you would like to help bring `TableViewLiaison` to a better place, feel free to make a pull request.
+`OKTableViewLiaison` is a framework in its infancy. It's implementation is not perfect. Not all `UITableView` functionality has been `liaised` just yet. If you would like to help bring `OKTableViewLiaison` to a better place, feel free to make a pull request.
 
 ## Authors
-
 ✌️ Dylan Shine, dylan@okcupid.com
 
 ## License
 
-TableViewLiaison is available under the MIT license. See the LICENSE file for more info.
+OKTableViewLiaison is available under the MIT license. See the LICENSE file for more info.
