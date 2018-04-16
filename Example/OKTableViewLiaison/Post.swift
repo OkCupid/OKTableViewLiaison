@@ -74,32 +74,4 @@ struct Post {
         return [post1, post2, post3]
     }
     
-    static func morePaginatedPosts() -> [Post] {
-        
-        let post1 = Post(user: "dylan",
-                         userAvatar: UIImage(named: "dylan")!,
-                         content: UIImage(named: "hedgehog")!,
-                         numberOfLikes: 3242,
-                         caption: "A hedgehog is any of the spiny mammals of the subfamily Erinaceinae, in the eulipotyphlan family Erinaceidae.",
-                         numberOfComments: 325,
-                         timePosted: 1641355)
-        
-        let post2 = Post(user: "dylan",
-                         userAvatar: UIImage(named: "dylan")!,
-                         content: UIImage(named: "wallaby")!,
-                         numberOfLikes: 7773,
-                         caption: "A wallaby is a small- or mid-sized macropod found in Australia and New Guinea.",
-                         numberOfComments: 724,
-                         timePosted: 3741355)
-        
-        let post3 = Post(user: "dylan",
-                         userAvatar: UIImage(named: "dylan")!,
-                         content: UIImage(named: "sloth")!,
-                         numberOfLikes: 4844,
-                         caption: "Sloths are arboreal mammals noted for slowness of movement and for spending most of their lives hanging upside down in the trees of the tropical rainforests of South America and Central America.",
-                         numberOfComments: 1422,
-                         timePosted: 4541355)
-        
-        return [post1, post2, post3]
-    }
 }

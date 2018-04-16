@@ -25,10 +25,6 @@ class ViewController: UIViewController {
             tableView.addSubview(refreshControl)
         }
         
-        tableView.showsVerticalScrollIndicator = false
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .white
-        
         liaison.paginationDelegate = self
         liaison.liaise(tableView: tableView)
         
@@ -51,26 +47,19 @@ class ViewController: UIViewController {
 extension ViewController: OKTableViewLiaisonPaginationDelegate {
     
     func isPaginationEnabled() -> Bool {
-        return liaison.sections.count < 9
+        return liaison.sections.count < 6
     }
     
     func paginationStarted(indexPath: IndexPath) {
         
         liaison.scroll(to: indexPath)
         
-        let sections: [OKAnyTableViewSection]
+        let sections = Post.paginatedPosts()
+            .map { return PostTableViewSection(post: $0, width: view.frame.width) }
         
-        if liaison.sections.count == 4 {
-            sections = Post.paginatedPosts()
-                .map { return PostTableViewSection(post: $0, width: view.frame.width) }
-        } else {
-            sections = Post.morePaginatedPosts()
-                .map { return PostTableViewSection(post: $0, width: view.frame.width) }
-        }
-        
-        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.liaison.append(sections: sections)
-        })
+        }
     }
     
     func paginationEnded(indexPath: IndexPath) {
