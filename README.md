@@ -27,8 +27,8 @@ alt="Pods Version">
 &#9989;   | Unit Tested
 &#128036; | Written in Swift 4.1
 
-`OKTableViewLiaison` is built and maintained with &#10084;&#65039; by [iOS @ OkCupid](https://tech.okcupid.com).
-We use the open source version `master` branch in the OkCupid app.
+`OKTableViewLiaison` is 🔨 with &#10084;&#65039; by [📱 @ OkCupid](https://tech.okcupid.com).
+We use the latest and greatest open source version of `master` in the OkCupid app.
 
 ## Requirements
 
