@@ -5,10 +5,6 @@
 <img src="https://travis-ci.org/okcupid/OKTableViewLiaison.svg?branch=master&style=flat"
 alt="Build Status">
 </a>
-<a href="https://coveralls.io/github/okcupid/OKTableViewLiaison?branch=master">
-<img src="https://coveralls.io/repos/github/okcupid/OKTableViewLiaison/badge.svg?branch=master"
-alt="Coverage Status" />
-</a>
 <a href="https://cocoapods.org/pods/OKTableViewLiaison">
 <img src="https://img.shields.io/cocoapods/v/OKTableViewLiaison.svg?style=flat"
 alt="Pods Version">
