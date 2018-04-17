@@ -49,7 +49,7 @@ pod 'OKTableViewLiaison'
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Usage 
+## Usage
 `OKTableViewLiaison` allows you to more easily populate and manipulate `UITableView` rows and sections.
 
 ![Gif](https://media.giphy.com/media/fHf8iigytMD0cvWalC/giphy.gif)
@@ -72,7 +72,7 @@ OKTableViewLiaison populates sections and rows using two main types:
 ### Section
 `class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITableViewHeaderFooterView, Model>`
 
-To create a section for our tableView, create an instance of `OKTableViewSection` and add it to the liaison. 
+To create a section for our tableView, create an instance of `OKTableViewSection` and add it to the liaison.
 
 ```swift
 let section = OKTableViewSection<UITableViewHeaderFooterView, UITableViewHeaderFooterView, String>(model: "Section")
@@ -193,7 +193,7 @@ row.set(command: .didSelect) { (cell, model, indexPath) in
 ### Cell/View Registration
 `OKTableViewLiaison` handles cell & view registration for `UITableView` view reuse on your behalf utilizing your sections/rows `OKTableViewRegistrationType`.
 
-`OKTableViewRegistrationType` tells the liaison whether your reusable view should be registered via a `Nib` or `Class`. 
+`OKTableViewRegistrationType` tells the liaison whether your reusable view should be registered via a `Nib` or `Class`.
 
 By default, `OKTableViewRow` is instantiated with `.defaultClassRegistration(for: Cell.self)`.
 
@@ -212,9 +212,9 @@ By default, `OKTableViewRow` is instantiated with `.defaultClassRegistration(for
 
 To update the liaisons results during pagination, simply use `append(sections: [OKAnyTableViewSection])` or `func append(rows: [OKAnyTableViewRow])` and the liaison will automatically handle the removal of the pagination spinner.
 
-To use a custom pagination spinner, you can pass an instance `OKAnyTableViewRow` during the initialization of your `OKTableViewLiaison`. By default it uses `OKPaginationTableViewRow` provided by the framework. 
+To use a custom pagination spinner, you can pass an instance `OKAnyTableViewRow` during the initialization of your `OKTableViewLiaison`. By default it uses `OKPaginationTableViewRow` provided by the framework.
 
-### Tips & Tricks 
+### Tips & Tricks
 
 Because `OKTableViewSection` and `OKTableViewRow` utilize generic types and manage view/cell type registration, instantiating multiple different configurations of sections and rows can get verbose. Creating a subclass or utilizing a factory to create your various `OKTableViewSection`/`OKTableViewRow` may be useful.
 
@@ -251,7 +251,8 @@ static func contentRow(with image: UIImage, width: CGFloat) -> AnyTableViewRow {
 `OKTableViewLiaison` is a framework in its infancy. It's implementation is not perfect. Not all `UITableView` functionality has been `liaised` just yet. If you would like to help bring `OKTableViewLiaison` to a better place, feel free to make a pull request.
 
 ## Authors
-✌️ Dylan Shine, dylan@okcupid.com
+
+✌️ Dylan Shine, dylan@okcupid.com
 
 ## License
 

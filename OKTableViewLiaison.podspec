@@ -12,14 +12,14 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.summary          = 'Framework to help you better manage UITableViews.'
   s.description      = 'OKTableViewLiaison abstracts and simplifies UITableView construction and management.'
-  s.homepage         = 'https://github.com/okcupid/OKTableViewLiaison'
+  s.homepage         = 'https://github.com/okcupid/OKTableViewLiaison'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Dylan Shine' => 'dylan@okcupid.com' }
+  s.author           = { 'Dylan Shine' => 'dylan@okcupid.com' }
   s.source           = { :git => 'https://github.com/okcupid/OKTableViewLiaison.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'OKTableViewLiaison/Classes/**/*'
   s.swift_version = '4.1'
-  
+
 end
