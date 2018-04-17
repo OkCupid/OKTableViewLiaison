@@ -9,12 +9,9 @@
 Pod::Spec.new do |s|
   s.name             = 'OKTableViewLiaison'
   s.version          = '1.0.0'
+  s.license          = 'MIT'
   s.summary          = 'Framework to help you better manage UITableViews.'
-
-#  s.description      = <<-DESC
-#TODO: Add long description of the pod here.
-#                       DESC
-
+  s.description      = 'OKTableViewLiaison abstracts and simplifies UITableView construction and management.'
   s.homepage         = 'https://github.com/okcupid/OKTableViewLiaison'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Dylan Shine' => 'dylan@okcupid.com' }
