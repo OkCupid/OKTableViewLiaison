@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/okcupid/OKTableViewLiaison'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Dylan Shine' => 'dylan@okcupid.com' }
-  s.source           = { :git => 'https://github.com/okcupid/OKTableViewLiaison.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/okcupid/OkTableViewLiaison.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
 
