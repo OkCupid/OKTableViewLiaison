@@ -52,8 +52,6 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Usage
 `OKTableViewLiaison` allows you to more easily populate and manipulate `UITableView` rows and sections.
 
-![Gif](https://media.giphy.com/media/fHf8iigytMD0cvWalC/giphy.gif)
-
 ### Getting Started
 To get started, all you need to do is `liaise` an instance of `UITableView` to with a `OKTableViewLiaison`:
 
