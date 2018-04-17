@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## OKTableViewLiaison
 
-Copyright (c) 2018 [01;31m[Kacct[m[K<blob>=dylanshine <dylan@okcupid.com>
+Copyright (c) 2018 OkCupid - Dylan Shine <dylan@okcupid.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

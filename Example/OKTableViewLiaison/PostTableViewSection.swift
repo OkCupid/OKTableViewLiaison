@@ -3,7 +3,7 @@
 //  OKTableViewLiaison_Example
 //
 //  Created by Dylan Shine on 3/29/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright © 2018 OkCupid. All rights reserved.
 //
 
 import UIKit

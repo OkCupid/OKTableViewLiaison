@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  OKTableViewLiaison
 //
-//  Created by [01;31m[Kacct[m[K<blob>=dylanshine on 04/11/2018.
-//  Copyright (c) 2018 [01;31m[Kacct[m[K<blob>=dylanshine. All rights reserved.
+//  Created by Created by Dylan Shine on 04/11/2018.
+//  Copyright © 2018 OkCupid. All rights reserved.
 //
 
 import UIKit

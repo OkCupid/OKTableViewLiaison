@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  OKTableViewLiaison
 //
-//  Created by [01;31m[Kacct[m[K<blob>=dylanshine on 04/11/2018.
-//  Copyright (c) 2018 [01;31m[Kacct[m[K<blob>=dylanshine. All rights reserved.
+//  Created by Dylan Shine on 04/11/2018.
+//  Copyright © 2018 OkCupid. All rights reserved.
 //
 
 import UIKit
@@ -18,13 +18,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         refreshControl.addTarget(self, action: #selector(refreshSections), for: .valueChanged)
-        
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
-        }
-        
+        tableView.addSubview(refreshControl)
+
         liaison.paginationDelegate = self
         liaison.liaise(tableView: tableView)
         
