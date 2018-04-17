@@ -117,7 +117,7 @@ section.setHeader(command: .configuration) { (header, model, section) in
 }
 
 section.setHeader(command: .willDisplay) { (header, model, section) in
-print("Header: \(header) will display for Section: \(section) with Model: \(model)")
+	print("Header: \(header) will display for Section: \(section) with Model: \(model)")
 }
 ```
 
