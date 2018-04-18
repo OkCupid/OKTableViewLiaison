@@ -10,4 +10,4 @@ language: objective-c
 # - gem install cocoapods # Since Travis is not always on latest version
 # - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/OKTableViewLiaison.xcworkspace -scheme OKTableViewLiaison-Example -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' | xcpretty
+- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/OKTableViewLiaison.xcworkspace -scheme OKTableViewLiaison-Example -destination 'platform=iOS Simulator,name=iPhone 7,OS=11.0' | xcpretty
