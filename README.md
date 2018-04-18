@@ -1,8 +1,8 @@
 # OKTableViewLiaison
 
 <p align="center">
-<a href="https://travis-ci.org/okcupid/OKTableViewLiaison">
-<img src="https://travis-ci.org/okcupid/OKTableViewLiaison.svg?branch=master&style=flat"
+<a href="https://travis-ci.org/OkCupid/OKTableViewLiaison">
+<img src="https://travis-ci.org/OkCupid/OKTableViewLiaison.svg?branch=master&style=flat"
 alt="Build Status">
 </a>
 <a href="https://cocoapods.org/pods/OKTableViewLiaison">
