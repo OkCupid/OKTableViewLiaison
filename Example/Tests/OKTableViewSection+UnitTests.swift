@@ -108,6 +108,21 @@ final class OKTableViewSection_UnitTests: XCTestCase {
         XCTAssertEqual(section3FooterHeight, UITableViewAutomaticDimension)
     }
     
+    func test_removeHeight_properlyRemovesHeightOfSupplementaryViews() {
+        let section = TestTableViewSection()
+
+        section.setHeight(for: .header, value: 200)
+        section.setHeight(for: .footer, value: 200)
+        
+        section.removeHeight(for: .header)
+        section.removeHeight(for: .footer)
+        
+        XCTAssertEqual(section.calculateHeight(for: .header), UITableViewAutomaticDimension)
+        
+        XCTAssertEqual(section.calculateHeight(for: .footer), UITableViewAutomaticDimension)
+
+    }
+    
     func test_appendRows_properlyAppendsNewRowsToSection() {
         let section = TestTableViewSection()
         let row1 = TestTableViewRow()

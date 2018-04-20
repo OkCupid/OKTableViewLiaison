@@ -37,7 +37,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     }
     
     func test_removeCommand_properlyRemovesCommand() {
-        let row = TestTableViewRow.create()
+        let row = TestTableViewRow()
         
         var set = false
         row.set(command: .configuration) { (_, _, _) in
@@ -61,11 +61,30 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     }
     
     func test_setHeight_properlySetsHeightWithValue() {
-        let row = TestTableViewRow.create()
+        let row = TestTableViewRow()
         
         row.set(height: .height, value: 100)
         
         XCTAssertEqual(row.height, 100)
+    }
+    
+    func test_setHeight_notSettingAHeightReturnsAutomaticDimension() {
+        let row = TestTableViewRow()
+        XCTAssertEqual(row.height, UITableViewAutomaticDimension)
+        XCTAssertEqual(row.estimatedHeight, UITableViewAutomaticDimension)
+    }
+    
+    func test_removeHeight_properlyRemovesAPreviouslySetHeight() {
+        let row = TestTableViewRow()
+        
+        row.set(height: .height, value: 100)
+        row.set(height: .estimatedHeight, value: 100)
+        
+        row.remove(height: .height)
+        row.remove(height: .estimatedHeight)
+        
+        XCTAssertEqual(row.height, UITableViewAutomaticDimension)
+        XCTAssertEqual(row.estimatedHeight, UITableViewAutomaticDimension)
     }
     
     func test_editable_returnsIfRowIsEditable() {
