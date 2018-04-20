@@ -462,7 +462,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2], to: 0)
+        liaison.append(rows: [row1, row2])
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -473,6 +473,33 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         XCTAssertEqual(deleted, true)
         XCTAssertEqual(inserted, true)
         XCTAssertEqual(section.rows.count, 1)
+    }
+    
+    func test_moveRowAt_properlyMovesRowFromOneSourceIndexPathToDestinationIndexPath() {
+        let section1 = TestTableViewSection()
+        let section2 = TestTableViewSection()
+        
+        var moved = false
+        let row1 = TestTableViewRow()
+        row1.set(command: .move) { (_, _, _) in
+            moved = true
+        }
+        
+        let row2 = TestTableViewRow()
+        let row3 = TestTableViewRow()
+        
+        liaison.append(sections: [section1, section2])
+        liaison.append(rows: [row1, row2, row3])
+        
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.tableView(tableView, moveRowAt: IndexPath(row: 0, section: 0), to: IndexPath(row: 0, section: 1))
+        }
+        
+        XCTAssertEqual(moved, true)
+        XCTAssertEqual(section1.rows.count, 2)
+        XCTAssert(section2.rows.first === row1)
+
     }
     
     func test_willSelectRow_performsWillSelectCommand() {
