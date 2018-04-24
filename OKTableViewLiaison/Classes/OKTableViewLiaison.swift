@@ -8,12 +8,6 @@
 
 import UIKit
 
-public protocol OKTableViewLiaisonPaginationDelegate: class {
-    func isPaginationEnabled() -> Bool
-    func paginationStarted(indexPath: IndexPath)
-    func paginationEnded(indexPath: IndexPath)
-}
-
 final public class OKTableViewLiaison: NSObject {
     private weak var tableView: UITableView?
     public private(set) var sections = [OKAnyTableViewSection]()
