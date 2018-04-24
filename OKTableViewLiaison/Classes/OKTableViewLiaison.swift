@@ -8,12 +8,6 @@
 
 import UIKit
 
-public protocol OKTableViewLiaisonPaginationDelegate: class {
-    func isPaginationEnabled() -> Bool
-    func paginationStarted(indexPath: IndexPath)
-    func paginationEnded(indexPath: IndexPath)
-}
-
 final public class OKTableViewLiaison: NSObject {
     private weak var tableView: UITableView?
     public private(set) var sections = [OKAnyTableViewSection]()
@@ -338,7 +332,7 @@ public extension OKTableViewLiaison {
         }
 
         destinationSection.insert(row: row, at: destination)
-
+        
         performTableViewUpdates(animated: animated) {
             tableView?.moveRow(at: source, to: destination)
         }
@@ -492,6 +486,11 @@ extension OKTableViewLiaison: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: sourceIndexPath) else {
+            return
+        }
+        
+        row(for: sourceIndexPath)?.perform(command: .move, for: cell, at: destinationIndexPath)
         moveRow(from: sourceIndexPath, to: destinationIndexPath)
     }
     

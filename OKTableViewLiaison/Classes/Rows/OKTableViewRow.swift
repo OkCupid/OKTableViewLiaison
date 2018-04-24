@@ -80,7 +80,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
         commands[command]?(cell, model, indexPath)
     }
     
-    public func set(command: OKTableViewRowCommand, with closure: ((Cell, Model, IndexPath) -> Void)?) {
+    public func set(command: OKTableViewRowCommand, with closure: @escaping ((Cell, Model, IndexPath) -> Void)) {
         commands[command] = closure
     }
     
@@ -88,13 +88,17 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
         commands[command] = nil
     }
     
-    public func set(height: OKTableViewHeightType, with closure: ((Model) -> CGFloat)?) {
+    public func set(height: OKTableViewHeightType, with closure: @escaping ((Model) -> CGFloat)) {
         heights[height] = closure
     }
     
     public func set(height: OKTableViewHeightType, value: CGFloat) {
-        let closure: ((Model) -> CGFloat)? = { _ -> CGFloat in return value }
+        let closure: ((Model) -> CGFloat) = { _ -> CGFloat in return value }
         heights[height] = closure
+    }
+    
+    public func remove(height: OKTableViewHeightType) {
+        heights[height] = nil
     }
     
     // MARK: - Computed Properties
