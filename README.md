@@ -98,7 +98,7 @@ section.setHeight(for: .header) { (model) -> CGFloat in
 
 In the event a height is not provided for a supplementary view, the liaison will assume the supplementary view is self sizing and return `UITableViewAutomaticDimension`.
 
-The `OKTableViewSection` supplementary views can be customized using `func setHeader(command: OKTableViewSectionCommand, with closure: ((Header, Model, _ section: Int) -> Void)?)` or `func setFooter(command: OKTableViewSectionCommand, with closure: ((Footer, Model, _ section: Int) -> Void)?)` at all the following lifecycle events:
+The `OKTableViewSection` supplementary views can be customized using `func setHeader(command: OKTableViewSectionCommand, with closure: @escaping (Header, Model, _ section: Int) -> Void)` or `func setFooter(command: OKTableViewSectionCommand, with closure: @escaping (Footer, Model, _ section: Int) -> Void)` at all the following lifecycle events:
 
 - configuration
 - didEndDisplaying
@@ -153,7 +153,7 @@ row.set(height: .height) { (model) -> CGFloat in
 
 In the event a height is not provided, the liaison will assume the cell is self sizing and return `UITableViewAutomaticDimension`.
 
-The `OKTableViewRow` can be customized using `func set(command: OKTableViewRowCommand, with closure: ((Cell, Model, IndexPath) -> Void)?) ` at all the following lifecycle events:
+The `OKTableViewRow` can be customized using `func set(command: OKTableViewRowCommand, with closure: @escaping (Cell, Model, IndexPath) -> Void) ` at all the following lifecycle events:
 
 -  accessoryButtonTapped
 -  configuration
