@@ -641,63 +641,70 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.append(section: section)
         liaison.append(rows: [row], to: 0)
         
-        let cell = UITableViewCell()
-        liaison.tableView(tableView, willDisplay: cell, forRowAt: IndexPath(row: 0, section: 0))
+        liaison.tableView(tableView, willDisplay: UITableViewCell(), forRowAt: IndexPath(row: 0, section: 0))
         
-        let testExpectation = expectation(description: "Cancel")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            XCTAssertEqual(delegate.isPaginationEnabledCallCount, 1)
-            XCTAssertEqual(delegate.paginationStartedCallCount, 1)
-            testExpectation.fulfill()
+        keyValueObservingExpectation(for: delegate, keyPath: "paginationStartedCallCount") { (delegate, json) -> Bool in
+            guard let delegate = delegate as? TestTableViewLiaisonPaginationDelegate else {
+                return false
+            }
+            
+            return delegate.paginationStartedCallCount == 1 && delegate.isPaginationEnabledCallCount == 1
+        }
+        
+        waitForExpectations(timeout: 0.2, handler: nil)
+    }
+    
+    func test_appendSection_paginationDelegateEndsByAppendingSection() {
+        let row1 = TestTableViewRow()
+        let row2 = TestTableViewRow()
+        let section1 = TestTableViewSection(rows: [row1, row2])
+        let delegate = TestTableViewLiaisonPaginationDelegate()
+        let row3 = TestTableViewRow()
+        let section2 = TestTableViewSection(rows: [row3])
+
+        liaison.paginationDelegate = delegate
+        liaison.append(section: section1)
+        liaison.tableView(tableView, willDisplay: UITableViewCell(), forRowAt: IndexPath(row: 1, section: 0))
+
+        DispatchQueue.main.async {
+            self.liaison.append(section: section2)
+        }
+
+        keyValueObservingExpectation(for: delegate, keyPath: "paginationEndedCallCount") { (delegate, json) -> Bool in
+            guard let delegate = delegate as? TestTableViewLiaisonPaginationDelegate else {
+                return false
+            }
+            
+            return delegate.paginationEndedCallCount == 1
         }
         
         waitForExpectations(timeout: 0.5, handler: nil)
-    
     }
     
-    // Test failing due to threading issue
-    func test_appendSection_paginationDelegateEndsByAppendingSection() {
-//        let section1 = TestTableViewSection()
-//        let row1 = TestTableViewRow()
-//        let delegate = TestTableViewLiaisonPaginationDelegate()
-//        let section2 = TestTableViewSection()
-//        let row2 = TestTableViewRow()
-//
-//        section1.append(row: row1)
-//        section2.append(row: row2)
-//        liaison.paginationDelegate = delegate
-//        liaison.append(section: section1)
-//
-//        liaison.tableView(tableView, willDisplay: UITableViewCell(), forRowAt: IndexPath(row: 0, section: 0))
-//
-//        liaison.append(section: section2)
-//        
-//        let testExpectation = expectation(description: "Test")
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            XCTAssertEqual(delegate.paginationEndedCallCount, 1)
-//            testExpectation.fulfill()
-//        }
-//        
-//        waitForExpectations(timeout: 2, handler: nil)
-    }
-    
-    // Test failing due to threading issue
     func test_appendRow_paginationDelegateEndsByAppendingRow() {
-//        let section = TestTableViewSection()
-//        let row1 = TestTableViewRow()
-//        let delegate = TestTableViewLiaisonPaginationDelegate()
-//        let row2 = TestTableViewRow()
-//
-//        liaison.paginationDelegate = delegate
-//        section.append(row: row1)
-//        liaison.append(section: section)
-//
-//        let cell = UITableViewCell()
-//        liaison.tableView(tableView, willDisplay: cell, forRowAt: IndexPath(row: 0, section: 0))
-//
-//        liaison.append(rows: [row2], to: 0)
-//
-//        XCTAssertEqual(delegate.paginationEndedCallCount, 1)
+        let row1 = TestTableViewRow()
+        let section = TestTableViewSection(rows: [row1])
+        let delegate = TestTableViewLiaisonPaginationDelegate()
+        let row2 = TestTableViewRow()
+
+        liaison.paginationDelegate = delegate
+        liaison.append(section: section)
+
+        liaison.tableView(tableView, willDisplay: UITableViewCell(), forRowAt: IndexPath(row: 0, section: 0))
+
+        DispatchQueue.main.async {
+            self.liaison.append(row: row2)
+        }
+        
+        keyValueObservingExpectation(for: delegate, keyPath: "paginationEndedCallCount") { (delegate, json) -> Bool in
+            guard let delegate = delegate as? TestTableViewLiaisonPaginationDelegate else {
+                return false
+            }
+            
+            return delegate.paginationEndedCallCount == 1
+        }
+        
+        waitForExpectations(timeout: 0.5, handler: nil)
     }
     
     func test_didEndDisplayingCell_performsDidEndDisplayingCommand() {

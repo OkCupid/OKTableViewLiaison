@@ -9,20 +9,20 @@
 import Foundation
 @testable import OKTableViewLiaison
 
-final class TestTableViewLiaisonPaginationDelegate: OKTableViewLiaisonPaginationDelegate {
-    
-    var isPaginationEnabledCallCount = 0
+final class TestTableViewLiaisonPaginationDelegate: NSObject, OKTableViewLiaisonPaginationDelegate {
+        
+    @objc dynamic var isPaginationEnabledCallCount = 0
     func isPaginationEnabled() -> Bool {
         isPaginationEnabledCallCount += 1
         return true
     }
     
-    var paginationStartedCallCount = 0
+    @objc dynamic var paginationStartedCallCount = 0
     func paginationStarted(indexPath: IndexPath) {
         paginationStartedCallCount += 1
     }
     
-    var paginationEndedCallCount = 0
+    @objc dynamic var paginationEndedCallCount = 0
     func paginationEnded(indexPath: IndexPath) {
         paginationEndedCallCount += 1
     }
