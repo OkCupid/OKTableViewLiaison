@@ -259,6 +259,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.append(section: section)
         liaison.append(rows: [row], to: 0)
         
+        tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
             liaison.reloadRows(at: [IndexPath(row: 0, section: 0)])
         }
