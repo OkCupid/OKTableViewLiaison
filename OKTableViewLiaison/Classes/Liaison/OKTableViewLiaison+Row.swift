@@ -38,6 +38,13 @@ public extension OKTableViewLiaison {
             tableView?.insertRows(at: indexPaths, with: animation)
         }
         
+        zip(rows, indexPaths).forEach { row, indexPath in
+            guard let cell = tableView?.cellForRow(at: indexPath) else {
+                return
+            }
+            row.perform(command: .insert, for: cell, at: indexPath)
+        }
+        
     }
     
     public func append(row: OKAnyTableViewRow, to section: Int = 0, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
@@ -58,6 +65,11 @@ public extension OKTableViewLiaison {
             tableView?.insertRows(at: [indexPath], with: animation)
         }
         
+        guard let cell = tableView?.cellForRow(at: indexPath) else {
+            return
+        }
+        
+        row.perform(command: .insert, for: cell, at: indexPath)
     }
     
     @discardableResult
@@ -74,8 +86,13 @@ public extension OKTableViewLiaison {
             if let section = sections.element(at: section) {
                 
                 indexPaths.forEach {
+                    
                     if let row = section.deleteRow(at: $0) {
                         deletedRows.append(row)
+                        
+                        if let cell = tableView?.cellForRow(at: $0) {
+                            row.perform(command: .delete, for: cell, at: $0)
+                        }
                     }
                 }
                 
@@ -105,6 +122,14 @@ public extension OKTableViewLiaison {
         tableView?.beginUpdates()
         tableView?.reloadRows(at: indexPaths, with: animation)
         tableView?.endUpdates()
+        
+        indexPaths.forEach {
+            guard let cell = tableView?.cellForRow(at: $0) else {
+                return
+            }
+            
+            row(for: $0)?.perform(command: .reload, for: cell, at: $0)
+        }
     }
     
     public func replaceRow(at indexPath: IndexPath, with row: OKAnyTableViewRow, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
@@ -113,7 +138,11 @@ public extension OKTableViewLiaison {
             return
         }
         
-        section.deleteRow(at: indexPath)
+        let deletedRow = section.deleteRow(at: indexPath)
+        if let cell = tableView?.cellForRow(at: indexPath) {
+            deletedRow?.perform(command: .delete, for: cell, at: indexPath)
+        }
+        
         registerCell(for: row)
         section.insert(row: row, at: indexPath)
         
@@ -121,6 +150,12 @@ public extension OKTableViewLiaison {
             tableView?.deleteRows(at: [indexPath], with: animation)
             tableView?.insertRows(at: [indexPath], with: animation)
         }
+        
+        guard let cell = tableView?.cellForRow(at: indexPath) else {
+            return
+        }
+        
+        row.perform(command: .insert, for: cell, at: indexPath)
     }
     
     public func moveRow(from source: IndexPath, to destination: IndexPath, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
@@ -140,6 +175,11 @@ public extension OKTableViewLiaison {
             tableView?.moveRow(at: source, to: destination)
         }
         
+        guard let cell = tableView?.cellForRow(at: destination) else {
+            return
+        }
+        
+        self.row(for: destination)?.perform(command: .move, for: cell, at: destination)
     }
     
     public func swapRow(from source: IndexPath, to destination: IndexPath, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
@@ -164,6 +204,14 @@ public extension OKTableViewLiaison {
         performTableViewUpdates(animated: animated) {
             tableView?.moveRow(at: source, to: destination)
             tableView?.moveRow(at: destination, to: source)
+        }
+        
+        if let sourceCell = tableView?.cellForRow(at: source) {
+            row(for: source)?.perform(command: .move, for: sourceCell, at: source)
+        }
+        
+        if let destinationCell = tableView?.cellForRow(at: destination) {
+            row(for: destination)?.perform(command: .move, for: destinationCell, at: destination)
         }
     }
 }
