@@ -188,7 +188,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         
         XCTAssert(section.rows.count == 0)
         
-        liaison.append(row: row, to: 0)
+        liaison.append(row: row)
         
         XCTAssert(section.rows.count == 1)
     }
@@ -202,7 +202,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         
         XCTAssert(section.rows.count == 0)
         
-        liaison.append(rows: [row1, row2], to: 0)
+        liaison.append(rows: [row1, row2])
         
         XCTAssert(section.rows.count == 2)
     }
@@ -214,7 +214,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row3 = TestTableViewRow()
         
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2], to: 0)
+        liaison.append(rows: [row1, row2])
         
         liaison.insert(row: row3, at: IndexPath(row: 0, section: 0))
         
@@ -229,7 +229,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row3 = TestTableViewRow()
 
         liaison.append(sections: [section1, section2])
-        liaison.append(rows: [row1, row2], to: 0)
+        liaison.append(rows: [row1, row2])
         liaison.append(row: row3, to: 1)
         
         liaison.deleteRows(at: [IndexPath(row: 0, section: 0), IndexPath(row: 0, section: 1)])
@@ -244,7 +244,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row2 = TestTableViewRow()
 
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2], to: 0)
+        liaison.append(rows: [row1, row2])
         
         liaison.deleteRow(at: IndexPath(row: 0, section: 0))
         
@@ -257,7 +257,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row = TestTableViewRow.create()
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -275,7 +275,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row2 = TestTableViewRow()
         
         liaison.append(section: section)
-        liaison.append(rows: [row1], to: 0)
+        liaison.append(rows: [row1])
         
         liaison.replaceRow(at: IndexPath(row: 0, section: 0), with: row2)
         
@@ -290,7 +290,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row3 = TestTableViewRow()
 
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2, row3], to: 0)
+        liaison.append(rows: [row1, row2, row3])
         
         liaison.moveRow(from: IndexPath(row: 0, section: 0), to: IndexPath(row: 2, section: 0))
         
@@ -311,7 +311,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.append(section: section1)
         liaison.append(section: section2)
 
-        liaison.append(rows: [row1, row2, row3], to: 0)
+        liaison.append(rows: [row1, row2, row3])
         liaison.append(rows: [row4, row5], to: 1)
 
         liaison.moveRow(from: IndexPath(row: 0, section: 0), to: IndexPath(row: 2, section: 1))
@@ -329,7 +329,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row3 = TestTableViewRow()
         
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2, row3], to: 0)
+        liaison.append(rows: [row1, row2, row3])
 
         liaison.swapRow(from: IndexPath(row: 0, section: 0), to: IndexPath(row: 2, section: 0))
         XCTAssert(section.rows.first === row3)
@@ -348,7 +348,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.append(section: section1)
         liaison.append(section: section2)
         
-        liaison.append(rows: [row1, row2], to: 0)
+        liaison.append(rows: [row1, row2])
         liaison.append(rows: [row3, row4], to: 1)
         
         liaison.swapRow(from: IndexPath(row: 0, section: 0), to: IndexPath(row: 1, section: 1))
@@ -367,7 +367,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         let cell = liaison.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
         
@@ -399,7 +399,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.append(section: section1)
         liaison.append(section: section2)
         
-        liaison.append(rows: [row1, row2], to: 0)
+        liaison.append(rows: [row1, row2])
         liaison.append(rows: [row3, row4, row5], to: 1)
         
         let section1Count = liaison.tableView(tableView, numberOfRowsInSection: 0)
@@ -416,7 +416,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row3 = TestTableViewRow()
         
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2, row3], to: 0)
+        liaison.append(rows: [row1, row2, row3])
         
         let row1Editable = liaison.tableView(tableView, canEditRowAt: IndexPath(row: 0, section: 0))
         let row2Editable = liaison.tableView(tableView, canEditRowAt: IndexPath(row: 1, section: 0))
@@ -436,7 +436,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row2 = TestTableViewRow()
         
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2], to: 0)
+        liaison.append(rows: [row1, row2])
         
         let row1Movable = liaison.tableView(tableView, canMoveRowAt: IndexPath(row: 0, section: 0))
         let row2Movable = liaison.tableView(tableView, canMoveRowAt: IndexPath(row: 1, section: 0))
@@ -513,7 +513,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         var indexPath: IndexPath?
@@ -535,7 +535,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -555,7 +555,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         var indexPath: IndexPath?
@@ -577,7 +577,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -600,7 +600,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.append(section: section1)
         liaison.append(section: section2)
         
-        liaison.append(rows: [row1, row2, row3], to: 0)
+        liaison.append(rows: [row1, row2, row3])
         liaison.append(rows: [row4, row5], to: 1)
         
         let destination = liaison.tableView(tableView,
@@ -624,7 +624,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         let cell = UITableViewCell()
         liaison.tableView(tableView, willDisplay: cell, forRowAt: IndexPath(row: 0, section: 0))
@@ -640,7 +640,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.paginationDelegate = delegate
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         liaison.tableView(tableView, willDisplay: UITableViewCell(), forRowAt: IndexPath(row: 0, section: 0))
         
@@ -718,7 +718,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         let cell = UITableViewCell()
         liaison.tableView(tableView, didEndDisplaying: cell, forRowAt: IndexPath(row: 0, section: 0))
@@ -736,7 +736,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -756,7 +756,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -776,7 +776,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -796,7 +796,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -862,7 +862,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         
         row2.set(height: .height, value: 200)
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2, row3], to: 0)
+        liaison.append(rows: [row1, row2, row3])
         
         let row1Height = liaison.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 0))
         let row2Height = liaison.tableView(tableView, heightForRowAt: IndexPath(row: 1, section: 0))
@@ -885,7 +885,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         
         row2.set(height: .estimatedHeight, value: 200)
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2, row3], to: 0)
+        liaison.append(rows: [row1, row2, row3])
         
         let row1Height = liaison.tableView(tableView, estimatedHeightForRowAt: IndexPath(row: 0, section: 0))
         let row2Height = liaison.tableView(tableView, estimatedHeightForRowAt: IndexPath(row: 1, section: 0))
@@ -902,7 +902,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row2 = TestTableViewRow()
         
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2], to: 0)
+        liaison.append(rows: [row1, row2])
         
         let row1ShouldIndent = liaison.tableView(tableView, shouldIndentWhileEditingRowAt: IndexPath(row: 0, section: 0))
         let row2ShouldIndent = liaison.tableView(tableView, shouldIndentWhileEditingRowAt: IndexPath(row: 1, section: 0))
@@ -920,7 +920,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row3 = TestTableViewRow()
 
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2, row3], to: 0)
+        liaison.append(rows: [row1, row2, row3])
         
         let row1EditingStyle = liaison.tableView(tableView, editingStyleForRowAt: IndexPath(row: 0, section: 0))
         let row2EditingStyle = liaison.tableView(tableView, editingStyleForRowAt: IndexPath(row: 1, section: 0))
@@ -943,7 +943,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row2 = TestTableViewRow()
         
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2], to: 0)
+        liaison.append(rows: [row1, row2])
         
         let row1EditActions = liaison.tableView(tableView, editActionsForRowAt: IndexPath(row: 0, section: 0))
         let row2EditActions = liaison.tableView(tableView, editActionsForRowAt: IndexPath(row: 1, section: 0))
@@ -963,7 +963,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         liaison.append(section: section)
-        liaison.append(rows: [row], to: 0)
+        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -979,7 +979,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row2 = TestTableViewRow()
         
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2], to: 0)
+        liaison.append(rows: [row1, row2])
         
         let row1DeleteConfirmationTitle = liaison.tableView(tableView, titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0, section: 0))
         let row2DeleteConfirmationTitle = liaison.tableView(tableView, titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 1, section: 0))
