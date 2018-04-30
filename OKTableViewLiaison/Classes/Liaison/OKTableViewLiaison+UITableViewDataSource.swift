@@ -41,12 +41,10 @@ extension OKTableViewLiaison: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            guard let cell = tableView.cellForRow(at: indexPath),
-                let row = row(for: indexPath) else {
-                    return
+            guard let row = row(for: indexPath) else {
+                return
             }
             
-            row.perform(command: .delete, for: cell, at: indexPath)
             deleteRow(at: indexPath, with: row.deleteRowAnimation)
         case .insert:
             guard let cell = tableView.cellForRow(at: indexPath) else {
@@ -54,7 +52,7 @@ extension OKTableViewLiaison: UITableViewDataSource {
             }
             
             row(for: indexPath)?.perform(command: .insert, for: cell, at: indexPath)
-        default:
+        case .none:
             break
         }
     }

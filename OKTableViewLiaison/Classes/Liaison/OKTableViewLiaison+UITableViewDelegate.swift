@@ -8,6 +8,7 @@
 import UIKit
 
 extension OKTableViewLiaison: UITableViewDelegate {
+    
     private func perform(command: OKTableViewRowCommand, for tableView: UITableView, at indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else {
             return

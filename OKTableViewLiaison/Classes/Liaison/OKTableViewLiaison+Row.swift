@@ -39,10 +39,9 @@ public extension OKTableViewLiaison {
         }
         
         zip(rows, indexPaths).forEach { row, indexPath in
-            guard let cell = tableView?.cellForRow(at: indexPath) else {
-                return
+            if let cell = tableView?.cellForRow(at: indexPath) {
+                row.perform(command: .insert, for: cell, at: indexPath)
             }
-            row.perform(command: .insert, for: cell, at: indexPath)
         }
         
     }
@@ -65,11 +64,10 @@ public extension OKTableViewLiaison {
             tableView?.insertRows(at: [indexPath], with: animation)
         }
         
-        guard let cell = tableView?.cellForRow(at: indexPath) else {
-            return
+        if let cell = tableView?.cellForRow(at: indexPath) {
+            row.perform(command: .insert, for: cell, at: indexPath)
         }
         
-        row.perform(command: .insert, for: cell, at: indexPath)
     }
     
     @discardableResult
@@ -111,6 +109,10 @@ public extension OKTableViewLiaison {
         
         let row = section(for: indexPath)?.deleteRow(at: indexPath)
         
+        if let cell = tableView?.cellForRow(at: indexPath) {
+            row?.perform(command: .delete, for: cell, at: indexPath)
+        }
+        
         performTableViewUpdates(animated: animated) {
             tableView?.deleteRows(at: [indexPath], with: animation)
         }
@@ -124,11 +126,9 @@ public extension OKTableViewLiaison {
         tableView?.endUpdates()
         
         indexPaths.forEach {
-            guard let cell = tableView?.cellForRow(at: $0) else {
-                return
+            if let cell = tableView?.cellForRow(at: $0) {
+                row(for: $0)?.perform(command: .reload, for: cell, at: $0)
             }
-            
-            row(for: $0)?.perform(command: .reload, for: cell, at: $0)
         }
     }
     
@@ -151,11 +151,9 @@ public extension OKTableViewLiaison {
             tableView?.insertRows(at: [indexPath], with: animation)
         }
         
-        guard let cell = tableView?.cellForRow(at: indexPath) else {
-            return
+        if let cell = tableView?.cellForRow(at: indexPath) {
+            row.perform(command: .insert, for: cell, at: indexPath)
         }
-        
-        row.perform(command: .insert, for: cell, at: indexPath)
     }
     
     public func moveRow(from source: IndexPath, to destination: IndexPath, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
@@ -175,11 +173,9 @@ public extension OKTableViewLiaison {
             tableView?.moveRow(at: source, to: destination)
         }
         
-        guard let cell = tableView?.cellForRow(at: destination) else {
-            return
+        if let cell = tableView?.cellForRow(at: destination) {
+            row.perform(command: .move, for: cell, at: destination)
         }
-        
-        self.row(for: destination)?.perform(command: .move, for: cell, at: destination)
     }
     
     public func swapRow(from source: IndexPath, to destination: IndexPath, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {

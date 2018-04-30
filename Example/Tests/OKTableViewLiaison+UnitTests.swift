@@ -184,27 +184,63 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let section = TestTableViewSection()
         let row = TestTableViewRow()
         
+        var inserted = false
+        var actualIndexPath: IndexPath?
+        let expectedIndexPath = IndexPath(row: 0, section: 0)
+        row.set(command: .insert) { (_, _, indexPath) in
+            inserted = true
+            actualIndexPath = indexPath
+        }
+        
         liaison.append(section: section)
         
         XCTAssert(section.rows.count == 0)
         
-        liaison.append(row: row)
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.append(row: row)
+        }
         
         XCTAssert(section.rows.count == 1)
+        XCTAssertEqual(inserted, true)
+        XCTAssertEqual(actualIndexPath, expectedIndexPath)
     }
     
     func test_appendRows_appendsRowsToSection() {
         let section = TestTableViewSection()
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
+        
+        var insertedRow1 = false
+        var actualIndexPathRow1: IndexPath?
+        let expectedIndexPathRow1 = IndexPath(row: 0, section: 0)
+        row1.set(command: .insert) { (_, _, indexPath) in
+            insertedRow1 = true
+            actualIndexPathRow1 = indexPath
+        }
+        
+        var insertedRow2 = false
+        var actualIndexPathRow2: IndexPath?
+        let expectedIndexPathRow2 = IndexPath(row: 1, section: 0)
+        row2.set(command: .insert) { (_, _, indexPath) in
+            insertedRow2 = true
+            actualIndexPathRow2 = indexPath
+        }
 
         liaison.append(section: section)
         
         XCTAssert(section.rows.count == 0)
         
-        liaison.append(rows: [row1, row2])
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.append(rows: [row1, row2])
+        }
         
         XCTAssert(section.rows.count == 2)
+        XCTAssertEqual(insertedRow1, true)
+        XCTAssertEqual(insertedRow2, true)
+        XCTAssertEqual(actualIndexPathRow1, expectedIndexPathRow1)
+        XCTAssertEqual(actualIndexPathRow2, expectedIndexPathRow2)
     }
     
     func test_insertRow_insertsRowIntoSection() {
@@ -216,9 +252,23 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.append(section: section)
         liaison.append(rows: [row1, row2])
         
-        liaison.insert(row: row3, at: IndexPath(row: 0, section: 0))
+        let expectedIndexPath = IndexPath(row: 0, section: 0)
+        var insertedRow = false
+        var actualIndexPathRow: IndexPath?
+        
+        row3.set(command: .insert) { (_, _, indexPath) in
+            insertedRow = true
+            actualIndexPathRow = indexPath
+        }
+        
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.insert(row: row3, at: expectedIndexPath)
+        }
         
         XCTAssert(section.rows.first === row3)
+        XCTAssertEqual(insertedRow, true)
+        XCTAssertEqual(actualIndexPathRow, expectedIndexPath)
     }
     
     func test_deleteRows_removesRowsFromTableView() {
@@ -227,34 +277,75 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow()
+        
+        let row1IndexPath = IndexPath(row: 0, section: 0)
+        var deletedRow1 = false
+        var actualIndexPathRow1: IndexPath?
+        row1.set(command: .delete) { (_, _, indexPath) in
+            deletedRow1 = true
+            actualIndexPathRow1 = indexPath
+        }
+        
+        let row3IndexPath = IndexPath(row: 0, section: 1)
+        var deletedRow3 = false
+        var actualIndexPathRow3: IndexPath?
+        row3.set(command: .delete) { (_, _, indexPath) in
+            deletedRow3 = true
+            actualIndexPathRow3 = indexPath
+        }
 
         liaison.append(sections: [section1, section2])
         liaison.append(rows: [row1, row2])
         liaison.append(row: row3, to: 1)
         
-        liaison.deleteRows(at: [IndexPath(row: 0, section: 0), IndexPath(row: 0, section: 1)])
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.deleteRows(at: [row1IndexPath, row3IndexPath])
+        }
         
         XCTAssertEqual(section1.rows.count, 1)
         XCTAssertEqual(section2.rows.count, 0)
+        XCTAssertEqual(deletedRow1, true)
+        XCTAssertEqual(deletedRow3, true)
+        XCTAssertEqual(actualIndexPathRow1, row1IndexPath)
+        XCTAssertEqual(actualIndexPathRow3, row3IndexPath)
     }
     
     func test_deleteRow_removesRowFromSection() {
         let section = TestTableViewSection()
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
+        
+        let expectedIndexPath = IndexPath(row: 0, section: 0)
+        var deletedRow = false
+        var actualIndexPathRow: IndexPath?
+        row1.set(command: .delete) { (_, _, indexPath) in
+            deletedRow = true
+            actualIndexPathRow = indexPath
+        }
 
         liaison.append(section: section)
         liaison.append(rows: [row1, row2])
         
-        liaison.deleteRow(at: IndexPath(row: 0, section: 0))
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.deleteRow(at: expectedIndexPath)
+        }
         
         XCTAssert(section.rows.count == 1)
         XCTAssert(section.rows.first === row2)
+        XCTAssertEqual(deletedRow, true)
+        XCTAssertEqual(actualIndexPathRow, expectedIndexPath)
     }
     
     func test_reloadRows_reloadsRowsInSection() {
         let section = TestTableViewSection()
         let row = TestTableViewRow.create()
+        
+        var reloaded = false
+        row.set(command: .reload) { (_, _, _) in
+            reloaded = true
+        }
         
         liaison.append(section: section)
         liaison.append(row: row)
@@ -267,6 +358,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let count = tableView.callCounts[.reloadRows]
         
         XCTAssertEqual(count, 1)
+        XCTAssertEqual(reloaded, true)
+
     }
     
     func test_replaceRow_replaceRowInSection() {
@@ -274,13 +367,29 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         
-        liaison.append(section: section)
-        liaison.append(rows: [row1])
+        var deleted = false
+        row1.set(command: .delete) { (_, _, _) in
+            deleted = true
+        }
         
-        liaison.replaceRow(at: IndexPath(row: 0, section: 0), with: row2)
+        var inserted = false
+        row2.set(command: .insert) { (_, _, _) in
+            inserted = true
+        }
+        
+        liaison.append(section: section)
+        liaison.append(row: row1)
+        
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.replaceRow(at: IndexPath(row: 0, section: 0), with: row2)
+        }
         
         XCTAssert(section.rows.count == 1)
         XCTAssert(section.rows.first === row2)
+        XCTAssertEqual(deleted, true)
+        XCTAssertEqual(inserted, true)
+
     }
     
     func test_moveRow_withinSameSection() {
@@ -288,14 +397,28 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow()
+        
+        var moved = false
+        var actualDestination: IndexPath?
+        let destination = IndexPath(row: 2, section: 0)
+        row1.set(command: .move) { (_, _, indexPath) in
+            moved = true
+            actualDestination = indexPath
+        }
 
         liaison.append(section: section)
         liaison.append(rows: [row1, row2, row3])
         
-        liaison.moveRow(from: IndexPath(row: 0, section: 0), to: IndexPath(row: 2, section: 0))
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.moveRow(from: IndexPath(row: 0, section: 0), to: destination)
+        }
         
         XCTAssert(section.rows.first === row2)
         XCTAssert(section.rows.last === row1)
+        XCTAssertEqual(moved, true)
+        XCTAssertEqual(actualDestination, destination)
+
     }
     
     func test_moveRow_intoDifferentSection() {
@@ -308,18 +431,31 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row4 = TestTableViewRow()
         let row5 = TestTableViewRow()
         
+        var moved = false
+        var actualDestination: IndexPath?
+        let destination = IndexPath(row: 2, section: 1)
+        row1.set(command: .move) { (_, _, indexPath) in
+            moved = true
+            actualDestination = indexPath
+        }
+        
         liaison.append(section: section1)
         liaison.append(section: section2)
 
         liaison.append(rows: [row1, row2, row3])
         liaison.append(rows: [row4, row5], to: 1)
 
-        liaison.moveRow(from: IndexPath(row: 0, section: 0), to: IndexPath(row: 2, section: 1))
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.moveRow(from: IndexPath(row: 0, section: 0), to: destination)
+        }
         
         XCTAssert(section1.rows.count == 2)
         XCTAssert(section1.rows.first === row2)
         XCTAssert(section2.rows.count == 3)
         XCTAssert(section2.rows.last === row1)
+        XCTAssertEqual(moved, true)
+        XCTAssertEqual(actualDestination, destination)
     }
     
     func test_swapRow_withinSameSection() {
@@ -328,12 +464,37 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow()
         
+        var sourceMoved = false
+        var swappedSourceIndexPath: IndexPath?
+        let sourceIndexPath = IndexPath(row: 0, section: 0)
+        row1.set(command: .move) { (_, _, indexPath) in
+            sourceMoved = true
+            swappedSourceIndexPath = indexPath
+        }
+        
+        var destinationMoved = false
+        var swappedDestinationIndexPath: IndexPath?
+        let destinationIndexPath = IndexPath(row: 2, section: 0)
+        row3.set(command: .move) { (_, _, indexPath) in
+            destinationMoved = true
+            swappedDestinationIndexPath = indexPath
+        }
+        
         liaison.append(section: section)
         liaison.append(rows: [row1, row2, row3])
 
-        liaison.swapRow(from: IndexPath(row: 0, section: 0), to: IndexPath(row: 2, section: 0))
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.swapRow(from: sourceIndexPath, to: destinationIndexPath)
+        }
+        
         XCTAssert(section.rows.first === row3)
         XCTAssert(section.rows.last === row1)
+        XCTAssertEqual(sourceMoved, true)
+        XCTAssertEqual(destinationMoved, true)
+        XCTAssertEqual(swappedSourceIndexPath, destinationIndexPath)
+        XCTAssertEqual(swappedDestinationIndexPath, sourceIndexPath)
+
     }
     
     func test_swapRow_intoDifferentSection() {
@@ -345,16 +506,39 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row3 = TestTableViewRow()
         let row4 = TestTableViewRow()
         
+        var sourceMoved = false
+        var swappedSourceIndexPath: IndexPath?
+        let sourceIndexPath = IndexPath(row: 0, section: 0)
+        row1.set(command: .move) { (_, _, indexPath) in
+            sourceMoved = true
+            swappedSourceIndexPath = indexPath
+        }
+        
+        var destinationMoved = false
+        var swappedDestinationIndexPath: IndexPath?
+        let destinationIndexPath = IndexPath(row: 1, section: 1)
+        row4.set(command: .move) { (_, _, indexPath) in
+            destinationMoved = true
+            swappedDestinationIndexPath = indexPath
+        }
+        
         liaison.append(section: section1)
         liaison.append(section: section2)
         
         liaison.append(rows: [row1, row2])
         liaison.append(rows: [row3, row4], to: 1)
         
-        liaison.swapRow(from: IndexPath(row: 0, section: 0), to: IndexPath(row: 1, section: 1))
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.swapRow(from: sourceIndexPath, to: destinationIndexPath)
+        }
         
         XCTAssert(section1.rows.first === row4)
         XCTAssert(section2.rows.last === row1)
+        XCTAssertEqual(sourceMoved, true)
+        XCTAssertEqual(destinationMoved, true)
+        XCTAssertEqual(swappedSourceIndexPath, destinationIndexPath)
+        XCTAssertEqual(swappedDestinationIndexPath, sourceIndexPath)
     }
     
     func test_tableViewCellForRow_createsCorrectCellForRow() {
@@ -516,13 +700,14 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
+        let expectedIndexPath = IndexPath(row: 0, section: 0)
         var indexPath: IndexPath?
         tableView.performInSwizzledEnvironment {
-           indexPath = liaison.tableView(tableView, willSelectRowAt: IndexPath(row: 0, section: 0))
+           indexPath = liaison.tableView(tableView, willSelectRowAt: expectedIndexPath)
         }
         
         XCTAssertEqual(willSelect, true)
-        XCTAssertEqual(indexPath, IndexPath(row: 0, section: 0))
+        XCTAssertEqual(indexPath, expectedIndexPath)
     }
     
     func test_didSelectRow_performsDidSelectCommand() {
@@ -558,13 +743,14 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
+        let expectedIndexPath = IndexPath(row: 0, section: 0)
         var indexPath: IndexPath?
         tableView.performInSwizzledEnvironment {
-            indexPath = liaison.tableView(tableView, willDeselectRowAt: IndexPath(row: 0, section: 0))
+            indexPath = liaison.tableView(tableView, willDeselectRowAt: expectedIndexPath)
         }
         
         XCTAssertEqual(willDeselect, true)
-        XCTAssertEqual(indexPath, IndexPath(row: 0, section: 0))
+        XCTAssertEqual(indexPath, expectedIndexPath)
     }
     
     func test_didDeselectRow_performsDidDeselectCommand() {
