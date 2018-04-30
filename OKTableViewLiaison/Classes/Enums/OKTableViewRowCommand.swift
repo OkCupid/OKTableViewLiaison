@@ -20,6 +20,7 @@ public enum OKTableViewRowCommand {
     case didUnhighlight
     case insert
     case move
+    case reload
     case willBeginEditing
     case willDeselect
     case willDisplay
