@@ -31,11 +31,11 @@ final class PostTableViewSection: OKTableViewSection<PostTableViewSectionHeaderV
             header.imageView.layer.borderColor = UIColor.gray.cgColor
             header.imageView.layer.borderWidth = 1
             header.imageView.contentMode = .scaleAspectFit
-            header.imageView.image = post.userAvatar
+            header.imageView.image = post.user.avatar
             
             header.titleLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
             header.titleLabel.textColor = .black
-            header.titleLabel.text = post.user
+            header.titleLabel.text = post.user.username
         }
         
     }
@@ -44,7 +44,7 @@ final class PostTableViewSection: OKTableViewSection<PostTableViewSectionHeaderV
         return [PostTableViewSection.contentRow(with: post.content, width: width),
                 PostTableViewSection.actionsRow,
                 PostTextTableViewRow.likesRow(numberOfLikes: post.numberOfLikes),
-                PostTextTableViewRow.captionRow(user: post.user, caption: post.caption),
+                PostTextTableViewRow.captionRow(user: post.user.username, caption: post.caption),
                 PostTextTableViewRow.commentRow(commentCount: post.numberOfComments),
                 PostTextTableViewRow.timeRow(numberOfSeconds: post.timePosted)]
     }

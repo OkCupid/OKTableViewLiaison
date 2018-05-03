@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 extension ViewController: OKTableViewLiaisonPaginationDelegate {
     
     func isPaginationEnabled() -> Bool {
-        return liaison.sections.count < 6
+        return liaison.sections.count < 8
     }
     
     func paginationStarted(indexPath: IndexPath) {
