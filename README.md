@@ -73,6 +73,15 @@ let section = OKTableViewSection<UITableViewHeaderFooterView, UITableViewHeaderF
 
 let plainSection = OKPlainTableViewSection()
 
+let liaison = OKTableViewLiaison(sections: [section, plainSection])
+```
+or
+
+```swift
+let section = OKTableViewSection<UITableViewHeaderFooterView, UITableViewHeaderFooterView, String>(model: "Section")
+
+let plainSection = OKPlainTableViewSection()
+
 liaison.append(sections: [section, plainSection])
 ```
 
@@ -166,6 +175,7 @@ The `OKTableViewRow` can be customized using `func set(command: OKTableViewRowCo
 -  didUnhighlight
 -  insert
 -  move
+-  reload
 -  willBeginEditing
 -  willDeselect
 -  willDisplay

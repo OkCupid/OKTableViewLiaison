@@ -9,8 +9,7 @@
 import UIKit
 
 struct Post {
-    let user: String
-    let userAvatar: UIImage
+    let user: User
     let content: UIImage
     let numberOfLikes: Int
     let caption: String
@@ -18,60 +17,68 @@ struct Post {
     let timePosted: Int
     
     static func randomPosts() -> [Post] {
-         let post1 = Post(user: "dylan",
-                          userAvatar: UIImage(named: "dylan")!,
-                          content: UIImage(named: "red-panda")!,
+         let post1 = Post(user: .dylan,
+                          content: #imageLiteral(resourceName: "bear"),
                           numberOfLikes: 64,
-                          caption: "The red panda (Ailurus fulgens), also called the lesser panda, the red bear-cat, and the red cat-bear, is a mammal native to the eastern Himalayas and southwestern China.",
+                          caption: "Bears are carnivoran mammals of the family Ursidae. They are classified as caniforms, or doglike carnivorans. Although only eight species of bears are extant, they are widespread, appearing in a wide variety of habitats throughout the Northern Hemisphere and partially in the Southern Hemisphere.",
                           numberOfComments: 25,
                           timePosted: 1644)
         
-        let post2 = Post(user: "jordan",
-                         userAvatar: UIImage(named: "jordan")!,
-                         content: UIImage(named: "otter")!,
+        let post2 = Post(user: .jordan,
+                         content: #imageLiteral(resourceName: "tiger"),
                          numberOfLikes: 223,
-                         caption: "The sea otter (Enhydra lutris) is a marine mammal native to the coasts of the northern and eastern North Pacific Ocean.",
+                         caption: "The tiger (Panthera tigris) is the largest cat species, most recognizable for its pattern of dark vertical stripes on reddish-orange fur with a lighter underside. ",
                          numberOfComments: 112,
                          timePosted: 23995)
         
-        let post3 = Post(user: "julian",
-                         userAvatar: UIImage(named: "julian")!,
-                         content: UIImage(named: "bear")!,
+        let post3 = Post(user: .julian,
+                         content: #imageLiteral(resourceName: "giraffe"),
                          numberOfLikes: 824,
-                         caption: "The grizzly bear (Ursus arctos ssp.) is a large subspecies of brown bear inhabiting North America. Scientists generally do not use the name grizzly bear but call it the North American brown bear.",
+                         caption: "The giraffe (Giraffa) is a genus of African even-toed ungulate mammals, the tallest living terrestrial animals and the largest ruminants.",
                          numberOfComments: 438,
                          timePosted: 141355)
         
-        return [post1, post2, post3]
+        let post4 = Post(user: .dylan,
+                         content: #imageLiteral(resourceName: "gorilla"),
+                         numberOfLikes: 997,
+                         caption: "Gorillas are ground-dwelling, predominantly herbivorous apes that inhabit the forests of central Sub-Saharan Africa.",
+                         numberOfComments: 621,
+                         timePosted: 211355)
+        
+        return [post1, post2, post3, post4]
     }
     
     static func paginatedPosts() -> [Post] {
         
-        let post1 = Post(user: "dylan",
-                         userAvatar: UIImage(named: "dylan")!,
-                         content: UIImage(named: "fox")!,
+        let post1 = Post(user: .dylan,
+                         content: #imageLiteral(resourceName: "fox"),
                          numberOfLikes: 1024,
                          caption: "The red fox (Vulpes vulpes) is the largest of the true foxes and one of the most widely distributed members of the order Carnivora, being present across the entire Northern Hemisphere from the Arctic Circle to North Africa, North America and Eurasia.",
-                         numberOfComments: 622,
+                         numberOfComments: 722,
                          timePosted: 441355)
         
-        let post2 = Post(user: "dylan",
-                         userAvatar: UIImage(named: "dylan")!,
-                         content: UIImage(named: "seal")!,
+        let post2 = Post(user: .jordan,
+                         content: #imageLiteral(resourceName: "moose"),
                          numberOfLikes: 2121,
-                         caption: "The harp seal or saddleback seal (Pagophilus groenlandicus) is a species of earless seal native to the northernmost Atlantic Ocean and parts of the Arctic Ocean.",
+                         caption: "The moose (North America) or elk (Eurasia), Alces alces, is the largest extant species in the deer family.",
                          numberOfComments: 888,
                          timePosted: 641355)
         
-        let post3 = Post(user: "dylan",
-                         userAvatar: UIImage(named: "dylan")!,
-                         content: UIImage(named: "giraffe")!,
+        let post3 = Post(user: .julian,
+                         content: #imageLiteral(resourceName: "elephant"),
                          numberOfLikes: 5002,
-                         caption: "The giraffe (Giraffa) is a genus of African even-toed ungulate mammals, the tallest living terrestrial animals and the largest ruminants.",
+                         caption: "Elephants are large mammals of the family Elephantidae and the order Proboscidea.",
                          numberOfComments: 1048,
                          timePosted: 1241355)
+        
+        let post4 = Post(user: .dylan,
+                         content: #imageLiteral(resourceName: "zebra"),
+                         numberOfLikes: 8002,
+                         caption: "Zebras are several species of African equids (horse family) united by their distinctive black and white striped coats.",
+                         numberOfComments: 2257,
+                         timePosted: 7241355)
 
-        return [post1, post2, post3]
+        return [post1, post2, post3, post4]
     }
     
 }
