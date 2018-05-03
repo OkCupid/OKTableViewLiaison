@@ -16,13 +16,20 @@ final public class OKTableViewLiaison: NSObject {
     var waitingForPaginatedResults = false
     public weak var paginationDelegate: OKTableViewLiaisonPaginationDelegate?
 
-    public init(paginationRow: OKAnyTableViewRow = OKPaginationTableViewRow()) {
+    public init(sections: [OKAnyTableViewSection] = [],
+                paginationRow: OKAnyTableViewRow = OKPaginationTableViewRow()) {
+        self.sections = sections
         self.paginationSection = OKPaginationTableViewSection(row: paginationRow)
         super.init()
     }
     
     public func liaise(tableView: UITableView) {
         self.tableView = tableView
+        
+        sections.forEach {
+            $0.tableView = tableView
+        }
+        
         tableView.dataSource = self
         tableView.delegate = self
     }

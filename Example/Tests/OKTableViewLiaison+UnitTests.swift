@@ -56,6 +56,13 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         XCTAssertFalse(tableView.isEditing)
     }
     
+    func test_init_properlyInitializesWithSections() {
+        let sections = [TestTableViewSection(), TestTableViewSection()]
+        let liaison = OKTableViewLiaison(sections: sections)
+        liaison.liaise(tableView: tableView)
+        XCTAssertEqual(tableView.numberOfSections, 2)
+    }
+    
     func test_appendSection_addsSectionToTableView() {
         XCTAssertEqual(tableView.numberOfSections, 0)
         
