@@ -166,6 +166,7 @@ The `OKTableViewRow` can be customized using `func set(command: OKTableViewRowCo
 -  didUnhighlight
 -  insert
 -  move
+-  reload
 -  willBeginEditing
 -  willDeselect
 -  willDisplay
