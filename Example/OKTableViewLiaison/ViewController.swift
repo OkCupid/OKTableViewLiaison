@@ -14,6 +14,11 @@ class ViewController: UIViewController {
     private let liaison = OKTableViewLiaison()
     private let refreshControl = UIRefreshControl()
     
+    private var sections: [OKAnyTableViewSection] {
+        return Post.randomPosts()
+            .map { PostTableViewSection(post: $0, width: view.frame.width) }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,16 +28,10 @@ class ViewController: UIViewController {
         liaison.paginationDelegate = self
         liaison.liaise(tableView: tableView)
         
-        let sections = Post.randomPosts()
-            .map { return PostTableViewSection(post: $0, width: view.frame.width) }
-        
         liaison.append(sections: sections)
     }
     
     @objc private func refreshSections() {
-        let sections = Post.randomPosts()
-            .map { return PostTableViewSection(post: $0, width: view.frame.width) }
-        
         liaison.clearSections(replacedBy: sections, animated: false)
         refreshControl.endRefreshing()
     }
@@ -50,7 +49,7 @@ extension ViewController: OKTableViewLiaisonPaginationDelegate {
         liaison.scroll(to: indexPath)
         
         let sections = Post.paginatedPosts()
-            .map { return PostTableViewSection(post: $0, width: view.frame.width) }
+            .map { PostTableViewSection(post: $0, width: view.frame.width) }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.liaison.append(sections: sections)
