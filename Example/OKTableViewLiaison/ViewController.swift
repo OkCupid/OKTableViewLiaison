@@ -32,8 +32,10 @@ class ViewController: UIViewController {
     }
     
     @objc private func refreshSections() {
-        liaison.clearSections(replacedBy: sections, animated: false)
-        refreshControl.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.liaison.clearSections(replacedBy: self.sections, animated: false)
+            self.refreshControl.endRefreshing()
+        }
     }
     
 }

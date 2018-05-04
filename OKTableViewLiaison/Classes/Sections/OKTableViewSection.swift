@@ -64,10 +64,15 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
     }
     
     override public func calculateHeight(for supplementaryView: OKTableViewSectionSupplementaryView) -> CGFloat {
-        return heights[supplementaryView]?(model) ?? UITableViewAutomaticDimension
+        
+        switch (supplementaryViewDisplay, supplementaryView) {
+        case (.both, _), (.header, .header), (.footer, .footer):
+            return heights[supplementaryView]?(model) ?? UITableViewAutomaticDimension
+        default:
+            return 0
+        }
     }
 
-    
     // MARK: - Type Registration
     private func registerRowCells() {
         guard let tableView = tableView else {
