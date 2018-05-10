@@ -64,11 +64,11 @@ final public class OKTableViewLiaison: NSObject {
         tv.isEditing = !tv.isEditing
     }
     
-    func section(for indexPath: IndexPath) -> OKAnyTableViewSection? {
+    public func section(for indexPath: IndexPath) -> OKAnyTableViewSection? {
         return sections.element(at: indexPath.section)
     }
     
-    func row(for indexPath: IndexPath) -> OKAnyTableViewRow? {
+    public func row(for indexPath: IndexPath) -> OKAnyTableViewRow? {
         
         guard let section = section(for: indexPath) else {
             return nil

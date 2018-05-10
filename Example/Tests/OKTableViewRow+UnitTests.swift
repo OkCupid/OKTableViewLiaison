@@ -23,7 +23,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         XCTAssert(cell != nil)
     }
     
-    func test_setCommand_properlySetsCommandClosure() {
+    func test_setCommand_setsCommandClosure() {
         let row = TestTableViewRow.create()
         
         var set = false
@@ -36,7 +36,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         XCTAssertEqual(set, true)
     }
     
-    func test_removeCommand_properlyRemovesCommand() {
+    func test_removeCommand_removesCommand() {
         let row = TestTableViewRow()
         
         var set = false
@@ -50,7 +50,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         XCTAssertEqual(set, false)
     }
     
-    func test_setHeight_properlySetsHeightWithClosure() {
+    func test_setHeight_setsHeightWithClosure() {
         let row = TestTableViewRow.create()
 
         row.set(height: .height) { (_) -> CGFloat in
@@ -68,13 +68,13 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         XCTAssertEqual(row.height, 100)
     }
     
-    func test_setHeight_notSettingAHeightReturnsAutomaticDimension() {
+    func test_setHeight_returnsAutomaticDimensionForSelfSizingRow() {
         let row = TestTableViewRow()
         XCTAssertEqual(row.height, UITableViewAutomaticDimension)
         XCTAssertEqual(row.estimatedHeight, UITableViewAutomaticDimension)
     }
     
-    func test_removeHeight_properlyRemovesAPreviouslySetHeight() {
+    func test_removeHeight_removesAPreviouslySetHeight() {
         let row = TestTableViewRow()
         
         row.set(height: .height, value: 100)
@@ -130,7 +130,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         XCTAssertEqual(cell.accessibilityIdentifier, string)
     }
     
-    func test_perform_properlyPerformsCommands() {
+    func test_perform_performsCommands() {
         let row = TestTableViewRow.create()
         var configured = false
         
@@ -155,29 +155,5 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         
         XCTAssertEqual(configured, false)
     }
-    
-    func test_calculateHeight_returnsCorrectHeightForRow() {
-        let row1 = TestTableViewRow()
-        let row2 = TestTableViewRow()
-        let row3 = TestTableViewRow()
 
-        row1.set(height: .height) { (_) -> CGFloat in
-            return 100
-        }
-        
-        row1.set(height: .estimatedHeight) { (_) -> CGFloat in
-            return 100
-        }
-        
-        row2.set(height: .height, value: 200)
-        row2.set(height: .estimatedHeight, value: 200)
-        
-        XCTAssertEqual(row1.height, 100)
-        XCTAssertEqual(row1.estimatedHeight, 100)
-        XCTAssertEqual(row2.height, 200)
-        XCTAssertEqual(row2.estimatedHeight, 200)
-        XCTAssertEqual(row3.height, UITableViewAutomaticDimension)
-        XCTAssertEqual(row3.estimatedHeight, UITableViewAutomaticDimension)
-    }
-    
 }

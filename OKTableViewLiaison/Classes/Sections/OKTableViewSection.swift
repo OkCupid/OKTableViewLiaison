@@ -30,7 +30,6 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
         self.model = model
         self.supplementaryViewDisplay = supplementaryViewDisplay
         super.init(rows: rows)
-        registerHeaderFooterViews()
     }
     
     // MARK: - Configuration
@@ -87,21 +86,21 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
     private func registerHeaderFooterViews() {
         
         if let header = supplementaryViewDisplay.headerRegistrationType {
-            register(type: header, for: .header, with: Header.self)
+            register(type: header, for: Header.self)
         }
         
         if let footer = supplementaryViewDisplay.footerRegistrationType {
-            register(type: footer, for: .footer, with: Footer.self)
+            register(type: footer, for: Footer.self)
         }
         
     }
     
-    private func register(type: OKTableViewRegistrationType, for supplementaryView: OKTableViewSectionSupplementaryView, with view: UITableViewHeaderFooterView.Type) {
+    private func register(type: OKTableViewRegistrationType, for view: UITableViewHeaderFooterView.Type) {
         switch type {
         case let .class(identifier):
-            tableView?.register(view, forHeaderFooterViewReuseIdentifier: "\(supplementaryView.identifer)\(identifier)")
+            tableView?.register(view, forHeaderFooterViewReuseIdentifier: identifier)
         case let .nib(nib, identifier):
-            tableView?.register(nib, forHeaderFooterViewReuseIdentifier: "\(supplementaryView.identifer)\(identifier)")
+            tableView?.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
         }
     }
     
@@ -135,8 +134,7 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
             return nil
         }
         
-        let reuseIdentifier = "\(OKTableViewSectionSupplementaryView.header.identifer)\(headerIdentifer)"
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) as? Header else {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifer) as? Header else {
             return nil
         }
         
@@ -151,8 +149,7 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
             return nil
         }
         
-        let reuseIdentifier = "\(OKTableViewSectionSupplementaryView.footer.identifer)\(footerIdentifer)"
-        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) as? Footer else {
+        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: footerIdentifer) as? Footer else {
             return nil
         }
         
