@@ -49,14 +49,14 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         XCTAssert(tableView.dataSource == nil)
     }
     
-    func test_toggleIsEditing_propleyToggles() {
+    func test_toggleIsEditing_togglesTableViewEditingMode() {
         tableView.isEditing = true
         liaison.toggleIsEditing()
         
         XCTAssertFalse(tableView.isEditing)
     }
     
-    func test_init_properlyInitializesWithSections() {
+    func test_init_initializesWithSections() {
         let sections = [TestTableViewSection(), TestTableViewSection()]
         let liaison = OKTableViewLiaison(sections: sections)
         liaison.liaise(tableView: tableView)

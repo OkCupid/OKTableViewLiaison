@@ -10,15 +10,5 @@ import Foundation
 
 public enum OKTableViewSectionSupplementaryView {
     case header
-    case footer
-    
-    public var identifer: String {
-        switch self {
-        case .header:
-            return "Header"
-        case .footer:
-            return "Footer"
-        }
-    }
-    
+    case footer    
 }
