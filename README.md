@@ -13,7 +13,7 @@ alt="Pods Version">
 
 ----------------
 
-`UITableView` made easy &#128588;
+`UITableView` made simple &#128588;
 
 |         | Main Features  |
 ----------|-----------------
