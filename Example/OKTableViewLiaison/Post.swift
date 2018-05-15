@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import OKTableViewLiaison
 
 struct Post {
+    
     let user: User
     let content: UIImage
     let numberOfLikes: Int
     let caption: String
     let numberOfComments: Int
-    let timePosted: Int
+    let timePosted: TimeInterval
     
-    static func randomPosts() -> [Post] {
+    static func initialPosts() -> [Post] {
+        
          let post1 = Post(user: .dylan,
                           content: #imageLiteral(resourceName: "bear"),
                           numberOfLikes: 64,
