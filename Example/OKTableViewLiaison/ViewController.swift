@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     private var sections: [OKAnyTableViewSection] {
-        return Post.randomPosts()
+        return Post.initialPosts()
             .map { PostTableViewSection(post: $0, width: view.frame.width) }
     }
     

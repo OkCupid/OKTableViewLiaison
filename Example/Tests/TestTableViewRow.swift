@@ -17,7 +17,7 @@ final class TestTableViewRow: OKTableViewRow<UITableViewCell, Void> {
                                 editingStyle: .none,
                                 movable: false,
                                 deleteConfirmationTitle: "Delete",
-                                registrationType: .defaultClassRegistration(for: UITableViewCell.self))
+                                registrationType: TestTableViewRow.defaultClassRegistrationType)
         
     }
     

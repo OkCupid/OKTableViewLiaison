@@ -1,5 +1,5 @@
 //
-//  ImageContentTableViewCell.swift
+//  ContentImageTableViewCell.swift
 //  TableViewLiaison_Example
 //
 //  Created by Dylan Shine on 3/29/18.
@@ -8,6 +8,8 @@
 
 import UIKit
 
-final class PostImageContentTableViewCell: UITableViewCell {
+final class ContentImageTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var contentImageView: UIImageView!
+    
 }

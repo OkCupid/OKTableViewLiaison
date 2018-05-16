@@ -90,7 +90,7 @@ To notify the liaison that your `OKTableViewSection` will display a header and/o
 
 ```swift
 let section = TableViewSection<UITableViewHeaderFooterView, UITableViewHeaderFooterView, HeaderModel>(model: HeaderModel(text: "Sample Model")",
-supplementaryViewDisplay: .header(registrationType: .class(identifier: UITableViewHeaderFooterView.self)))
+supplementaryViewDisplay: .header(registrationType: OKTableViewSection.defaultHeaderClassRegistrationType))
 ```
 
 If your section will only display a single supplementary view, the other supplementary view type provided in the generic declaration will be ignored.
@@ -100,7 +100,7 @@ You can set a static height of a supplementary view by calling `setHeight` with 
 ```swift
 section.setHeight(for: .header, value: 50)
 
-section.setHeight(for: .header) { (model) -> CGFloat in
+section.setHeight(for: .header) { model -> CGFloat in
 	return model.text == "Sample Model" ? 100 : 50
 }
 ```
@@ -114,12 +114,12 @@ The `OKTableViewSection` supplementary views can be customized using `func setHe
 - willDisplay
 
 ```swift
-section.setHeader(command: .configuration) { (header, model, section) in
+section.setHeader(command: .configuration) { header, model, section in
 	header.textLabel?.text = model.text
 	header.contentView.backgroundColor = .black
 }
 
-section.setHeader(command: .willDisplay) { (header, model, section) in
+section.setHeader(command: .willDisplay) { header, model, section in
 	print("Header: \(header) will display for Section: \(section) with Model: \(model)")
 }
 ```
@@ -148,7 +148,7 @@ liaison.append(row: row)
 ```swift
 row.set(height: .height, value: 300)
 
-row.set(height: .height) { (model) -> CGFloat in
+row.set(height: .height) { model -> CGFloat in
 	switch model.type {
 	case .large:
 		return 400
@@ -182,14 +182,14 @@ The `OKTableViewRow` can be customized using `func set(command: OKTableViewRowCo
 -  willSelect
 
 ```swift
-row.set(command: .configuration) { (cell, string, indexPath) in
-	cell.label.text = string
+row.set(command: .configuration) { cell, model, indexPath in
+	cell.label.text = model.text
 	cell.label.font = .systemFont(ofSize: 13)
 	cell.contentView.backgroundColor = .blue
 	cell.selectionStyle = .none
 }
 
-row.set(command: .didSelect) { (cell, model, indexPath) in
+row.set(command: .didSelect) { cell, model, indexPath in
 	print("Cell: \(cell) selected at IndexPath: \(indexPath)")
 }
 ```
@@ -199,7 +199,7 @@ row.set(command: .didSelect) { (cell, model, indexPath) in
 
 `OKTableViewRegistrationType` tells the liaison whether your reusable view should be registered via a `Nib` or `Class`.
 
-By default, `OKTableViewRow` is instantiated with `.defaultClassRegistration(for: Cell.self)`.
+By default, `OKTableViewRow` is instantiated with `OKTableViewRow.defaultClassRegistrationType`.
 
 `OKTableViewSection` supplementary view registration is encapsulated by its`OKTableViewSectionSupplementaryViewDisplayOption`. By default, `OKTableViewSection` `supplementaryViewDisplay` is instantiated with `.none`.
 
@@ -226,7 +226,7 @@ Because `OKTableViewSection` and `OKTableViewRow` utilize generic types and mana
 final class PostTextTableViewRow: OKTableViewRow<PostTextTableViewCell, String> {
 	init(text: String) {
 		super.init(text,
-		registrationType: .defaultNibRegistration(for: PostTextTableViewCell.self))
+		registrationType: PostTextTableViewRow.defaultNibRegistrationType)
 	}
 }
 ```
@@ -234,14 +234,14 @@ final class PostTextTableViewRow: OKTableViewRow<PostTextTableViewCell, String> 
 ```swift
 static func contentRow(with image: UIImage, width: CGFloat) -> AnyTableViewRow {
 	let row = OKTableViewRow<PostImageContentTableViewCell, UIImage>(image,
-	registrationType: .defaultNibRegistration(for: PostImageContentTableViewCell.self))
+	registrationType: PostTextTableViewRow.defaultNibRegistrationType)
 
-	row.set(height: .height) { (image) -> CGFloat in
+	row.set(height: .height) { image -> CGFloat in
 		let ratio = image.size.width / image.size.height
 		return width / ratio
 	}
 
-	row.set(command: .configuration) { (cell, image, _) in
+	row.set(command: .configuration) { cell, image, indexPath in
 		cell.contentImageView.image = image
 		cell.contentImageView.contentMode = .scaleAspectFill
 	}

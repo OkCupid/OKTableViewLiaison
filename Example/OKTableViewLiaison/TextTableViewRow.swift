@@ -9,31 +9,32 @@
 import UIKit
 import OKTableViewLiaison
 
-final class PostTextTableViewRow: OKTableViewRow<PostTextTableViewCell, String> {
+final class TextTableViewRow: OKTableViewRow<TextTableViewCell, String> {
     
     init(text: String) {
         super.init(text,
-                   registrationType: .defaultNibRegistration(for: PostTextTableViewCell.self))
+                   registrationType: TextTableViewRow.defaultNibRegistrationType)
     }
     
-    static func likesRow(numberOfLikes: Int) -> PostTextTableViewRow {
-        let text =  "\(numberOfLikes) likes"
-        let row = PostTextTableViewRow(text: text)
+    static func likesRow(numberOfLikes: Int) -> TextTableViewRow {
+
+        let row = TextTableViewRow(text: "\(numberOfLikes) likes")
         
-        row.set(height: .height, value: 25)
-        row.set(command: .configuration) { (cell, string, _) in
+        row.set(height: .height, value: 20)
+        row.set(command: .configuration) { cell, string, _ in
             cell.postTextLabel.font = .systemFont(ofSize: 13, weight: .medium)
             cell.postTextLabel.text = string
+            cell.selectionStyle = .none
         }
         
         return row
     }
     
-    static func captionRow(user: String, caption: String) -> PostTextTableViewRow {
+    static func captionRow(user: String, caption: String) -> TextTableViewRow {
         
-        let row = PostTextTableViewRow(text: "")
+        let row = TextTableViewRow(text: caption)
         
-        row.set(command: .configuration) { (cell, _, _) in
+        row.set(command: .configuration) { cell, caption, _ in
             
             cell.postTextLabel.numberOfLines = 0
             cell.selectionStyle = .none
@@ -58,31 +59,31 @@ final class PostTextTableViewRow: OKTableViewRow<PostTextTableViewCell, String> 
         return row
     }
     
-    static func commentRow(commentCount: Int) -> PostTextTableViewRow {
+    static func commentRow(commentCount: Int) -> TextTableViewRow {
         
-        let text = "View all \(commentCount) comments"
+        let row = TextTableViewRow(text: "View all \(commentCount) comments")
         
-        let row = PostTextTableViewRow(text: text)
-        
-        row.set(height: .height, value: 25)
-        row.set(command: .configuration) { (cell, string, _) in
+        row.set(height: .height, value: 20)
+        row.set(command: .configuration) { cell, string, _ in
             cell.postTextLabel.font = .systemFont(ofSize: 13)
             cell.postTextLabel.text = string
             cell.postTextLabel.textColor = .gray
+            cell.selectionStyle = .none
         }
         
         return row
     }
     
-    static func timeRow(numberOfSeconds: Int) -> PostTextTableViewRow {
+    static func timeRow(numberOfSeconds: TimeInterval) -> TextTableViewRow {
         
-        let row = PostTextTableViewRow(text: numberOfSeconds.timeText)
+        let row = TextTableViewRow(text: numberOfSeconds.timeText)
 
-        row.set(height: .height, value: 20)
-        row.set(command: .configuration) { (cell, string, _) in
+        row.set(height: .height, value: 15)
+        row.set(command: .configuration) { cell, string, _ in
             cell.postTextLabel.font = .systemFont(ofSize: 10)
             cell.postTextLabel.text = string
             cell.postTextLabel.textColor = .gray
+            cell.selectionStyle = .none
         }
         
         return row

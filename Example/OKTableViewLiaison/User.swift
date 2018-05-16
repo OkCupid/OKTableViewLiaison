@@ -24,4 +24,5 @@ struct User {
     static var julian: User {
         return User(username: "julian", avatar: #imageLiteral(resourceName: "julian"))
     }
+    
 }

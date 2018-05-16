@@ -115,8 +115,8 @@ final class OKTableViewSection_UnitTests: XCTestCase {
         let headerHeight = section.calculateHeight(for: .header)
         let footerHeight = section.calculateHeight(for: .footer)
         
-        XCTAssertEqual(headerHeight, 0)
-        XCTAssertEqual(footerHeight, 0)
+        XCTAssertEqual(headerHeight, .leastNormalMagnitude)
+        XCTAssertEqual(footerHeight, .leastNormalMagnitude)
     }
     
     func test_removeHeight_removesHeightOfSupplementaryViews() {

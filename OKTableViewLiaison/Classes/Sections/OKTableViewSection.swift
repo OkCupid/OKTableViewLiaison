@@ -68,7 +68,7 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
         case (.both, _), (.header, .header), (.footer, .footer):
             return heights[supplementaryView]?(model) ?? UITableViewAutomaticDimension
         default:
-            return 0
+            return .leastNormalMagnitude
         }
     }
 
@@ -167,4 +167,25 @@ public extension OKTableViewSection where Model == Void {
                   rows: rows,
                   supplementaryViewDisplay: supplementaryViewDisplay)
     }
+}
+
+// MARK: - OKTableViewRegistrationType
+public extension OKTableViewSection {
+    
+    public static var defaultHeaderClassRegistrationType: OKTableViewRegistrationType {
+        return .defaultClassRegistration(for: Header.self)
+    }
+    
+    public static var defaultHeaderNibRegistrationType: OKTableViewRegistrationType {
+        return .defaultNibRegistration(for: Header.self)
+    }
+    
+    public static var defaultFooterClassRegistrationType: OKTableViewRegistrationType {
+        return .defaultClassRegistration(for: Footer.self)
+    }
+    
+    public static var defaultFooterNibRegistrationType: OKTableViewRegistrationType {
+        return .defaultNibRegistration(for: Footer.self)
+    }
+    
 }

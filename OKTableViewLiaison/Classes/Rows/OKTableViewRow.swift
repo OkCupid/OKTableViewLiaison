@@ -44,7 +44,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
                 indentWhileEditing: Bool = false,
                 deleteConfirmationTitle: String? = nil,
                 deleteRowAnimation: UITableViewRowAnimation = .automatic,
-                registrationType: OKTableViewRegistrationType = .defaultClassRegistration(for: Cell.self)) {
+                registrationType: OKTableViewRegistrationType = OKTableViewRow.defaultClassRegistrationType) {
         self.model = model
         self.editingStyle = editingStyle
         self.movable = movable
@@ -140,7 +140,7 @@ public extension OKTableViewRow where Model == Void {
                             indentWhileEditing: Bool = false,
                             deleteConfirmationTitle: String? = nil,
                             deleteRowAnimation: UITableViewRowAnimation = .automatic,
-                            registrationType: OKTableViewRegistrationType = .defaultClassRegistration(for: Cell.self)) {
+                            registrationType: OKTableViewRegistrationType = OKTableViewRow.defaultClassRegistrationType) {
         
         self.init((),
                   editingStyle: editingStyle,
@@ -153,3 +153,14 @@ public extension OKTableViewRow where Model == Void {
     }
 }
 
+// MARK: - OKTableViewRegistrationType
+public extension OKTableViewRow {
+    
+    public static var defaultClassRegistrationType: OKTableViewRegistrationType {
+        return .defaultClassRegistration(for: Cell.self)
+    }
+    
+    public static var defaultNibRegistrationType: OKTableViewRegistrationType {
+        return .defaultNibRegistration(for: Cell.self)
+    }
+}

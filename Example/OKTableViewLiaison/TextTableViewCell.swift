@@ -1,5 +1,5 @@
 //
-//  PostLikesCountTableViewCell.swift
+//  TextTableViewCell.swift
 //  TableViewLiaison_Example
 //
 //  Created by Dylan Shine on 3/29/18.
@@ -8,7 +8,8 @@
 
 import UIKit
 
-class PostTextTableViewCell: UITableViewCell {
+class TextTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var postTextLabel: UILabel!
     
     override func prepareForReuse() {

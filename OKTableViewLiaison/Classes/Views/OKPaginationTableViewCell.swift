@@ -9,6 +9,7 @@ import UIKit
 
 public final class OKPaginationTableViewCell: UITableViewCell {
     
+    private let verticalSpacingConstant: CGFloat = 5
     let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         
     override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -25,7 +26,7 @@ public final class OKPaginationTableViewCell: UITableViewCell {
         contentView.addSubview(spinner)
 
         spinner.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        spinner.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        spinner.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        spinner.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalSpacingConstant).isActive = true
+        spinner.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalSpacingConstant).isActive = true
     }
 }
