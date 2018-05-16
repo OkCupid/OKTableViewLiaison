@@ -12,13 +12,13 @@ public enum OKTableViewRegistrationType {
     case nib(nib: UINib, identifier: String)
     case `class`(identifier: String)
     
-    public static func defaultClassRegistration<T: UIView>(for view: T.Type) -> OKTableViewRegistrationType {
-        return OKTableViewRegistrationType.class(identifier: String(describing: view.self))
+    static func defaultClassRegistration<T: UIView>(for view: T.Type) -> OKTableViewRegistrationType {
+        return .class(identifier: String(describing: view.self))
     }
     
-    public static func defaultNibRegistration<T: UIView>(for view: T.Type) -> OKTableViewRegistrationType {
-        return OKTableViewRegistrationType.nib(nib: view.nib,
-                                             identifier: String(describing: view.self))
+    static func defaultNibRegistration<T: UIView>(for view: T.Type) -> OKTableViewRegistrationType {
+        return .nib(nib: view.nib,
+                    identifier: String(describing: view.self))
     }
     
     public var identifier: String {

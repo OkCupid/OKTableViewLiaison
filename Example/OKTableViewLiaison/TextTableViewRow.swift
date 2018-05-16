@@ -13,7 +13,7 @@ final class TextTableViewRow: OKTableViewRow<TextTableViewCell, String> {
     
     init(text: String) {
         super.init(text,
-                   registrationType: .defaultNibRegistration(for: TextTableViewCell.self))
+                   registrationType: TextTableViewRow.defaultNibRegistrationType)
     }
     
     static func likesRow(numberOfLikes: Int) -> TextTableViewRow {

@@ -14,8 +14,8 @@ final class TestTableViewSection: OKTableViewSection<UITableViewHeaderFooterView
     static func create() -> TestTableViewSection {
         
         return TestTableViewSection((),
-                                    supplementaryViewDisplay: .both(headerRegistrationType: .defaultClassRegistration(for: UITableViewHeaderFooterView.self),
-                                                                    footerRegistrationType: .defaultClassRegistration(for: UITableViewHeaderFooterView.self)))
+                                    supplementaryViewDisplay: .both(headerRegistrationType: TestTableViewSection.defaultHeaderClassRegistrationType,
+                                                                    footerRegistrationType: TestTableViewSection.defaultFooterClassRegistrationType))
         
     }
     

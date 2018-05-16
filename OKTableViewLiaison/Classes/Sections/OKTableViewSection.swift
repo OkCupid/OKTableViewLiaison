@@ -168,3 +168,24 @@ public extension OKTableViewSection where Model == Void {
                   supplementaryViewDisplay: supplementaryViewDisplay)
     }
 }
+
+// MARK: - OKTableViewRegistrationType
+public extension OKTableViewSection {
+    
+    public static var defaultHeaderClassRegistrationType: OKTableViewRegistrationType {
+        return .defaultClassRegistration(for: Header.self)
+    }
+    
+    public static var defaultHeaderNibRegistrationType: OKTableViewRegistrationType {
+        return .defaultNibRegistration(for: Header.self)
+    }
+    
+    public static var defaultFooterClassRegistrationType: OKTableViewRegistrationType {
+        return .defaultClassRegistration(for: Footer.self)
+    }
+    
+    public static var defaultFooterNibRegistrationType: OKTableViewRegistrationType {
+        return .defaultNibRegistration(for: Footer.self)
+    }
+    
+}

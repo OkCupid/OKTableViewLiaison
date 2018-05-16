@@ -13,7 +13,7 @@ final class ImageContentTableViewRow: OKTableViewRow<ContentImageTableViewCell, 
     
     init(image: UIImage, width: CGFloat) {
         
-        super.init(image, registrationType: .defaultNibRegistration(for: ContentImageTableViewCell.self))
+        super.init(image, registrationType: ImageContentTableViewRow.defaultNibRegistrationType)
         
         set(height: .height) { image -> CGFloat in
             let ratio = image.size.width / image.size.height
