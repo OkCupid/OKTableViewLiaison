@@ -11,11 +11,8 @@ import OKTableViewLiaison
 
 final class PostTableViewSection: OKTableViewSection<PostTableViewSectionHeaderView, UITableViewHeaderFooterView, Post> {
     
-    private let width: CGFloat
-    
     init(post: Post, width: CGFloat) {
         let registration = OKTableViewRegistrationType.defaultNibRegistration(for: PostTableViewSectionHeaderView.self)
-        self.width = width
         
         super.init(post, rows: PostTableViewSection.rows(for: post, width: width), supplementaryViewDisplay: .header(registrationType: registration))
         
