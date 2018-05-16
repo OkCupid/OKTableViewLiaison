@@ -68,7 +68,7 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
         case (.both, _), (.header, .header), (.footer, .footer):
             return heights[supplementaryView]?(model) ?? UITableViewAutomaticDimension
         default:
-            return 0
+            return .leastNormalMagnitude
         }
     }
 
