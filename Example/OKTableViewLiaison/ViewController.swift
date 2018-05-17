@@ -14,9 +14,21 @@ class ViewController: UIViewController {
     private let liaison = OKTableViewLiaison()
     private let refreshControl = UIRefreshControl()
     
-    private var sections: [OKAnyTableViewSection] {
+    private var initialSections: [OKAnyTableViewSection] {
         return Post.initialPosts()
-            .map { PostTableViewSection(post: $0, width: view.frame.width) }
+            .map(section(for:))
+    }
+    
+    private func section(for post: Post) -> PostTableViewSection {
+        
+        let rows: [OKAnyTableViewRow] = [ImageContentTableViewRow(image: post.content, width: tableView.frame.width),
+                                         ActionButtonsTableViewRow(),
+                                         TextTableViewRow.likesRow(numberOfLikes: post.numberOfLikes),
+                                         TextTableViewRow.captionRow(user: post.user.username, caption: post.caption),
+                                         TextTableViewRow.commentRow(commentCount: post.numberOfComments),
+                                         TextTableViewRow.timeRow(numberOfSeconds: post.timePosted)]
+        
+        return PostTableViewSection(user: post.user, rows: rows)
     }
     
     override func viewDidLoad() {
@@ -28,12 +40,12 @@ class ViewController: UIViewController {
         liaison.paginationDelegate = self
         liaison.liaise(tableView: tableView)
         
-        liaison.append(sections: sections)
+        liaison.append(sections: initialSections)
     }
     
     @objc private func refreshSections() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.liaison.clearSections(replacedBy: self.sections, animated: false)
+            self.liaison.clearSections(replacedBy: self.initialSections, animated: false)
             self.refreshControl.endRefreshing()
         }
     }
@@ -51,7 +63,7 @@ extension ViewController: OKTableViewLiaisonPaginationDelegate {
         liaison.scroll(to: indexPath)
         
         let sections = Post.paginatedPosts()
-            .map { PostTableViewSection(post: $0, width: view.frame.width) }
+            .map(section(for:))
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.liaison.append(sections: sections)
