@@ -12,9 +12,8 @@ import OKTableViewLiaison
 final class PostTableViewSection: OKTableViewSection<PostTableViewSectionHeaderView, UITableViewHeaderFooterView, User> {
     
     init(user: User, rows: [OKAnyTableViewRow] = []) {
-        let registrationType = PostTableViewSection.defaultHeaderNibRegistrationType
         
-        super.init(user, rows: rows, supplementaryViewDisplay: .header(registrationType: registrationType))
+        super.init(user, rows: rows, supplementaryViewDisplay: .header(registrationType: PostTableViewSection.defaultHeaderNibRegistrationType))
         
         setHeight(for: .header, value: 70)
         
