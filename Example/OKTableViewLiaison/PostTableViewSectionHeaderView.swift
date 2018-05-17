@@ -25,7 +25,6 @@ final class PostTableViewSectionHeaderView: UITableViewHeaderFooterView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundView = UIView(frame: bounds)
         
         // There is a UIKit bug where outlets for the view will be nil on first layout pass.
         guard imageView != nil else { return }

@@ -17,9 +17,7 @@ final class PostTableViewSection: OKTableViewSection<PostTableViewSectionHeaderV
         
         setHeight(for: .header, value: 70)
         
-        setHeader(command: .configuration) { header, user, section in
-            header.backgroundView?.backgroundColor = .white
-            
+        setHeader(command: .configuration) { header, user, section in            
             header.imageView.image = user.avatar
             header.imageView.layer.borderColor = UIColor.gray.cgColor
             header.imageView.layer.borderWidth = 1
