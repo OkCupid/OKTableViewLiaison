@@ -8,15 +8,15 @@
 
 import UIKit
 
-class TextTableViewCell: UITableViewCell {
+final class TextTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var postTextLabel: UILabel!
+    @IBOutlet weak var contentTextLabel: UILabel!
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        postTextLabel.text = nil
-        postTextLabel.textColor = .black
-        postTextLabel.attributedText = nil
+        contentTextLabel.text = nil
+        contentTextLabel.textColor = .black
+        contentTextLabel.attributedText = nil
     }
     
 }

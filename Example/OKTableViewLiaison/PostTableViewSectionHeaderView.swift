@@ -15,14 +15,10 @@ final class PostTableViewSectionHeaderView: UITableViewHeaderFooterView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configure()
-    }
-    
-    private func configure() {
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFit
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         

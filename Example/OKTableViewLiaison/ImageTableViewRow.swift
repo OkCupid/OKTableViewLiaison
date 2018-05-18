@@ -9,18 +9,18 @@
 import Foundation
 import OKTableViewLiaison
 
-final class ImageContentTableViewRow: OKTableViewRow<ContentImageTableViewCell, UIImage> {
+final class ImageTableViewRow: OKTableViewRow<ImageTableViewCell, UIImage> {
     
     init(image: UIImage, width: CGFloat) {
         
-        super.init(image, registrationType: ImageContentTableViewRow.defaultNibRegistrationType)
+        super.init(image, registrationType: ImageTableViewRow.defaultNibRegistrationType)
         
         set(height: .height) { image -> CGFloat in
             let ratio = image.size.width / image.size.height
             return width / ratio
         }
         
-        set(command: .configuration) { cell, image, _ in
+        set(command: .configuration) { cell, image, indexPath in
             cell.contentImageView.image = image
             cell.contentImageView.contentMode = .scaleAspectFill
         }

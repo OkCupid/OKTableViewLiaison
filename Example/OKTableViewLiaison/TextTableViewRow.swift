@@ -16,14 +16,13 @@ final class TextTableViewRow: OKTableViewRow<TextTableViewCell, String> {
                    registrationType: TextTableViewRow.defaultNibRegistrationType)
     }
     
-    static func likesRow(numberOfLikes: Int) -> TextTableViewRow {
+    static func likesRow(numberOfLikes: UInt) -> TextTableViewRow {
 
         let row = TextTableViewRow(text: "\(numberOfLikes) likes")
         
-        row.set(height: .height, value: 20)
         row.set(command: .configuration) { cell, string, _ in
-            cell.postTextLabel.font = .systemFont(ofSize: 13, weight: .medium)
-            cell.postTextLabel.text = string
+            cell.contentTextLabel.font = .systemFont(ofSize: 13, weight: .medium)
+            cell.contentTextLabel.text = string
             cell.selectionStyle = .none
         }
         
@@ -36,7 +35,7 @@ final class TextTableViewRow: OKTableViewRow<TextTableViewCell, String> {
         
         row.set(command: .configuration) { cell, caption, _ in
             
-            cell.postTextLabel.numberOfLines = 0
+            cell.contentTextLabel.numberOfLines = 0
             cell.selectionStyle = .none
 
             let mediumAttributes: [NSAttributedStringKey: Any] = [
@@ -53,21 +52,20 @@ final class TextTableViewRow: OKTableViewRow<TextTableViewCell, String> {
             
             attributedString.append(NSMutableAttributedString(string: " \(caption)", attributes: regularAttributes))
             
-            cell.postTextLabel.attributedText = attributedString
+            cell.contentTextLabel.attributedText = attributedString
         }
         
         return row
     }
     
-    static func commentRow(commentCount: Int) -> TextTableViewRow {
+    static func commentRow(commentCount: UInt) -> TextTableViewRow {
         
         let row = TextTableViewRow(text: "View all \(commentCount) comments")
         
-        row.set(height: .height, value: 20)
         row.set(command: .configuration) { cell, string, _ in
-            cell.postTextLabel.font = .systemFont(ofSize: 13)
-            cell.postTextLabel.text = string
-            cell.postTextLabel.textColor = .gray
+            cell.contentTextLabel.font = .systemFont(ofSize: 13)
+            cell.contentTextLabel.text = string
+            cell.contentTextLabel.textColor = .gray
             cell.selectionStyle = .none
         }
         
@@ -78,11 +76,10 @@ final class TextTableViewRow: OKTableViewRow<TextTableViewCell, String> {
         
         let row = TextTableViewRow(text: numberOfSeconds.timeText)
 
-        row.set(height: .height, value: 15)
         row.set(command: .configuration) { cell, string, _ in
-            cell.postTextLabel.font = .systemFont(ofSize: 10)
-            cell.postTextLabel.text = string
-            cell.postTextLabel.textColor = .gray
+            cell.contentTextLabel.font = .systemFont(ofSize: 10)
+            cell.contentTextLabel.text = string
+            cell.contentTextLabel.textColor = .gray
             cell.selectionStyle = .none
         }
         

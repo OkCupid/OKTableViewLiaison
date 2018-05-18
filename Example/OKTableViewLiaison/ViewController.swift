@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     private func section(for post: Post) -> PostTableViewSection {
         
-        let rows: [OKAnyTableViewRow] = [ImageContentTableViewRow(image: post.content, width: tableView.frame.width),
+        let rows: [OKAnyTableViewRow] = [ImageTableViewRow(image: post.content, width: tableView.frame.width),
                                          ActionButtonsTableViewRow(),
                                          TextTableViewRow.likesRow(numberOfLikes: post.numberOfLikes),
                                          TextTableViewRow.captionRow(user: post.user.username, caption: post.caption),

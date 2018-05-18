@@ -20,22 +20,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3t-Dy-JK2">
-                        <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
+                        <rect key="frame" x="16" y="2" width="288" height="39.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="q3t-Dy-JK2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="USo-vP-Zqo"/>
+                    <constraint firstItem="q3t-Dy-JK2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="USo-vP-Zqo"/>
                     <constraint firstAttribute="trailing" secondItem="q3t-Dy-JK2" secondAttribute="trailing" constant="16" id="UUj-1W-XGk"/>
                     <constraint firstItem="q3t-Dy-JK2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="lkb-ZR-3y7"/>
-                    <constraint firstAttribute="bottom" secondItem="q3t-Dy-JK2" secondAttribute="bottom" id="z82-d8-i5F"/>
+                    <constraint firstAttribute="bottom" secondItem="q3t-Dy-JK2" secondAttribute="bottom" constant="2" id="z82-d8-i5F"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="postTextLabel" destination="q3t-Dy-JK2" id="e8g-mH-bZc"/>
+                <outlet property="contentTextLabel" destination="q3t-Dy-JK2" id="dJB-M4-aSe"/>
             </connections>
         </tableViewCell>
     </objects>

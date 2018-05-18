@@ -13,9 +13,9 @@ struct Post {
     
     let user: User
     let content: UIImage
-    let numberOfLikes: Int
+    let numberOfLikes: UInt
     let caption: String
-    let numberOfComments: Int
+    let numberOfComments: UInt
     let timePosted: TimeInterval
     
     static func initialPosts() -> [Post] {
