@@ -141,17 +141,13 @@
 		607FACD21AFB9204008FA782 /* Example for OKTableViewLiaison */ = {
 			isa = PBXGroup;
 			children = (
+				607FACD71AFB9204008FA782 /* ContentFeedViewController.swift */,
 				FC6E84EF207EB29B00BF0E58 /* Sections */,
 				FC6E84DC207EB27600BF0E58 /* Views */,
 				FC4A048E20AF2F1200B692EC /* Factories */,
 				FC6E84D9207EB25F00BF0E58 /* Models */,
 				FC6E84D8207EB22900BF0E58 /* Rows */,
 				FC6E84D5207EB20800BF0E58 /* Extensions */,
-				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ContentFeedViewController.swift */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for OKTableViewLiaison";
@@ -161,6 +157,10 @@
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
