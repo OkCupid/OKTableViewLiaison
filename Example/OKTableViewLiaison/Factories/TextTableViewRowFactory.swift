@@ -15,9 +15,9 @@ enum TextTableViewRowFactory {
         
         let row = TextTableViewRow(text: "\(numberOfLikes) likes")
         
-        row.set(command: .configuration) { cell, string, _ in
+        row.set(command: .configuration) { cell, text, _ in
             cell.contentTextLabel.font = .systemFont(ofSize: 13, weight: .medium)
-            cell.contentTextLabel.text = string
+            cell.contentTextLabel.text = text
             cell.selectionStyle = .none
         }
         
@@ -57,9 +57,9 @@ enum TextTableViewRowFactory {
         
         let row = TextTableViewRow(text: "View all \(commentCount) comments")
         
-        row.set(command: .configuration) { cell, string, _ in
+        row.set(command: .configuration) { cell, text, _ in
             cell.contentTextLabel.font = .systemFont(ofSize: 13)
-            cell.contentTextLabel.text = string
+            cell.contentTextLabel.text = text
             cell.contentTextLabel.textColor = .gray
             cell.selectionStyle = .none
         }
@@ -71,9 +71,9 @@ enum TextTableViewRowFactory {
         
         let row = TextTableViewRow(text: numberOfSeconds.timeText)
         
-        row.set(command: .configuration) { cell, string, _ in
+        row.set(command: .configuration) { cell, text, _ in
             cell.contentTextLabel.font = .systemFont(ofSize: 10)
-            cell.contentTextLabel.text = string
+            cell.contentTextLabel.text = text
             cell.contentTextLabel.textColor = .gray
             cell.selectionStyle = .none
         }
