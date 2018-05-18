@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ContentFeedViewController.swift
 //  OKTableViewLiaison
 //
 //  Created by Dylan Shine on 04/11/2018.
@@ -9,7 +9,7 @@
 import UIKit
 import OKTableViewLiaison
 
-class ViewController: UIViewController {
+final class ContentFeedViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private let liaison = OKTableViewLiaison()
     private let refreshControl = UIRefreshControl()
@@ -20,17 +20,9 @@ class ViewController: UIViewController {
     }
     
     private func section(for post: Post) -> PostTableViewSection {
-        
-        let rows: [OKAnyTableViewRow] = [ImageTableViewRow(image: post.content, width: tableView.frame.width),
-                                         ActionButtonsTableViewRow(),
-                                         TextTableViewRow.likesRow(numberOfLikes: post.numberOfLikes),
-                                         TextTableViewRow.captionRow(user: post.user.username, caption: post.caption),
-                                         TextTableViewRow.commentRow(commentCount: post.numberOfComments),
-                                         TextTableViewRow.timeRow(numberOfSeconds: post.timePosted)]
-        
-        return PostTableViewSection(user: post.user, rows: rows)
+        return PostTableViewSectionFactory.section(for: post, width: tableView.frame.width)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,7 +44,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: OKTableViewLiaisonPaginationDelegate {
+extension ContentFeedViewController: OKTableViewLiaisonPaginationDelegate {
     
     func isPaginationEnabled() -> Bool {
         return liaison.sections.count < 8

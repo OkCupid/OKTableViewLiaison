@@ -10,13 +10,15 @@
 		2D68B4621F839319901530FD /* Pods_OKTableViewLiaison_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3804755C87B88FEAC5E1C2 /* Pods_OKTableViewLiaison_Tests.framework */; };
 		488E47F617152523ED0FE88E /* Pods_OKTableViewLiaison_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C46C6EECC245864C7195AE /* Pods_OKTableViewLiaison_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
+		607FACD81AFB9204008FA782 /* ContentFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ContentFeedViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		FC08AEB8209ACA4A00056CE8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC08AEB7209ACA4A00056CE8 /* User.swift */; };
 		FC4A048920AB3B3700B692EC /* ImageTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4A048820AB3B3700B692EC /* ImageTableViewRow.swift */; };
 		FC4A048B20AB3CBC00B692EC /* ActionButtonsTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4A048A20AB3CBC00B692EC /* ActionButtonsTableViewRow.swift */; };
+		FC4A049020AF2F2A00B692EC /* PostTableViewSectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4A048F20AF2F2A00B692EC /* PostTableViewSectionFactory.swift */; };
+		FC4A049220AF2F3C00B692EC /* TextTableViewRowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4A049120AF2F3C00B692EC /* TextTableViewRowFactory.swift */; };
 		FC6E84D7207EB21600BF0E58 /* TimeInterval+SecondConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84D6207EB21500BF0E58 /* TimeInterval+SecondConversion.swift */; };
 		FC6E84DB207EB26F00BF0E58 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84DA207EB26F00BF0E58 /* Post.swift */; };
 		FC6E84E1207EB28100BF0E58 /* ActionButtonsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC6E84DD207EB28100BF0E58 /* ActionButtonsTableViewCell.xib */; };
@@ -56,7 +58,7 @@
 		607FACD01AFB9204008FA782 /* OKTableViewLiaison_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OKTableViewLiaison_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		607FACD71AFB9204008FA782 /* ContentFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFeedViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -71,6 +73,8 @@
 		FC08AEB7209ACA4A00056CE8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FC4A048820AB3B3700B692EC /* ImageTableViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewRow.swift; sourceTree = "<group>"; };
 		FC4A048A20AB3CBC00B692EC /* ActionButtonsTableViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonsTableViewRow.swift; sourceTree = "<group>"; };
+		FC4A048F20AF2F2A00B692EC /* PostTableViewSectionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewSectionFactory.swift; sourceTree = "<group>"; };
+		FC4A049120AF2F3C00B692EC /* TextTableViewRowFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewRowFactory.swift; sourceTree = "<group>"; };
 		FC6E84D6207EB21500BF0E58 /* TimeInterval+SecondConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeInterval+SecondConversion.swift"; sourceTree = "<group>"; };
 		FC6E84DA207EB26F00BF0E58 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		FC6E84DD207EB28100BF0E58 /* ActionButtonsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionButtonsTableViewCell.xib; sourceTree = "<group>"; };
@@ -139,11 +143,12 @@
 			children = (
 				FC6E84EF207EB29B00BF0E58 /* Sections */,
 				FC6E84DC207EB27600BF0E58 /* Views */,
+				FC4A048E20AF2F1200B692EC /* Factories */,
 				FC6E84D9207EB25F00BF0E58 /* Models */,
 				FC6E84D8207EB22900BF0E58 /* Rows */,
 				FC6E84D5207EB20800BF0E58 /* Extensions */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				607FACD71AFB9204008FA782 /* ContentFeedViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -209,6 +214,15 @@
 				BF3804755C87B88FEAC5E1C2 /* Pods_OKTableViewLiaison_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC4A048E20AF2F1200B692EC /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				FC4A048F20AF2F2A00B692EC /* PostTableViewSectionFactory.swift */,
+				FC4A049120AF2F3C00B692EC /* TextTableViewRowFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 		FC6E84D5207EB20800BF0E58 /* Extensions */ = {
@@ -468,9 +482,11 @@
 				FC4A048920AB3B3700B692EC /* ImageTableViewRow.swift in Sources */,
 				FC6E84E4207EB28100BF0E58 /* ImageTableViewCell.swift in Sources */,
 				FC6E84E2207EB28100BF0E58 /* ActionButtonsTableViewCell.swift in Sources */,
+				FC4A049220AF2F3C00B692EC /* TextTableViewRowFactory.swift in Sources */,
 				FC6E84EB207EB29000BF0E58 /* TextTableViewCell.swift in Sources */,
 				FC4A048B20AB3CBC00B692EC /* ActionButtonsTableViewRow.swift in Sources */,
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				607FACD81AFB9204008FA782 /* ContentFeedViewController.swift in Sources */,
+				FC4A049020AF2F2A00B692EC /* PostTableViewSectionFactory.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				FC6E84DB207EB26F00BF0E58 /* Post.swift in Sources */,
 				FC08AEB8209ACA4A00056CE8 /* User.swift in Sources */,
