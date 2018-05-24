@@ -41,12 +41,18 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     func test_configure_setsDelegateAndDataSource() {
         XCTAssert(tableView.delegate === liaison)
         XCTAssert(tableView.dataSource === liaison)
+        if #available(iOS 10.0, *) {
+            XCTAssert(tableView.prefetchDataSource === liaison)
+        }
     }
     
     func test_detachTableView_removesDelegateAndDataSource() {
         liaison.detachTableView()
         XCTAssert(tableView.delegate == nil)
         XCTAssert(tableView.dataSource == nil)
+        if #available(iOS 10.0, *) {
+            XCTAssert(tableView.prefetchDataSource == nil)
+        }
     }
     
     func test_toggleIsEditing_togglesTableViewEditingMode() {
@@ -1289,6 +1295,36 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.tableView(tableView, didEndDisplayingFooterView: view, forSection: 0)
         
         XCTAssertEqual(didEndDisplaying, true)
+    }
+    
+    func test_prefetchRowsAtIndexPaths_performsPrefetchRowCommand() {
+        let row = TestTableViewRow()
+        var prefetch = false
+        row.set(prefetchCommand: .prefetch) { _, _ in
+            prefetch = true
+        }
+        
+        let section = TestTableViewSection(rows: [row])
+        
+        liaison.append(section: section)
+        liaison.tableView(tableView, prefetchRowsAt: [IndexPath(row: 0, section: 0)])
+        
+        XCTAssertEqual(prefetch, true)
+    }
+    
+    func test_cancelPrefetchingForRowsAtIndexPaths_performsPrefetchRowCommand() {
+        let row = TestTableViewRow()
+        var cancel = false
+        row.set(prefetchCommand: .cancel) { _, _ in
+            cancel = true
+        }
+        
+        let section = TestTableViewSection(rows: [row])
+        
+        liaison.append(section: section)
+        liaison.tableView(tableView, cancelPrefetchingForRowsAt: [IndexPath(row: 0, section: 0)])
+        
+        XCTAssertEqual(cancel, true)
     }
     
 }

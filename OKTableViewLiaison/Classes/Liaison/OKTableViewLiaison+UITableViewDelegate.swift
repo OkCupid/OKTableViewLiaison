@@ -9,19 +9,19 @@ import UIKit
 
 extension OKTableViewLiaison: UITableViewDelegate {
     
-    private func perform(command: OKTableViewRowCommand, for tableView: UITableView, at indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) else {
-            return
-        }
+    @discardableResult
+    private func perform(command: OKTableViewRowCommand, for tableView: UITableView, at indexPath: IndexPath) -> IndexPath? {
+        
+        guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
+        
         row(for: indexPath)?.perform(command: command, for: cell, at: indexPath)
+        
+        return indexPath
     }
     
     public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        guard let cell = tableView.cellForRow(at: indexPath) else {
-            return nil
-        }
-        row(for: indexPath)?.perform(command: .willSelect, for: cell, at: indexPath)
-        return indexPath
+        
+        return perform(command: .willSelect, for: tableView, at: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -29,11 +29,8 @@ extension OKTableViewLiaison: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-        guard let cell = tableView.cellForRow(at: indexPath) else {
-            return nil
-        }
-        row(for: indexPath)?.perform(command: .willDeselect, for: cell, at: indexPath)
-        return indexPath
+        
+        return perform(command: .willDeselect, for: tableView, at: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -59,9 +56,7 @@ extension OKTableViewLiaison: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
-        guard let indexPath = indexPath else {
-            return
-        }
+        guard let indexPath = indexPath else { return }
         perform(command: .didEndEditing, for: tableView, at: indexPath)
     }
     

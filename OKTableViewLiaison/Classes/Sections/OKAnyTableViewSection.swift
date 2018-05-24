@@ -36,34 +36,31 @@ open class OKAnyTableViewSection {
     }
     
     func append(row: OKAnyTableViewRow) {
+        registerCell(for: row)
         rows.append(row)
     }
     
     func append(rows: [OKAnyTableViewRow]) {
+        rows.forEach(registerCell(for:))
         self.rows.append(contentsOf: rows)
     }
     
     @discardableResult
     func deleteRow(at indexPath: IndexPath) -> OKAnyTableViewRow? {
-        guard rows.indices.contains(indexPath.item) else {
-            return nil
-        }
+        guard rows.indices.contains(indexPath.item) else { return nil }
         
         return rows.remove(at: indexPath.item)
     }
     
     func insert(row: OKAnyTableViewRow, at indexPath: IndexPath) {
-        guard rows.count >= indexPath.item else {
-            return
-        }
+        guard rows.count >= indexPath.item else { return }
         
+        registerCell(for: row)
         rows.insert(row, at: indexPath.item)
     }
     
     func swapRows(at source: IndexPath, to destination: IndexPath) {
-        guard rows.indices.contains(source.item) && rows.indices.contains(destination.item) else {
-            return
-        }
+        guard rows.indices.contains(source.item) && rows.indices.contains(destination.item) else { return }
         
         rows.swapAt(source.item, destination.item)
     }
@@ -72,4 +69,9 @@ open class OKAnyTableViewSection {
         rows.removeAll()
     }
     
+    private func registerCell(for row: OKAnyTableViewRow) {
+        guard let tableView = tableView else { return }
+        
+        row.registerCellType(with: tableView)
+    }
 }

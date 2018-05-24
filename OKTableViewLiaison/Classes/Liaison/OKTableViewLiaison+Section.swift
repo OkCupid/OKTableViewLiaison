@@ -16,13 +16,7 @@ public extension OKTableViewLiaison {
             return
         }
         
-        guard !sections.isEmpty else {
-            return
-        }
-        
-        sections.forEach {
-            $0.tableView = tableView
-        }
+        guard !sections.isEmpty else { return }
         
         let lowerBound = self.sections.count
         let upperBound = lowerBound + sections.count - 1
@@ -40,7 +34,7 @@ public extension OKTableViewLiaison {
     }
     
     public func insert(section: OKAnyTableViewSection, at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
-        section.tableView = tableView
+        
         sections.insert(section, at: index)
         
         performTableViewUpdates(animated: animated) {
@@ -50,9 +44,8 @@ public extension OKTableViewLiaison {
     }
     
     public func emptySection(at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
-        guard let section = sections.element(at: index) else {
-            return
-        }
+        
+        guard let section = sections.element(at: index) else { return }
         
         let indexPaths = section.rowIndexPaths(for: index)
         section.removeAllRows()
@@ -72,8 +65,8 @@ public extension OKTableViewLiaison {
     }
     
     public func replaceSection(at index: Int, with section: OKAnyTableViewSection, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+
         sections.remove(at: index)
-        section.tableView = tableView
         sections.insert(section, at: index)
         
         performTableViewUpdates(animated: animated) {
@@ -89,6 +82,7 @@ public extension OKTableViewLiaison {
     }
     
     public func moveSection(at: Int, to: Int, with animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+        
         let section = sections.remove(at: at)
         sections.insert(section, at: to)
         
@@ -101,9 +95,7 @@ public extension OKTableViewLiaison {
                               animation: UITableViewRowAnimation = .automatic,
                               animated: Bool = true) {
         
-        guard !self.sections.isEmpty else {
-            return
-        }
+        guard !self.sections.isEmpty else { return }
         
         let sectionsRange = 0...self.sections.count - 1
         let indexSet = IndexSet(integersIn: sectionsRange)

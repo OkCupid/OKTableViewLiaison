@@ -9,15 +9,6 @@ import UIKit
 
 extension OKTableViewLiaison: UITableViewDataSource {
     
-    private func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = row(for: indexPath)?.cell(for: tableView, at: indexPath) else {
-            fatalError("Row does not exist for indexPath: \(indexPath)")
-        }
-        
-        return cell
-    }
-    
     public func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -27,7 +18,12 @@ extension OKTableViewLiaison: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cell(for: tableView, at: indexPath)
+        
+        guard let cell = row(for: indexPath)?.cell(for: tableView, at: indexPath) else {
+            fatalError("Row does not exist for indexPath: \(indexPath)")
+        }
+        
+        return cell
     }
     
     public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -41,16 +37,10 @@ extension OKTableViewLiaison: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            guard let row = row(for: indexPath) else {
-                return
-            }
-            
+            guard let row = row(for: indexPath) else { return }
             deleteRow(at: indexPath, with: row.deleteRowAnimation)
         case .insert:
-            guard let cell = tableView.cellForRow(at: indexPath) else {
-                return
-            }
-            
+            guard let cell = tableView.cellForRow(at: indexPath) else { return }
             row(for: indexPath)?.perform(command: .insert, for: cell, at: indexPath)
         case .none:
             break
@@ -58,9 +48,8 @@ extension OKTableViewLiaison: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: sourceIndexPath) else {
-            return
-        }
+        
+        guard let cell = tableView.cellForRow(at: sourceIndexPath) else { return }
         
         row(for: sourceIndexPath)?.perform(command: .move, for: cell, at: destinationIndexPath)
         moveRow(from: sourceIndexPath, to: destinationIndexPath)

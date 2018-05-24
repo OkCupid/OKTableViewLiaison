@@ -60,7 +60,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         XCTAssertEqual(row.height, 100)
     }
     
-    func test_setHeight_properlySetsHeightWithValue() {
+    func test_setHeight_setsHeightWithValue() {
         let row = TestTableViewRow()
         
         row.set(height: .height, value: 100)
@@ -85,6 +85,49 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         
         XCTAssertEqual(row.height, UITableViewAutomaticDimension)
         XCTAssertEqual(row.estimatedHeight, UITableViewAutomaticDimension)
+    }
+    
+    func test_setPrefetchCommand_setPrefetchCommandClosure() {
+        let row = TestTableViewRow()
+        
+        var prefetch = false
+        row.set(prefetchCommand: .prefetch) { _, _ in
+            prefetch = true
+        }
+        
+        var cancel = false
+        row.set(prefetchCommand: .cancel) { _, _ in
+            cancel = true
+        }
+        
+        row.perform(prefetchCommand: .prefetch, for: IndexPath())
+        row.perform(prefetchCommand: .cancel, for: IndexPath())
+
+        XCTAssertEqual(prefetch, true)
+        XCTAssertEqual(cancel, true)
+    }
+    
+    func test_removePrefetchCommand_removesPreviouslySetPrefetchCommands() {
+        let row = TestTableViewRow()
+        
+        var prefetch = false
+        row.set(prefetchCommand: .prefetch) { _, _ in
+            prefetch = true
+        }
+        
+        var cancel = false
+        row.set(prefetchCommand: .cancel) { _, _ in
+            cancel = true
+        }
+        
+        row.remove(prefetchCommand: .prefetch)
+        row.remove(prefetchCommand: .cancel)
+        
+        row.perform(prefetchCommand: .prefetch, for: IndexPath())
+        row.perform(prefetchCommand: .cancel, for: IndexPath())
+        
+        XCTAssertEqual(prefetch, false)
+        XCTAssertEqual(cancel, false)
     }
     
     func test_editable_returnsIfRowIsEditable() {
