@@ -10,7 +10,9 @@ import UIKit
 
 final public class OKTableViewLiaison: NSObject {
     weak var tableView: UITableView?
-    public internal(set) var sections = [OKAnyTableViewSection]()
+    public internal(set) var sections = [OKAnyTableViewSection]() {
+        didSet { didSetSections() }
+    }
     
     let paginationSection: OKPaginationTableViewSection
     var waitingForPaginatedResults = false
@@ -26,17 +28,22 @@ final public class OKTableViewLiaison: NSObject {
     public func liaise(tableView: UITableView) {
         self.tableView = tableView
         
-        sections.forEach {
-            $0.tableView = tableView
-        }
-        
         tableView.dataSource = self
         tableView.delegate = self
+        
+        if #available(iOS 10.0, *) {
+            tableView.prefetchDataSource = self
+        }
     }
     
     public func detachTableView() {
         tableView?.delegate = nil
         tableView?.dataSource = nil
+        
+        if #available(iOS 10.0, *) {
+            tableView?.prefetchDataSource = nil
+        }
+        
         tableView = nil
     }
     
@@ -45,9 +52,7 @@ final public class OKTableViewLiaison: NSObject {
     }
     
     public func reloadVisibleRows() {
-        guard let indexPaths = tableView?.indexPathsForVisibleRows else {
-            return
-        }
+        guard let indexPaths = tableView?.indexPathsForVisibleRows else { return }
         
         reloadRows(at: indexPaths)
     }
@@ -57,9 +62,7 @@ final public class OKTableViewLiaison: NSObject {
     }
 
     public func toggleIsEditing() {
-        guard let tv = tableView else {
-            return
-        }
+        guard let tv = tableView else { return }
         
         tv.isEditing = !tv.isEditing
     }
@@ -69,30 +72,26 @@ final public class OKTableViewLiaison: NSObject {
     }
     
     public func row(for indexPath: IndexPath) -> OKAnyTableViewRow? {
-        
-        guard let section = section(for: indexPath) else {
-            return nil
-        }
+        guard let section = section(for: indexPath) else { return nil }
         
         return section.rows.element(at: indexPath.row)
     }
     
-    func registerCell(for row: OKAnyTableViewRow) {
-        guard let tableView = tableView else {
-            return
-        }
-
-        row.registerCellType(with: tableView)
-    }
-    
     func performTableViewUpdates(animated: Bool = true, _ closure: () -> Void) {
-        
         if animated {
             tableView?.beginUpdates()
             closure()
             tableView?.endUpdates()
         } else {
             reloadData()
+        }
+    }
+    
+    private func didSetSections() {
+        sections.forEach {
+            if $0.tableView == nil {
+                $0.tableView = tableView
+            }
         }
     }
 }

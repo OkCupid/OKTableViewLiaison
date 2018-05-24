@@ -10,7 +10,6 @@ import UIKit
 extension OKTableViewLiaison {
     
     var lastIndexPath: IndexPath? {
-        
         guard let lastSection = sections.last,
             !lastSection.rows.isEmpty else {
                 return nil
@@ -55,6 +54,7 @@ extension OKTableViewLiaison {
     
     func endPagination(rows: [OKAnyTableViewRow]) {
         hidePaginationSpinner(animated: rows.isEmpty)
+        
         guard !rows.isEmpty,
             let lastSection = sections.last else { return }
         

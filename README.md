@@ -58,7 +58,7 @@ let tableView = UITableView()
 liaison.liaise(tableView: tableView)
 ```
 
-By liaising your tableView with the liaison, the liaison becomes both its `UITableViewDataSource` and `UITableViewDelegate`.
+By liaising your tableView with the liaison, the liaison becomes both its `UITableViewDataSource`, `UITableViewDelegate`, and `UITableViewDataSourcePrefetching`.
 In the event you would like to remove the tableView from the liaison, simply invoke `liaison.detachTableView()`.
 
 OKTableViewLiaison populates sections and rows using two main types:
@@ -191,6 +191,18 @@ row.set(command: .configuration) { cell, model, indexPath in
 
 row.set(command: .didSelect) { cell, model, indexPath in
 	print("Cell: \(cell) selected at IndexPath: \(indexPath)")
+}
+```
+
+`OKTableViewRow` can also utilize `UITableViewDataSourcePrefetching` by using `func set(prefetchCommand: OKTableViewPrefetchCommand, with closure: @escaping (Model, IndexPath) -> Void)`
+
+```swift
+row.set(prefetchCommand: .prefetch) { model, indexPath in
+	model.downloadImage()
+}
+        
+row.set(prefetchCommand: .cancel) { model, indexPath in
+    model.cancelImageDownload()
 }
 ```
 

@@ -33,7 +33,7 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
     }
     
     // MARK: - Configuration
-    public func setHeader(command: OKTableViewSectionCommand, with closure: @escaping ((Header, Model, _ section: Int) -> Void)) {
+    public func setHeader(command: OKTableViewSectionCommand, with closure: @escaping (Header, Model, _ section: Int) -> Void) {
         headerCommands[command] = closure
     }
     
@@ -41,7 +41,7 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
         headerCommands[command] = nil
     }
     
-    public func setFooter(command: OKTableViewSectionCommand, with closure: @escaping ((Footer, Model, _ section: Int) -> Void)) {
+    public func setFooter(command: OKTableViewSectionCommand, with closure: @escaping (Footer, Model, _ section: Int) -> Void) {
         footerCommands[command] = closure
     }
     
@@ -49,12 +49,12 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
         footerCommands[command] = nil
     }
     
-    public func setHeight(for supplementaryView: OKTableViewSectionSupplementaryView, with closure: @escaping ((Model) -> CGFloat)) {
+    public func setHeight(for supplementaryView: OKTableViewSectionSupplementaryView, with closure: @escaping (Model) -> CGFloat) {
         heights[supplementaryView] = closure
     }
     
     public func setHeight(for supplementaryView: OKTableViewSectionSupplementaryView, value: CGFloat) {
-        let closure: ((Model) -> CGFloat) = { _ -> CGFloat in return value }
+        let closure: (Model) -> CGFloat = { _ -> CGFloat in return value }
         heights[supplementaryView] = closure
     }
     
@@ -74,9 +74,7 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
 
     // MARK: - Type Registration
     private func registerRowCells() {
-        guard let tableView = tableView else {
-            return
-        }
+        guard let tableView = tableView else { return }
         
         rows.forEach {
             $0.registerCellType(with: tableView)

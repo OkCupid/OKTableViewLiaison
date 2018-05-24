@@ -8,21 +8,6 @@
 
 import UIKit
 
-public protocol OKAnyTableViewRow: class {
-    var height: CGFloat { get }
-    var estimatedHeight: CGFloat { get }
-    var editable: Bool { get }
-    var movable: Bool { get }
-    var editActions: [UITableViewRowAction]? { get }
-    var editingStyle: UITableViewCellEditingStyle { get }
-    var indentWhileEditing: Bool { get }
-    var deleteConfirmationTitle: String? { get }
-    var deleteRowAnimation: UITableViewRowAnimation { get }
-    func registerCellType(with tableView: UITableView)
-    func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
-    func perform(command: OKTableViewRowCommand, for cell: UITableViewCell, at indexPath: IndexPath)
-}
-
 open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     
     public let model: Model
@@ -36,6 +21,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     
     private var commands = [OKTableViewRowCommand: (Cell, Model, IndexPath) -> Void]()
     private var heights = [OKTableViewHeightType: (Model) -> CGFloat]()
+    private var prefetchCommands = [OKTableViewPrefetchCommand: (Model, IndexPath) -> Void]()
     
     public init(_ model: Model,
                 editingStyle: UITableViewCellEditingStyle = .none,
@@ -73,14 +59,17 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     
     // MARK: - Commands
     public func perform(command: OKTableViewRowCommand, for cell: UITableViewCell, at indexPath: IndexPath) {
-        guard let cell = cell as? Cell else {
-            return
-        }
+        
+        guard let cell = cell as? Cell else { return }
         
         commands[command]?(cell, model, indexPath)
     }
     
-    public func set(command: OKTableViewRowCommand, with closure: @escaping ((Cell, Model, IndexPath) -> Void)) {
+    public func perform(prefetchCommand: OKTableViewPrefetchCommand, for indexPath: IndexPath) {
+        prefetchCommands[prefetchCommand]?(model, indexPath)
+    }
+    
+    public func set(command: OKTableViewRowCommand, with closure: @escaping (Cell, Model, IndexPath) -> Void) {
         commands[command] = closure
     }
     
@@ -88,7 +77,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
         commands[command] = nil
     }
     
-    public func set(height: OKTableViewHeightType, with closure: @escaping ((Model) -> CGFloat)) {
+    public func set(height: OKTableViewHeightType, with closure: @escaping (Model) -> CGFloat) {
         heights[height] = closure
     }
     
@@ -99,6 +88,14 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     
     public func remove(height: OKTableViewHeightType) {
         heights[height] = nil
+    }
+    
+    public func set(prefetchCommand: OKTableViewPrefetchCommand, with closure: @escaping (Model, IndexPath) -> Void) {
+        prefetchCommands[prefetchCommand] = closure
+    }
+    
+    public func remove(prefetchCommand: OKTableViewPrefetchCommand) {
+        prefetchCommands[prefetchCommand] = nil
     }
     
     // MARK: - Computed Properties
@@ -120,9 +117,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
 
     // MARK: - Private
     private func dequeueCell(with tableView: UITableView) -> Cell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? Cell else {
-            fatalError("Failed to dequeue cell of type \(Cell.self).")
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? Cell else { fatalError("Failed to dequeue cell of type \(Cell.self).") }
         
         return cell
     }

@@ -17,13 +17,7 @@ public extension OKTableViewLiaison {
         }
         
         guard let _section = sections.element(at: section),
-            !rows.isEmpty else {
-                return
-        }
-        
-        rows.forEach {
-            registerCell(for: $0)
-        }
+            !rows.isEmpty else { return }
         
         var lastRowIndex = _section.rows.count - 1
         
@@ -52,11 +46,7 @@ public extension OKTableViewLiaison {
     
     public func insert(row: OKAnyTableViewRow, at indexPath: IndexPath, with animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
-        guard let section = section(for: indexPath) else {
-            return
-        }
-        
-        registerCell(for: row)
+        guard let section = section(for: indexPath) else { return }
         
         section.insert(row: row, at: indexPath)
         
@@ -73,14 +63,12 @@ public extension OKTableViewLiaison {
     @discardableResult
     public func deleteRows(at indexPaths: [IndexPath], animation: UITableViewRowAnimation = .automatic, animated: Bool = true) -> [OKAnyTableViewRow] {
         
-        guard !indexPaths.isEmpty else {
-            return []
-        }
+        guard !indexPaths.isEmpty else { return [] }
         
         let sortedIndexPaths = indexPaths.sortBySection()
         var deletedRows = [OKAnyTableViewRow]()
         
-        sortedIndexPaths.forEach { (section, indexPaths) in
+        sortedIndexPaths.forEach { section, indexPaths in
             if let section = sections.element(at: section) {
                 
                 indexPaths.forEach {
@@ -134,16 +122,13 @@ public extension OKTableViewLiaison {
     
     public func replaceRow(at indexPath: IndexPath, with row: OKAnyTableViewRow, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
-        guard let section = section(for: indexPath) else {
-            return
-        }
+        guard let section = section(for: indexPath) else { return }
         
         let deletedRow = section.deleteRow(at: indexPath)
         if let cell = tableView?.cellForRow(at: indexPath) {
             deletedRow?.perform(command: .delete, for: cell, at: indexPath)
         }
         
-        registerCell(for: row)
         section.insert(row: row, at: indexPath)
         
         performTableViewUpdates(animated: animated) {
@@ -184,14 +169,10 @@ public extension OKTableViewLiaison {
             section(for: source)?.swapRows(at: source, to: destination)
         } else {
             guard let sourceSection = section(for: source),
-                let destinationSection = section(for: destination) else {
-                    return
-            }
+                let destinationSection = section(for: destination) else { return }
             
             guard let sourceRow = sourceSection.deleteRow(at: source),
-                let destinationRow = destinationSection.deleteRow(at: destination) else {
-                    return
-            }
+                let destinationRow = destinationSection.deleteRow(at: destination) else { return }
             
             sourceSection.insert(row: destinationRow, at: source)
             destinationSection.insert(row: sourceRow, at: destination)
