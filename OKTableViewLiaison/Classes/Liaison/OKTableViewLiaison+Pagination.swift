@@ -64,7 +64,7 @@ extension OKTableViewLiaison {
         paginationDelegate?.paginationEnded(indexPath: firstNewIndexPath)
     }
     
-    func endPagination(sections: [OKAnyTableViewSection]) {
+    func endPagination(sections: [OKTableViewSection]) {
         hidePaginationSpinner(animated: sections.isEmpty)
         guard !sections.isEmpty else { return }
         let firstNewIndexPath = IndexPath(row: 0, section: self.sections.count)

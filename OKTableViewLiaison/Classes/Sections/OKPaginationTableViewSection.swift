@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class OKPaginationTableViewSection: OKPlainTableViewSection {
+final class OKPaginationTableViewSection: OKTableViewSection {
     
     public init(row: OKAnyTableViewRow) {
         super.init(rows: [row])        

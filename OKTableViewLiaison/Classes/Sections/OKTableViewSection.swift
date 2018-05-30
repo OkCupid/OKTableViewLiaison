@@ -8,68 +8,22 @@
 
 import UIKit
 
-open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITableViewHeaderFooterView, Model>: OKAnyTableViewSection {
+open class OKTableViewSection {
     
-    public let model: Model
-    
-    override weak var tableView: UITableView? {
+    weak var tableView: UITableView? {
         didSet {
             registerRowCells()
-            registerHeaderFooterViews()
+            registerComponentViews()
         }
     }
     
-    private var headerCommands = [OKTableViewSectionCommand: (Header, Model, Int) -> Void]()
-    private var footerCommands = [OKTableViewSectionCommand: (Footer, Model, Int) -> Void]()
-    private let supplementaryViewDisplay: OKTableViewSectionSupplementaryViewDisplayOption
-    private var heights = [OKTableViewSectionSupplementaryView: (Model) -> CGFloat]()
-        
-    public init(_ model: Model,
-                rows: [OKAnyTableViewRow] = [],
-                supplementaryViewDisplay: OKTableViewSectionSupplementaryViewDisplayOption = .none) {
-        self.model = model
-        self.supplementaryViewDisplay = supplementaryViewDisplay
-        super.init(rows: rows)
-    }
+    public private(set) var rows: [OKAnyTableViewRow]
+    private let componentDisplayOption: OKTableViewSectionComponentDisplayOption
     
-    // MARK: - Configuration
-    public func setHeader(command: OKTableViewSectionCommand, with closure: @escaping (Header, Model, _ section: Int) -> Void) {
-        headerCommands[command] = closure
-    }
-    
-    public func removeHeader(command: OKTableViewSectionCommand) {
-        headerCommands[command] = nil
-    }
-    
-    public func setFooter(command: OKTableViewSectionCommand, with closure: @escaping (Footer, Model, _ section: Int) -> Void) {
-        footerCommands[command] = closure
-    }
-    
-    public func removeFooter(command: OKTableViewSectionCommand) {
-        footerCommands[command] = nil
-    }
-    
-    public func setHeight(for supplementaryView: OKTableViewSectionSupplementaryView, with closure: @escaping (Model) -> CGFloat) {
-        heights[supplementaryView] = closure
-    }
-    
-    public func setHeight(for supplementaryView: OKTableViewSectionSupplementaryView, value: CGFloat) {
-        let closure: (Model) -> CGFloat = { _ -> CGFloat in return value }
-        heights[supplementaryView] = closure
-    }
-    
-    public func removeHeight(for supplementaryView: OKTableViewSectionSupplementaryView) {
-        heights[supplementaryView] = nil
-    }
-    
-    override public func calculateHeight(for supplementaryView: OKTableViewSectionSupplementaryView) -> CGFloat {
-        
-        switch (supplementaryViewDisplay, supplementaryView) {
-        case (.both, _), (.header, .header), (.footer, .footer):
-            return heights[supplementaryView]?(model) ?? UITableViewAutomaticDimension
-        default:
-            return .leastNormalMagnitude
-        }
+    public init(rows: [OKAnyTableViewRow] = [],
+                componentDisplayOption: OKTableViewSectionComponentDisplayOption = .none) {
+        self.rows = rows
+        self.componentDisplayOption = componentDisplayOption
     }
 
     // MARK: - Type Registration
@@ -81,109 +35,90 @@ open class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITab
         }
     }
     
-    private func registerHeaderFooterViews() {
-        
-        if let header = supplementaryViewDisplay.headerRegistrationType {
-            register(type: header, for: Header.self)
-        }
-        
-        if let footer = supplementaryViewDisplay.footerRegistrationType {
-            register(type: footer, for: Footer.self)
-        }
-        
-    }
-    
-    private func register(type: OKTableViewRegistrationType, for view: UITableViewHeaderFooterView.Type) {
-        switch type {
-        case let .class(identifier):
-            tableView?.register(view, forHeaderFooterViewReuseIdentifier: identifier)
-        case let .nib(nib, identifier):
-            tableView?.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
-        }
+    private func registerComponentViews() {
+        guard let tableView = tableView else { return }
+        componentDisplayOption.registerComponentViews(with: tableView)
     }
     
     // MARK: - Supplementary Views
-    override public func perform(command: OKTableViewSectionCommand, supplementaryView: OKTableViewSectionSupplementaryView, for view: UIView, in section: Int) {
+    public func perform(command: OKTableViewSectionComponentCommand, supplementaryView: OKTableViewSectionComponentView, for view: UIView, in section: Int) {
         switch supplementaryView {
         case .header:
-            if let header = view as? Header {
-                headerCommands[command]?(header, model, section)
-            }
-            
+            componentDisplayOption.header?.perform(command: command, for: view, in: section)
         case .footer:
-            if let footer = view as? Footer {
-                footerCommands[command]?(footer, model, section)
-            }
+            componentDisplayOption.footer?.perform(command: command, for: view, in: section)
         }
     }
     
-    override public func view(supplementaryView: OKTableViewSectionSupplementaryView, for tableView: UITableView, in section: Int) -> UIView? {
-        switch supplementaryView {
+   public func view(componentView: OKTableViewSectionComponentView, for tableView: UITableView, in section: Int) -> UIView? {
+        switch componentView {
         case .header:
-            return header(for: tableView, in: section)
+            return componentDisplayOption.header?.view(for: tableView, in: section)
         case .footer:
-            return footer(for: tableView, in: section)
+            return componentDisplayOption.footer?.view(for: tableView, in: section)
         }
     }
     
-    private func header(for tableView: UITableView, in section: Int) -> UIView? {
+    func calculateHeight(for componentView: OKTableViewSectionComponentView) -> CGFloat {
         
-        guard let headerIdentifer = supplementaryViewDisplay.headerRegistrationType?.identifier else {
-            return nil
+        switch (componentDisplayOption, componentView) {
+        case (.both(let header, _), .header):
+            return header.height
+        case (.both(_, let footer), .footer):
+            return footer.height
+        case (.header(let header), .header):
+            return header.height
+        case (.footer(let footer), .footer):
+            return footer.height
+        default:
+            return .leastNormalMagnitude
         }
-        
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifer) as? Header else {
-            return nil
+    }
+    
+    // MARK: - Helpers
+    func rowIndexPaths(for section: Int) -> [IndexPath] {
+        return rows.enumerated().map { item, _ -> IndexPath in
+            return IndexPath(item: item, section: section)
         }
+    }
+    
+    func append(row: OKAnyTableViewRow) {
+        registerCell(for: row)
+        rows.append(row)
+    }
+    
+    func append(rows: [OKAnyTableViewRow]) {
+        rows.forEach(registerCell(for:))
+        self.rows.append(contentsOf: rows)
+    }
+    
+    @discardableResult
+    func deleteRow(at indexPath: IndexPath) -> OKAnyTableViewRow? {
+        guard rows.indices.contains(indexPath.item) else { return nil }
         
-        headerCommands[.configuration]?(header, model, section)
+        return rows.remove(at: indexPath.item)
+    }
+    
+    func insert(row: OKAnyTableViewRow, at indexPath: IndexPath) {
+        guard rows.count >= indexPath.item else { return }
         
-        return header
+        registerCell(for: row)
+        rows.insert(row, at: indexPath.item)
     }
     
-    private func footer(for tableView: UITableView, in section: Int) -> UIView? {
+    func swapRows(at source: IndexPath, to destination: IndexPath) {
+        guard rows.indices.contains(source.item) && rows.indices.contains(destination.item) else { return }
         
-        guard let footerIdentifer = supplementaryViewDisplay.footerRegistrationType?.identifier else {
-            return nil
-        }
+        rows.swapAt(source.item, destination.item)
+    }
+    
+    func removeAllRows() {
+        rows.removeAll()
+    }
+    
+    private func registerCell(for row: OKAnyTableViewRow) {
+        guard let tableView = tableView else { return }
         
-        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: footerIdentifer) as? Footer else {
-            return nil
-        }
-        
-        footerCommands[.configuration]?(footer, model, section)
-            
-        return footer
+        row.registerCellType(with: tableView)
     }
-}
-
-public extension OKTableViewSection where Model == Void {
-    
-    convenience public init(rows: [OKAnyTableViewRow] = [],
-                            supplementaryViewDisplay: OKTableViewSectionSupplementaryViewDisplayOption = .none) {
-        self.init((),
-                  rows: rows,
-                  supplementaryViewDisplay: supplementaryViewDisplay)
-    }
-}
-
-// MARK: - OKTableViewRegistrationType
-public extension OKTableViewSection {
-    
-    public static var defaultHeaderClassRegistrationType: OKTableViewRegistrationType {
-        return .defaultClassRegistration(for: Header.self)
-    }
-    
-    public static var defaultHeaderNibRegistrationType: OKTableViewRegistrationType {
-        return .defaultNibRegistration(for: Header.self)
-    }
-    
-    public static var defaultFooterClassRegistrationType: OKTableViewRegistrationType {
-        return .defaultClassRegistration(for: Footer.self)
-    }
-    
-    public static var defaultFooterNibRegistrationType: OKTableViewRegistrationType {
-        return .defaultNibRegistration(for: Footer.self)
-    }
-    
 }

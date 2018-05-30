@@ -14,7 +14,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     func test_registerCellTypeWithTableView_registersCellForRow() {
         let tableView = UITableView()
         
-        let row = TestTableViewRow.create()
+        let row = TestTableViewRow()
         
         row.registerCellType(with: tableView)
         
@@ -24,7 +24,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     }
     
     func test_setCommand_setsCommandClosure() {
-        let row = TestTableViewRow.create()
+        let row = TestTableViewRow()
         
         var set = false
         row.set(command: .configuration) { (_, _, _) in
@@ -51,7 +51,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     }
     
     func test_setHeight_setsHeightWithClosure() {
-        let row = TestTableViewRow.create()
+        let row = TestTableViewRow()
 
         row.set(height: .height) { (_) -> CGFloat in
             return 100
@@ -159,7 +159,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     
     func test_cellForTableViewAt_returnsConfiguredCellForRow() {
         
-        let row = TestTableViewRow.create()
+        let row = TestTableViewRow()
         let string = "Test"
         row.set(command: .configuration) { (cell, _, indexPath) in
             cell.accessibilityIdentifier = string
@@ -173,24 +173,11 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         XCTAssertEqual(cell.accessibilityIdentifier, string)
     }
     
-    func test_perform_performsCommands() {
-        let row = TestTableViewRow.create()
-        var configured = false
-        
-        row.set(command: .configuration) { (_, _, _) in
-            configured = true
-        }
-        
-        row.perform(command: .configuration, for: UITableViewCell(), at: IndexPath())
-        
-        XCTAssertEqual(configured, true)
-    }
-    
     func test_perform_ignoresCommandPerformanceForIncorrectCellType() {
         let row = OKTableViewRow<TestTableViewCell, Void>()
         var configured = false
         
-        row.set(command: .configuration) { (_, _, _) in
+        row.set(command: .configuration) { _, _, _ in
             configured = true
         }
             

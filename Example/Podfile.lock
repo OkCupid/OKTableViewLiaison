@@ -1,5 +1,5 @@
 PODS:
-  - OKTableViewLiaison (1.4.0)
+  - OKTableViewLiaison (2.0.0)
 
 DEPENDENCIES:
   - OKTableViewLiaison (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  OKTableViewLiaison: 1f5b71721c98b4a3141a0a32d0c73296c2c21e61
+  OKTableViewLiaison: 8eeb53b4d8b9bf21d5b0c1aed856923c3e1d82cb
 
 PODFILE CHECKSUM: 9150dd9310401db4896273bd584c73be0d2714d2
 

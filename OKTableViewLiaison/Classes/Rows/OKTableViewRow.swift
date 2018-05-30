@@ -43,7 +43,11 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     
     // MARK: - Cell
     public func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = dequeueCell(with: tableView)
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? Cell else {
+            fatalError("Failed to dequeue cell of type \(Cell.self).")
+        }
+        
         commands[.configuration]?(cell, model, indexPath)
         return cell
     }
@@ -116,11 +120,6 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     }
 
     // MARK: - Private
-    private func dequeueCell(with tableView: UITableView) -> Cell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? Cell else { fatalError("Failed to dequeue cell of type \(Cell.self).") }
-        
-        return cell
-    }
     
     private func calculate(height: OKTableViewHeightType) -> CGFloat {
         return heights[height]?(model) ?? UITableViewAutomaticDimension

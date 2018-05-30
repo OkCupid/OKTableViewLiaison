@@ -63,7 +63,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_init_initializesWithSections() {
-        let sections = [TestTableViewSection(), TestTableViewSection()]
+        let sections = [OKTableViewSection(), OKTableViewSection()]
         let liaison = OKTableViewLiaison(sections: sections)
         liaison.liaise(tableView: tableView)
         XCTAssertEqual(tableView.numberOfSections, 2)
@@ -72,7 +72,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     func test_appendSection_addsSectionToTableView() {
         XCTAssertEqual(tableView.numberOfSections, 0)
         
-        let section = TestTableViewSection()
+        let section = OKTableViewSection()
         liaison.append(section: section)
 
         XCTAssertEqual(tableView.numberOfSections, 1)
@@ -82,8 +82,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     func test_appendSections_addsSectionsToTableView() {
         XCTAssertEqual(tableView.numberOfSections, 0)
         
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
 
         liaison.append(sections: [section1, section2])
         
@@ -94,23 +94,36 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_insertSection_insertsSectionIntoTableView() {
-        let section1 = TestTableViewSection()
+        let section1 = OKTableViewSection()
         liaison.append(section: section1)
         XCTAssertEqual(tableView.numberOfSections, 1)
         
-        let section2 = TestTableViewSection()
+        let section2 = OKTableViewSection()
         liaison.insert(section: section2, at: 0)
       
         XCTAssertEqual(tableView.numberOfSections, 2)
         XCTAssert(liaison.sections.first === section2)
     }
     
-    func test_deleteSection_removesSectionFromTableView() {
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
+    func test_insertSections_insertsSectionsIntoTableView() {
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
+        let section3 = OKTableViewSection()
+        let section4 = OKTableViewSection()
+        liaison.append(sections: [section1, section2])
         
-        liaison.append(section: section1)
-        liaison.append(section: section2)
+        liaison.insert(sections: [section3, section4], startingAt: 1)
+        
+        XCTAssertEqual(tableView.numberOfSections, 4)
+        XCTAssert(liaison.sections.first === section1)
+        XCTAssert(liaison.sections.last === section2)
+    }
+    
+    func test_deleteSection_removesSectionFromTableView() {
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
+        
+        liaison.append(sections: [section1, section2])
 
         liaison.deleteSection(at: 0)
         
@@ -119,8 +132,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_replaceSection_replacesSectionOfTableView() {
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
         
         liaison.append(section: section1)
 
@@ -130,13 +143,11 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_moveSection_moveSectionOfTableView() {
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
-        let section3 = TestTableViewSection()
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
+        let section3 = OKTableViewSection()
         
-        liaison.append(section: section1)
-        liaison.append(section: section2)
-        liaison.append(section: section3)
+        liaison.append(sections: [section1, section2, section3])
 
         liaison.moveSection(at: 0, to: 2)
         
@@ -145,13 +156,18 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_reloadSection_reloadsSectionOfTableView() {
-        let section = TestTableViewSection.create()
+        
+        let header = TestTableViewSectionComponent()
+        
         var capturedHeader: UITableViewHeaderFooterView?
         let string = "Test"
-        section.setHeader(command: .configuration) { (header, _, index) in
-            header.accessibilityIdentifier = string
-            capturedHeader = header
+        
+        header.set(command: .configuration) { view, _, _ in
+            view.accessibilityIdentifier = string
+            capturedHeader = view
         }
+        
+        let section = OKTableViewSection(componentDisplayOption: .header(component: header))
         
         liaison.append(section: section)
         tableView.reloadData()
@@ -165,9 +181,9 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     
     func test_clearSections_removesAllSectionsFromTableView() {
         
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
-        let section3 = TestTableViewSection()
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
+        let section3 = OKTableViewSection()
         
         liaison.append(sections: [section1, section2, section3])
         liaison.clearSections()
@@ -178,11 +194,11 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     
     func test_clearSections_removesAllSectionsFromTableViewAndAppendsNewSections() {
         
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
-        let section3 = TestTableViewSection()
-        let section4 = TestTableViewSection()
-        let section5 = TestTableViewSection()
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
+        let section3 = OKTableViewSection()
+        let section4 = OKTableViewSection()
+        let section5 = OKTableViewSection()
 
         liaison.append(sections: [section1, section2, section3])
         liaison.clearSections(replacedBy: [section4, section5])
@@ -194,7 +210,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_appendRow_appendsRowToSection() {
-        let section = TestTableViewSection()
+        let section = OKTableViewSection()
         let row = TestTableViewRow()
         
         var inserted = false
@@ -220,7 +236,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_appendRows_appendsRowsToSection() {
-        let section = TestTableViewSection()
+        let section = OKTableViewSection()
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         
@@ -257,13 +273,14 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_insertRow_insertsRowIntoSection() {
-        let section = TestTableViewSection()
+        
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow()
         
+        let section = OKTableViewSection(rows: [row1, row2])
+        
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2])
         
         let expectedIndexPath = IndexPath(row: 0, section: 0)
         var insertedRow = false
@@ -285,8 +302,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_deleteRows_removesRowsFromTableView() {
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow()
@@ -325,7 +342,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_deleteRow_removesRowFromSection() {
-        let section = TestTableViewSection()
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         
@@ -337,8 +353,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             actualIndexPathRow = indexPath
         }
 
+        let section = OKTableViewSection.init(rows: [row1, row2])
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2])
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -352,16 +368,16 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_reloadRows_reloadsRowsInSection() {
-        let section = TestTableViewSection()
-        let row = TestTableViewRow.create()
+        let row = TestTableViewRow()
         
         var reloaded = false
         row.set(command: .reload) { (_, _, _) in
             reloaded = true
         }
         
+        let section = OKTableViewSection(rows: [row])
+        
         liaison.append(section: section)
-        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -376,7 +392,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_replaceRow_replaceRowInSection() {
-        let section = TestTableViewSection()
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         
@@ -390,8 +405,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             inserted = true
         }
         
+        let section = OKTableViewSection(rows: [row1])
         liaison.append(section: section)
-        liaison.append(row: row1)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -406,7 +421,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_moveRow_withinSameSection() {
-        let section = TestTableViewSection()
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow()
@@ -419,8 +433,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             actualDestination = indexPath
         }
 
+        let section = OKTableViewSection(rows: [row1, row2, row3])
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2, row3])
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -435,8 +449,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_moveRow_intoDifferentSection() {
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
 
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
@@ -472,7 +486,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_swapRow_withinSameSection() {
-        let section = TestTableViewSection()
+        let section = OKTableViewSection()
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow()
@@ -511,8 +525,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_swapRow_intoDifferentSection() {
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
         
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
@@ -555,9 +569,9 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_tableViewCellForRow_createsCorrectCellForRow() {
-        let section = TestTableViewSection()
+        let section = OKTableViewSection()
         
-        let row = TestTableViewRow.create()
+        let row = TestTableViewRow()
         let string = "Test"
         row.set(command: .configuration) { (cell, _, indexPath) in
             cell.accessibilityIdentifier = string
@@ -573,19 +587,16 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_numberOfSectionsInTableView_returnsCorrectAmountOfSections() {
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
         
-        liaison.append(section: section1)
-        liaison.append(section: section2)
+        liaison.append(sections: [section1, section2])
         let count = liaison.numberOfSections(in: tableView)
         
         XCTAssertEqual(count, 2)
     }
     
     func test_tableViewNumberOfRowsInSection_returnsCorrectAmountOfRows() {
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
         
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
@@ -593,11 +604,11 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row4 = TestTableViewRow()
         let row5 = TestTableViewRow()
         
+        let section1 = OKTableViewSection(rows: [row1, row2])
+        let section2 = OKTableViewSection(rows: [row3, row4, row5])
+
         liaison.append(section: section1)
         liaison.append(section: section2)
-        
-        liaison.append(rows: [row1, row2])
-        liaison.append(rows: [row3, row4, row5], to: 1)
         
         let section1Count = liaison.tableView(tableView, numberOfRowsInSection: 0)
         let section2Count = liaison.tableView(tableView, numberOfRowsInSection: 1)
@@ -607,13 +618,12 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_tableViewCanEditRow_correctlyReturnsWhetherRowIsEditable() {
-        let section = TestTableViewSection()
         let row1 = TestTableViewRow(editingStyle: .delete)
         let row2 = TestTableViewRow(editingStyle: .insert)
         let row3 = TestTableViewRow()
         
+        let section = OKTableViewSection(rows: [row1, row2, row3])
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2, row3])
         
         let row1Editable = liaison.tableView(tableView, canEditRowAt: IndexPath(row: 0, section: 0))
         let row2Editable = liaison.tableView(tableView, canEditRowAt: IndexPath(row: 1, section: 0))
@@ -628,12 +638,11 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_tableViewCanMoveRow_correctlyReturnsWhetherRowIsMovable() {
-        let section = TestTableViewSection()
         let row1 = TestTableViewRow(movable: true)
         let row2 = TestTableViewRow()
         
+        let section = OKTableViewSection(rows: [row1, row2])
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2])
         
         let row1Movable = liaison.tableView(tableView, canMoveRowAt: IndexPath(row: 0, section: 0))
         let row2Movable = liaison.tableView(tableView, canMoveRowAt: IndexPath(row: 1, section: 0))
@@ -645,17 +654,17 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
 
     func test_tableViewCommitEditingStyle_performsEditingActionRowForIndexPath() {
-        let section = TestTableViewSection()
+        let section = OKTableViewSection()
         let row1 = TestTableViewRow(editingStyle: .delete)
         let row2 = TestTableViewRow(editingStyle: .insert)
         var deleted = false
         var inserted = false
 
-        row1.set(command: .delete) { (_, _, _) in
+        row1.set(command: .delete) { _, _, _ in
             deleted = true
         }
         
-        row2.set(command: .insert) { (_, _, _) in
+        row2.set(command: .insert) { _, _, _ in
             inserted = true
         }
         
@@ -674,8 +683,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_moveRowAt_properlyMovesRowFromOneSourceIndexPathToDestinationIndexPath() {
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
         
         var moved = false
         let row1 = TestTableViewRow()
@@ -686,8 +693,10 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow()
         
+        let section1 = OKTableViewSection(rows: [row1, row2, row3])
+        let section2 = OKTableViewSection()
+        
         liaison.append(sections: [section1, section2])
-        liaison.append(rows: [row1, row2, row3])
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -701,16 +710,16 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_willSelectRow_performsWillSelectCommand() {
-        let section = TestTableViewSection()
+
         let row = TestTableViewRow()
         var willSelect = false
         
-        row.set(command: .willSelect) { (_, _, _) in
+        row.set(command: .willSelect) { _, _, _ in
             willSelect = true
         }
         
+        let section = OKTableViewSection(rows: [row])
         liaison.append(section: section)
-        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         let expectedIndexPath = IndexPath(row: 0, section: 0)
@@ -724,16 +733,15 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_didSelectRow_performsDidSelectCommand() {
-        let section = TestTableViewSection()
         let row = TestTableViewRow()
         var didSelected = false
         
-        row.set(command: .didSelect) { (_, _, _) in
+        row.set(command: .didSelect) { _, _, _ in
             didSelected = true
         }
         
+        let section = OKTableViewSection(rows: [row])
         liaison.append(section: section)
-        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -744,16 +752,15 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_willDeselectRow_performsWillDeselectCommand() {
-        let section = TestTableViewSection()
         let row = TestTableViewRow()
         var willDeselect = false
         
-        row.set(command: .willDeselect) { (_, _, _) in
+        row.set(command: .willDeselect) { _, _, _ in
             willDeselect = true
         }
         
+        let section = OKTableViewSection(rows: [row])
         liaison.append(section: section)
-        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         let expectedIndexPath = IndexPath(row: 0, section: 0)
@@ -767,7 +774,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_didDeselectRow_performsDidDeselectCommand() {
-        let section = TestTableViewSection()
         let row = TestTableViewRow()
         var didDeselect = false
         
@@ -775,8 +781,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             didDeselect = true
         }
         
+        let section = OKTableViewSection(rows: [row])
         liaison.append(section: section)
-        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -787,20 +793,16 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_targetIndexPathForMoveFromRowToProposed_correctlyMovesRow() {
-        let section1 = TestTableViewSection()
-        let section2 = TestTableViewSection()
-        
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow()
         let row4 = TestTableViewRow()
         let row5 = TestTableViewRow()
         
-        liaison.append(section: section1)
-        liaison.append(section: section2)
-        
-        liaison.append(rows: [row1, row2, row3])
-        liaison.append(rows: [row4, row5], to: 1)
+        let section1 = OKTableViewSection(rows: [row1, row2, row3])
+        let section2 = OKTableViewSection(rows: [row4, row5])
+
+        liaison.append(sections: [section1, section2])
         
         let destination = liaison.tableView(tableView,
                                             targetIndexPathForMoveFromRowAt: IndexPath(row: 0, section: 0),
@@ -814,7 +816,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_willDisplayCell_performsWillDisplayCommand() {
-        let section = TestTableViewSection()
         let row = TestTableViewRow()
         var willDisplay = false
         
@@ -822,24 +823,23 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             willDisplay = true
         }
         
+        let section = OKTableViewSection(rows: [row])
         liaison.append(section: section)
-        liaison.append(row: row)
         
         let cell = UITableViewCell()
         liaison.tableView(tableView, willDisplay: cell, forRowAt: IndexPath(row: 0, section: 0))
         
         XCTAssertEqual(willDisplay, true)
-    } 
+    }
     
     func test_willDisplayCell_paginationDelegateGetsCalled() {
-        let section = TestTableViewSection()
         let row = TestTableViewRow()
         let delegate = TestTableViewLiaisonPaginationDelegate()
         
         liaison.paginationDelegate = delegate
         
+        let section = OKTableViewSection(rows: [row])
         liaison.append(section: section)
-        liaison.append(row: row)
         
         liaison.tableView(tableView, willDisplay: UITableViewCell(), forRowAt: IndexPath(row: 0, section: 0))
         
@@ -857,10 +857,10 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     func test_appendSection_paginationDelegateEndsByAppendingSection() {
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
-        let section1 = TestTableViewSection(rows: [row1, row2])
+        let section1 = OKTableViewSection(rows: [row1, row2])
         let delegate = TestTableViewLiaisonPaginationDelegate()
         let row3 = TestTableViewRow()
-        let section2 = TestTableViewSection(rows: [row3])
+        let section2 = OKTableViewSection(rows: [row3])
 
         liaison.paginationDelegate = delegate
         liaison.append(section: section1)
@@ -883,7 +883,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     
     func test_appendRow_paginationDelegateEndsByAppendingRow() {
         let row1 = TestTableViewRow()
-        let section = TestTableViewSection(rows: [row1])
+        let section = OKTableViewSection(rows: [row1])
         let delegate = TestTableViewLiaisonPaginationDelegate()
         let row2 = TestTableViewRow()
 
@@ -908,7 +908,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_didEndDisplayingCell_performsDidEndDisplayingCommand() {
-        let section = TestTableViewSection()
         let row = TestTableViewRow()
         var didEndDisplaying = false
         
@@ -916,8 +915,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             didEndDisplaying = true
         }
         
-        liaison.append(section: section)
-        liaison.append(row: row)
+        liaison.append(section: OKTableViewSection(rows: [row]))
         
         let cell = UITableViewCell()
         liaison.tableView(tableView, didEndDisplaying: cell, forRowAt: IndexPath(row: 0, section: 0))
@@ -926,7 +924,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_willBeginEditingRow_performsWillBeginEditingCommand() {
-        let section = TestTableViewSection()
         let row = TestTableViewRow()
         var willBeginEditing = false
         
@@ -934,8 +931,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             willBeginEditing = true
         }
         
+        let section = OKTableViewSection(rows: [row])
         liaison.append(section: section)
-        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -946,7 +943,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_didEndEditingRow_performsDidEndEditingCommand() {
-        let section = TestTableViewSection()
         let row = TestTableViewRow()
         var didEndEditing = false
         
@@ -954,8 +950,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             didEndEditing = true
         }
         
-        liaison.append(section: section)
-        liaison.append(row: row)
+        liaison.append(section: OKTableViewSection(rows: [row]))
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -966,7 +961,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_didHighlightRow_performsDidHighlightRowCommand() {
-        let section = TestTableViewSection()
         let row = TestTableViewRow()
         var didHighlight = false
         
@@ -974,8 +968,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             didHighlight = true
         }
         
+        let section = OKTableViewSection(rows: [row])
         liaison.append(section: section)
-        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -986,7 +980,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_didUnhighlightRow_performsDidUnhighlightRowCommand() {
-        let section = TestTableViewSection()
         let row = TestTableViewRow()
         var didUnhighlight = false
         
@@ -994,8 +987,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             didUnhighlight = true
         }
         
+        let section = OKTableViewSection(rows: [row])
         liaison.append(section: section)
-        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -1006,19 +999,17 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_viewForHeaderInSection_returnCorrectHeaderForSection() {
-        let section1 = TestTableViewSection.create()
-        let section2 = TestTableViewSection.create()
         
-        section1.setHeader(command: .configuration) { (header, string, section) in
-            header.accessibilityIdentifier = "\(section)"
+        let header = TestTableViewSectionComponent()
+        
+        header.set(command: .configuration) { view, _, section in
+            view.accessibilityIdentifier = "\(section)"
         }
         
-        section2.setHeader(command: .configuration) { (header, string, section) in
-            header.accessibilityIdentifier = "\(section)"
-        }
+        let section1 = OKTableViewSection(componentDisplayOption: .header(component: header))
+        let section2 = OKTableViewSection(componentDisplayOption: .header(component: header))
         
-        liaison.append(section: section1)
-        liaison.append(section: section2)
+        liaison.append(sections: [section1, section2])
         
         let section1Header = liaison.tableView(tableView, viewForHeaderInSection: 0)
         let section2Header = liaison.tableView(tableView, viewForHeaderInSection: 1)
@@ -1028,19 +1019,17 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_viewForFooterInSection_returnCorrectFooterForSection() {
-        let section1 = TestTableViewSection.create()
-        let section2 = TestTableViewSection.create()
         
-        section1.setFooter(command: .configuration) { (footer, string, section) in
-            footer.accessibilityIdentifier = "\(section)"
+        let footer = TestTableViewSectionComponent()
+        
+        footer.set(command: .configuration) { view, _, section in
+            view.accessibilityIdentifier = "\(section)"
         }
         
-        section2.setFooter(command: .configuration) { (footer, string, section) in
-            footer.accessibilityIdentifier = "\(section)"
-        }
+        let section1 = OKTableViewSection(componentDisplayOption: .footer(component: footer))
+        let section2 = OKTableViewSection(componentDisplayOption: .footer(component: footer))
         
-        liaison.append(section: section1)
-        liaison.append(section: section2)
+        liaison.append(sections: [section1, section2])
         
         let section1Header = liaison.tableView(tableView, viewForFooterInSection: 0)
         let section2Header = liaison.tableView(tableView, viewForFooterInSection: 1)
@@ -1050,7 +1039,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_heightForRow_properlySetsHeightsForRows() {
-        let section = TestTableViewSection()
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow()
@@ -1060,8 +1048,9 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         
         row2.set(height: .height, value: 200)
+        
+        let section = OKTableViewSection(rows: [row1, row2, row3])
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2, row3])
         
         let row1Height = liaison.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 0))
         let row2Height = liaison.tableView(tableView, heightForRowAt: IndexPath(row: 1, section: 0))
@@ -1073,18 +1062,18 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_estimatedHeightForRow_properlySetsEstimatedHeightsForRows() {
-        let section = TestTableViewSection()
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow()
         
-        row1.set(height: .estimatedHeight) { (_) -> CGFloat in
+        row1.set(height: .estimatedHeight) { _ -> CGFloat in
             return 100
         }
         
         row2.set(height: .estimatedHeight, value: 200)
+        
+        let section = OKTableViewSection(rows: [row1, row2, row3])
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2, row3])
         
         let row1Height = liaison.tableView(tableView, estimatedHeightForRowAt: IndexPath(row: 0, section: 0))
         let row2Height = liaison.tableView(tableView, estimatedHeightForRowAt: IndexPath(row: 1, section: 0))
@@ -1096,12 +1085,11 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_shouldIndentWhileEditingRow_correctlyReturnsIfRowShouldIndentWhileBeingEdited() {
-        let section = TestTableViewSection()
         let row1 = TestTableViewRow(indentWhileEditing: true)
         let row2 = TestTableViewRow()
         
+        let section = OKTableViewSection(rows: [row1, row2])
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2])
         
         let row1ShouldIndent = liaison.tableView(tableView, shouldIndentWhileEditingRowAt: IndexPath(row: 0, section: 0))
         let row2ShouldIndent = liaison.tableView(tableView, shouldIndentWhileEditingRowAt: IndexPath(row: 1, section: 0))
@@ -1113,13 +1101,12 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_editingStyleForRow_correctlyReturnsEditingStyleForRow() {
-        let section = TestTableViewSection()
         let row1 = TestTableViewRow(editingStyle: .delete)
         let row2 = TestTableViewRow(editingStyle: .insert)
         let row3 = TestTableViewRow()
 
+        let section = OKTableViewSection(rows: [row1, row2, row3])
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2, row3])
         
         let row1EditingStyle = liaison.tableView(tableView, editingStyleForRowAt: IndexPath(row: 0, section: 0))
         let row2EditingStyle = liaison.tableView(tableView, editingStyleForRowAt: IndexPath(row: 1, section: 0))
@@ -1133,7 +1120,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_editActionsForRow_correctlyReturnsEditActions() {
-        let section = TestTableViewSection()
         let editAction = UITableViewRowAction(style: .normal, title: "Action", handler: { (action, indexPath) in
             print("This action is being invoked")
         })
@@ -1141,8 +1127,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row1 = TestTableViewRow(editActions: [editAction])
         let row2 = TestTableViewRow()
         
+        let section = OKTableViewSection(rows: [row1, row2])
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2])
         
         let row1EditActions = liaison.tableView(tableView, editActionsForRowAt: IndexPath(row: 0, section: 0))
         let row2EditActions = liaison.tableView(tableView, editActionsForRowAt: IndexPath(row: 1, section: 0))
@@ -1153,7 +1139,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_accessoryButtonTapped_performsAccessoryButtonTappedCommand() {
-        let section = TestTableViewSection()
         let row = TestTableViewRow()
         var accessoryButtonTapped = false
         
@@ -1161,8 +1146,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             accessoryButtonTapped = true
         }
         
+        let section = OKTableViewSection(rows: [row])
         liaison.append(section: section)
-        liaison.append(row: row)
         
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
@@ -1173,12 +1158,11 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_titleForDeleteConfirmationButton_returnsCorrectDeleteConfirmationTitleForRow() {
-        let section = TestTableViewSection()
         let row1 = TestTableViewRow(deleteConfirmationTitle: "Delete")
         let row2 = TestTableViewRow()
         
+        let section = OKTableViewSection(rows: [row1, row2])
         liaison.append(section: section)
-        liaison.append(rows: [row1, row2])
         
         let row1DeleteConfirmationTitle = liaison.tableView(tableView, titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0, section: 0))
         let row2DeleteConfirmationTitle = liaison.tableView(tableView, titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 1, section: 0))
@@ -1190,15 +1174,19 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_heightForHeader_properlySetsHeightsForSectionHeaders() {
-        let section1 = TestTableViewSection.create()
-        let section2 = TestTableViewSection.create()
-        let section3 = TestTableViewSection.create()
-    
-        section1.setHeight(for: .header) { _ -> CGFloat in
-            return 100
+        let header1 = TestTableViewSectionComponent()
+        let header2 = TestTableViewSectionComponent()
+        let header3 = TestTableViewSectionComponent()
+        
+        header1.setHeight(100)
+        
+        header2.setHeight { _ -> CGFloat in
+            return 200
         }
         
-        section2.setHeight(for: .header, value: 200)
+        let section1 = OKTableViewSection(componentDisplayOption: .header(component: header1))
+        let section2 = OKTableViewSection(componentDisplayOption: .header(component: header2))
+        let section3 = OKTableViewSection(componentDisplayOption: .header(component: header3))
         
         liaison.append(section: section1)
         liaison.append(section: section2)
@@ -1214,15 +1202,19 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_heightForFooter_properlySetsHeightsForSectionFooters() {
-        let section1 = TestTableViewSection.create()
-        let section2 = TestTableViewSection.create()
-        let section3 = TestTableViewSection.create()
+        let footer1 = TestTableViewSectionComponent()
+        let footer2 = TestTableViewSectionComponent()
+        let footer3 = TestTableViewSectionComponent()
         
-        section1.setHeight(for: .footer) { _ -> CGFloat in
-            return 100
+        footer1.setHeight(100)
+        
+        footer2.setHeight { _ -> CGFloat in
+            return 200
         }
         
-        section2.setHeight(for: .footer, value: 200)
+        let section1 = OKTableViewSection(componentDisplayOption: .footer(component: footer1))
+        let section2 = OKTableViewSection(componentDisplayOption: .footer(component: footer2))
+        let section3 = OKTableViewSection(componentDisplayOption: .footer(component: footer3))
         
         liaison.append(section: section1)
         liaison.append(section: section2)
@@ -1238,12 +1230,15 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_willDisplayHeaderView_performsWillDisplayHeaderViewSectionCommand() {
-        let section = TestTableViewSection()
-        var willDisplay = false
         
-        section.setHeader(command: .willDisplay) { (_, _, _) in
+        let header = TestTableViewSectionComponent()
+        
+        var willDisplay = false
+        header.set(command: .willDisplay) { _, _, _ in
             willDisplay = true
         }
+        
+        let section = OKTableViewSection(componentDisplayOption: .header(component: header))
         
         liaison.append(section: section)
         let view = UITableViewHeaderFooterView()
@@ -1253,12 +1248,15 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_willDisplayFooterView_performsWillDisplayFooterViewSectionCommand() {
-        let section = TestTableViewSection()
-        var willDisplay = false
         
-        section.setFooter(command: .willDisplay) { (_, _, _) in
+        let footer = TestTableViewSectionComponent()
+        
+        var willDisplay = false
+        footer.set(command: .willDisplay) { _, _, _ in
             willDisplay = true
         }
+        
+        let section = OKTableViewSection(componentDisplayOption: .footer(component: footer))
         
         liaison.append(section: section)
         let view = UITableViewHeaderFooterView()
@@ -1268,13 +1266,16 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_didEndDisplayingHeaderView_performsDidEndDisplayingHeaderViewSectionCommand() {
-        let section = TestTableViewSection()
-        var didEndDisplaying = false
         
-        section.setHeader(command: .didEndDisplaying) { (_, _, _) in
+        let header = TestTableViewSectionComponent()
+        
+        var didEndDisplaying = false
+        header.set(command: .didEndDisplaying) { _, _, _ in
             didEndDisplaying = true
         }
         
+        let section = OKTableViewSection(componentDisplayOption: .header(component: header))
+ 
         liaison.append(section: section)
         let view = UITableViewHeaderFooterView()
         liaison.tableView(tableView, didEndDisplayingHeaderView: view, forSection: 0)
@@ -1283,12 +1284,15 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
     
     func test_didEndDisplayingFooterView_performsDidEndDisplayingFooterViewSectionCommand() {
-        let section = TestTableViewSection()
-        var didEndDisplaying = false
         
-        section.setFooter(command: .didEndDisplaying) { (_, _, _) in
+        let footer = TestTableViewSectionComponent()
+        
+        var didEndDisplaying = false
+        footer.set(command: .didEndDisplaying) { _, _, _ in
             didEndDisplaying = true
         }
+        
+        let section = OKTableViewSection(componentDisplayOption: .footer(component: footer))
         
         liaison.append(section: section)
         let view = UITableViewHeaderFooterView()
@@ -1304,7 +1308,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             prefetch = true
         }
         
-        let section = TestTableViewSection(rows: [row])
+        let section = OKTableViewSection(rows: [row])
         
         liaison.append(section: section)
         liaison.tableView(tableView, prefetchRowsAt: [IndexPath(row: 0, section: 0)])
@@ -1319,7 +1323,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             cancel = true
         }
         
-        let section = TestTableViewSection(rows: [row])
+        let section = OKTableViewSection(rows: [row])
         
         liaison.append(section: section)
         liaison.tableView(tableView, cancelPrefetchingForRowsAt: [IndexPath(row: 0, section: 0)])

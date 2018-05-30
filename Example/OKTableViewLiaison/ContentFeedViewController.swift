@@ -14,7 +14,7 @@ final class ContentFeedViewController: UIViewController {
     private let liaison = OKTableViewLiaison()
     private let refreshControl = UIRefreshControl()
     
-    private var initialSections: [OKAnyTableViewSection] {
+    private var initialSections: [PostTableViewSection] {
         return Post.initialPosts()
             .map(section(for:))
     }
@@ -28,10 +28,9 @@ final class ContentFeedViewController: UIViewController {
         
         refreshControl.addTarget(self, action: #selector(refreshSections), for: .valueChanged)
         tableView.addSubview(refreshControl)
-
+        
         liaison.paginationDelegate = self
         liaison.liaise(tableView: tableView)
-        
         liaison.append(sections: initialSections)
     }
     

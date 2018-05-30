@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum OKTableViewSectionSupplementaryView {
+public enum OKTableViewSectionComponentView {
     case header
     case footer    
 }

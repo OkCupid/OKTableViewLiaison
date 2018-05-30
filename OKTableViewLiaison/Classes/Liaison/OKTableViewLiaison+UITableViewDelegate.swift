@@ -69,11 +69,11 @@ extension OKTableViewLiaison: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return sections.element(at: section)?.view(supplementaryView: .header, for: tableView, in: section)
+        return sections.element(at: section)?.view(componentView: .header, for: tableView, in: section)
     }
     
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return sections.element(at: section)?.view(supplementaryView: .footer, for: tableView, in: section)
+        return sections.element(at: section)?.view(componentView: .footer, for: tableView, in: section)
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
