@@ -64,63 +64,62 @@ In the event you would like to remove the tableView from the liaison, simply inv
 OKTableViewLiaison populates sections and rows using two main types:
 
 ### Section
-`class OKTableViewSection<Header: UITableViewHeaderFooterView, Footer: UITableViewHeaderFooterView, Model>`
+`class OKTableViewSection`
 
 To create a section for our tableView, create an instance of `OKTableViewSection` and add it to the liaison.
 
 ```swift
-let section = OKTableViewSection<UITableViewHeaderFooterView, UITableViewHeaderFooterView, String>(model: "Section")
+let section = OKTableViewSection()
 
-let plainSection = OKPlainTableViewSection()
-
-let liaison = OKTableViewLiaison(sections: [section, plainSection])
+let liaison = OKTableViewLiaison(sections: [section])
 ```
 or
 
 ```swift
-let section = OKTableViewSection<UITableViewHeaderFooterView, UITableViewHeaderFooterView, String>(model: "Section")
+let section = OKTableViewSection()
 
-let plainSection = OKPlainTableViewSection()
-
-liaison.append(sections: [section, plainSection])
+liaison.append(sections: [section])
 ```
 
-### Supplementary Views
-To notify the liaison that your `OKTableViewSection` will display a header and/or footer view, you must provide an instance of `OKTableViewSectionSupplementaryViewDisplayOption` during initialization.
+### Supplementary Section Views
+To notify the liaison that your `OKTableViewSection` will display a header and/or footer view, you must provide an instance of `OKTableViewSectionComponentDisplayOption` during initialization.
+
+`OKTableViewSectionComponentDisplayOption` is an enumeration that notfies the liaison which supplementary views should be displayed for a given section. A header/footer view is represented by:
+
+`class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>`
 
 ```swift
-let section = TableViewSection<UITableViewHeaderFooterView, UITableViewHeaderFooterView, HeaderModel>(model: HeaderModel(text: "Sample Model")",
-supplementaryViewDisplay: .header(registrationType: OKTableViewSection.defaultHeaderClassRegistrationType))
+let header = OKTableViewSectionComponent<UITableViewHeaderFooterView, User>(.dylan)
+let section = OKTableViewSection(componentDisplayOption: .header(component: header))
 ```
 
-If your section will only display a single supplementary view, the other supplementary view type provided in the generic declaration will be ignored.
-
-You can set a static height of a supplementary view by calling `setHeight` with either a CGFloat value or closure:
+You can set a static height of a section component by using either a CGFloat value or closure:
 
 ```swift
-section.setHeight(for: .header, value: 50)
-
-section.setHeight(for: .header) { model -> CGFloat in
-	return model.text == "Sample Model" ? 100 : 50
+header.set(height: .height, 55)
+    
+header.set(height: .height) { user -> CGFloat in
+    return user.username == "dylan" ? 100 : 75
 }
+        
+header.set(height: .estimatedHeight, 125)
 ```
 
-In the event a height is not provided for a supplementary view, the liaison will assume the supplementary view is self sizing and return `UITableViewAutomaticDimension`.
+In the event a height is not provided for a section component, the liaison will assume the supplementary view is self sizing and return a `.height` of `UITableViewAutomaticDimension`; But make sure you provide an `.estimatedHeight` to avoid layout complications.
 
-The `OKTableViewSection` supplementary views can be customized using `func setHeader(command: OKTableViewSectionCommand, with closure: @escaping (Header, Model, _ section: Int) -> Void)` or `func setFooter(command: OKTableViewSectionCommand, with closure: @escaping (Footer, Model, _ section: Int) -> Void)` at all the following lifecycle events:
+The `OKTableViewSectionComponent ` views can be customized using `func set(command: OKTableViewSectionComponentCommand, with closure: @escaping (View, Model, Int) -> Void)` at all the following lifecycle events:
 
 - configuration
 - didEndDisplaying
 - willDisplay
 
 ```swift
-section.setHeader(command: .configuration) { header, model, section in
-	header.textLabel?.text = model.text
-	header.contentView.backgroundColor = .black
+header.set(command: .configuration) { view, user, section in
+    view.textLabel?.text = user.username
 }
-
-section.setHeader(command: .willDisplay) { header, model, section in
-	print("Header: \(header) will display for Section: \(section) with Model: \(model)")
+        
+header.set(command: .willDisplay) { view, user, section in
+    print("Header: \(view) will display for Section: \(section) with User: \(user)")
 }
 ```
 
@@ -131,14 +130,14 @@ To add a row for a section, create an instance of `OKTableViewRow` and pass it t
 
 ```swift
 let row = OKTableViewRow<RowTableViewCell, RowModel>(model: RowModel(type: .small))
-let section = OKPlainTableViewSection(rows: [row])
+let section = OKTableViewSection(rows: [row])
 liaison.append(section: section)
 ```
 or
 
 ```swift
 let row = OKTableViewRow<RowTableViewCell, RowModel>(model: RowModel(type: .small))
-let section = OKPlainTableViewSection()
+let section = OKTableViewSection()
 liaison.append(section: section)
 liaison.append(row: row)
 ```
@@ -146,7 +145,9 @@ liaison.append(row: row)
 `OKTableViewRow` heights are similarly configured to `OKTableViewSection`:
 
 ```swift
-row.set(height: .height, value: 300)
+row.set(height: .height, 300)
+
+row.set(height: .estimatedHeight, 210)
 
 row.set(height: .height) { model -> CGFloat in
 	switch model.type {
@@ -213,7 +214,7 @@ row.set(prefetchCommand: .cancel) { model, indexPath in
 
 By default, `OKTableViewRow` is instantiated with `OKTableViewRow.defaultClassRegistrationType`.
 
-`OKTableViewSection` supplementary view registration is encapsulated by its`OKTableViewSectionSupplementaryViewDisplayOption`. By default, `OKTableViewSection` `supplementaryViewDisplay` is instantiated with `.none`.
+`OKTableViewSection` supplementary view registration is encapsulated by its`OKTableViewSectionComponentDisplayOption`. By default, `OKTableViewSection` `componentDisplayOption` is instantiated with `.none`.
 
 ### Pagination
 `OKTableViewLiaison` comes equipped to handle your pagination needs. To configure the liaison for pagination, simply set its `paginationDelegate` to an instance of `OKTableViewLiaisonPaginationDelegate`.
@@ -245,8 +246,7 @@ final class PostTextTableViewRow: OKTableViewRow<PostTextTableViewCell, String> 
 
 ```swift
 static func contentRow(with image: UIImage, width: CGFloat) -> AnyTableViewRow {
-	let row = OKTableViewRow<PostImageContentTableViewCell, UIImage>(image,
-	registrationType: PostTextTableViewRow.defaultNibRegistrationType)
+	let row = OKTableViewRow<PostImageContentTableViewCell, UIImage>(image)
 
 	row.set(height: .height) { image -> CGFloat in
 		let ratio = image.size.width / image.size.height
