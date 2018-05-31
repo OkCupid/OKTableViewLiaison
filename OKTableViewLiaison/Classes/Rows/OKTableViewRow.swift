@@ -81,11 +81,11 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
         commands[command] = nil
     }
     
-    public func set(height: OKTableViewHeightType, with closure: @escaping (Model) -> CGFloat) {
+    public func set(height: OKTableViewHeightType, _ closure: @escaping (Model) -> CGFloat) {
         heights[height] = closure
     }
     
-    public func set(height: OKTableViewHeightType, value: CGFloat) {
+    public func set(height: OKTableViewHeightType, _ value: CGFloat) {
         let closure: ((Model) -> CGFloat) = { _ -> CGFloat in return value }
         heights[height] = closure
     }

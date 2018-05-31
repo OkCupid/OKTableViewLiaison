@@ -63,7 +63,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     func test_setHeight_setsHeightWithValue() {
         let row = TestTableViewRow()
         
-        row.set(height: .height, value: 100)
+        row.set(height: .height, 100)
         
         XCTAssertEqual(row.height, 100)
     }
@@ -77,8 +77,8 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     func test_removeHeight_removesAPreviouslySetHeight() {
         let row = TestTableViewRow()
         
-        row.set(height: .height, value: 100)
-        row.set(height: .estimatedHeight, value: 100)
+        row.set(height: .height, 100)
+        row.set(height: .estimatedHeight, 100)
         
         row.remove(height: .height)
         row.remove(height: .estimatedHeight)
