@@ -15,7 +15,7 @@ final class PostTableViewSectionHeaderViewComponent: OKTableViewSectionComponent
         
         super.init(user, registrationType: PostTableViewSectionHeaderViewComponent.defaultNibRegistrationType)
         
-        setHeight(70)
+        set(height: .height, 70)
     
         set(command: .configuration) { view, user, section in
             view.imageView.image = user.avatar

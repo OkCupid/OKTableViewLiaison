@@ -59,17 +59,17 @@ open class OKTableViewSection {
         }
     }
     
-    func calculateHeight(for componentView: OKTableViewSectionComponentView) -> CGFloat {
+    func calculate(height: OKTableViewHeightType, for componentView: OKTableViewSectionComponentView) -> CGFloat {
         
         switch (componentDisplayOption, componentView) {
         case (.both(let header, _), .header):
-            return header.height
+            return header.calculate(height: height)
         case (.both(_, let footer), .footer):
-            return footer.height
+            return footer.calculate(height: height)
         case (.header(let header), .header):
-            return header.height
+            return header.calculate(height: height)
         case (.footer(let footer), .footer):
-            return footer.height
+            return footer.calculate(height: height)
         default:
             return .leastNormalMagnitude
         }

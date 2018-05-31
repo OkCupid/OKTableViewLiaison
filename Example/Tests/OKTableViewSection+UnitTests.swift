@@ -16,18 +16,37 @@ final class OKTableViewSection_UnitTests: XCTestCase {
         let header = TestTableViewSectionComponent()
         let footer = TestTableViewSectionComponent()
         
-        header.setHeight { _ -> CGFloat in
+        header.set(height: .height) { _ -> CGFloat in
             return 100
         }
         
-        footer.setHeight { _ -> CGFloat in
+        footer.set(height: .height) { _ -> CGFloat in
             return 50
         }
         
         let section = OKTableViewSection(componentDisplayOption: .both(headerComponent: header, footerComponent: footer))
         
-        XCTAssertEqual(section.calculateHeight(for: .header), 100)
-        XCTAssertEqual(section.calculateHeight(for: .footer), 50)
+        XCTAssertEqual(section.calculate(height: .height, for: .header), 100)
+        XCTAssertEqual(section.calculate(height: .height, for: .footer), 50)
+    }
+    
+    func test_calculateEstimatedHeight_setsEstimatedHeightOfSupplementaryViewsWithClosure() {
+        
+        let header = TestTableViewSectionComponent()
+        let footer = TestTableViewSectionComponent()
+        
+        header.set(height: .estimatedHeight) { _ -> CGFloat in
+            return 100
+        }
+        
+        footer.set(height: .estimatedHeight) { _ -> CGFloat in
+            return 50
+        }
+        
+        let section = OKTableViewSection(componentDisplayOption: .both(headerComponent: header, footerComponent: footer))
+        
+        XCTAssertEqual(section.calculate(height: .estimatedHeight, for: .header), 100)
+        XCTAssertEqual(section.calculate(height: .estimatedHeight, for: .footer), 50)
     }
     
     func test_calculateHeight_setsHeightOfSupplementaryViewsWithValue() {
@@ -35,47 +54,79 @@ final class OKTableViewSection_UnitTests: XCTestCase {
         let header = TestTableViewSectionComponent()
         let footer = TestTableViewSectionComponent()
         
-        header.setHeight(125)
-        footer.setHeight(75)
+        header.set(height: .height, 100)
+        footer.set(height: .height, 50)
         
         let section = OKTableViewSection(componentDisplayOption: .both(headerComponent: header, footerComponent: footer))
-
-        XCTAssertEqual(section.calculateHeight(for: .header), 125)
-        XCTAssertEqual(section.calculateHeight(for: .footer), 75)
+        
+        XCTAssertEqual(section.calculate(height: .height, for: .header), 100)
+        XCTAssertEqual(section.calculate(height: .height, for: .footer), 50)
+    }
+    
+    func test_calculateEstimatedHeight_setsEstimatedHeightOfSupplementaryViewsWithValue() {
+        
+        let header = TestTableViewSectionComponent()
+        let footer = TestTableViewSectionComponent()
+        
+        header.set(height: .estimatedHeight, 100)
+        footer.set(height: .estimatedHeight, 50)
+        
+        let section = OKTableViewSection(componentDisplayOption: .both(headerComponent: header, footerComponent: footer))
+        
+        XCTAssertEqual(section.calculate(height: .estimatedHeight, for: .header), 100)
+        XCTAssertEqual(section.calculate(height: .estimatedHeight, for: .footer), 50)
     }
     
     func test_calculateHeight_returnsAutomaticDimensionForSelfSizingSupplementaryViews() {
         let section = OKTableViewSection(componentDisplayOption: .both(headerComponent: TestTableViewSectionComponent(),
                                                                          footerComponent: TestTableViewSectionComponent()))
         
-        XCTAssertEqual(section.calculateHeight(for: .header), UITableViewAutomaticDimension)
-        XCTAssertEqual(section.calculateHeight(for: .footer), UITableViewAutomaticDimension)
+        XCTAssertEqual(section.calculate(height: .height, for: .header), UITableViewAutomaticDimension)
+        XCTAssertEqual(section.calculate(height: .height, for: .footer), UITableViewAutomaticDimension)
+    }
+    
+    func test_calculateHeight_returnsZeroForNonSetEstimatedSupplementaryViewsHeights() {
+        let section = OKTableViewSection(componentDisplayOption: .both(headerComponent: TestTableViewSectionComponent(),
+                                                                       footerComponent: TestTableViewSectionComponent()))
+        
+        XCTAssertEqual(section.calculate(height: .estimatedHeight, for: .header), 0)
+        XCTAssertEqual(section.calculate(height: .estimatedHeight, for: .footer), 0)
     }
     
     func test_calculateHeight_returnZeroForHeightOfNonDisplayedSupplementaryViews() {
         let section = OKTableViewSection()
         
-        let headerHeight = section.calculateHeight(for: .header)
-        let footerHeight = section.calculateHeight(for: .footer)
+        let headerHeight = section.calculate(height: .height, for: .header)
+        let footerHeight = section.calculate(height: .height, for: .footer)
+        let headerEstimatedHeight = section.calculate(height: .estimatedHeight, for: .header)
+        let footerEstimatedHeight = section.calculate(height: .estimatedHeight, for: .footer)
         
         XCTAssertEqual(headerHeight, .leastNormalMagnitude)
         XCTAssertEqual(footerHeight, .leastNormalMagnitude)
+        XCTAssertEqual(headerEstimatedHeight, .leastNormalMagnitude)
+        XCTAssertEqual(footerEstimatedHeight, .leastNormalMagnitude)
     }
     
     func test_removeHeight_removesHeightOfSupplementaryViews() {
         let header = TestTableViewSectionComponent()
         let footer = TestTableViewSectionComponent()
         
-        header.setHeight(40)
-        footer.setHeight(40)
+        header.set(height: .height, 40)
+        footer.set(height: .height, 40)
+        header.set(height: .estimatedHeight, 40)
+        footer.set(height: .estimatedHeight, 40)
         
         let section = OKTableViewSection(componentDisplayOption: .both(headerComponent: header, footerComponent: footer))
         
-        header.removeHeight()
-        footer.removeHeight()
+        header.remove(height: .height)
+        footer.remove(height: .height)
+        header.remove(height: .estimatedHeight)
+        footer.remove(height: .estimatedHeight)
 
-        XCTAssertEqual(section.calculateHeight(for: .header), UITableViewAutomaticDimension)
-        XCTAssertEqual(section.calculateHeight(for: .footer), UITableViewAutomaticDimension)
+        XCTAssertEqual(section.calculate(height: .height, for: .header), UITableViewAutomaticDimension)
+        XCTAssertEqual(section.calculate(height: .height, for: .footer), UITableViewAutomaticDimension)
+        XCTAssertEqual(section.calculate(height: .estimatedHeight, for: .header), 0)
+        XCTAssertEqual(section.calculate(height: .estimatedHeight, for: .footer), 0)
     }
     
     func test_appendRows_appendsNewRowsToSection() {

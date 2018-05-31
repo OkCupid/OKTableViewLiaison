@@ -9,7 +9,7 @@ import Foundation
 
 open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>: OKAnyTableViewSectionComponent {
     
-    public init(_ model: Model, registrationType: OKTableViewRegistrationType) {
+    public init(_ model: Model, registrationType: OKTableViewRegistrationType = OKTableViewSectionComponent.defaultClassRegistrationType) {
         self.model = model
         self.registrationType = registrationType
     }
@@ -18,8 +18,8 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
     public let registrationType: OKTableViewRegistrationType
 
     private var commands = [OKTableViewSectionComponentCommand: (View, Model, Int) -> Void]()
-    private var heightClosure: ((Model) -> CGFloat)?
-    
+    private var heights = [OKTableViewHeightType: (Model) -> CGFloat]()
+
     public func perform(command: OKTableViewSectionComponentCommand, for view: UIView, in section: Int) {
         
         guard let view = view as? View else { return }
@@ -35,22 +35,26 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
         commands[command] = nil
     }
     
-    public func setHeight(_ closure: @escaping (Model) -> CGFloat) {
-        heightClosure = closure
+    public func set(height: OKTableViewHeightType, _ closure: @escaping (Model) -> CGFloat) {
+        heights[height] = closure
     }
     
-    public func setHeight(_ value: CGFloat) {
+    public func set(height: OKTableViewHeightType, _ value: CGFloat) {
         let closure: ((Model) -> CGFloat) = { _ -> CGFloat in return value }
-        heightClosure = closure
+        heights[height] = closure
     }
     
-    public func removeHeight() {
-        heightClosure = nil
+    public func remove(height: OKTableViewHeightType) {
+        heights[height] = nil
     }
     
     // MARK: - Computed Properties
     public var height: CGFloat {
-        return heightClosure?(model) ?? UITableViewAutomaticDimension
+        return calculate(height: .height)
+    }
+    
+    public var estimatedHeight: CGFloat {
+        return calculate(height: .estimatedHeight)
     }
     
     public var reuseIdentifier: String {
@@ -64,6 +68,15 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
         commands[.configuration]?(view, model, section)
         
         return view
+    }
+    
+    public func calculate(height: OKTableViewHeightType) -> CGFloat {
+        switch height {
+        case .height:
+            return heights[.height]?(model) ?? UITableViewAutomaticDimension
+        case .estimatedHeight:
+            return heights[.estimatedHeight]?(model) ?? heights[.height]?(model) ?? 0
+        }
     }
     
     public func registerViewType(with tableView: UITableView) {

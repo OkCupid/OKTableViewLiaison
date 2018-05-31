@@ -52,33 +52,51 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
     func test_setHeight_setsHeightWithClosure() {
         let component = TestTableViewSectionComponent()
 
-        component.setHeight { _ -> CGFloat in
+        component.set(height: .height) { _ -> CGFloat in
             return 100
+        }
+       
+        component.set(height: .estimatedHeight) { _ -> CGFloat in
+            return 150
         }
         
         XCTAssertEqual(component.height, 100)
+        XCTAssertEqual(component.estimatedHeight, 150)
     }
     
     func test_setHeight_setsHeightWithValue() {
         let component = TestTableViewSectionComponent()
 
-        component.setHeight(100)
+        component.set(height: .height, 100)
+        component.set(height: .estimatedHeight, 105)
         
         XCTAssertEqual(component.height, 100)
+        XCTAssertEqual(component.estimatedHeight, 105)
     }
     
     func test_setHeight_returnsAutomaticDimensionForSelfSizingView() {
         let component = TestTableViewSectionComponent()
         XCTAssertEqual(component.height, UITableViewAutomaticDimension)
+        XCTAssertEqual(component.estimatedHeight, 0)
     }
     
     func test_removeHeight_removesAPreviouslySetHeight() {
         let component = TestTableViewSectionComponent()
 
-        component.setHeight(100)
-        component.removeHeight()
-        
+        component.set(height: .height, 100)
+        component.set(height: .estimatedHeight, 100)
+        component.remove(height: .height)
+        component.remove(height: .estimatedHeight)
+
         XCTAssertEqual(component.height, UITableViewAutomaticDimension)
+        XCTAssertEqual(component.estimatedHeight, 0)
+    }
+    
+    func test_estimatedHeight_estimatedHeightReturnsHeightIfHeightIsSetAndEstimatedHeightIsNot() {
+        let component = TestTableViewSectionComponent()
+        component.set(height: .height, 100)
+        
+        XCTAssertEqual(component.estimatedHeight, 100)
     }
 
     func test_viewForTableViewInSection_returnsConfiguredViewForComponent() {

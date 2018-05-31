@@ -8,7 +8,7 @@
 import UIKit
 
 public protocol OKAnyTableViewSectionComponent {
-    var height: CGFloat { get }
+    func calculate(height: OKTableViewHeightType) -> CGFloat
     func registerViewType(with tableView: UITableView)
     func perform(command: OKTableViewSectionComponentCommand, for view: UIView, in section: Int)
     func view(for tableView: UITableView, in section: Int) -> UITableViewHeaderFooterView?
