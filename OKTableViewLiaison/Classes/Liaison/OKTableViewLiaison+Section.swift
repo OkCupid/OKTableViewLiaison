@@ -9,7 +9,7 @@ import UIKit
 
 public extension OKTableViewLiaison {
     
-    public func append(sections: [OKAnyTableViewSection], animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func append(sections: [OKTableViewSection], animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
         if isShowingPaginationSpinner {
             endPagination(sections: sections)
@@ -29,18 +29,33 @@ public extension OKTableViewLiaison {
         
     }
     
-    public func append(section: OKAnyTableViewSection, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func append(section: OKTableViewSection, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         append(sections: [section], animation: animation, animated: animated)
     }
     
-    public func insert(section: OKAnyTableViewSection, at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func insert(sections: [OKTableViewSection], startingAt index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+        guard !sections.isEmpty else { return }
+
+        let indexRange = (index...(index + sections.count))
+        
+        zip(sections, indexRange)
+            .forEach { section, index in
+                self.sections.insert(section, at: index)
+        }
+
+        let indexSet = IndexSet(integersIn: indexRange)
+        performTableViewUpdates(animated: animated) {
+            tableView?.insertSections(indexSet, with: animation)
+        }
+    }
+    
+    public func insert(section: OKTableViewSection, at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
         sections.insert(section, at: index)
         
         performTableViewUpdates(animated: animated) {
             tableView?.insertSections(IndexSet(integer: index), with: animation)
         }
-        
     }
     
     public func emptySection(at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
@@ -64,7 +79,7 @@ public extension OKTableViewLiaison {
         }
     }
     
-    public func replaceSection(at index: Int, with section: OKAnyTableViewSection, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func replaceSection(at index: Int, with section: OKTableViewSection, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
 
         sections.remove(at: index)
         sections.insert(section, at: index)
@@ -91,7 +106,7 @@ public extension OKTableViewLiaison {
         }
     }
     
-    public func clearSections(replacedBy sections: [OKAnyTableViewSection] = [],
+    public func clearSections(replacedBy sections: [OKTableViewSection] = [],
                               animation: UITableViewRowAnimation = .automatic,
                               animated: Bool = true) {
         

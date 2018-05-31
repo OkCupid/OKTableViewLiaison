@@ -11,13 +11,13 @@ import OKTableViewLiaison
 
 final class ImageTableViewRow: OKTableViewRow<ImageTableViewCell, UIImage> {
     
-    init(image: UIImage, width: CGFloat) {
+    init(image: UIImage) {
         
         super.init(image, registrationType: ImageTableViewRow.defaultNibRegistrationType)
         
         set(height: .height) { image -> CGFloat in
             let ratio = image.size.width / image.size.height
-            return width / ratio
+            return UIScreen.main.bounds.width / ratio
         }
         
         set(command: .configuration) { cell, image, indexPath in

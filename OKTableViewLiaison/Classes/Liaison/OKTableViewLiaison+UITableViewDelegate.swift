@@ -20,7 +20,6 @@ extension OKTableViewLiaison: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        
         return perform(command: .willSelect, for: tableView, at: indexPath)
     }
     
@@ -29,7 +28,6 @@ extension OKTableViewLiaison: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-        
         return perform(command: .willDeselect, for: tableView, at: indexPath)
     }
     
@@ -69,11 +67,11 @@ extension OKTableViewLiaison: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return sections.element(at: section)?.view(supplementaryView: .header, for: tableView, in: section)
+        return sections.element(at: section)?.view(componentView: .header, for: tableView, in: section)
     }
     
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return sections.element(at: section)?.view(supplementaryView: .footer, for: tableView, in: section)
+        return sections.element(at: section)?.view(componentView: .footer, for: tableView, in: section)
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -105,11 +103,19 @@ extension OKTableViewLiaison: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return sections.element(at: section)?.calculateHeight(for: .header) ?? UITableViewAutomaticDimension
+        return sections.element(at: section)?.calculate(height: .height, for: .header) ?? UITableViewAutomaticDimension
     }
     
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return sections.element(at: section)?.calculateHeight(for: .footer) ?? UITableViewAutomaticDimension
+        return sections.element(at: section)?.calculate(height: .height, for: .footer) ?? UITableViewAutomaticDimension
+    }
+    
+    public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return sections.element(at: section)?.calculate(height: .estimatedHeight, for: .header) ?? 0
+    }
+    
+    public func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        return sections.element(at: section)?.calculate(height: .estimatedHeight, for: .footer) ?? 0
     }
     
     public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

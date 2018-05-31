@@ -11,14 +11,15 @@ import OKTableViewLiaison
 
 enum PostTableViewSectionFactory {
     
-    static func section(for post: Post, width: CGFloat) -> PostTableViewSection {
-        let rows: [OKAnyTableViewRow] = [ImageTableViewRow(image: post.content,
-                                                           width: width),
-                                         ActionButtonsTableViewRow(),
-                                         TextTableViewRowFactory.likesRow(numberOfLikes: post.numberOfLikes),
-                                         TextTableViewRowFactory.captionRow(user: post.user.username, caption: post.caption),
-                                         TextTableViewRowFactory.commentRow(commentCount: post.numberOfComments),
-                                         TextTableViewRowFactory.timeRow(numberOfSeconds: post.timePosted)]
+    static func section(for post: Post) -> PostTableViewSection {
+        let rows: [OKAnyTableViewRow] = [
+            ImageTableViewRow(image: post.content),
+            ActionButtonsTableViewRow(),
+            TextTableViewRowFactory.likesRow(numberOfLikes: post.numberOfLikes),
+            TextTableViewRowFactory.captionRow(user: post.user.username, caption: post.caption),
+            TextTableViewRowFactory.commentRow(commentCount: post.numberOfComments),
+            TextTableViewRowFactory.timeRow(numberOfSeconds: post.timePosted)
+        ]
         
         return PostTableViewSection(user: post.user, rows: rows)
     }

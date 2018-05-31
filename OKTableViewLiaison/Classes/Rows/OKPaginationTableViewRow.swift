@@ -12,12 +12,12 @@ final public class OKPaginationTableViewRow: OKTableViewRow<OKPaginationTableVie
     public init() {
         super.init(())
         
-        set(command: .configuration) { (cell, _, _) in
+        set(command: .configuration) { cell, _, _ in
             cell.backgroundColor = .clear
             cell.contentView.backgroundColor = .clear
         }
         
-        set(command: .willDisplay) { (cell, _, _) in
+        set(command: .willDisplay) { cell, _, _ in
             cell.spinner.startAnimating()
         }
         

@@ -57,7 +57,6 @@ public extension OKTableViewLiaison {
         if let cell = tableView?.cellForRow(at: indexPath) {
             row.perform(command: .insert, for: cell, at: indexPath)
         }
-        
     }
     
     @discardableResult

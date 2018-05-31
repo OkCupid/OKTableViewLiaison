@@ -10,7 +10,7 @@ import UIKit
 
 final public class OKTableViewLiaison: NSObject {
     weak var tableView: UITableView?
-    public internal(set) var sections = [OKAnyTableViewSection]() {
+    public internal(set) var sections = [OKTableViewSection]() {
         didSet { didSetSections() }
     }
     
@@ -18,7 +18,7 @@ final public class OKTableViewLiaison: NSObject {
     var waitingForPaginatedResults = false
     public weak var paginationDelegate: OKTableViewLiaisonPaginationDelegate?
 
-    public init(sections: [OKAnyTableViewSection] = [],
+    public init(sections: [OKTableViewSection] = [],
                 paginationRow: OKAnyTableViewRow = OKPaginationTableViewRow()) {
         self.sections = sections
         self.paginationSection = OKPaginationTableViewSection(row: paginationRow)
@@ -67,7 +67,7 @@ final public class OKTableViewLiaison: NSObject {
         tv.isEditing = !tv.isEditing
     }
     
-    public func section(for indexPath: IndexPath) -> OKAnyTableViewSection? {
+    public func section(for indexPath: IndexPath) -> OKTableViewSection? {
         return sections.element(at: indexPath.section)
     }
     
