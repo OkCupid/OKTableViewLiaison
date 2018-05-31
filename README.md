@@ -105,7 +105,7 @@ header.set(height: .height) { user -> CGFloat in
 header.set(height: .estimatedHeight, 125)
 ```
 
-In the event a height is not provided for a section component, the liaison will assume the supplementary view is self sizing and return a `.height` of `UITableViewAutomaticDimension`; But make sure you provide an `.estimatedHeight` to avoid layout complications.
+In the event a height is not provided for a section component, the liaison will assume the supplementary view is self sizing and return a `.height` of `UITableViewAutomaticDimension`. Make sure you provide an `.estimatedHeight` to avoid layout complications.
 
 The `OKTableViewSectionComponent ` views can be customized using `func set(command: OKTableViewSectionComponentCommand, with closure: @escaping (View, Model, Int) -> Void)` at all the following lifecycle events:
 
