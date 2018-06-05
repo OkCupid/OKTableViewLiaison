@@ -14,9 +14,9 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
         self.registrationType = registrationType
     }
     
-    private let model: Model
-    public let registrationType: OKTableViewRegistrationType
-
+    public let model: Model
+    
+    private let registrationType: OKTableViewRegistrationType
     private var commands = [OKTableViewSectionComponentCommand: (View, Model, Int) -> Void]()
     private var heights = [OKTableViewHeightType: (Model) -> CGFloat]()
 

@@ -44,15 +44,17 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         if #available(iOS 10.0, *) {
             XCTAssert(tableView.prefetchDataSource === liaison)
         }
+        XCTAssert(liaison.tableView == tableView)
     }
 
     func test_detachTableView_removesDelegateAndDataSource() {
-        liaison.detachTableView()
+        liaison.detach()
         XCTAssert(tableView.delegate == nil)
         XCTAssert(tableView.dataSource == nil)
         if #available(iOS 10.0, *) {
             XCTAssert(tableView.prefetchDataSource == nil)
         }
+        XCTAssert(liaison.tableView == nil)
     }
 
     func test_toggleIsEditing_togglesTableViewEditingMode() {
@@ -833,12 +835,11 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
 
     func test_willDisplayCell_paginationDelegateGetsCalled() {
-        let row = TestTableViewRow()
+        
         let delegate = TestTableViewLiaisonPaginationDelegate()
-
         liaison.paginationDelegate = delegate
 
-        let section = OKTableViewSection(rows: [row])
+        let section = OKTableViewSection(rows: [TestTableViewRow()])
         liaison.append(section: section)
 
         liaison.tableView(tableView, willDisplay: UITableViewCell(), forRowAt: IndexPath(row: 0, section: 0))
@@ -853,14 +854,30 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         waitForExpectations(timeout: 0.2, handler: nil)
     }
+    
+    func test_willDisplayCell_appendsPaginationSection() {
+        let delegate = TestTableViewLiaisonPaginationDelegate()
+        liaison.paginationDelegate = delegate
+        
+        let section = OKTableViewSection(rows: [TestTableViewRow()])
+        liaison.append(section: section)
+        
+        let expectation = XCTestExpectation(description: "Adds pagination section")
+        
+        liaison.tableView(tableView, willDisplay: UITableViewCell(), forRowAt: IndexPath(row: 0, section: 0))
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            XCTAssert(self.liaison.sections.last === self.liaison.paginationSection)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.5)
+    }
 
     func test_appendSection_paginationDelegateEndsByAppendingSection() {
-        let row1 = TestTableViewRow()
-        let row2 = TestTableViewRow()
-        let section1 = OKTableViewSection(rows: [row1, row2])
+        let section1 = OKTableViewSection(rows: [TestTableViewRow(), TestTableViewRow()])
         let delegate = TestTableViewLiaisonPaginationDelegate()
-        let row3 = TestTableViewRow()
-        let section2 = OKTableViewSection(rows: [row3])
+        let section2 = OKTableViewSection(rows: [TestTableViewRow()])
 
         liaison.paginationDelegate = delegate
         liaison.append(section: section1)
@@ -882,8 +899,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
 
     func test_appendRow_paginationDelegateEndsByAppendingRow() {
-        let row1 = TestTableViewRow()
-        let section = OKTableViewSection(rows: [row1])
+        let section = OKTableViewSection(rows: [TestTableViewRow()])
         let delegate = TestTableViewLiaisonPaginationDelegate()
         let row2 = TestTableViewRow()
 

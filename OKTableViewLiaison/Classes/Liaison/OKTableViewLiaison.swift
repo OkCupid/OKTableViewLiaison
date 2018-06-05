@@ -36,7 +36,7 @@ final public class OKTableViewLiaison: NSObject {
         }
     }
     
-    public func detachTableView() {
+    public func detach() {
         tableView?.delegate = nil
         tableView?.dataSource = nil
         
