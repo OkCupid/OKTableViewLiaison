@@ -17,8 +17,8 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     public var indentWhileEditing: Bool
     public var deleteConfirmationTitle: String?
     public var deleteRowAnimation: UITableViewRowAnimation
-    public var registrationType: OKTableViewRegistrationType
     
+    private let registrationType: OKTableViewRegistrationType
     private var commands = [OKTableViewRowCommand: (Cell, Model, IndexPath) -> Void]()
     private var heights = [OKTableViewHeightType: (Model) -> CGFloat]()
     private var prefetchCommands = [OKTableViewPrefetchCommand: (Model, IndexPath) -> Void]()
