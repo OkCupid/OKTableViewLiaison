@@ -11,9 +11,9 @@ import OKTableViewLiaison
 
 enum PostTableViewSectionFactory {
     
-    static func section(for post: Post) -> PostTableViewSection {
+    static func section(for post: Post, width: CGFloat) -> PostTableViewSection {
         let rows: [OKAnyTableViewRow] = [
-            ImageTableViewRow(image: post.content),
+            ImageTableViewRow(image: post.content, width: width),
             ActionButtonsTableViewRow(),
             TextTableViewRowFactory.likesRow(numberOfLikes: post.numberOfLikes),
             TextTableViewRowFactory.captionRow(user: post.user.username, caption: post.caption),

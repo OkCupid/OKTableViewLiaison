@@ -16,7 +16,7 @@ final class ContentFeedViewController: UIViewController {
     
     private var initialSections: [PostTableViewSection] {
         return Post.initialPosts()
-            .map(PostTableViewSectionFactory.section(for:))
+            .map { PostTableViewSectionFactory.section(for: $0, width: tableView.frame.width) }
     }
 
     override func viewDidLoad() {
@@ -27,7 +27,11 @@ final class ContentFeedViewController: UIViewController {
         
         liaison.paginationDelegate = self
         liaison.liaise(tableView: tableView)
-        liaison.append(sections: initialSections)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        liaison.append(sections: initialSections, animated: false)
     }
     
     @objc private func refreshSections() {
@@ -50,7 +54,7 @@ extension ContentFeedViewController: OKTableViewLiaisonPaginationDelegate {
         liaison.scroll(to: indexPath)
         
         let sections = Post.paginatedPosts()
-            .map(PostTableViewSectionFactory.section(for:))
+            .map { PostTableViewSectionFactory.section(for: $0, width: tableView.frame.width) }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.liaison.append(sections: sections)

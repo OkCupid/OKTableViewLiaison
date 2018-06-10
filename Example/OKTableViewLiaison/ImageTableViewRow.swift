@@ -9,19 +9,20 @@
 import Foundation
 import OKTableViewLiaison
 
-final class ImageTableViewRow: OKTableViewRow<ImageTableViewCell, UIImage> {
+final class ImageTableViewRow: OKTableViewRow<ImageTableViewCell, (UIImage, CGFloat)> {
     
-    init(image: UIImage) {
+    init(image: UIImage, width: CGFloat) {
         
-        super.init(image, registrationType: ImageTableViewRow.defaultNibRegistrationType)
+        super.init((image, width), registrationType: ImageTableViewRow.defaultNibRegistrationType)
         
-        set(height: .height) { image -> CGFloat in
+        set(height: .height) { model -> CGFloat in
+            let (image, width) = model
             let ratio = image.size.width / image.size.height
-            return UIScreen.main.bounds.width / ratio
+            return width / ratio
         }
         
-        set(command: .configuration) { cell, image, indexPath in
-            cell.contentImageView.image = image
+        set(command: .configuration) { cell, model, indexPath in
+            cell.contentImageView.image = model.0
             cell.contentImageView.contentMode = .scaleAspectFill
         }
     }
