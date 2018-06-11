@@ -20,7 +20,7 @@ public extension OKTableViewLiaison {
             !rows.isEmpty else { return }
         
         var lastRowIndex = _section.rows.count - 1
-        
+                
         _section.append(rows: rows)
         
         let indexPaths = rows.map { row -> IndexPath in
