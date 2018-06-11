@@ -1,5 +1,5 @@
 //
-//  OKAnyTableViewSectionSupplementaryView.swift
+//  OKAnyTableViewSectionComponent.swift
 //  OKTableViewLiaison
 //
 //  Created by Dylan Shine on 5/29/18.

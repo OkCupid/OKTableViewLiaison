@@ -41,8 +41,8 @@ open class OKTableViewSection {
     }
     
     // MARK: - Supplementary Views
-    public func perform(command: OKTableViewSectionComponentCommand, supplementaryView: OKTableViewSectionComponentView, for view: UIView, in section: Int) {
-        switch supplementaryView {
+    public func perform(command: OKTableViewSectionComponentCommand, componentView: OKTableViewSectionComponentView, for view: UIView, in section: Int) {
+        switch componentView {
         case .header:
             componentDisplayOption.header?.perform(command: command, for: view, in: section)
         case .footer:
