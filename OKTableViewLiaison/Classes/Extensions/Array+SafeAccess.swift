@@ -18,7 +18,7 @@ extension Array {
         return self[index]
     }
     
-    var lastIndex: Index {
+    var endIndex: Index {
         guard !isEmpty else {
             return 0
         }

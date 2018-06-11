@@ -19,7 +19,7 @@ public extension OKTableViewLiaison {
         guard !sections.isEmpty else { return }
         
         let lowerBound = self.sections.count
-        let upperBound = lowerBound + sections.lastIndex
+        let upperBound = lowerBound + sections.endIndex
         let indexSet = IndexSet(integersIn: lowerBound...upperBound)
         self.sections.append(contentsOf: sections)
         
@@ -112,7 +112,7 @@ public extension OKTableViewLiaison {
         
         guard !self.sections.isEmpty else { return }
         
-        let sectionsRange = 0...self.sections.lastIndex
+        let sectionsRange = 0...self.sections.endIndex
         let indexSet = IndexSet(integersIn: sectionsRange)
         
         self.sections.removeAll()
