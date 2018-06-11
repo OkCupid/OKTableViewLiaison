@@ -17,12 +17,12 @@ extension Array {
         
         return self[index]
     }
-    
-    var endIndex: Index {
+
+    var lastIndex: Index {
         guard !isEmpty else {
             return 0
         }
-        
+
         return count - 1
     }
 
