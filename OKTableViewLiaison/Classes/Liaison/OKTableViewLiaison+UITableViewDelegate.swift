@@ -119,19 +119,19 @@ extension OKTableViewLiaison: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        sections.element(at: section)?.perform(command: .willDisplay, supplementaryView: .header, for: view, in: section)
+        sections.element(at: section)?.perform(command: .willDisplay, componentView: .header, for: view, in: section)
     }
     
     public func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        sections.element(at: section)?.perform(command: .willDisplay, supplementaryView: .footer, for: view, in: section)
+        sections.element(at: section)?.perform(command: .willDisplay, componentView: .footer, for: view, in: section)
     }
     
     public func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
-        sections.element(at: section)?.perform(command: .didEndDisplaying, supplementaryView: .header, for: view, in: section)
+        sections.element(at: section)?.perform(command: .didEndDisplaying, componentView: .header, for: view, in: section)
     }
     
     public func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
-        sections.element(at: section)?.perform(command: .didEndDisplaying, supplementaryView: .footer, for: view, in: section)
+        sections.element(at: section)?.perform(command: .didEndDisplaying, componentView: .footer, for: view, in: section)
     }
     
 }

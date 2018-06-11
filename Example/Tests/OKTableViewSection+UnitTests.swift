@@ -230,12 +230,12 @@ final class OKTableViewSection_UnitTests: XCTestCase {
         let view = UITableViewHeaderFooterView()
         let section = OKTableViewSection(componentDisplayOption: .both(headerComponent: header, footerComponent: footer))
         
-        section.perform(command: .configuration, supplementaryView: .header, for: view, in: 0)
-        section.perform(command: .configuration, supplementaryView: .footer, for: view, in: 0)
-        section.perform(command: .didEndDisplaying, supplementaryView: .header, for: view, in: 0)
-        section.perform(command: .didEndDisplaying, supplementaryView: .footer, for: view, in: 0)
-        section.perform(command: .willDisplay, supplementaryView: .header, for: view, in: 0)
-        section.perform(command: .willDisplay, supplementaryView: .footer, for: view, in: 0)
+        section.perform(command: .configuration, componentView: .header, for: view, in: 0)
+        section.perform(command: .configuration, componentView: .footer, for: view, in: 0)
+        section.perform(command: .didEndDisplaying, componentView: .header, for: view, in: 0)
+        section.perform(command: .didEndDisplaying, componentView: .footer, for: view, in: 0)
+        section.perform(command: .willDisplay, componentView: .header, for: view, in: 0)
+        section.perform(command: .willDisplay, componentView: .footer, for: view, in: 0)
         
         XCTAssertEqual(headerConfiguration, "Configured!")
         XCTAssertEqual(footerConfiguration, "Configured!")
@@ -263,8 +263,8 @@ final class OKTableViewSection_UnitTests: XCTestCase {
         let view = UIView()
         
         let section = OKTableViewSection(componentDisplayOption: .both(headerComponent: header, footerComponent: footer))
-        section.perform(command: .configuration, supplementaryView: .header, for: view, in: 0)
-        section.perform(command: .configuration, supplementaryView: .footer, for: view, in: 0)
+        section.perform(command: .configuration, componentView: .header, for: view, in: 0)
+        section.perform(command: .configuration, componentView: .footer, for: view, in: 0)
         
         XCTAssertEqual(headerConfiguration, "")
         XCTAssertEqual(footerConfiguration, "")

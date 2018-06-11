@@ -59,7 +59,7 @@ liaison.liaise(tableView: tableView)
 ```
 
 By liaising your tableView with the liaison, the liaison becomes both its `UITableViewDataSource`, `UITableViewDelegate`, and `UITableViewDataSourcePrefetching`.
-In the event you would like to remove the tableView from the liaison, simply invoke `liaison.detachTableView()`.
+In the event you would like to remove the tableView from the liaison, simply invoke `liaison.detach()`.
 
 OKTableViewLiaison populates sections and rows using two main types:
 
@@ -233,7 +233,7 @@ To use a custom pagination spinner, you can pass an instance `OKAnyTableViewRow`
 
 ### Tips & Tricks
 
-Because `OKTableViewSection` and `OKTableViewRow` utilize generic types and manage view/cell type registration, instantiating multiple different configurations of sections and rows can get verbose. Creating a subclass or utilizing a factory to create your various `OKTableViewSection`/`OKTableViewRow` may be useful.
+Because `OKTableViewSection` and `OKTableViewRow` utilize generic types and manage view/cell type registration, instantiating multiple different configurations of sections and rows can get verbose. Creating a subclass or utilizing a factory to create your various `OKTableViewRow`/`OKTableViewSectionComponent` types may be useful.
 
 ```swift
 final class PostTextTableViewRow: OKTableViewRow<PostTextTableViewCell, String> {
@@ -246,15 +246,16 @@ final class PostTextTableViewRow: OKTableViewRow<PostTextTableViewCell, String> 
 
 ```swift
 static func contentRow(with image: UIImage, width: CGFloat) -> AnyTableViewRow {
-	let row = OKTableViewRow<PostImageContentTableViewCell, UIImage>(image)
+	let row = OKTableViewRow<PostImageContentTableViewCell, (UIImage, CGFloat)>((image, width))
 
-	row.set(height: .height) { image -> CGFloat in
-		let ratio = image.size.width / image.size.height
-		return width / ratio
+	row.set(height: .height) { model -> CGFloat in
+		let (image, width) = model
+  		let ratio = image.size.width / image.size.height
+  		return width / ratio
 	}
 
-	row.set(command: .configuration) { cell, image, indexPath in
-		cell.contentImageView.image = image
+	row.set(command: .configuration) { cell, model, indexPath in
+		cell.contentImageView.image = model.0
 		cell.contentImageView.contentMode = .scaleAspectFill
 	}
 

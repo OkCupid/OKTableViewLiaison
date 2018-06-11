@@ -15,8 +15,8 @@ extension OKTableViewLiaison {
                 return nil
         }
         
-        let row = lastSection.rows.count - 1
-        let section = sections.count - 1
+        let row = lastSection.rows.lastIndex
+        let section = sections.lastIndex
         
         return IndexPath(row: row, section: section)
     }
@@ -46,9 +46,9 @@ extension OKTableViewLiaison {
         waitingForPaginatedResults = false
         
         if animated {
-            deleteSection(at: sections.count - 1, animation: .none)
+            deleteSection(at: sections.lastIndex, animation: .none)
         } else {
-            sections.remove(at: sections.count - 1)
+            sections.remove(at: sections.lastIndex)
         }
     }
     
@@ -58,7 +58,7 @@ extension OKTableViewLiaison {
         guard !rows.isEmpty,
             let lastSection = sections.last else { return }
         
-        let firstNewIndexPath = IndexPath(row: lastSection.rows.count, section: sections.count - 1)
+        let firstNewIndexPath = IndexPath(row: lastSection.rows.count, section: sections.lastIndex)
         lastSection.append(rows: rows)
         reloadData()
         paginationDelegate?.paginationEnded(indexPath: firstNewIndexPath)
