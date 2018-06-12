@@ -9,9 +9,13 @@
 import UIKit
 
 final public class OKTableViewLiaison: NSObject {
-    weak var tableView: UITableView?
+    
+    weak var tableView: UITableView? {
+        didSet { syncSections() }
+    }
+    
     public internal(set) var sections = [OKTableViewSection]() {
-        didSet { didSetSections() }
+        didSet { syncSections() }
     }
     
     let paginationSection: OKPaginationTableViewSection
@@ -87,9 +91,9 @@ final public class OKTableViewLiaison: NSObject {
         }
     }
     
-    private func didSetSections() {
+    private func syncSections() {
         sections.forEach {
-            if $0.tableView == nil {
+            if $0.tableView != tableView {
                 $0.tableView = tableView
             }
         }
