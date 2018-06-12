@@ -38,7 +38,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         XCTAssertEqual(initial, current)
     }
 
-    func test_configure_setsDelegateAndDataSource() {
+    func test_liaise_setsDelegateAndDataSource() {
         XCTAssert(tableView.delegate === liaison)
         XCTAssert(tableView.dataSource === liaison)
         if #available(iOS 10.0, *) {
@@ -46,8 +46,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         }
         XCTAssert(liaison.tableView == tableView)
     }
-
-    func test_detachTableView_removesDelegateAndDataSource() {
+    
+    func test_detach_removesDelegateAndDataSource() {
         liaison.detach()
         XCTAssert(tableView.delegate == nil)
         XCTAssert(tableView.dataSource == nil)
@@ -70,6 +70,25 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.liaise(tableView: tableView)
         XCTAssertEqual(tableView.numberOfSections, 2)
     }
+    
+    func test_liaise_setsTableViewForEachSection() {
+        let section = OKTableViewSection()
+        let liaison = OKTableViewLiaison(sections: [section])
+        liaison.liaise(tableView: tableView)
+        
+        XCTAssert(section.tableView == tableView)
+    }
+    
+    func test_liaise_setsNewTableViewForEachSection() {
+        let section = OKTableViewSection()
+
+        liaison.append(section: section)
+        XCTAssert(section.tableView == tableView)
+        
+        let newTableView = UITableView()
+        liaison.liaise(tableView: newTableView)
+        XCTAssert(section.tableView == newTableView)
+    }
 
     func test_appendSection_addsSectionToTableView() {
         XCTAssertEqual(tableView.numberOfSections, 0)
@@ -79,6 +98,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         XCTAssertEqual(tableView.numberOfSections, 1)
         XCTAssert(liaison.sections.first === section)
+        XCTAssert(section.tableView == tableView)
     }
 
     func test_appendSections_addsSectionsToTableView() {
@@ -92,7 +112,6 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         XCTAssertEqual(tableView.numberOfSections, 2)
         XCTAssert(liaison.sections.first === section1)
         XCTAssert(liaison.sections.last === section2)
-
     }
 
     func test_insertSection_insertsSectionIntoTableView() {
