@@ -58,7 +58,7 @@ let tableView = UITableView()
 liaison.liaise(tableView: tableView)
 ```
 
-By liaising your tableView with the liaison, the liaison becomes both its `UITableViewDataSource`, `UITableViewDelegate`, and `UITableViewDataSourcePrefetching`.
+By liaising your tableView with the liaison, the liaison becomes its `UITableViewDataSource`, `UITableViewDelegate`, and `UITableViewDataSourcePrefetching`.
 In the event you would like to remove the tableView from the liaison, simply invoke `liaison.detach()`.
 
 OKTableViewLiaison populates sections and rows using two main types:
@@ -97,11 +97,11 @@ You can set a static height of a section component by using either a CGFloat val
 
 ```swift
 header.set(height: .height, 55)
-    
+
 header.set(height: .height) { user -> CGFloat in
     return user.username == "dylan" ? 100 : 75
 }
-        
+
 header.set(height: .estimatedHeight, 125)
 ```
 
@@ -117,7 +117,7 @@ The `OKTableViewSectionComponent ` views can be customized using `func set(comma
 header.set(command: .configuration) { view, user, section in
     view.textLabel?.text = user.username
 }
-        
+
 header.set(command: .willDisplay) { view, user, section in
     print("Header: \(view) will display for Section: \(section) with User: \(user)")
 }
@@ -201,7 +201,7 @@ row.set(command: .didSelect) { cell, model, indexPath in
 row.set(prefetchCommand: .prefetch) { model, indexPath in
 	model.downloadImage()
 }
-        
+
 row.set(prefetchCommand: .cancel) { model, indexPath in
     model.cancelImageDownload()
 }
