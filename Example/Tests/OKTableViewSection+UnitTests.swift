@@ -101,10 +101,17 @@ final class OKTableViewSection_UnitTests: XCTestCase {
         let headerEstimatedHeight = section.calculate(height: .estimatedHeight, for: .header)
         let footerEstimatedHeight = section.calculate(height: .estimatedHeight, for: .footer)
         
-        XCTAssertEqual(headerHeight, .leastNormalMagnitude)
-        XCTAssertEqual(footerHeight, .leastNormalMagnitude)
-        XCTAssertEqual(headerEstimatedHeight, .leastNormalMagnitude)
-        XCTAssertEqual(footerEstimatedHeight, .leastNormalMagnitude)
+        if #available(iOS 11.0, *) {
+            XCTAssertEqual(headerHeight, .leastNormalMagnitude)
+            XCTAssertEqual(footerHeight, .leastNormalMagnitude)
+            XCTAssertEqual(headerEstimatedHeight, .leastNormalMagnitude)
+            XCTAssertEqual(footerEstimatedHeight, .leastNormalMagnitude)
+        } else {
+            XCTAssertEqual(headerHeight, 0)
+            XCTAssertEqual(footerHeight, 0)
+            XCTAssertEqual(headerEstimatedHeight, 0)
+            XCTAssertEqual(footerEstimatedHeight, 0)
+        }
     }
     
     func test_removeHeight_removesHeightOfSupplementaryViews() {
