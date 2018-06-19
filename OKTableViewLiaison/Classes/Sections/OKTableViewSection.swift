@@ -71,7 +71,11 @@ open class OKTableViewSection {
         case (.footer(let footer), .footer):
             return footer.calculate(height: height)
         default:
-            return .leastNormalMagnitude
+            if #available(iOS 11.0, *) {
+                return .leastNormalMagnitude
+            } else {
+                return 0
+            }
         }
     }
     
