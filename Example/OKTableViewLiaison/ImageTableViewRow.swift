@@ -13,7 +13,7 @@ final class ImageTableViewRow: OKTableViewRow<ImageTableViewCell, (UIImage, CGFl
     
     init(image: UIImage, width: CGFloat) {
         
-        super.init((image, width), registrationType: ImageTableViewRow.defaultNibRegistrationType)
+        super.init((image, width), registrationType: .defaultNibType)
         
         set(height: .height) { model -> CGFloat in
             let (image, width) = model

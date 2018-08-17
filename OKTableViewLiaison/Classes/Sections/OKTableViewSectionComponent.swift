@@ -9,14 +9,14 @@ import Foundation
 
 open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>: OKAnyTableViewSectionComponent {
     
-    public init(_ model: Model, registrationType: OKTableViewRegistrationType = OKTableViewSectionComponent.defaultClassRegistrationType) {
+    public init(_ model: Model, registrationType: OKTableViewRegistrationType<View> = .defaultClassType) {
         self.model = model
         self.registrationType = registrationType
     }
     
     public let model: Model
     
-    private let registrationType: OKTableViewRegistrationType
+    private let registrationType: OKTableViewRegistrationType<View>
     private var commands = [OKTableViewSectionComponentCommand: (View, Model, Int) -> Void]()
     private var heights = [OKTableViewHeightType: (Model) -> CGFloat]()
 
@@ -92,21 +92,10 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
 
 public extension OKTableViewSectionComponent where Model == Void {
     
-    public convenience init(registrationType: OKTableViewRegistrationType = OKTableViewSectionComponent.defaultClassRegistrationType) {
+    public convenience init(registrationType: OKTableViewRegistrationType<View> = .defaultClassType) {
         
         self.init((),
                   registrationType: registrationType)
     }
 }
 
-// MARK: - OKTableViewRegistrationType
-public extension OKTableViewSectionComponent {
-    
-    public static var defaultClassRegistrationType: OKTableViewRegistrationType {
-        return .defaultClassRegistration(for: View.self)
-    }
-    
-    public static var defaultNibRegistrationType: OKTableViewRegistrationType {
-        return .defaultNibRegistration(for: View.self)
-    }
-}

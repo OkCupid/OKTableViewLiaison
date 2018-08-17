@@ -148,11 +148,11 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     }
     
     func test_reuseIdentifier_returnsCorrectReuseIdentifierForRegistrationType() {
-        let row1 = TestTableViewRow(registrationType: .defaultClassRegistration(for: TestTableViewCell.self))
+        let row1 = TestTableViewRow(registrationType: .defaultClassType)
         let row2 = TestTableViewRow()
         let row3 = TestTableViewRow(registrationType: .class(identifier: "Test"))
         
-        XCTAssertEqual(row1.reuseIdentifier, String(describing: TestTableViewCell.self))
+        XCTAssertEqual(row1.reuseIdentifier, String(describing: UITableViewCell.self))
         XCTAssertEqual(row2.reuseIdentifier, String(describing: UITableViewCell.self))
         XCTAssertEqual(row3.reuseIdentifier, "Test")
     }
