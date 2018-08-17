@@ -208,11 +208,11 @@ row.set(prefetchCommand: .cancel) { model, indexPath in
 ```
 
 ### Cell/View Registration
-`OKTableViewLiaison` handles cell & view registration for `UITableView` view reuse on your behalf utilizing your sections/rows `OKTableViewRegistrationType`.
+`OKTableViewLiaison` handles cell & view registration for `UITableView` view reuse on your behalf utilizing your sections/rows `OKTableViewRegistrationType<T: UIView>`.
 
 `OKTableViewRegistrationType` tells the liaison whether your reusable view should be registered via a `Nib` or `Class`.
 
-By default, `OKTableViewRow` is instantiated with `OKTableViewRow.defaultClassRegistrationType`.
+By default, `OKTableViewRow` is instantiated with `OKTableViewRegistrationType<Cell>.defaultClassType`.
 
 `OKTableViewSection` supplementary view registration is encapsulated by its`OKTableViewSectionComponentDisplayOption`. By default, `OKTableViewSection` `componentDisplayOption` is instantiated with `.none`.
 
@@ -236,17 +236,17 @@ To use a custom pagination spinner, you can pass an instance `OKAnyTableViewRow`
 Because `OKTableViewSection` and `OKTableViewRow` utilize generic types and manage view/cell type registration, instantiating multiple different configurations of sections and rows can get verbose. Creating a subclass or utilizing a factory to create your various `OKTableViewRow`/`OKTableViewSectionComponent` types may be useful.
 
 ```swift
-final class PostTextTableViewRow: OKTableViewRow<PostTextTableViewCell, String> {
+final class TextTableViewRow: OKTableViewRow<PostTextTableViewCell, String> {
 	init(text: String) {
 		super.init(text,
-		registrationType: PostTextTableViewRow.defaultNibRegistrationType)
+		registrationType: .defaultNibType)
 	}
 }
 ```
 
 ```swift
 static func contentRow(with image: UIImage, width: CGFloat) -> AnyTableViewRow {
-	let row = OKTableViewRow<PostImageContentTableViewCell, (UIImage, CGFloat)>((image, width))
+	let row = OKTableViewRow<ImageTableViewCell, (UIImage, CGFloat)>((image, width))
 
 	row.set(height: .height) { model -> CGFloat in
 		let (image, width) = model
