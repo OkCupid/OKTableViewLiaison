@@ -13,7 +13,7 @@ final class PostTableViewSectionHeaderViewComponent: OKTableViewSectionComponent
     
     public init(user: User) {
         
-        super.init(user, registrationType: PostTableViewSectionHeaderViewComponent.defaultNibRegistrationType)
+        super.init(user, registrationType: .defaultNibType)
         
         set(height: .height, 70)
     

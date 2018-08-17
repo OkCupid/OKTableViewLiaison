@@ -13,7 +13,7 @@ final class TextTableViewRow: OKTableViewRow<TextTableViewCell, String> {
     
     init(text: String) {
         super.init(text,
-                   registrationType: TextTableViewRow.defaultNibRegistrationType)
+                   registrationType: .defaultNibType)
     }
     
 }

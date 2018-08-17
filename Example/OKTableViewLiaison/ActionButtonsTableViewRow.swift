@@ -12,7 +12,7 @@ import OKTableViewLiaison
 final class ActionButtonsTableViewRow: OKTableViewRow<ActionButtonsTableViewCell, Void> {
     
     init() {
-        super.init((), registrationType: ActionButtonsTableViewRow.defaultNibRegistrationType)
+        super.init((), registrationType: .defaultNibType)
         
         set(height: .height, 30)
         set(command: .configuration) { cell, _, _ in

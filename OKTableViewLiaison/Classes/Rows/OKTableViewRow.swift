@@ -18,7 +18,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     public var deleteConfirmationTitle: String?
     public var deleteRowAnimation: UITableViewRowAnimation
     
-    private let registrationType: OKTableViewRegistrationType
+    private let registrationType: OKTableViewRegistrationType<Cell>
     private var commands = [OKTableViewRowCommand: (Cell, Model, IndexPath) -> Void]()
     private var heights = [OKTableViewHeightType: (Model) -> CGFloat]()
     private var prefetchCommands = [OKTableViewPrefetchCommand: (Model, IndexPath) -> Void]()
@@ -30,7 +30,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
                 indentWhileEditing: Bool = false,
                 deleteConfirmationTitle: String? = nil,
                 deleteRowAnimation: UITableViewRowAnimation = .automatic,
-                registrationType: OKTableViewRegistrationType = OKTableViewRow.defaultClassRegistrationType) {
+                registrationType: OKTableViewRegistrationType<Cell> = .defaultClassType) {
         self.model = model
         self.editingStyle = editingStyle
         self.movable = movable
@@ -134,7 +134,7 @@ public extension OKTableViewRow where Model == Void {
                             indentWhileEditing: Bool = false,
                             deleteConfirmationTitle: String? = nil,
                             deleteRowAnimation: UITableViewRowAnimation = .automatic,
-                            registrationType: OKTableViewRegistrationType = OKTableViewRow.defaultClassRegistrationType) {
+                            registrationType: OKTableViewRegistrationType<Cell> = .defaultClassType) {
         
         self.init((),
                   editingStyle: editingStyle,
@@ -144,17 +144,5 @@ public extension OKTableViewRow where Model == Void {
                   deleteConfirmationTitle: deleteConfirmationTitle,
                   deleteRowAnimation: deleteRowAnimation,
                   registrationType: registrationType)
-    }
-}
-
-// MARK: - OKTableViewRegistrationType
-public extension OKTableViewRow {
-    
-    public static var defaultClassRegistrationType: OKTableViewRegistrationType {
-        return .defaultClassRegistration(for: Cell.self)
-    }
-    
-    public static var defaultNibRegistrationType: OKTableViewRegistrationType {
-        return .defaultNibRegistration(for: Cell.self)
     }
 }
