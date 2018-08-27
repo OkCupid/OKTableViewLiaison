@@ -123,4 +123,15 @@ public extension OKTableViewLiaison {
         
         append(sections: sections, animation: animation, animated: animated)
     }
+    
+    public func swapSection(at source: Int, with destination: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+        
+        guard sections.indices.contains(source) && sections.indices.contains(destination) else { return }
+        sections.swapAt(source, destination)
+        
+        performTableViewUpdates(animated: animated) {
+            tableView?.moveSection(source, toSection: destination)
+            tableView?.moveSection(destination, toSection: source)
+        }
+    }
 }

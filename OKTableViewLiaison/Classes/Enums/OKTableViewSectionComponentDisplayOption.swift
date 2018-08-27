@@ -19,7 +19,7 @@ public enum OKTableViewSectionComponentDisplayOption {
         [header, footer].forEach { $0?.registerViewType(with: tableView) }
     }
     
-    var header: OKAnyTableViewSectionComponent? {
+    public var header: OKAnyTableViewSectionComponent? {
         switch self {
         case .header(let header):
             return header
@@ -30,7 +30,7 @@ public enum OKTableViewSectionComponentDisplayOption {
         }
     }
     
-    var footer: OKAnyTableViewSectionComponent? {
+    public var footer: OKAnyTableViewSectionComponent? {
         switch self {
         case .footer(let footer):
             return footer

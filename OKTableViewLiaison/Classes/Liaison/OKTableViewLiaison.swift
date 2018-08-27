@@ -71,6 +71,10 @@ final public class OKTableViewLiaison: NSObject {
         tv.isEditing = !tv.isEditing
     }
     
+    public func section(for index: Int) -> OKTableViewSection? {
+        return sections.element(at: index)
+    }
+    
     public func section(for indexPath: IndexPath) -> OKTableViewSection? {
         return sections.element(at: indexPath.section)
     }
@@ -81,7 +85,7 @@ final public class OKTableViewLiaison: NSObject {
         return section.rows.element(at: indexPath.row)
     }
     
-    func performTableViewUpdates(animated: Bool = true, _ closure: () -> Void) {
+    func performTableViewUpdates(animated: Bool, _ closure: () -> Void) {
         if animated {
             tableView?.beginUpdates()
             closure()

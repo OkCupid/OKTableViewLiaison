@@ -151,6 +151,16 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         XCTAssertEqual(tableView.numberOfSections, 1)
         XCTAssert(liaison.sections.first === section2)
     }
+    
+    func test_emptySection_removesAllRowsFromSection() {
+        let section = OKTableViewSection(rows: [TestTableViewRow()])
+        liaison.append(section: section)
+        
+        liaison.emptySection(at: 0)
+        
+        XCTAssertEqual(tableView.numberOfRows(inSection: 0), 0)
+        XCTAssertEqual(section.rows.count, 0)
+    }
 
     func test_replaceSection_replacesSectionOfTableView() {
         let section1 = OKTableViewSection()
@@ -162,7 +172,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         XCTAssertEqual(tableView.numberOfSections, 1)
         XCTAssert(liaison.sections.first === section2)
     }
-
+    
     func test_moveSection_moveSectionOfTableView() {
         let section1 = OKTableViewSection()
         let section2 = OKTableViewSection()
@@ -199,7 +209,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         
         XCTAssertEqual(capturedHeader?.accessibilityIdentifier, string)
     }
-
+    
     func test_clearSections_removesAllSectionsFromTableView() {
 
         let section1 = OKTableViewSection()
@@ -228,6 +238,18 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         XCTAssertEqual(liaison.sections.count, 2)
         XCTAssert(liaison.sections.first === section4)
         XCTAssert(liaison.sections.last === section5)
+    }
+    
+    func test_swapSections_swapsSectionsOfTableView() {
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
+        let section3 = OKTableViewSection()
+        
+        liaison.append(sections: [section1, section2, section3])
+        
+        liaison.swapSection(at: 0, with: 2)
+        XCTAssert(liaison.sections.first === section3)
+        XCTAssert(liaison.sections.last === section1)
     }
 
     func test_appendRow_appendsRowToSection() {
@@ -533,7 +555,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
-            liaison.swapRow(from: sourceIndexPath, to: destinationIndexPath)
+            liaison.swapRow(at: sourceIndexPath, with: destinationIndexPath)
         }
 
         XCTAssert(section.rows.first === row3)
@@ -578,7 +600,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
-            liaison.swapRow(from: sourceIndexPath, to: destinationIndexPath)
+            liaison.swapRow(at: sourceIndexPath, with: destinationIndexPath)
         }
 
         XCTAssert(section1.rows.first === row4)
@@ -1255,15 +1277,15 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         liaison.append(sections: [section1, section2, section3, section4])
         
-//        let section1EstimatedHeight = liaison.tableView(tableView, estimatedHeightForHeaderInSection: 0)
-//        let section2EstimatedHeight = liaison.tableView(tableView, estimatedHeightForHeaderInSection: 1)
-//        let section3EstimatedHeight = liaison.tableView(tableView, estimatedHeightForHeaderInSection: 2)
-//        let section4EstimatedHeight = liaison.tableView(tableView, estimatedHeightForHeaderInSection: 3)
-//
-//        XCTAssertEqual(section1EstimatedHeight, 100)
-//        XCTAssertEqual(section2EstimatedHeight, 200)
-//        XCTAssertEqual(section3EstimatedHeight, 300)
-//        XCTAssertEqual(section4EstimatedHeight, 0)
+        let section1EstimatedHeight = liaison.tableView(tableView, estimatedHeightForHeaderInSection: 0)
+        let section2EstimatedHeight = liaison.tableView(tableView, estimatedHeightForHeaderInSection: 1)
+        let section3EstimatedHeight = liaison.tableView(tableView, estimatedHeightForHeaderInSection: 2)
+        let section4EstimatedHeight = liaison.tableView(tableView, estimatedHeightForHeaderInSection: 3)
+
+        XCTAssertEqual(section1EstimatedHeight, 100)
+        XCTAssertEqual(section2EstimatedHeight, 200)
+        XCTAssertEqual(section3EstimatedHeight, 300)
+        XCTAssertEqual(section4EstimatedHeight, 0)
     }
 
     func test_heightForFooter_properlySetsHeightsForSectionFooters() {
@@ -1313,15 +1335,15 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         
         liaison.append(sections: [section1, section2, section3, section4])
         
-//        let section1EstimatedHeight = liaison.tableView(tableView, estimatedHeightForFooterInSection: 0)
-//        let section2EstimatedHeight = liaison.tableView(tableView, estimatedHeightForFooterInSection: 1)
-//        let section3EstimatedHeight = liaison.tableView(tableView, estimatedHeightForFooterInSection: 2)
-//        let section4EstimatedHeight = liaison.tableView(tableView, estimatedHeightForFooterInSection: 3)
-//
-//        XCTAssertEqual(section1EstimatedHeight, 100)
-//        XCTAssertEqual(section2EstimatedHeight, 200)
-//        XCTAssertEqual(section3EstimatedHeight, 300)
-//        XCTAssertEqual(section4EstimatedHeight, 0)
+        let section1EstimatedHeight = liaison.tableView(tableView, estimatedHeightForFooterInSection: 0)
+        let section2EstimatedHeight = liaison.tableView(tableView, estimatedHeightForFooterInSection: 1)
+        let section3EstimatedHeight = liaison.tableView(tableView, estimatedHeightForFooterInSection: 2)
+        let section4EstimatedHeight = liaison.tableView(tableView, estimatedHeightForFooterInSection: 3)
+
+        XCTAssertEqual(section1EstimatedHeight, 100)
+        XCTAssertEqual(section2EstimatedHeight, 200)
+        XCTAssertEqual(section3EstimatedHeight, 300)
+        XCTAssertEqual(section4EstimatedHeight, 0)
     }
 
 
@@ -1426,5 +1448,62 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         XCTAssertEqual(cancel, true)
     }
+    
+    
+    func test_sectionForIndexPath_returnsCorrectSection() {
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
+        
+        liaison.append(sections: [section1, section2])
+        let indexPath = IndexPath(row: 0, section: 1)
+        
+        let section = liaison.section(for: indexPath)
+        XCTAssert(section === section2)
+    }
+    
+    func test_sectionForIndexPath_returnsNilForInvalidIndexPath() {
+        let section = OKTableViewSection()
+        
+        liaison.append(section: section)
+        let indexPath = IndexPath(row: 0, section: 1)
+        XCTAssertNil(liaison.section(for: indexPath))
+    }
+    
+    func test_sectionForIndex_returnsCorrectSection() {
+        let section1 = OKTableViewSection()
+        let section2 = OKTableViewSection()
+        
+        liaison.append(sections: [section1, section2])
+        
+        let section = liaison.section(for: 1)
+        XCTAssert(section === section2)
+    }
+    
+    func test_sectionForIndex_returnsNilForInvalidIndexPath() {
+        let section = OKTableViewSection()
+        
+        liaison.append(section: section)
+        XCTAssertNil(liaison.section(for: 1))
+    }
+    
+    func test_rowForIndexPath_returnsCorrectRow() {
+        let row1 = TestTableViewRow()
+        let row2 = TestTableViewRow()
+        
+        let section = OKTableViewSection(rows: [row1, row2])
+        liaison.append(section: section)
+        let indexPath = IndexPath(row: 1, section: 0)
 
+        let row = liaison.row(for: indexPath)
+        XCTAssert(row === row2)
+    }
+    
+    func test_rowForIndexPath_returnsNilForInvalidIndexPath() {
+        let section = OKTableViewSection()
+        
+        liaison.append(section: section)
+        let indexPath = IndexPath(row: 0, section: 0)
+        XCTAssertNil(liaison.row(for: indexPath))
+    }
+    
 }

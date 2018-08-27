@@ -119,6 +119,10 @@ public extension OKTableViewLiaison {
         }
     }
     
+    public func reloadRow(at indexPath: IndexPath, with animation: UITableViewRowAnimation = .automatic) {
+        reloadRows(at: [indexPath], with: animation)
+    }
+    
     public func replaceRow(at indexPath: IndexPath, with row: OKAnyTableViewRow, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
         guard let section = section(for: indexPath) else { return }
@@ -162,7 +166,7 @@ public extension OKTableViewLiaison {
         }
     }
     
-    public func swapRow(from source: IndexPath, to destination: IndexPath, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func swapRow(at source: IndexPath, with destination: IndexPath, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
         if source.section == destination.section {
             section(for: source)?.swapRows(at: source, to: destination)

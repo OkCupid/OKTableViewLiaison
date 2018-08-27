@@ -18,7 +18,7 @@ open class OKTableViewSection {
     }
     
     public private(set) var rows: [OKAnyTableViewRow]
-    private let componentDisplayOption: OKTableViewSectionComponentDisplayOption
+    public let componentDisplayOption: OKTableViewSectionComponentDisplayOption
     
     public init(rows: [OKAnyTableViewRow] = [],
                 componentDisplayOption: OKTableViewSectionComponentDisplayOption = .none) {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol OKAnyTableViewSectionComponent {
+public protocol OKAnyTableViewSectionComponent: class {
     func calculate(height: OKTableViewHeightType) -> CGFloat
     func registerViewType(with tableView: UITableView)
     func perform(command: OKTableViewSectionComponentCommand, for view: UIView, in section: Int)
