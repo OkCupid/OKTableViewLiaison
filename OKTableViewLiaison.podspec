@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OKTableViewLiaison'
-  s.version          = '2.2.0'
+  s.version          = '2.3.0'
   s.license          = 'MIT'
   s.summary          = 'Framework to help you better manage UITableViews.'
   s.description      = 'OKTableViewLiaison abstracts and simplifies UITableView construction and management.'

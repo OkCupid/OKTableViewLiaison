@@ -245,17 +245,13 @@ final class TextTableViewRow: OKTableViewRow<PostTextTableViewCell, String> {
 ```
 
 ```swift
-static func contentRow(with image: UIImage, width: CGFloat) -> AnyTableViewRow {
-	let row = OKTableViewRow<ImageTableViewCell, (UIImage, CGFloat)>((image, width))
+static func imageRow(with image: UIImage) -> AnyTableViewRow {
+	let row = OKTableViewRow<ImageTableViewCell, UIImage>(image)
 
-	row.set(height: .height) { model -> CGFloat in
-		let (image, width) = model
-  		let ratio = image.size.width / image.size.height
-  		return width / ratio
-	}
+	row.set(height: .height, 225)
 
-	row.set(command: .configuration) { cell, model, indexPath in
-		cell.contentImageView.image = model.0
+	row.set(command: .configuration) { cell, image, indexPath in
+		cell.contentImageView.image = image
 		cell.contentImageView.contentMode = .scaleAspectFill
 	}
 

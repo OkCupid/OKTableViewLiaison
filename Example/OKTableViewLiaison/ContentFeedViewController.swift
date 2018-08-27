@@ -16,7 +16,7 @@ final class ContentFeedViewController: UIViewController {
     
     private var initialSections: [PostTableViewSection] {
         return Post.initialPosts()
-            .map { PostTableViewSectionFactory.section(for: $0, width: tableView.frame.width) }
+            .map { PostTableViewSectionFactory.section(for: $0, tableView: tableView) }
     }
 
     override func viewDidLoad() {
@@ -54,7 +54,7 @@ extension ContentFeedViewController: OKTableViewLiaisonPaginationDelegate {
         liaison.scroll(to: indexPath)
         
         let sections = Post.paginatedPosts()
-            .map { PostTableViewSectionFactory.section(for: $0, width: tableView.frame.width) }
+            .map { PostTableViewSectionFactory.section(for: $0, tableView: tableView) }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.liaison.append(sections: sections)
