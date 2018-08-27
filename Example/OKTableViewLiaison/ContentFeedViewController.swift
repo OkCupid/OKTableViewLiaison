@@ -35,7 +35,7 @@ final class ContentFeedViewController: UIViewController {
     }
     
     @objc private func refreshSections() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.liaison.clearSections(replacedBy: self.initialSections, animated: false)
             self.refreshControl.endRefreshing()
         }
