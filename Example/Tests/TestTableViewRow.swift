@@ -9,4 +9,6 @@
 import UIKit
 @testable import OKTableViewLiaison
 
-final class TestTableViewRow: OKTableViewRow<UITableViewCell, Void> {}
+final class TestTableViewRow: OKTableViewRow<UITableViewCell, Void> {
+
+}

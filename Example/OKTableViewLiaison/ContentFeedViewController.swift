@@ -14,7 +14,7 @@ final class ContentFeedViewController: UIViewController {
     private let liaison = OKTableViewLiaison()
     private let refreshControl = UIRefreshControl()
     
-    private var initialSections: [PostTableViewSection] {
+    private var initialSections: [OKTableViewSection] {
         return Post.initialPosts()
             .map { PostTableViewSectionFactory.section(for: $0, tableView: tableView) }
     }

@@ -24,25 +24,21 @@ extension OKTableViewLiaison {
     func showPaginationSpinner(after indexPath: IndexPath) {
         if paginationDelegate?.isPaginationEnabled() == true && indexPath == lastIndexPath {
             
-            if !isShowingPaginationSpinner {
+            if !waitingForPaginatedResults {
                 waitingForPaginatedResults = true
-                
+
                 let paginationIndexPath = IndexPath(row: 0, section: sections.count)
                 // UITableViewDelegate tableView(_:willDisplay:forRowAt:) is executed on background thread
                 DispatchQueue.main.async {
-                    self.append(section: self.paginationSection)
+                    self.addPaginationSection()
                     self.paginationDelegate?.paginationStarted(indexPath: paginationIndexPath)
                 }
             }
         }
     }
     
-    var isShowingPaginationSpinner: Bool {
-        return (sections.last is OKPaginationTableViewSection && waitingForPaginatedResults)
-    }
-    
     func hidePaginationSpinner(animated: Bool) {
-        guard isShowingPaginationSpinner else { return }
+        guard waitingForPaginatedResults else { return }
         waitingForPaginatedResults = false
         
         if animated {
@@ -59,7 +55,7 @@ extension OKTableViewLiaison {
             let lastSection = sections.last else { return }
         
         let firstNewIndexPath = IndexPath(row: lastSection.rows.count, section: sections.lastIndex)
-        lastSection.append(rows: rows)
+        sections[sections.lastIndex].append(rows: rows)
         reloadData()
         paginationDelegate?.paginationEnded(indexPath: firstNewIndexPath)
     }
@@ -71,5 +67,14 @@ extension OKTableViewLiaison {
         self.sections.append(contentsOf: sections)
         reloadData()
         paginationDelegate?.paginationEnded(indexPath: firstNewIndexPath)
+    }
+    
+    private func addPaginationSection() {
+        let indexSet = IndexSet(integer: sections.count)
+        sections.append(paginationSection)
+        syncSections()
+        performTableViewUpdates(animated: true) {
+            tableView?.insertSections(indexSet, with: .none)
+        }
     }
 }

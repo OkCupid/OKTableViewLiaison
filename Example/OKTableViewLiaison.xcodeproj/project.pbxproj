@@ -30,7 +30,6 @@
 		FC6E84EB207EB29000BF0E58 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84E7207EB28F00BF0E58 /* TextTableViewCell.swift */; };
 		FC6E84EC207EB29000BF0E58 /* PostTableViewSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC6E84E8207EB29000BF0E58 /* PostTableViewSectionHeaderView.xib */; };
 		FC6E84EE207EB29800BF0E58 /* TextTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84ED207EB29800BF0E58 /* TextTableViewRow.swift */; };
-		FC6E84F1207EB2B600BF0E58 /* PostTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84F0207EB2B600BF0E58 /* PostTableViewSection.swift */; };
 		FCAF2A4F20BEF74000DAD378 /* PostTableViewSectionHeaderViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAF2A4E20BEF74000DAD378 /* PostTableViewSectionHeaderViewComponent.swift */; };
 		FCAF2A5120BEFD1000DAD378 /* TestTableViewSectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAF2A5020BEFD1000DAD378 /* TestTableViewSectionComponent.swift */; };
 		FCAF2A5320BF094500DAD378 /* OKTableViewSectionComponent+UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAF2A5220BF094500DAD378 /* OKTableViewSectionComponent+UnitTests.swift */; };
@@ -88,7 +87,6 @@
 		FC6E84E7207EB28F00BF0E58 /* TextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		FC6E84E8207EB29000BF0E58 /* PostTableViewSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewSectionHeaderView.xib; sourceTree = "<group>"; };
 		FC6E84ED207EB29800BF0E58 /* TextTableViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextTableViewRow.swift; sourceTree = "<group>"; };
-		FC6E84F0207EB2B600BF0E58 /* PostTableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewSection.swift; sourceTree = "<group>"; };
 		FCAF2A4E20BEF74000DAD378 /* PostTableViewSectionHeaderViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewSectionHeaderViewComponent.swift; sourceTree = "<group>"; };
 		FCAF2A5020BEFD1000DAD378 /* TestTableViewSectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewSectionComponent.swift; sourceTree = "<group>"; };
 		FCAF2A5220BF094500DAD378 /* OKTableViewSectionComponent+UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OKTableViewSectionComponent+UnitTests.swift"; sourceTree = "<group>"; };
@@ -275,7 +273,6 @@
 		FC6E84EF207EB29B00BF0E58 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				FC6E84F0207EB2B600BF0E58 /* PostTableViewSection.swift */,
 				FCAF2A4E20BEF74000DAD378 /* PostTableViewSectionHeaderViewComponent.swift */,
 			);
 			name = Sections;
@@ -484,7 +481,6 @@
 				FC6E84D7207EB21600BF0E58 /* TimeInterval+SecondConversion.swift in Sources */,
 				FC6E84E9207EB29000BF0E58 /* PostTableViewSectionHeaderView.swift in Sources */,
 				FC6E84EE207EB29800BF0E58 /* TextTableViewRow.swift in Sources */,
-				FC6E84F1207EB2B600BF0E58 /* PostTableViewSection.swift in Sources */,
 				FCAF2A4F20BEF74000DAD378 /* PostTableViewSectionHeaderViewComponent.swift in Sources */,
 				FC4A048920AB3B3700B692EC /* ImageTableViewRow.swift in Sources */,
 				FC6E84E4207EB28100BF0E58 /* ImageTableViewCell.swift in Sources */,

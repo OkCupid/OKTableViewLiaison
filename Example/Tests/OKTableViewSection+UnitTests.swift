@@ -137,7 +137,7 @@ final class OKTableViewSection_UnitTests: XCTestCase {
     }
     
     func test_appendRows_appendsNewRowsToSection() {
-        let section = OKTableViewSection()
+        var section = OKTableViewSection()
         let row1 = TestTableViewRow()
         let row2 = TestTableViewRow()
         
@@ -149,7 +149,7 @@ final class OKTableViewSection_UnitTests: XCTestCase {
     }
     
     func test_appendRow_appendsRowToSection() {
-        let section = OKTableViewSection()
+        var section = OKTableViewSection()
         let row = TestTableViewRow()
         
         section.append(row: row)

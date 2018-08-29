@@ -11,18 +11,18 @@ public extension OKTableViewLiaison {
     
     public func append(rows: [OKAnyTableViewRow], to section: Int = 0, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
-        if isShowingPaginationSpinner {
+        if waitingForPaginatedResults {
             endPagination(rows: rows)
             return
         }
         
-        guard let _section = sections.element(at: section),
+        guard sections.indices.contains(section),
             !rows.isEmpty else { return }
         
-        var lastRowIndex = _section.rows.count - 1
+        var lastRowIndex = sections[section].rows.count - 1
                 
-        _section.append(rows: rows)
-        
+        sections[section].append(rows: rows)
+
         let indexPaths = rows.map { row -> IndexPath in
             lastRowIndex += 1
             return IndexPath(row: lastRowIndex, section: section)
@@ -46,9 +46,9 @@ public extension OKTableViewLiaison {
     
     public func insert(row: OKAnyTableViewRow, at indexPath: IndexPath, with animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
-        guard let section = section(for: indexPath) else { return }
+        guard sections.indices.contains(indexPath.section) else { return }
         
-        section.insert(row: row, at: indexPath)
+        sections[indexPath.section].insert(row: row, at: indexPath)
         
         performTableViewUpdates(animated: animated) {
             tableView?.insertRows(at: [indexPath], with: animation)
@@ -68,11 +68,11 @@ public extension OKTableViewLiaison {
         var deletedRows = [OKAnyTableViewRow]()
         
         sortedIndexPaths.forEach { section, indexPaths in
-            if let section = sections.element(at: section) {
+            if sections.indices.contains(section) {
                 
                 indexPaths.forEach {
                     
-                    if let row = section.deleteRow(at: $0) {
+                    if let row = sections[section].deleteRow(at: $0) {
                         deletedRows.append(row)
                         
                         if let cell = tableView?.cellForRow(at: $0) {
@@ -94,7 +94,9 @@ public extension OKTableViewLiaison {
     @discardableResult
     public func deleteRow(at indexPath: IndexPath, with animation: UITableViewRowAnimation = .automatic, animated: Bool = true) -> OKAnyTableViewRow? {
         
-        let row = section(for: indexPath)?.deleteRow(at: indexPath)
+        guard sections.indices.contains(indexPath.section) else { return nil }
+        
+        let row = sections[indexPath.section].deleteRow(at: indexPath)
         
         if let cell = tableView?.cellForRow(at: indexPath) {
             row?.perform(command: .delete, for: cell, at: indexPath)
@@ -125,14 +127,14 @@ public extension OKTableViewLiaison {
     
     public func replaceRow(at indexPath: IndexPath, with row: OKAnyTableViewRow, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
-        guard let section = section(for: indexPath) else { return }
+        guard sections.indices.contains(indexPath.section) else { return }
         
-        let deletedRow = section.deleteRow(at: indexPath)
+        let deletedRow = sections[indexPath.section].deleteRow(at: indexPath)
         if let cell = tableView?.cellForRow(at: indexPath) {
             deletedRow?.perform(command: .delete, for: cell, at: indexPath)
         }
         
-        section.insert(row: row, at: indexPath)
+        sections[indexPath.section].insert(row: row, at: indexPath)
         
         performTableViewUpdates(animated: animated) {
             tableView?.deleteRows(at: [indexPath], with: animation)
@@ -146,16 +148,14 @@ public extension OKTableViewLiaison {
     
     public func moveRow(from source: IndexPath, to destination: IndexPath, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
-        guard let sourceSection = section(for: source),
-            let destinationSection = section(for: destination) else {
-                return
-        }
+        let indices = sections.indices
+        guard indices.contains(source.section) && indices.contains(destination.section) else { return }
         
-        guard let row = sourceSection.deleteRow(at: source) else {
+        guard let row = sections[source.section].deleteRow(at: source) else {
             return
         }
         
-        destinationSection.insert(row: row, at: destination)
+        sections[destination.section].insert(row: row, at: destination)
         
         performTableViewUpdates(animated: animated) {
             tableView?.moveRow(at: source, to: destination)
@@ -168,17 +168,19 @@ public extension OKTableViewLiaison {
     
     public func swapRow(at source: IndexPath, with destination: IndexPath, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
+        let indices = sections.indices
+        guard indices.contains(source.section) && indices.contains(destination.section) else { return }
+        
         if source.section == destination.section {
-            section(for: source)?.swapRows(at: source, to: destination)
+            sections[source.section].swapRows(at: source, to: destination)
         } else {
-            guard let sourceSection = section(for: source),
-                let destinationSection = section(for: destination) else { return }
+
             
-            guard let sourceRow = sourceSection.deleteRow(at: source),
-                let destinationRow = destinationSection.deleteRow(at: destination) else { return }
+            guard let sourceRow = sections[source.section].deleteRow(at: source),
+                let destinationRow = sections[destination.section].deleteRow(at: destination) else { return }
             
-            sourceSection.insert(row: destinationRow, at: source)
-            destinationSection.insert(row: sourceRow, at: destination)
+            sections[source.section].insert(row: destinationRow, at: source)
+            sections[destination.section].insert(row: sourceRow, at: destination)
         }
         
         performTableViewUpdates(animated: animated) {

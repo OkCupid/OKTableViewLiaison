@@ -40,5 +40,4 @@ public enum OKTableViewSectionComponentDisplayOption {
             return nil
         }
     }
-    
 }

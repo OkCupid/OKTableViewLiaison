@@ -11,7 +11,7 @@ public extension OKTableViewLiaison {
     
     public func append(sections: [OKTableViewSection], animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
-        if isShowingPaginationSpinner {
+        if waitingForPaginatedResults {
             endPagination(sections: sections)
             return
         }
@@ -22,7 +22,7 @@ public extension OKTableViewLiaison {
         let upperBound = lowerBound + sections.lastIndex
         let indexSet = IndexSet(integersIn: lowerBound...upperBound)
         self.sections.append(contentsOf: sections)
-        
+        syncSections()
         performTableViewUpdates(animated: animated) {
             tableView?.insertSections(indexSet, with: animation)
         }
@@ -43,6 +43,7 @@ public extension OKTableViewLiaison {
                 self.sections.insert(section, at: index)
         }
 
+        syncSections()
         let indexSet = IndexSet(integersIn: indexRange)
         performTableViewUpdates(animated: animated) {
             tableView?.insertSections(indexSet, with: animation)
@@ -52,7 +53,8 @@ public extension OKTableViewLiaison {
     public func insert(section: OKTableViewSection, at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
         sections.insert(section, at: index)
-        
+        syncSections()
+
         performTableViewUpdates(animated: animated) {
             tableView?.insertSections(IndexSet(integer: index), with: animation)
         }
@@ -60,10 +62,10 @@ public extension OKTableViewLiaison {
     
     public func emptySection(at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
-        guard let section = sections.element(at: index) else { return }
+        guard sections.indices.contains(index) else { return }
         
-        let indexPaths = section.rowIndexPaths(for: index)
-        section.removeAllRows()
+        let indexPaths = sections[index].rowIndexPaths(for: index)
+        sections[index].removeAllRows()
         
         performTableViewUpdates(animated: animated) {
             tableView?.deleteRows(at: indexPaths, with: animation)
@@ -72,6 +74,7 @@ public extension OKTableViewLiaison {
     }
     
     public func deleteSection(at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+        
         sections.remove(at: index)
         
         performTableViewUpdates(animated: animated) {
@@ -84,6 +87,7 @@ public extension OKTableViewLiaison {
         sections.remove(at: index)
         sections.insert(section, at: index)
         
+        syncSections()
         performTableViewUpdates(animated: animated) {
             tableView?.deleteSections(IndexSet(integer: index), with: animation)
             tableView?.insertSections(IndexSet(integer: index), with: animation)
@@ -101,6 +105,7 @@ public extension OKTableViewLiaison {
         let section = sections.remove(at: at)
         sections.insert(section, at: to)
         
+        syncSections()
         performTableViewUpdates(animated: animated) {
             tableView?.moveSection(at, toSection: to)
         }
