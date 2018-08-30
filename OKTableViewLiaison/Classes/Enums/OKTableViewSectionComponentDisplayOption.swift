@@ -15,12 +15,6 @@ public enum OKTableViewSectionComponentDisplayOption {
     case both(headerComponent: OKAnyTableViewSectionComponent,
         footerComponent: OKAnyTableViewSectionComponent)
     
-    func registerComponents(with registrar: OKTableViewRegistrar) {
-        [header, footer].forEach {
-            $0?.register(with: registrar)
-        }
-    }
-    
     public var header: OKAnyTableViewSectionComponent? {
         switch self {
         case .header(let header):
@@ -40,6 +34,12 @@ public enum OKTableViewSectionComponentDisplayOption {
             return footer
         default:
             return nil
+        }
+    }
+    
+    func registerComponents(with registrar: OKTableViewRegistrar) {
+        [header, footer].forEach {
+            $0?.register(with: registrar)
         }
     }
 }

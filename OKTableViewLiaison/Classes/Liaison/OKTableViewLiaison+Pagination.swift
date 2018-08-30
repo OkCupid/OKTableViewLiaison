@@ -9,7 +9,7 @@ import UIKit
 
 extension OKTableViewLiaison {
     
-    var lastIndexPath: IndexPath? {
+    private var lastIndexPath: IndexPath? {
         guard let lastSection = sections.last,
             !lastSection.rows.isEmpty else {
                 return nil

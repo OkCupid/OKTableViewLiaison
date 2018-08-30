@@ -25,5 +25,5 @@ extension Array {
 
         return count - 1
     }
-
+    
 }

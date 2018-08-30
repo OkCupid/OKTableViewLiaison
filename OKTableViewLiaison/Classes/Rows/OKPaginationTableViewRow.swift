@@ -20,7 +20,5 @@ final class OKPaginationTableViewRow: OKTableViewRow<OKPaginationTableViewCell, 
         set(command: .willDisplay) { cell, _, _ in
             cell.spinner.startAnimating()
         }
-        
     }
-    
 }
