@@ -395,27 +395,58 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
     }
 
     func test_reloadRows_reloadsRowsInSection() {
-        let row = TestTableViewRow()
+        let row1 = TestTableViewRow()
+        let row2 = TestTableViewRow()
 
-        var reloaded = false
-        row.set(command: .reload) { (_, _, _) in
-            reloaded = true
+        var reloaded1 = false
+        var reloaded2 = false
+
+        row1.set(command: .reload) { (_, _, _) in
+            reloaded1 = true
+        }
+        
+        row2.set(command: .reload) { (_, _, _) in
+            reloaded2 = true
         }
 
-        let section = OKTableViewSection(rows: [row])
+        let section = OKTableViewSection(rows: [row1, row2])
 
         liaison.append(section: section)
 
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
-            liaison.reloadRows(at: [IndexPath(row: 0, section: 0)])
+            liaison.reloadRows(at: [IndexPath(row: 0, section: 0), IndexPath(row: 1, section: 0)])
         }
 
         let count = tableView.callCounts[.reloadRows]
 
         XCTAssertEqual(count, 1)
+        XCTAssertEqual(reloaded1, true)
+        XCTAssertEqual(reloaded2, true)
+    }
+    
+    func test_reloadRow_reloadsRowInSection() {
+        let row = TestTableViewRow()
+        
+        var reloaded = false
+        row.set(command: .reload) { (_, _, _) in
+            reloaded = true
+        }
+        
+        let section = OKTableViewSection(rows: [row])
+        
+        liaison.append(section: section)
+        
+        tableView.stubCell = UITableViewCell()
+        tableView.performInSwizzledEnvironment {
+            liaison.reloadRow(at: IndexPath(row: 0, section: 0))
+        }
+        
+        let count = tableView.callCounts[.reloadRows]
+        
+        XCTAssertEqual(count, 1)
         XCTAssertEqual(reloaded, true)
-
+        
     }
 
     func test_replaceRow_replaceRowInSection() {
