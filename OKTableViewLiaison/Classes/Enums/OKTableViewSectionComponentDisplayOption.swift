@@ -21,7 +21,7 @@ public enum OKTableViewSectionComponentDisplayOption {
         }
     }
     
-    var header: OKAnyTableViewSectionComponent? {
+    public var header: OKAnyTableViewSectionComponent? {
         switch self {
         case .header(let header):
             return header
@@ -32,7 +32,7 @@ public enum OKTableViewSectionComponentDisplayOption {
         }
     }
     
-    var footer: OKAnyTableViewSectionComponent? {
+    public var footer: OKAnyTableViewSectionComponent? {
         switch self {
         case .footer(let footer):
             return footer

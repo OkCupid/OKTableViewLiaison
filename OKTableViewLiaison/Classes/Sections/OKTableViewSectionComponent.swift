@@ -22,7 +22,7 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
     
     public func view(for tableView: UITableView, in section: Int) -> UITableViewHeaderFooterView? {
         
-        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) as? View else { return nil }
+        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: registrationType.identifier) as? View else { return nil }
         
         commands[.configuration]?(view, model, section)
         

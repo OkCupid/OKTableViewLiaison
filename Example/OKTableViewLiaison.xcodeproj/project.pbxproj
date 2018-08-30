@@ -30,6 +30,7 @@
 		FC6E84EB207EB29000BF0E58 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84E7207EB28F00BF0E58 /* TextTableViewCell.swift */; };
 		FC6E84EC207EB29000BF0E58 /* PostTableViewSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC6E84E8207EB29000BF0E58 /* PostTableViewSectionHeaderView.xib */; };
 		FC6E84EE207EB29800BF0E58 /* TextTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6E84ED207EB29800BF0E58 /* TextTableViewRow.swift */; };
+		FC72AA1D2137819D0012C875 /* OKTableViewRegistrar+UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC72AA1C2137819D0012C875 /* OKTableViewRegistrar+UnitTests.swift */; };
 		FCAF2A4F20BEF74000DAD378 /* PostTableViewSectionHeaderViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAF2A4E20BEF74000DAD378 /* PostTableViewSectionHeaderViewComponent.swift */; };
 		FCAF2A5120BEFD1000DAD378 /* TestTableViewSectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAF2A5020BEFD1000DAD378 /* TestTableViewSectionComponent.swift */; };
 		FCAF2A5320BF094500DAD378 /* OKTableViewSectionComponent+UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAF2A5220BF094500DAD378 /* OKTableViewSectionComponent+UnitTests.swift */; };
@@ -87,6 +88,7 @@
 		FC6E84E7207EB28F00BF0E58 /* TextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		FC6E84E8207EB29000BF0E58 /* PostTableViewSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewSectionHeaderView.xib; sourceTree = "<group>"; };
 		FC6E84ED207EB29800BF0E58 /* TextTableViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextTableViewRow.swift; sourceTree = "<group>"; };
+		FC72AA1C2137819D0012C875 /* OKTableViewRegistrar+UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OKTableViewRegistrar+UnitTests.swift"; sourceTree = "<group>"; };
 		FCAF2A4E20BEF74000DAD378 /* PostTableViewSectionHeaderViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewSectionHeaderViewComponent.swift; sourceTree = "<group>"; };
 		FCAF2A5020BEFD1000DAD378 /* TestTableViewSectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewSectionComponent.swift; sourceTree = "<group>"; };
 		FCAF2A5220BF094500DAD378 /* OKTableViewSectionComponent+UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OKTableViewSectionComponent+UnitTests.swift"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				FCF38FE9207EAF5400E119FB /* OKTableViewRow+UnitTests.swift */,
 				FCF38FE8207EAF5400E119FB /* OKTableViewSection+UnitTests.swift */,
 				FCAF2A5220BF094500DAD378 /* OKTableViewSectionComponent+UnitTests.swift */,
+				FC72AA1C2137819D0012C875 /* OKTableViewRegistrar+UnitTests.swift */,
 				FCF38FDD207EAE9900E119FB /* Fixtures */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -505,6 +508,7 @@
 				FCF38FE5207EAEB300E119FB /* TestTableViewCell.swift in Sources */,
 				FCF38FE4207EAEB300E119FB /* TestTableViewLiaisonPaginationDelegate.swift in Sources */,
 				FCF38FEB207EAF5500E119FB /* OKTableViewSection+UnitTests.swift in Sources */,
+				FC72AA1D2137819D0012C875 /* OKTableViewRegistrar+UnitTests.swift in Sources */,
 				FCF38FE7207EAEB300E119FB /* UITableView+SwizzleTesting.swift in Sources */,
 				FCF38FED207EAF5500E119FB /* OKTableViewLiaison+UnitTests.swift in Sources */,
 				FCF38FEC207EAF5500E119FB /* OKTableViewRow+UnitTests.swift in Sources */,

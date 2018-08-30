@@ -12,9 +12,7 @@ final public class OKTableViewLiaison: NSObject {
     
     weak var tableView: UITableView? {
         didSet {
-            registrar.tableView = tableView
-            registrar.register(section: paginationSection)
-            registrar.register(sections: sections)
+           configureRegistrar()
         }
     }
     
@@ -92,5 +90,11 @@ final public class OKTableViewLiaison: NSObject {
         } else {
             reloadData()
         }
+    }
+    
+    private func configureRegistrar() {
+        registrar.tableView = tableView
+        registrar.register(section: paginationSection)
+        registrar.register(sections: sections)
     }
 }
