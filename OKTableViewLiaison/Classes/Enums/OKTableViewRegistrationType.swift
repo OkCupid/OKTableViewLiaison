@@ -21,14 +21,22 @@ public enum OKTableViewRegistrationType<T> {
                     identifier: String(describing: T.self))
     }
     
-    var className: String {
-        return String(describing: T.self)
-    }
-    
     var identifier: String {
         switch self {
         case .class(let identifier), .nib(_, let identifier):
             return identifier
         }
+    }
+}
+
+extension OKTableViewRegistrationType where T: UITableViewCell {
+    var registration: OKTableViewRegistrar.Registration {
+        return .cell(className: String(describing: T.self), identifier: identifier)
+    }
+}
+
+extension OKTableViewRegistrationType where T: UITableViewHeaderFooterView {
+    var registration: OKTableViewRegistrar.Registration {
+        return .view(className: String(describing: T.self), identifier: identifier)
     }
 }

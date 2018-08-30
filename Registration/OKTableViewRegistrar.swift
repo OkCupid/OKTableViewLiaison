@@ -17,10 +17,7 @@ public final class OKTableViewRegistrar {
 
     func registerIfNeeded<T>(registrationType: OKTableViewRegistrationType<T>) where T: UITableViewCell {
         
-        let registration: Registration = .cell(className: registrationType.className,
-                                               identifier: registrationType.identifier)
-        
-        guard shouldUpdateRegistrations(registration) else { return }
+        guard shouldUpdateRegistrations(registrationType.registration) else { return }
         
         switch registrationType {
         case let .class(identifier):
@@ -32,10 +29,7 @@ public final class OKTableViewRegistrar {
     
     func registerIfNeeded<T>(registrationType: OKTableViewRegistrationType<T>) where T: UITableViewHeaderFooterView {
         
-        let registration: Registration = .view(className: registrationType.className,
-                                               identifier: registrationType.identifier)
-        
-        guard shouldUpdateRegistrations(registration) else { return }
+        guard shouldUpdateRegistrations(registrationType.registration) else { return }
         
         switch registrationType {
         case let .class(identifier):
