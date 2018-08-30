@@ -40,9 +40,9 @@
 		F6448E46B801A2CE3047497C99FCFAFE /* OKTableViewLiaison-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6426368AA68672B5AF364931C3AC9CD0 /* OKTableViewLiaison-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6E44F69CDEA987984C000254C37C772 /* OKTableViewLiaison+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A691913FF7D14D0212D92EAB32BE10 /* OKTableViewLiaison+Section.swift */; };
 		FC1352AE2135988E00333D69 /* OKTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1352AD2135988E00333D69 /* OKTableViewSection.swift */; };
-		FC72AA15213732F40012C875 /* OKTableViewRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC72AA14213732F40012C875 /* OKTableViewRegistrar.swift */; };
+		FC1BC3ED21389C26004F6144 /* OKTableViewRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1BC3EB21389C26004F6144 /* OKTableViewRegistrar.swift */; };
+		FC1BC3EE21389C26004F6144 /* OKTableViewRegistrar+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1BC3EC21389C26004F6144 /* OKTableViewRegistrar+Registration.swift */; };
 		FC72AA17213743560012C875 /* OKTableViewRegistrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC72AA16213743560012C875 /* OKTableViewRegistrable.swift */; };
-		FC72AA2421384F730012C875 /* OKTableViewRegistrar+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC72AA2321384F730012C875 /* OKTableViewRegistrar+Registration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,9 +119,9 @@
 		F8DFC84727F0EC49B641A8153A0210F9 /* OKTableViewLiaison+UITableViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		F9213C72D0E30081D1918FF2F1A362FF /* OKTableViewLiaison+Row.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+Row.swift"; sourceTree = "<group>"; };
 		FC1352AD2135988E00333D69 /* OKTableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKTableViewSection.swift; sourceTree = "<group>"; };
-		FC72AA14213732F40012C875 /* OKTableViewRegistrar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrar.swift; sourceTree = "<group>"; };
+		FC1BC3EB21389C26004F6144 /* OKTableViewRegistrar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OKTableViewRegistrar.swift; path = ../OKTableViewLiaison/Classes/Registration/OKTableViewRegistrar.swift; sourceTree = "<group>"; };
+		FC1BC3EC21389C26004F6144 /* OKTableViewRegistrar+Registration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "OKTableViewRegistrar+Registration.swift"; path = "../OKTableViewLiaison/Classes/Registration/OKTableViewRegistrar+Registration.swift"; sourceTree = "<group>"; };
 		FC72AA16213743560012C875 /* OKTableViewRegistrable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrable.swift; sourceTree = "<group>"; };
-		FC72AA2321384F730012C875 /* OKTableViewRegistrar+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OKTableViewRegistrar+Registration.swift"; sourceTree = "<group>"; };
 		FE1BE17D09355A39E53BB24F87072C7A /* OKTableViewLiaison.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = OKTableViewLiaison.modulemap; sourceTree = "<group>"; };
 		FF7DE0837CB8ED8E07DA73C08E2FD087 /* OKTableViewRegistrationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrationType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -370,8 +370,8 @@
 		FC72AA2221384F1E0012C875 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				FC72AA14213732F40012C875 /* OKTableViewRegistrar.swift */,
-				FC72AA2321384F730012C875 /* OKTableViewRegistrar+Registration.swift */,
+				FC1BC3EB21389C26004F6144 /* OKTableViewRegistrar.swift */,
+				FC1BC3EC21389C26004F6144 /* OKTableViewRegistrar+Registration.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -511,7 +511,6 @@
 				FC1352AE2135988E00333D69 /* OKTableViewSection.swift in Sources */,
 				01B54344300D7209F67A346D72064BD6 /* Array+IndexPath.swift in Sources */,
 				BE81A2671D1B8FCE23D97FD9CD7B86BE /* Array+SafeAccess.swift in Sources */,
-				FC72AA2421384F730012C875 /* OKTableViewRegistrar+Registration.swift in Sources */,
 				5867716CE10B28692659EA3A640BFF56 /* OKAnyTableViewRow.swift in Sources */,
 				A7E9DE850A028EAA29C0318077711DBD /* OKAnyTableViewSectionComponent.swift in Sources */,
 				72216124DA7B84721DC09883D71E9FE8 /* OKPaginationTableViewCell.swift in Sources */,
@@ -523,12 +522,13 @@
 				486D2ABC38A9F7439590D92C7F5C8F4C /* OKTableViewLiaison+UITableViewDataSource.swift in Sources */,
 				FC72AA17213743560012C875 /* OKTableViewRegistrable.swift in Sources */,
 				C92D28FA9C922F1859ECEEB0C933C8F5 /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift in Sources */,
+				FC1BC3ED21389C26004F6144 /* OKTableViewRegistrar.swift in Sources */,
 				A6F92D029A51784FFEA6202BC67D59BC /* OKTableViewLiaison+UITableViewDelegate.swift in Sources */,
-				FC72AA15213732F40012C875 /* OKTableViewRegistrar.swift in Sources */,
 				90C0BF26F3D417BFCF0A1F11B37B98B6 /* OKTableViewLiaison-dummy.m in Sources */,
 				AA60C1B10768E526B0363F9425B67053 /* OKTableViewLiaison.swift in Sources */,
 				17EAAFFC9F2B142134A3D4B5F97C1A12 /* OKTableViewLiaisonPaginationDelegate.swift in Sources */,
 				456A6EDD76A7CC38F40E8D204F46DF7E /* OKTableViewPrefetchCommand.swift in Sources */,
+				FC1BC3EE21389C26004F6144 /* OKTableViewRegistrar+Registration.swift in Sources */,
 				6D41673076525ACB78F8B460D9CC15F2 /* OKTableViewRegistrationType.swift in Sources */,
 				79986A0365644909FE904C218033779B /* OKTableViewRow.swift in Sources */,
 				1B00905F83B948E1B26FE9047DAF6D26 /* OKTableViewRowCommand.swift in Sources */,
