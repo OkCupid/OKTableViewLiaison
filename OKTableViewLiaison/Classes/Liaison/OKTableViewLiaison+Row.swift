@@ -22,7 +22,8 @@ public extension OKTableViewLiaison {
         var lastRowIndex = sections[section].rows.count - 1
                 
         sections[section].append(rows: rows)
-
+        registrar.register(rows: rows)
+        
         let indexPaths = rows.map { row -> IndexPath in
             lastRowIndex += 1
             return IndexPath(row: lastRowIndex, section: section)
@@ -49,6 +50,7 @@ public extension OKTableViewLiaison {
         guard sections.indices.contains(indexPath.section) else { return }
         
         sections[indexPath.section].insert(row: row, at: indexPath)
+        registrar.register(row: row)
         
         performTableViewUpdates(animated: animated) {
             tableView?.insertRows(at: [indexPath], with: animation)
@@ -135,6 +137,7 @@ public extension OKTableViewLiaison {
         }
         
         sections[indexPath.section].insert(row: row, at: indexPath)
+        registrar.register(row: row)
         
         performTableViewUpdates(animated: animated) {
             tableView?.deleteRows(at: [indexPath], with: animation)

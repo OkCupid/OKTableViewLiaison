@@ -41,6 +41,8 @@
 		F6448E46B801A2CE3047497C99FCFAFE /* OKTableViewLiaison-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6426368AA68672B5AF364931C3AC9CD0 /* OKTableViewLiaison-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6E44F69CDEA987984C000254C37C772 /* OKTableViewLiaison+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A691913FF7D14D0212D92EAB32BE10 /* OKTableViewLiaison+Section.swift */; };
 		FC1352AE2135988E00333D69 /* OKTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1352AD2135988E00333D69 /* OKTableViewSection.swift */; };
+		FC72AA15213732F40012C875 /* OKTableViewRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC72AA14213732F40012C875 /* OKTableViewRegistrar.swift */; };
+		FC72AA17213743560012C875 /* OKTableViewRegistrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC72AA16213743560012C875 /* OKTableViewRegistrable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,8 @@
 		F8DFC84727F0EC49B641A8153A0210F9 /* OKTableViewLiaison+UITableViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		F9213C72D0E30081D1918FF2F1A362FF /* OKTableViewLiaison+Row.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+Row.swift"; sourceTree = "<group>"; };
 		FC1352AD2135988E00333D69 /* OKTableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKTableViewSection.swift; sourceTree = "<group>"; };
+		FC72AA14213732F40012C875 /* OKTableViewRegistrar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrar.swift; sourceTree = "<group>"; };
+		FC72AA16213743560012C875 /* OKTableViewRegistrable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrable.swift; sourceTree = "<group>"; };
 		FE1BE17D09355A39E53BB24F87072C7A /* OKTableViewLiaison.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = OKTableViewLiaison.modulemap; sourceTree = "<group>"; };
 		FF7DE0837CB8ED8E07DA73C08E2FD087 /* OKTableViewRegistrationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrationType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -320,6 +324,7 @@
 				E8D005AF17B59B138EBACDC6A496D9F9 /* OKTableViewLiaison+UITableViewDataSource.swift */,
 				D9440DB5089AF1C2D17A5723BB15C9CC /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift */,
 				F8DFC84727F0EC49B641A8153A0210F9 /* OKTableViewLiaison+UITableViewDelegate.swift */,
+				FC72AA14213732F40012C875 /* OKTableViewRegistrar.swift */,
 			);
 			name = Liaison;
 			path = OKTableViewLiaison/Classes/Liaison;
@@ -331,6 +336,7 @@
 				21C29E2CB2E396FC4972CF5FA36A17E1 /* OKAnyTableViewRow.swift */,
 				0F66785443E1C3F11B91C88AC269D6CC /* OKAnyTableViewSectionComponent.swift */,
 				013D6D701942D44FA434B4AE746BE9D9 /* OKTableViewLiaisonPaginationDelegate.swift */,
+				FC72AA16213743560012C875 /* OKTableViewRegistrable.swift */,
 			);
 			name = Protocols;
 			path = OKTableViewLiaison/Classes/Protocols;
@@ -506,8 +512,10 @@
 				6A30FB635EEFF4A6F2B07E80CAFF5717 /* OKTableViewLiaison+Row.swift in Sources */,
 				F6E44F69CDEA987984C000254C37C772 /* OKTableViewLiaison+Section.swift in Sources */,
 				486D2ABC38A9F7439590D92C7F5C8F4C /* OKTableViewLiaison+UITableViewDataSource.swift in Sources */,
+				FC72AA17213743560012C875 /* OKTableViewRegistrable.swift in Sources */,
 				C92D28FA9C922F1859ECEEB0C933C8F5 /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift in Sources */,
 				A6F92D029A51784FFEA6202BC67D59BC /* OKTableViewLiaison+UITableViewDelegate.swift in Sources */,
+				FC72AA15213732F40012C875 /* OKTableViewRegistrar.swift in Sources */,
 				90C0BF26F3D417BFCF0A1F11B37B98B6 /* OKTableViewLiaison-dummy.m in Sources */,
 				AA60C1B10768E526B0363F9425B67053 /* OKTableViewLiaison.swift in Sources */,
 				17EAAFFC9F2B142134A3D4B5F97C1A12 /* OKTableViewLiaisonPaginationDelegate.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class OKPaginationTableViewCell: UITableViewCell {
+final class OKPaginationTableViewCell: UITableViewCell {
     
     private let verticalSpacingConstant: CGFloat = 5
     let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)

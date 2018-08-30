@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol OKAnyTableViewRow: class {
+public protocol OKAnyTableViewRow: class, OKTableViewRegistrable {
     var height: CGFloat { get }
     var estimatedHeight: CGFloat { get }
     var editable: Bool { get }
@@ -17,7 +17,7 @@ public protocol OKAnyTableViewRow: class {
     var indentWhileEditing: Bool { get }
     var deleteConfirmationTitle: String? { get }
     var deleteRowAnimation: UITableViewRowAnimation { get }
-    func registerCellType(with tableView: UITableView)
+    var reuseIdentifier: String { get }
     func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
     func perform(command: OKTableViewRowCommand, for cell: UITableViewCell, at indexPath: IndexPath)
     func perform(prefetchCommand: OKTableViewPrefetchCommand, for indexPath: IndexPath)

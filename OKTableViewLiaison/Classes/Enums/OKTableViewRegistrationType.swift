@@ -21,7 +21,11 @@ public enum OKTableViewRegistrationType<T: UIView> {
                     identifier: String(describing: T.self))
     }
     
-    public var identifier: String {
+    var typeName: String {
+        return String(describing: T.self)
+    }
+    
+    var identifier: String {
         switch self {
         case .class(let identifier), .nib(_, let identifier):
             return identifier

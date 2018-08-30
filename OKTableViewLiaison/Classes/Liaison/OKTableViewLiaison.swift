@@ -11,21 +11,28 @@ import UIKit
 final public class OKTableViewLiaison: NSObject {
     
     weak var tableView: UITableView? {
-        didSet { syncSections() }
+        didSet {
+            registrar.tableView = tableView
+            registrar.register(section: paginationSection)
+            registrar.register(sections: sections)
+        }
     }
     
     public internal(set) var sections = [OKTableViewSection]()
     
-    let paginationSection: OKTableViewSection
-    var waitingForPaginatedResults = false
     public weak var paginationDelegate: OKTableViewLiaisonPaginationDelegate?
+    
+    let paginationSection: OKTableViewSection
+    
+    var waitingForPaginatedResults = false
+    
+    let registrar = OKTableViewRegistrar()
 
     public init(sections: [OKTableViewSection] = [],
-                paginationRow: OKAnyTableViewRow = OKPaginationTableViewRow()) {
+                paginationRow: OKAnyTableViewRow? = nil) {
         self.sections = sections
-        self.paginationSection = OKTableViewSection(rows: [paginationRow])
+        self.paginationSection = OKTableViewSection(rows: [paginationRow ?? OKPaginationTableViewRow()])
         super.init()
-        syncSections()
     }
     
     public func liaise(tableView: UITableView) {
@@ -84,15 +91,6 @@ final public class OKTableViewLiaison: NSObject {
             tableView?.endUpdates()
         } else {
             reloadData()
-        }
-    }
-    
-    func syncSections() {
-        
-        guard !sections.isEmpty else { return }
-        
-        for section in 0 ..< sections.endIndex {
-            sections[section].sync(tableView: tableView)
         }
     }
 }

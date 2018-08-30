@@ -72,7 +72,6 @@ extension OKTableViewLiaison {
     private func addPaginationSection() {
         let indexSet = IndexSet(integer: sections.count)
         sections.append(paginationSection)
-        syncSections()
         performTableViewUpdates(animated: true) {
             tableView?.insertSections(indexSet, with: .none)
         }

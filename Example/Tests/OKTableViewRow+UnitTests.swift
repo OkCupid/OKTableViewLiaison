@@ -11,17 +11,17 @@ import XCTest
 
 final class OKTableViewRow_UnitTests: XCTestCase {
 
-    func test_registerCellTypeWithTableView_registersCellForRow() {
-        let tableView = UITableView()
-        
-        let row = TestTableViewRow()
-        
-        row.registerCellType(with: tableView)
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier)
-        
-        XCTAssert(cell != nil)
-    }
+//    func test_registerCellTypeWithTableView_registersCellForRow() {
+//        let tableView = UITableView()
+//        
+//        let row = TestTableViewRow()
+//        
+//        row.registerCellType(with: tableView)
+//        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier)
+//        
+//        XCTAssert(cell != nil)
+//    }
     
     func test_setCommand_setsCommandClosure() {
         let row = TestTableViewRow()
@@ -158,7 +158,6 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     }
     
     func test_cellForTableViewAt_returnsConfiguredCellForRow() {
-        
         let row = TestTableViewRow()
         let string = "Test"
         row.set(command: .configuration) { (cell, _, indexPath) in
@@ -166,7 +165,10 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         }
         
         let tableView = UITableView()
-        row.registerCellType(with: tableView)
+        let registrar = OKTableViewRegistrar()
+        
+        registrar.tableView = tableView
+        registrar.register(row: row)
         
         let cell = row.cell(for: tableView, at: IndexPath())
         

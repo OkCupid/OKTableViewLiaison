@@ -7,7 +7,7 @@
 
 import UIKit
 
-final public class OKPaginationTableViewRow: OKTableViewRow<OKPaginationTableViewCell, Void> {
+final class OKPaginationTableViewRow: OKTableViewRow<OKPaginationTableViewCell, Void> {
     
     public init() {
         super.init(())
