@@ -17,7 +17,7 @@ extension OKTableViewRegistrar {
             self.identifier = identifier
         }
         
-        init<T: UIView>(registrationType: OKTableViewRegistrationType<T>) {
+        init<T>(registrationType: OKTableViewRegistrationType<T>) {
             className = registrationType.className
             identifier = registrationType.identifier
         }

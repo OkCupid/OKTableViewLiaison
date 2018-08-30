@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum OKTableViewRegistrationType<T: UIView> {
+public enum OKTableViewRegistrationType<T> {
     case nib(nib: UINib, identifier: String)
     case `class`(identifier: String)
     
