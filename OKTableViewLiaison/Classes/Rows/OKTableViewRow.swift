@@ -53,8 +53,13 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     }
     
     // MARK: - OKTableViewRegistrable    
-    public func register(with registrar: OKTableViewRegistrar) {
-        registrar.registerIfNeeded(registrationType: registrationType)
+    public func register(with tableView: UITableView) {
+        switch registrationType {
+        case let .class(identifier):
+            tableView.register(Cell.self, forCellReuseIdentifier: identifier)
+        case let .nib(nib, identifier):
+            tableView.register(nib, forCellReuseIdentifier: identifier)
+        }
     }
     
     // MARK: - Commands

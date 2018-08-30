@@ -11,7 +11,7 @@ import UIKit
 final public class OKTableViewLiaison: NSObject {
     
     weak var tableView: UITableView? {
-        didSet { configureRegistrar() }
+        didSet { registerSections() }
     }
     
     public internal(set) var sections = [OKTableViewSection]()
@@ -22,8 +22,6 @@ final public class OKTableViewLiaison: NSObject {
     
     var waitingForPaginatedResults = false
     
-    let registrar = OKTableViewRegistrar()
-
     public init(sections: [OKTableViewSection] = [],
                 paginationRow: OKAnyTableViewRow? = nil) {
         self.sections = sections
@@ -90,9 +88,8 @@ final public class OKTableViewLiaison: NSObject {
         }
     }
     
-    private func configureRegistrar() {
-        registrar.tableView = tableView
-        registrar.register(section: paginationSection)
-        registrar.register(sections: sections)
+    private func registerSections() {
+        register(section: paginationSection)
+        register(sections: sections)
     }
 }

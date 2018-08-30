@@ -28,15 +28,3 @@ public enum OKTableViewRegistrationType<T> {
         }
     }
 }
-
-extension OKTableViewRegistrationType where T: UITableViewCell {
-    var registration: OKTableViewRegistrar.Registration {
-        return .cell(className: String(describing: T.self), identifier: identifier)
-    }
-}
-
-extension OKTableViewRegistrationType where T: UITableViewHeaderFooterView {
-    var registration: OKTableViewRegistrar.Registration {
-        return .view(className: String(describing: T.self), identifier: identifier)
-    }
-}

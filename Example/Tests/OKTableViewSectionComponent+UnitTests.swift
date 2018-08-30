@@ -88,23 +88,23 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         XCTAssertEqual(component.estimatedHeight, 100)
     }
 
-    func test_viewForTableViewInSection_returnsConfiguredViewForComponent() {
-        
-        let component = TestTableViewSectionComponent()
-        let string = "Test"
-        component.set(command: .configuration) { view, _, _ in
-            view.accessibilityIdentifier = string
-        }
-        
-        let tableView = UITableView()
-        let registrar = OKTableViewRegistrar()
-        registrar.tableView = tableView
-        component.register(with: registrar)
-        
-        let view = component.view(for: tableView, in: 0)
-        
-        XCTAssertEqual(view?.accessibilityIdentifier, string)
-    }
+//    func test_viewForTableViewInSection_returnsConfiguredViewForComponent() {
+//        
+//        let component = TestTableViewSectionComponent()
+//        let string = "Test"
+//        component.set(command: .configuration) { view, _, _ in
+//            view.accessibilityIdentifier = string
+//        }
+//        
+//        let tableView = UITableView()
+//        let registrar = OKTableViewRegistrar()
+//        registrar.tableView = tableView
+//        component.register(with: registrar)
+//        
+//        let view = component.view(for: tableView, in: 0)
+//        
+//        XCTAssertEqual(view?.accessibilityIdentifier, string)
+//    }
     
     func test_perform_ignoresCommandPerformanceForIncorrectViewType() {
         let component = TestTableViewSectionComponent()
