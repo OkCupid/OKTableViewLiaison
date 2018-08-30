@@ -342,6 +342,14 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             deletedRow1 = true
             actualIndexPathRow1 = indexPath
         }
+        
+        let row2IndexPath = IndexPath(row: 1, section: 0)
+        var deletedRow2 = false
+        var actualIndexPathRow2: IndexPath?
+        row2.set(command: .delete) { (_, _, indexPath) in
+            deletedRow2 = true
+            actualIndexPathRow2 = indexPath
+        }
 
         let row3IndexPath = IndexPath(row: 0, section: 1)
         var deletedRow3 = false
@@ -357,14 +365,16 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         tableView.stubCell = UITableViewCell()
         tableView.performInSwizzledEnvironment {
-            liaison.deleteRows(at: [row1IndexPath, row3IndexPath])
+            liaison.deleteRows(at: [row1IndexPath, row2IndexPath, row3IndexPath])
         }
 
-        XCTAssertEqual(tableView.numberOfRows(inSection: 0), 1)
+        XCTAssertEqual(tableView.numberOfRows(inSection: 0), 0)
         XCTAssertEqual(tableView.numberOfRows(inSection: 1), 0)
         XCTAssertEqual(deletedRow1, true)
+        XCTAssertEqual(deletedRow2, true)
         XCTAssertEqual(deletedRow3, true)
         XCTAssertEqual(actualIndexPathRow1, row1IndexPath)
+        XCTAssertEqual(actualIndexPathRow2, row2IndexPath)
         XCTAssertEqual(actualIndexPathRow3, row3IndexPath)
     }
 

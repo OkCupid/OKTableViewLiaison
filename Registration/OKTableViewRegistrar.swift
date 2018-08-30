@@ -40,6 +40,8 @@ public final class OKTableViewRegistrar {
     }
     
     private func shouldUpdateRegistrations(_ registration: Registration) -> Bool {
+        if tableView == nil { return false }
+        
         if registrations.contains(registration) { return false }
         
         if let existingRegistration = registrations.first(where: { registration.hasSameIdentifier($0) }) {
@@ -52,8 +54,6 @@ public final class OKTableViewRegistrar {
     }
     
     func register(section: OKTableViewSection) {
-        guard tableView != nil else { return }
-        
         section.componentDisplayOption.header?.register(with: self)
         section.componentDisplayOption.footer?.register(with: self)
 
@@ -63,20 +63,14 @@ public final class OKTableViewRegistrar {
     }
     
     func register(sections: [OKTableViewSection]) {
-        guard tableView != nil else { return }
-
         sections.forEach(register(section:))
     }
     
     func register(row: OKAnyTableViewRow) {
-        guard tableView != nil else { return }
-
         row.register(with: self)
     }
     
     func register(rows: [OKAnyTableViewRow]) {
-        guard tableView != nil else { return }
-
         rows.forEach(register(row:))
     }
 }
