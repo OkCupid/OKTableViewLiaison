@@ -9,7 +9,7 @@ import UIKit
 
 public final class OKTableViewRegistrar {
     
-    var registrations = Set<Registration>()
+    private(set) var registrations = Set<Registration>()
     
     weak var tableView: UITableView? {
         didSet { registrations.removeAll() }
