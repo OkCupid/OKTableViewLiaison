@@ -15,6 +15,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		FC08AEB8209ACA4A00056CE8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC08AEB7209ACA4A00056CE8 /* User.swift */; };
+		FC1BC3E421387BD1004F6144 /* TestTableHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1BC3E221387B74004F6144 /* TestTableHeaderFooterView.swift */; };
 		FC4A048920AB3B3700B692EC /* ImageTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4A048820AB3B3700B692EC /* ImageTableViewRow.swift */; };
 		FC4A048B20AB3CBC00B692EC /* ActionButtonsTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4A048A20AB3CBC00B692EC /* ActionButtonsTableViewRow.swift */; };
 		FC4A049020AF2F2A00B692EC /* PostTableViewSectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4A048F20AF2F2A00B692EC /* PostTableViewSectionFactory.swift */; };
@@ -73,6 +74,7 @@
 		EE6677B6AFC2832B5DBAC071 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F6351EA9623B9FC2F8F18E5E /* Pods-OKTableViewLiaison_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OKTableViewLiaison_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-OKTableViewLiaison_Example/Pods-OKTableViewLiaison_Example.release.xcconfig"; sourceTree = "<group>"; };
 		FC08AEB7209ACA4A00056CE8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FC1BC3E221387B74004F6144 /* TestTableHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableHeaderFooterView.swift; sourceTree = "<group>"; };
 		FC4A048820AB3B3700B692EC /* ImageTableViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewRow.swift; sourceTree = "<group>"; };
 		FC4A048A20AB3CBC00B692EC /* ActionButtonsTableViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonsTableViewRow.swift; sourceTree = "<group>"; };
 		FC4A048F20AF2F2A00B692EC /* PostTableViewSectionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewSectionFactory.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				FCF38FE0207EAEB300E119FB /* TestTableViewCell.swift */,
+				FC1BC3E221387B74004F6144 /* TestTableHeaderFooterView.swift */,
 				FCF38FDF207EAEB300E119FB /* TestTableViewLiaisonPaginationDelegate.swift */,
 				FCF38FDE207EAEB300E119FB /* TestTableViewRow.swift */,
 				FCAF2A5020BEFD1000DAD378 /* TestTableViewSectionComponent.swift */,
@@ -505,6 +508,7 @@
 			files = (
 				FCAF2A5120BEFD1000DAD378 /* TestTableViewSectionComponent.swift in Sources */,
 				FCF38FE3207EAEB300E119FB /* TestTableViewRow.swift in Sources */,
+				FC1BC3E421387BD1004F6144 /* TestTableHeaderFooterView.swift in Sources */,
 				FCF38FE5207EAEB300E119FB /* TestTableViewCell.swift in Sources */,
 				FCF38FE4207EAEB300E119FB /* TestTableViewLiaisonPaginationDelegate.swift in Sources */,
 				FCF38FEB207EAF5500E119FB /* OKTableViewSection+UnitTests.swift in Sources */,

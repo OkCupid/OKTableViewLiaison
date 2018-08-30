@@ -43,7 +43,6 @@
 		FC72AA15213732F40012C875 /* OKTableViewRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC72AA14213732F40012C875 /* OKTableViewRegistrar.swift */; };
 		FC72AA17213743560012C875 /* OKTableViewRegistrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC72AA16213743560012C875 /* OKTableViewRegistrable.swift */; };
 		FC72AA2421384F730012C875 /* OKTableViewRegistrar+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC72AA2321384F730012C875 /* OKTableViewRegistrar+Registration.swift */; };
-		FC72AA26213851CA0012C875 /* OKTableViewContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC72AA25213851CA0012C875 /* OKTableViewContentType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,7 +122,6 @@
 		FC72AA14213732F40012C875 /* OKTableViewRegistrar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrar.swift; sourceTree = "<group>"; };
 		FC72AA16213743560012C875 /* OKTableViewRegistrable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrable.swift; sourceTree = "<group>"; };
 		FC72AA2321384F730012C875 /* OKTableViewRegistrar+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OKTableViewRegistrar+Registration.swift"; sourceTree = "<group>"; };
-		FC72AA25213851CA0012C875 /* OKTableViewContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKTableViewContentType.swift; sourceTree = "<group>"; };
 		FE1BE17D09355A39E53BB24F87072C7A /* OKTableViewLiaison.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = OKTableViewLiaison.modulemap; sourceTree = "<group>"; };
 		FF7DE0837CB8ED8E07DA73C08E2FD087 /* OKTableViewRegistrationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrationType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,7 +192,6 @@
 				B3C7BBAAC0CF8CF9ED383C04CF718E8F /* OKTableViewSectionComponentCommand.swift */,
 				43A395DE3DC673BE7CEE411D36B8581C /* OKTableViewSectionComponentDisplayOption.swift */,
 				7E46A4CABE1813D4987E1BD6FB6863A3 /* OKTableViewSectionComponentView.swift */,
-				FC72AA25213851CA0012C875 /* OKTableViewContentType.swift */,
 			);
 			name = Enums;
 			path = OKTableViewLiaison/Classes/Enums;
@@ -516,7 +513,6 @@
 				BE81A2671D1B8FCE23D97FD9CD7B86BE /* Array+SafeAccess.swift in Sources */,
 				FC72AA2421384F730012C875 /* OKTableViewRegistrar+Registration.swift in Sources */,
 				5867716CE10B28692659EA3A640BFF56 /* OKAnyTableViewRow.swift in Sources */,
-				FC72AA26213851CA0012C875 /* OKTableViewContentType.swift in Sources */,
 				A7E9DE850A028EAA29C0318077711DBD /* OKAnyTableViewSectionComponent.swift in Sources */,
 				72216124DA7B84721DC09883D71E9FE8 /* OKPaginationTableViewCell.swift in Sources */,
 				AD5DACB2354F1B1A530CC9ED9FE6891C /* OKPaginationTableViewRow.swift in Sources */,

@@ -56,6 +56,29 @@ final class OKTableViewRegistrar_UnitTests: XCTestCase {
         XCTAssert(cell != nil)
     }
     
+    func test_register_dequeuesCorrectCellForMultipleRegistrationsWithSameIdentifier() {
+        let row = TestTableViewRow(registrationType: .class(identifier: "Test"))
+        let row2 = OKTableViewRow<TestTableViewCell, Void>(registrationType: .class(identifier: "Test"))
+        row.register(with: registrar)
+        row2.register(with: registrar)
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Test")
+        
+        XCTAssert(cell is TestTableViewCell)
+    }
+    
+    func test_register_dequeuesCorrectViewForMultipleRegistrationsWithSameIdentifier() {
+        let component = TestTableViewSectionComponent(registrationType: .class(identifier: "Test"))
+        let component2 = OKTableViewSectionComponent<TestTableViewHeaderFooterView, Void>(registrationType: .class(identifier: "Test"))
+        
+        component.register(with: registrar)
+        component2.register(with: registrar)
+        
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Test")
+        
+        XCTAssert(view is TestTableViewHeaderFooterView)
+    }
+    
     func test_register_doesNotDuplicateRegistrationForSameViewWithSameIdentifier() {
         let component = TestTableViewSectionComponent()
         let component2 = OKTableViewSectionComponent<UITableViewHeaderFooterView, Void>()
@@ -63,8 +86,8 @@ final class OKTableViewRegistrar_UnitTests: XCTestCase {
         component.register(with: registrar)
         component2.register(with: registrar)
         
-        let registration = OKTableViewRegistrar.Registration(className: "UITableViewHeaderFooterView",
-                                                             identifier: "UITableViewHeaderFooterView")
+        let registration: OKTableViewRegistrar.Registration = .view(className: "UITableViewHeaderFooterView",
+                                                                    identifier: "UITableViewHeaderFooterView")
         
         XCTAssertEqual(registrar.registrations.count, 1)
         XCTAssert(registrar.registrations.contains(registration))
@@ -77,12 +100,12 @@ final class OKTableViewRegistrar_UnitTests: XCTestCase {
         component.register(with: registrar)
         component2.register(with: registrar)
         
-        let registration1 = OKTableViewRegistrar.Registration(className: "UITableViewHeaderFooterView",
-                                                              identifier: "UITableViewHeaderFooterView")
+        let registration1: OKTableViewRegistrar.Registration = .view(className: "UITableViewHeaderFooterView",
+                                                                     identifier: "UITableViewHeaderFooterView")
         
         
-        let registration2 = OKTableViewRegistrar.Registration(className: "UITableViewHeaderFooterView",
-                                                              identifier: "Test")
+        let registration2: OKTableViewRegistrar.Registration = .view(className: "UITableViewHeaderFooterView",
+                                                                     identifier: "Test")
         
         XCTAssertEqual(registrar.registrations.count, 2)
         XCTAssert(registrar.registrations.contains(registration1))
@@ -96,8 +119,8 @@ final class OKTableViewRegistrar_UnitTests: XCTestCase {
         row1.register(with: registrar)
         row2.register(with: registrar)
         
-        let registration = OKTableViewRegistrar.Registration(className: "UITableViewCell",
-                                                             identifier: "UITableViewCell")
+        let registration: OKTableViewRegistrar.Registration = .cell(className: "UITableViewCell",
+                                                                    identifier: "UITableViewCell")
         
         XCTAssertEqual(registrar.registrations.count, 1)
         XCTAssert(registrar.registrations.contains(registration))
@@ -110,12 +133,12 @@ final class OKTableViewRegistrar_UnitTests: XCTestCase {
         row1.register(with: registrar)
         row2.register(with: registrar)
         
-        let registration1 = OKTableViewRegistrar.Registration(className: "UITableViewCell",
-                                                              identifier: "UITableViewCell")
+        let registration1: OKTableViewRegistrar.Registration = .cell(className: "UITableViewCell",
+                                                                     identifier: "UITableViewCell")
         
         
-        let registration2 = OKTableViewRegistrar.Registration(className: "UITableViewCell",
-                                                              identifier: "Test")
+        let registration2: OKTableViewRegistrar.Registration = .cell(className: "UITableViewCell",
+                                                                     identifier: "Test")
         
         XCTAssertEqual(registrar.registrations.count, 2)
         XCTAssert(registrar.registrations.contains(registration1))
@@ -129,8 +152,8 @@ final class OKTableViewRegistrar_UnitTests: XCTestCase {
         row1.register(with: registrar)
         row2.register(with: registrar)
         
-        let registration = OKTableViewRegistrar.Registration(className: "TestTableViewCell",
-                                                              identifier: "Test")
+        let registration: OKTableViewRegistrar.Registration = .cell(className: "TestTableViewCell",
+                                                                    identifier: "Test")
         
         XCTAssertEqual(registrar.registrations.count, 1)
         XCTAssert(registrar.registrations.contains(registration))
@@ -145,11 +168,11 @@ final class OKTableViewRegistrar_UnitTests: XCTestCase {
         
         registrar.register(section: section)
         
-        let componentRegistration = OKTableViewRegistrar.Registration(className: "UITableViewHeaderFooterView",
-                                                                      identifier: "UITableViewHeaderFooterView")
+        let componentRegistration: OKTableViewRegistrar.Registration = .view(className: "UITableViewHeaderFooterView",
+                                                                             identifier: "UITableViewHeaderFooterView")
         
-        let rowRegistration = OKTableViewRegistrar.Registration(className: "UITableViewCell",
-                                                                identifier: "UITableViewCell")
+        let rowRegistration: OKTableViewRegistrar.Registration = .cell(className: "UITableViewCell",
+                                                                       identifier: "UITableViewCell")
         
         XCTAssertEqual(registrar.registrations.count, 2)
         XCTAssert(registrar.registrations.contains(componentRegistration))
@@ -168,17 +191,17 @@ final class OKTableViewRegistrar_UnitTests: XCTestCase {
 
         registrar.register(sections: [section1, section2])
         
-        let componentRegistration = OKTableViewRegistrar.Registration(className: "UITableViewHeaderFooterView",
-                                                                      identifier: "UITableViewHeaderFooterView")
+        let componentRegistration: OKTableViewRegistrar.Registration = .view(className: "UITableViewHeaderFooterView",
+                                                                             identifier: "UITableViewHeaderFooterView")
         
-        let row1And2Registration = OKTableViewRegistrar.Registration(className: "UITableViewCell",
-                                                                     identifier: "UITableViewCell")
+        let row1And2Registration: OKTableViewRegistrar.Registration = .cell(className: "UITableViewCell",
+                                                                            identifier: "UITableViewCell")
         
-        let row3Registration = OKTableViewRegistrar.Registration(className: "UITableViewCell",
-                                                                 identifier: "Test")
+        let row3Registration: OKTableViewRegistrar.Registration = .cell(className: "UITableViewCell",
+                                                                        identifier: "Test")
         
-        let row4Registration = OKTableViewRegistrar.Registration(className: "UITableViewCell",
-                                                                 identifier: "Cool")
+        let row4Registration: OKTableViewRegistrar.Registration = .cell(className: "UITableViewCell",
+                                                                        identifier: "Cool")
         
         XCTAssertEqual(registrar.registrations.count, 4)
         XCTAssert(registrar.registrations.contains(componentRegistration))

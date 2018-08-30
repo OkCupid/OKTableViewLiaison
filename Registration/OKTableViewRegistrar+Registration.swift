@@ -8,18 +8,19 @@
 import Foundation
 
 extension OKTableViewRegistrar {
-    struct Registration: Hashable {
-        let className: String
-        let identifier: String
+    enum Registration: Hashable {
+        case cell(className: String, identifier: String)
+        case view(className: String, identifier: String)
         
-        init(className: String, identifier: String) {
-            self.className = className
-            self.identifier = identifier
-        }
-        
-        init<T>(registrationType: OKTableViewRegistrationType<T>) {
-            className = registrationType.className
-            identifier = registrationType.identifier
+        func hasSameIdentifier(_ registration: Registration) -> Bool {
+            switch (self, registration) {
+            case let (.cell(_, identifier1), .cell(_, identifier2)):
+                return identifier1 == identifier2
+            case let (.view(_, identifier1), .view(_, identifier2)):
+                return identifier1 == identifier2
+            default:
+                return false
+            }
         }
     }
 }

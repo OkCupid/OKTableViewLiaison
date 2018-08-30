@@ -9,44 +9,52 @@ import UIKit
 
 public final class OKTableViewRegistrar {
     
-    var registrations: Set<Registration> {
-        return _registrations.values.reduce(Set<Registration>()) { memo, set -> Set<Registration> in
-            memo.union(set)
-        }
-    }
+    var registrations = Set<Registration>()
     
     weak var tableView: UITableView? {
-        didSet {
-            _registrations = [.cell: Set<Registration>(),
-                              .view: Set<Registration>()]
+        didSet { registrations.removeAll() }
+    }
+
+    func registerIfNeeded<T>(registrationType: OKTableViewRegistrationType<T>) where T: UITableViewCell {
+        
+        let registration: Registration = .cell(className: registrationType.className,
+                                               identifier: registrationType.identifier)
+        
+        guard shouldUpdateRegistrations(registration) else { return }
+        
+        switch registrationType {
+        case let .class(identifier):
+            tableView?.register(T.self, forCellReuseIdentifier: identifier)
+        case let .nib(nib, identifier):
+            tableView?.register(nib, forCellReuseIdentifier: identifier)
         }
     }
     
-    private var _registrations: [OKTableViewContentType: Set<Registration>] = [.cell: Set<Registration>(),
-                                                                               .view: Set<Registration>()]
-
-    func registerIfNeeded<T: UIView>(registrationType: OKTableViewRegistrationType<T>, contentType: OKTableViewContentType) {
+    func registerIfNeeded<T>(registrationType: OKTableViewRegistrationType<T>) where T: UITableViewHeaderFooterView {
         
-        let registration = Registration(registrationType: registrationType)
+        let registration: Registration = .view(className: registrationType.className,
+                                               identifier: registrationType.identifier)
         
-        if _registrations[contentType]?.contains(registration) == true { return }
+        guard shouldUpdateRegistrations(registration) else { return }
         
-        if let existingRegistration = _registrations[contentType]?.first(where: { $0.identifier == registration.identifier }) {
-            _registrations[contentType]?.remove(existingRegistration)
-        }
-        
-        _registrations[contentType]?.insert(registration)
-        
-        switch (contentType, registrationType) {
-        case let (.cell, .class(identifier)):
-            tableView?.register(T.self, forCellReuseIdentifier: identifier)
-        case let (.cell, .nib(nib, identifier)):
-            tableView?.register(nib, forCellReuseIdentifier: identifier)
-        case let (.view, .class(identifier)):
+        switch registrationType {
+        case let .class(identifier):
             tableView?.register(T.self, forHeaderFooterViewReuseIdentifier: identifier)
-        case let (.view, .nib(nib, identifier)):
+        case let .nib(nib, identifier):
             tableView?.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
         }
+    }
+    
+    private func shouldUpdateRegistrations(_ registration: Registration) -> Bool {
+        if registrations.contains(registration) { return false }
+        
+        if let existingRegistration = registrations.first(where: { registration.hasSameIdentifier($0) }) {
+            registrations.remove(existingRegistration)
+        }
+        
+        registrations.insert(registration)
+        
+        return true
     }
     
     func register(section: OKTableViewSection) {

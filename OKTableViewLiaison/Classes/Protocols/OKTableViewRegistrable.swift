@@ -10,3 +10,4 @@ import Foundation
 public protocol OKTableViewRegistrable {
     func register(with registrar: OKTableViewRegistrar)
 }
+
