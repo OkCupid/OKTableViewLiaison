@@ -31,7 +31,7 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
     
     // MARK: - OKTableViewRegistrable
     public func register(with registrar: OKTableViewRegistrar) {
-        registrar.registerView(registrationType: registrationType)
+        registrar.registerIfNeeded(registrationType: registrationType, contentType: .view)
     }
 
     // MARK: - Commands

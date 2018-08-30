@@ -11,9 +11,7 @@ import UIKit
 final public class OKTableViewLiaison: NSObject {
     
     weak var tableView: UITableView? {
-        didSet {
-           configureRegistrar()
-        }
+        didSet { configureRegistrar() }
     }
     
     public internal(set) var sections = [OKTableViewSection]()

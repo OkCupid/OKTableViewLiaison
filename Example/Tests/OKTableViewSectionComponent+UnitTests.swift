@@ -97,9 +97,9 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         }
         
         let tableView = UITableView()
-        let registar = OKTableViewRegistrar()
-        registar.tableView = tableView
-        component.register(with: registar)
+        let registrar = OKTableViewRegistrar()
+        registrar.tableView = tableView
+        component.register(with: registrar)
         
         let view = component.view(for: tableView, in: 0)
         

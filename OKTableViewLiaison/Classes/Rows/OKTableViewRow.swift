@@ -52,9 +52,9 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
         return cell
     }
     
-    // MARK: - OKTableViewRegistrable
+    // MARK: - OKTableViewRegistrable    
     public func register(with registrar: OKTableViewRegistrar) {
-        registrar.registerCell(registrationType: registrationType)
+        registrar.registerIfNeeded(registrationType: registrationType, contentType: .cell)
     }
     
     // MARK: - Commands

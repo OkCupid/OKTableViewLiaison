@@ -10,18 +10,6 @@ import XCTest
 @testable import OKTableViewLiaison
 
 final class OKTableViewRow_UnitTests: XCTestCase {
-
-//    func test_registerCellTypeWithTableView_registersCellForRow() {
-//        let tableView = UITableView()
-//        
-//        let row = TestTableViewRow()
-//        
-//        row.registerCellType(with: tableView)
-//        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier)
-//        
-//        XCTAssert(cell != nil)
-//    }
     
     func test_setCommand_setsCommandClosure() {
         let row = TestTableViewRow()

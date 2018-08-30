@@ -17,11 +17,11 @@ public enum OKTableViewRegistrationType<T: UIView> {
     }
     
     public static var defaultNibType: OKTableViewRegistrationType {
-        return .nib(nib: T.nib,
+        return .nib(nib: UINib(nibName: String(describing: T.self), bundle: .main),
                     identifier: String(describing: T.self))
     }
     
-    var typeName: String {
+    var className: String {
         return String(describing: T.self)
     }
     
