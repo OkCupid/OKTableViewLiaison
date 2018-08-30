@@ -15,7 +15,7 @@ public final class OKTableViewRegistrar {
         didSet { registrations.removeAll() }
     }
 
-    func registerIfNeeded<T>(registrationType: OKTableViewRegistrationType<T>) where T: UITableViewCell {
+    func registerIfNeeded<T: UITableViewCell>(registrationType: OKTableViewRegistrationType<T>) {
         
         guard shouldUpdateRegistrations(registrationType.registration) else { return }
         
@@ -27,7 +27,7 @@ public final class OKTableViewRegistrar {
         }
     }
     
-    func registerIfNeeded<T>(registrationType: OKTableViewRegistrationType<T>) where T: UITableViewHeaderFooterView {
+    func registerIfNeeded<T: UITableViewHeaderFooterView>(registrationType: OKTableViewRegistrationType<T>) {
         
         guard shouldUpdateRegistrations(registrationType.registration) else { return }
         
