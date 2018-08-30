@@ -36,10 +36,4 @@ public enum OKTableViewSectionComponentDisplayOption {
             return nil
         }
     }
-    
-    func registerComponents(with registrar: OKTableViewRegistrar) {
-        [header, footer].forEach {
-            $0?.register(with: registrar)
-        }
-    }
 }

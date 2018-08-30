@@ -51,8 +51,9 @@ public final class OKTableViewRegistrar {
     
     func register(section: OKTableViewSection) {
         guard tableView != nil else { return }
-
-        section.componentDisplayOption.registerComponents(with: self)
+        
+        section.componentDisplayOption.header?.register(with: self)
+        section.componentDisplayOption.footer?.register(with: self)
 
         section.rows.forEach {
             $0.register(with: self)
