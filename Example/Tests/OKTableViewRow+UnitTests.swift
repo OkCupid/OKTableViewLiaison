@@ -145,23 +145,32 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         XCTAssertEqual(row3.reuseIdentifier, "Test")
     }
     
-//    func test_cellForTableViewAt_returnsConfiguredCellForRow() {
-//        let row = TestTableViewRow()
-//        let string = "Test"
-//        row.set(command: .configuration) { (cell, _, indexPath) in
-//            cell.accessibilityIdentifier = string
-//        }
-//        
-//        let tableView = UITableView()
-//        let registrar = OKTableViewRegistrar()
-//        
-//        registrar.tableView = tableView
-//        registrar.register(row: row)
-//        
-//        let cell = row.cell(for: tableView, at: IndexPath())
-//        
-//        XCTAssertEqual(cell.accessibilityIdentifier, string)
-//    }
+    func test_register_registersCellForRow() {
+        let row = TestTableViewRow(registrationType: .class(identifier: "Test"))
+        let tableView = UITableView()
+        
+        row.register(with: tableView)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Test")
+        
+        XCTAssert(cell != nil)
+    }
+    
+    func test_cellForTableViewAt_returnsConfiguredCellForRow() {
+        let row = TestTableViewRow()
+        let string = "Test"
+        row.set(command: .configuration) { (cell, _, indexPath) in
+            cell.accessibilityIdentifier = string
+        }
+        
+        let tableView = UITableView()
+        
+        row.register(with: tableView)
+        
+        let cell = row.cell(for: tableView, at: IndexPath())
+        
+        XCTAssertEqual(cell.accessibilityIdentifier, string)
+    }
     
     func test_perform_ignoresCommandPerformanceForIncorrectCellType() {
         let row = OKTableViewRow<TestTableViewCell, Void>()

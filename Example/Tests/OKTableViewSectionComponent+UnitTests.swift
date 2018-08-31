@@ -87,24 +87,33 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         
         XCTAssertEqual(component.estimatedHeight, 100)
     }
+    
+    func test_register_registersViewForSectionComponent() {
+        let component = TestTableViewSectionComponent(registrationType: .class(identifier: "Test"))
+        let tableView = UITableView()
+        
+        component.register(with: tableView)
+        
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Test")
+        
+        XCTAssert(view != nil)
+    }
 
-//    func test_viewForTableViewInSection_returnsConfiguredViewForComponent() {
-//        
-//        let component = TestTableViewSectionComponent()
-//        let string = "Test"
-//        component.set(command: .configuration) { view, _, _ in
-//            view.accessibilityIdentifier = string
-//        }
-//        
-//        let tableView = UITableView()
-//        let registrar = OKTableViewRegistrar()
-//        registrar.tableView = tableView
-//        component.register(with: registrar)
-//        
-//        let view = component.view(for: tableView, in: 0)
-//        
-//        XCTAssertEqual(view?.accessibilityIdentifier, string)
-//    }
+    func test_viewForTableViewInSection_returnsConfiguredViewForComponent() {
+        
+        let component = TestTableViewSectionComponent()
+        let string = "Test"
+        component.set(command: .configuration) { view, _, _ in
+            view.accessibilityIdentifier = string
+        }
+        
+        let tableView = UITableView()
+        component.register(with: tableView)
+        
+        let view = component.view(for: tableView, in: 0)
+        
+        XCTAssertEqual(view?.accessibilityIdentifier, string)
+    }
     
     func test_perform_ignoresCommandPerformanceForIncorrectViewType() {
         let component = TestTableViewSectionComponent()
