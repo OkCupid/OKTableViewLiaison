@@ -23,7 +23,7 @@ public extension OKTableViewLiaison {
         let indexSet = IndexSet(integersIn: lowerBound...upperBound)
         
         self.sections.append(contentsOf: sections)
-        registrar.register(sections: sections)
+        register(sections: sections)
         
         performTableViewUpdates(animated: animated) {
             tableView?.insertSections(indexSet, with: animation)
@@ -45,7 +45,7 @@ public extension OKTableViewLiaison {
                 self.sections.insert(section, at: index)
         }
 
-        registrar.register(sections: sections)
+        register(sections: sections)
         let indexSet = IndexSet(integersIn: indexRange)
         performTableViewUpdates(animated: animated) {
             tableView?.insertSections(indexSet, with: animation)
@@ -55,7 +55,7 @@ public extension OKTableViewLiaison {
     public func insert(section: OKTableViewSection, at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
         sections.insert(section, at: index)
-        registrar.register(section: section)
+        register(section: section)
         
         performTableViewUpdates(animated: animated) {
             tableView?.insertSections(IndexSet(integer: index), with: animation)
@@ -88,7 +88,7 @@ public extension OKTableViewLiaison {
 
         sections.remove(at: index)
         sections.insert(section, at: index)
-        registrar.register(section: section)
+        register(section: section)
         
         performTableViewUpdates(animated: animated) {
             tableView?.deleteSections(IndexSet(integer: index), with: animation)

@@ -145,6 +145,17 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         XCTAssertEqual(row3.reuseIdentifier, "Test")
     }
     
+    func test_register_registersCellForRow() {
+        let row = TestTableViewRow(registrationType: .class(identifier: "Test"))
+        let tableView = UITableView()
+        
+        row.register(with: tableView)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Test")
+        
+        XCTAssert(cell != nil)
+    }
+    
     func test_cellForTableViewAt_returnsConfiguredCellForRow() {
         let row = TestTableViewRow()
         let string = "Test"
@@ -153,10 +164,8 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         }
         
         let tableView = UITableView()
-        let registrar = OKTableViewRegistrar()
         
-        registrar.tableView = tableView
-        registrar.register(row: row)
+        row.register(with: tableView)
         
         let cell = row.cell(for: tableView, at: IndexPath())
         

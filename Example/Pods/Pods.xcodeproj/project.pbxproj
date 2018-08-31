@@ -7,42 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01B54344300D7209F67A346D72064BD6 /* Array+IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E751CC2569A8D2BC0336671632CA21 /* Array+IndexPath.swift */; };
-		17EAAFFC9F2B142134A3D4B5F97C1A12 /* OKTableViewLiaisonPaginationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D6D701942D44FA434B4AE746BE9D9 /* OKTableViewLiaisonPaginationDelegate.swift */; };
-		1B00905F83B948E1B26FE9047DAF6D26 /* OKTableViewRowCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD48FC81602C983B892C6105D85366A /* OKTableViewRowCommand.swift */; };
+		01A54590636017574CC1BB715722A341 /* OKTableViewLiaison+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA7D40FD43067FFF930E8513E0FE7B9 /* OKTableViewLiaison+UITableViewDelegate.swift */; };
+		1821D61BD3642EDBFA385DD8D6E1E09A /* OKTableViewLiaison+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8337A0F81495A72C63DC7827221CEC51 /* OKTableViewLiaison+Section.swift */; };
+		21D9463C400797F8BB3A30DD13AB5161 /* OKTableViewRegistrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C166CFE3867BE02A95CBC3DD7EEEE /* OKTableViewRegistrable.swift */; };
 		2690043E759F0AA8404D647D1134EC90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		456A6EDD76A7CC38F40E8D204F46DF7E /* OKTableViewPrefetchCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB40B7482723F2F846EEF4FAEBD087E /* OKTableViewPrefetchCommand.swift */; };
-		486D2ABC38A9F7439590D92C7F5C8F4C /* OKTableViewLiaison+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D005AF17B59B138EBACDC6A496D9F9 /* OKTableViewLiaison+UITableViewDataSource.swift */; };
+		28D984FD6BDC60CF3731DC4E0646E321 /* OKPaginationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD085915CF131280259E2F5D3A3054FF /* OKPaginationTableViewCell.swift */; };
+		2BB79319FF430A428111FAEF672EFCBB /* OKTableViewLiaison+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4039B70D6D02B9DB9A8F65BEC512EC /* OKTableViewLiaison+Registration.swift */; };
+		2D876D470C34A099E4E7911E90DC8C9F /* OKTableViewSectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908D2AA8B5AF2CE6E5E9B08FB4A2A931 /* OKTableViewSectionComponent.swift */; };
+		3DF03B23E046B8B64E8619F93C9D68FA /* OKTableViewSectionComponentDisplayOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912F623877705916F908D5515E8DECB0 /* OKTableViewSectionComponentDisplayOption.swift */; };
+		408742DA1C6542DEF0335FDB1FC8A367 /* OKTableViewLiaison+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579A07F803EFD3A366F215AE37660AAA /* OKTableViewLiaison+UITableViewDataSource.swift */; };
+		5502415A0F16ABB1E2187C9E6AD99F10 /* OKTableViewLiaison-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C45F37109E6F7F464C92744D0890F60 /* OKTableViewLiaison-dummy.m */; };
 		5667A496A77DF9C309AE0370E9A56050 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		5867716CE10B28692659EA3A640BFF56 /* OKAnyTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C29E2CB2E396FC4972CF5FA36A17E1 /* OKAnyTableViewRow.swift */; };
-		587094A5DF0C25F375029B0848784CA2 /* OKTableViewSectionComponentCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C7BBAAC0CF8CF9ED383C04CF718E8F /* OKTableViewSectionComponentCommand.swift */; };
-		5D6BA4CC383BC7640B29AC16EFE24773 /* OKTableViewSectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45107EDC7FCB13DCE30CF0C9F0F3DBF2 /* OKTableViewSectionComponent.swift */; };
-		6A30FB635EEFF4A6F2B07E80CAFF5717 /* OKTableViewLiaison+Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9213C72D0E30081D1918FF2F1A362FF /* OKTableViewLiaison+Row.swift */; };
-		6D41673076525ACB78F8B460D9CC15F2 /* OKTableViewRegistrationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DE0837CB8ED8E07DA73C08E2FD087 /* OKTableViewRegistrationType.swift */; };
-		71F6D85984412B1720E2B87AB600DAA4 /* OKTableViewLiaison+Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B090087810D716A2F940B1CD632DA7 /* OKTableViewLiaison+Pagination.swift */; };
-		72216124DA7B84721DC09883D71E9FE8 /* OKPaginationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A303DCE5E0C23A0CC4747C3549AC14 /* OKPaginationTableViewCell.swift */; };
-		79986A0365644909FE904C218033779B /* OKTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72653247738D80D558234B3DB4CA408D /* OKTableViewRow.swift */; };
+		6B8FE8E1E16CDF08693290FADE91D8C5 /* OKTableViewRowCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863A45D1B4B4DE866F56461909E0D2CF /* OKTableViewRowCommand.swift */; };
+		785DFA84486C5125F4772424ED8E2930 /* OKTableViewPrefetchCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7086190678C0AE4FF7DE0868CECCA /* OKTableViewPrefetchCommand.swift */; };
 		7F80E3F25EF4FD5217A178520F6B08B6 /* Pods-OKTableViewLiaison_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 762AA2BDE76E494AD5924915EC323DA0 /* Pods-OKTableViewLiaison_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		90C0BF26F3D417BFCF0A1F11B37B98B6 /* OKTableViewLiaison-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6A8AA40DC88B780CEC79F7A2BBB51 /* OKTableViewLiaison-dummy.m */; };
+		82C6022E25E050EA65A3A6FD64DE9095 /* OKTableViewLiaison+Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C0D1BAC584C2E50A5EA34173A5C5F8 /* OKTableViewLiaison+Row.swift */; };
+		84EAF6CE0F68A843DE7359CA03B2389D /* OKAnyTableViewSectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA244AD476A8BE37EC974B78CA5731C6 /* OKAnyTableViewSectionComponent.swift */; };
+		93858EB31695D7D4CF6502E2B8EE22BD /* OKTableViewLiaison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C255495566CF3206DBB3F64D6E407FA /* OKTableViewLiaison.swift */; };
+		95057D4CCFF654B14C5A163C14DB232A /* OKPaginationTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE87A01D033E1A1C8105238BE92C5D /* OKPaginationTableViewRow.swift */; };
+		97DCF7DE586A4D2EA71C8698C3E23D06 /* Array+IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B62FABFB9324DA9CDD60A280A172CA /* Array+IndexPath.swift */; };
+		9E4FA4627057AABCDBB9BC6940AAB203 /* OKTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D66F24B9A57FDCF214702D2736890D /* OKTableViewSection.swift */; };
 		9EB40B48915DB68F53817317A8C56D20 /* Pods-OKTableViewLiaison_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C62B2624620079E4726DA81A37918337 /* Pods-OKTableViewLiaison_Example-dummy.m */; };
 		A2C71CC0D87F8F291307F07647C047E6 /* Pods-OKTableViewLiaison_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F26815AE27E4B0668D17C65A2B382 /* Pods-OKTableViewLiaison_Tests-dummy.m */; };
-		A6F92D029A51784FFEA6202BC67D59BC /* OKTableViewLiaison+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DFC84727F0EC49B641A8153A0210F9 /* OKTableViewLiaison+UITableViewDelegate.swift */; };
-		A7E9DE850A028EAA29C0318077711DBD /* OKAnyTableViewSectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F66785443E1C3F11B91C88AC269D6CC /* OKAnyTableViewSectionComponent.swift */; };
-		AA60C1B10768E526B0363F9425B67053 /* OKTableViewLiaison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CADF3A564673CB859EAA37BF3BB1F /* OKTableViewLiaison.swift */; };
-		AD5DACB2354F1B1A530CC9ED9FE6891C /* OKPaginationTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B411223C9A0AE4D3EC8FFCACB4F421D /* OKPaginationTableViewRow.swift */; };
+		AB3AE397C796B3F49D00643664A9C0DB /* OKTableViewLiaison+Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D979C8D280B2993AE460A2A213A388 /* OKTableViewLiaison+Pagination.swift */; };
 		B2BA3096E8E03F4271ED10E482798110 /* Pods-OKTableViewLiaison_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 088B97E35E3B3CEE3147D5CD3A737B7F /* Pods-OKTableViewLiaison_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BE81A2671D1B8FCE23D97FD9CD7B86BE /* Array+SafeAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988110A2FA354EDD69ABC921690EE2CE /* Array+SafeAccess.swift */; };
-		C1378C7FCA09FC7448021927A7D51DBD /* OKTableViewHeightType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA787EDE0A9AF27B47871C3853B27593 /* OKTableViewHeightType.swift */; };
-		C92D28FA9C922F1859ECEEB0C933C8F5 /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9440DB5089AF1C2D17A5723BB15C9CC /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift */; };
-		CD1204377D1BF4EA8EB74B9FE83F4189 /* OKTableViewSectionComponentDisplayOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A395DE3DC673BE7CEE411D36B8581C /* OKTableViewSectionComponentDisplayOption.swift */; };
+		B305966B81D1826BACD1EE3AFE2EE06B /* OKTableViewLiaisonPaginationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA8619D6207995F85E470C76C99538E /* OKTableViewLiaisonPaginationDelegate.swift */; };
+		BD688B0081D1A338CB08EB2509F7CB3D /* OKTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DC18B4FFDF043466C78108D02D445 /* OKTableViewRow.swift */; };
+		BEF97DD7964C1B5B338A35D8E4FF2CE8 /* OKTableViewRegistrationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F3A6F1FE59A7CE148F711960F61E9 /* OKTableViewRegistrationType.swift */; };
+		C6274F972AA587F0C57656F943CEA07D /* Array+SafeAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B865F4930E42449D12E2A9E07AE044 /* Array+SafeAccess.swift */; };
+		D010A70D09DD02BFD3F44E8A29B0EB73 /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808E7BE6C13854F2F3333CCA7CA8FA9 /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift */; };
+		D7310603217967D387DC575F6844C790 /* OKTableViewSectionComponentCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B52CF619CF6E36ED5F2DE26F0C1B6 /* OKTableViewSectionComponentCommand.swift */; };
 		E1F1E36A44359EE4A76C81118272C432 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		F38E71DD738F73B353F64E0FE99924C8 /* OKTableViewSectionComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46A4CABE1813D4987E1BD6FB6863A3 /* OKTableViewSectionComponentView.swift */; };
-		F6448E46B801A2CE3047497C99FCFAFE /* OKTableViewLiaison-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6426368AA68672B5AF364931C3AC9CD0 /* OKTableViewLiaison-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F6E44F69CDEA987984C000254C37C772 /* OKTableViewLiaison+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A691913FF7D14D0212D92EAB32BE10 /* OKTableViewLiaison+Section.swift */; };
-		FC1352AE2135988E00333D69 /* OKTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1352AD2135988E00333D69 /* OKTableViewSection.swift */; };
-		FC1BC3ED21389C26004F6144 /* OKTableViewRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1BC3EB21389C26004F6144 /* OKTableViewRegistrar.swift */; };
-		FC1BC3EE21389C26004F6144 /* OKTableViewRegistrar+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1BC3EC21389C26004F6144 /* OKTableViewRegistrar+Registration.swift */; };
-		FC72AA17213743560012C875 /* OKTableViewRegistrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC72AA16213743560012C875 /* OKTableViewRegistrable.swift */; };
+		E366A7142DFA3AB2FD71BB0B85EC5F09 /* OKTableViewHeightType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66BD95C52B8F4DC105F21D6D06D3A5 /* OKTableViewHeightType.swift */; };
+		ECD27295FC7D1D6CDBC8C03F30D7A723 /* OKTableViewSectionComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C82B35F40181D9B021984E4164CF02 /* OKTableViewSectionComponentView.swift */; };
+		F1BE169F4D95A2F68E6569BE03BF1E6F /* OKAnyTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E73B3484931D7F52926A5B4F20570C /* OKAnyTableViewRow.swift */; };
+		F6448E46B801A2CE3047497C99FCFAFE /* OKTableViewLiaison-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E0940110C9DF8DE5EFFE030628E6F43 /* OKTableViewLiaison-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,67 +62,66 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		013D6D701942D44FA434B4AE746BE9D9 /* OKTableViewLiaisonPaginationDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewLiaisonPaginationDelegate.swift; sourceTree = "<group>"; };
-		02B090087810D716A2F940B1CD632DA7 /* OKTableViewLiaison+Pagination.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+Pagination.swift"; sourceTree = "<group>"; };
+		020AFF05F3807A251A7943034D88E9CF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		088B97E35E3B3CEE3147D5CD3A737B7F /* Pods-OKTableViewLiaison_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OKTableViewLiaison_Example-umbrella.h"; sourceTree = "<group>"; };
-		0CB40B7482723F2F846EEF4FAEBD087E /* OKTableViewPrefetchCommand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewPrefetchCommand.swift; sourceTree = "<group>"; };
-		0F66785443E1C3F11B91C88AC269D6CC /* OKAnyTableViewSectionComponent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKAnyTableViewSectionComponent.swift; sourceTree = "<group>"; };
+		0A2DC18B4FFDF043466C78108D02D445 /* OKTableViewRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewRow.swift; sourceTree = "<group>"; };
+		17B62FABFB9324DA9CDD60A280A172CA /* Array+IndexPath.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+IndexPath.swift"; sourceTree = "<group>"; };
+		18C0D1BAC584C2E50A5EA34173A5C5F8 /* OKTableViewLiaison+Row.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+Row.swift"; sourceTree = "<group>"; };
 		1A1A0AD1D8002495FEFE6B9A5371938C /* Pods-OKTableViewLiaison_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OKTableViewLiaison_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		1B411223C9A0AE4D3EC8FFCACB4F421D /* OKPaginationTableViewRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKPaginationTableViewRow.swift; sourceTree = "<group>"; };
 		1F10628F8BDFD9C06C61D3BBC8665549 /* Pods-OKTableViewLiaison_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OKTableViewLiaison_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		21C29E2CB2E396FC4972CF5FA36A17E1 /* OKAnyTableViewRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKAnyTableViewRow.swift; sourceTree = "<group>"; };
-		2C8203F23D3CD377E39EE29F3551D273 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		352CADF3A564673CB859EAA37BF3BB1F /* OKTableViewLiaison.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewLiaison.swift; sourceTree = "<group>"; };
-		3B928CDF2EE635B54E942CF0A14F9AD6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		213F3A6F1FE59A7CE148F711960F61E9 /* OKTableViewRegistrationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrationType.swift; sourceTree = "<group>"; };
+		23D979C8D280B2993AE460A2A213A388 /* OKTableViewLiaison+Pagination.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+Pagination.swift"; sourceTree = "<group>"; };
+		269C166CFE3867BE02A95CBC3DD7EEEE /* OKTableViewRegistrable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrable.swift; sourceTree = "<group>"; };
+		26C82B35F40181D9B021984E4164CF02 /* OKTableViewSectionComponentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewSectionComponentView.swift; sourceTree = "<group>"; };
+		2D2B52CF619CF6E36ED5F2DE26F0C1B6 /* OKTableViewSectionComponentCommand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewSectionComponentCommand.swift; sourceTree = "<group>"; };
+		2DE54AA37FC0E05CB238EEDA2CA5C99A /* OKTableViewLiaison-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OKTableViewLiaison-prefix.pch"; sourceTree = "<group>"; };
+		30D66F24B9A57FDCF214702D2736890D /* OKTableViewSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewSection.swift; sourceTree = "<group>"; };
 		3E9F3A5DA8E689E0AE1804DE852E0317 /* Pods-OKTableViewLiaison_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OKTableViewLiaison_Example-resources.sh"; sourceTree = "<group>"; };
 		41813B4632FD43AB08EE6A4D4A941D73 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43A395DE3DC673BE7CEE411D36B8581C /* OKTableViewSectionComponentDisplayOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewSectionComponentDisplayOption.swift; sourceTree = "<group>"; };
-		43E9A556E8D1B9A5C81F2663EE4381C4 /* OKTableViewLiaison.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OKTableViewLiaison.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		45107EDC7FCB13DCE30CF0C9F0F3DBF2 /* OKTableViewSectionComponent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewSectionComponent.swift; sourceTree = "<group>"; };
+		43E9A556E8D1B9A5C81F2663EE4381C4 /* OKTableViewLiaison.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OKTableViewLiaison.framework; path = OKTableViewLiaison.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B4039B70D6D02B9DB9A8F65BEC512EC /* OKTableViewLiaison+Registration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+Registration.swift"; sourceTree = "<group>"; };
+		579A07F803EFD3A366F215AE37660AAA /* OKTableViewLiaison+UITableViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		5C9D84FD35DD3C1FE8DB84E3D7ECE6D2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6426368AA68672B5AF364931C3AC9CD0 /* OKTableViewLiaison-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OKTableViewLiaison-umbrella.h"; sourceTree = "<group>"; };
-		652E4A441274D252B322C363D00FA92F /* OKTableViewLiaison-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OKTableViewLiaison-prefix.pch"; sourceTree = "<group>"; };
+		5E0940110C9DF8DE5EFFE030628E6F43 /* OKTableViewLiaison-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OKTableViewLiaison-umbrella.h"; sourceTree = "<group>"; };
+		5EA8619D6207995F85E470C76C99538E /* OKTableViewLiaisonPaginationDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewLiaisonPaginationDelegate.swift; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		6E8ED08629BCB0FB182AC38A29BD7AF8 /* Pods-OKTableViewLiaison_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OKTableViewLiaison_Example.modulemap"; sourceTree = "<group>"; };
-		70A303DCE5E0C23A0CC4747C3549AC14 /* OKPaginationTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKPaginationTableViewCell.swift; sourceTree = "<group>"; };
-		72653247738D80D558234B3DB4CA408D /* OKTableViewRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewRow.swift; sourceTree = "<group>"; };
-		74E6A8AA40DC88B780CEC79F7A2BBB51 /* OKTableViewLiaison-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OKTableViewLiaison-dummy.m"; sourceTree = "<group>"; };
 		762AA2BDE76E494AD5924915EC323DA0 /* Pods-OKTableViewLiaison_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OKTableViewLiaison_Tests-umbrella.h"; sourceTree = "<group>"; };
-		7AF03249C83F365BD31EA59EA2DE5EEF /* OKTableViewLiaison.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OKTableViewLiaison.xcconfig; sourceTree = "<group>"; };
-		7DD48FC81602C983B892C6105D85366A /* OKTableViewRowCommand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewRowCommand.swift; sourceTree = "<group>"; };
-		7E46A4CABE1813D4987E1BD6FB6863A3 /* OKTableViewSectionComponentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewSectionComponentView.swift; sourceTree = "<group>"; };
+		7C255495566CF3206DBB3F64D6E407FA /* OKTableViewLiaison.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewLiaison.swift; sourceTree = "<group>"; };
+		7C45F37109E6F7F464C92744D0890F60 /* OKTableViewLiaison-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OKTableViewLiaison-dummy.m"; sourceTree = "<group>"; };
+		7DCE87A01D033E1A1C8105238BE92C5D /* OKPaginationTableViewRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKPaginationTableViewRow.swift; sourceTree = "<group>"; };
+		7FF7E4F66E271B63CC09D6C5B90E48F2 /* OKTableViewLiaison.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = OKTableViewLiaison.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		801F26815AE27E4B0668D17C65A2B382 /* Pods-OKTableViewLiaison_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OKTableViewLiaison_Tests-dummy.m"; sourceTree = "<group>"; };
-		86A691913FF7D14D0212D92EAB32BE10 /* OKTableViewLiaison+Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+Section.swift"; sourceTree = "<group>"; };
+		8337A0F81495A72C63DC7827221CEC51 /* OKTableViewLiaison+Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+Section.swift"; sourceTree = "<group>"; };
+		863A45D1B4B4DE866F56461909E0D2CF /* OKTableViewRowCommand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewRowCommand.swift; sourceTree = "<group>"; };
+		86A7086190678C0AE4FF7DE0868CECCA /* OKTableViewPrefetchCommand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewPrefetchCommand.swift; sourceTree = "<group>"; };
 		8AF22AEBD5D95C44895FD06C7B99E7C8 /* Pods-OKTableViewLiaison_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OKTableViewLiaison_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		988110A2FA354EDD69ABC921690EE2CE /* Array+SafeAccess.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+SafeAccess.swift"; sourceTree = "<group>"; };
-		9E902CF4DDF71E06D78B2A3D88A0BD07 /* OKTableViewLiaison.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = OKTableViewLiaison.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8FA7D40FD43067FFF930E8513E0FE7B9 /* OKTableViewLiaison+UITableViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		908D2AA8B5AF2CE6E5E9B08FB4A2A931 /* OKTableViewSectionComponent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewSectionComponent.swift; sourceTree = "<group>"; };
+		912F623877705916F908D5515E8DECB0 /* OKTableViewSectionComponentDisplayOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewSectionComponentDisplayOption.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9A05441999ED15CD13429ADF2B006275 /* OKTableViewLiaison.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OKTableViewLiaison.xcconfig; sourceTree = "<group>"; };
 		A15F680637C1FD4EBAD21EB78390715D /* Pods-OKTableViewLiaison_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OKTableViewLiaison_Example-frameworks.sh"; sourceTree = "<group>"; };
+		A5E73B3484931D7F52926A5B4F20570C /* OKAnyTableViewRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKAnyTableViewRow.swift; sourceTree = "<group>"; };
+		A808E7BE6C13854F2F3333CCA7CA8FA9 /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+UITableViewDataSourcePrefetching.swift"; sourceTree = "<group>"; };
 		B0071D3D037ED2C84039DFB2154BCA9B /* Pods-OKTableViewLiaison_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OKTableViewLiaison_Tests.modulemap"; sourceTree = "<group>"; };
-		B3C7BBAAC0CF8CF9ED383C04CF718E8F /* OKTableViewSectionComponentCommand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewSectionComponentCommand.swift; sourceTree = "<group>"; };
 		B729AAD39384357F40390D66DD96EBD7 /* Pods-OKTableViewLiaison_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OKTableViewLiaison_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C62B2624620079E4726DA81A37918337 /* Pods-OKTableViewLiaison_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OKTableViewLiaison_Example-dummy.m"; sourceTree = "<group>"; };
 		C6D58EF5E88A5DB3AD50DCD490ED5F8E /* Pods-OKTableViewLiaison_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OKTableViewLiaison_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		CA787EDE0A9AF27B47871C3853B27593 /* OKTableViewHeightType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewHeightType.swift; sourceTree = "<group>"; };
-		D8E751CC2569A8D2BC0336671632CA21 /* Array+IndexPath.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+IndexPath.swift"; sourceTree = "<group>"; };
-		D9440DB5089AF1C2D17A5723BB15C9CC /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+UITableViewDataSourcePrefetching.swift"; sourceTree = "<group>"; };
+		D6CD34F888801616BF9529738F2DABC8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7B865F4930E42449D12E2A9E07AE044 /* Array+SafeAccess.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+SafeAccess.swift"; sourceTree = "<group>"; };
+		DA845EA5B0A990E33F300699C8F7A3F3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		E33EB9F82999F4BF1DECD3F83D5B4E3E /* Pods-OKTableViewLiaison_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OKTableViewLiaison_Example.release.xcconfig"; sourceTree = "<group>"; };
-		E70A5B3AE0375111E92DE9CF4F5D7E19 /* Pods_OKTableViewLiaison_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OKTableViewLiaison_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E721B607138F949A1BCFDE78139ADC9A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8D005AF17B59B138EBACDC6A496D9F9 /* OKTableViewLiaison+UITableViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		E70A5B3AE0375111E92DE9CF4F5D7E19 /* Pods_OKTableViewLiaison_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OKTableViewLiaison_Example.framework; path = "Pods-OKTableViewLiaison_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA244AD476A8BE37EC974B78CA5731C6 /* OKAnyTableViewSectionComponent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKAnyTableViewSectionComponent.swift; sourceTree = "<group>"; };
 		EB9D437D2F1EFA5DDCB15AEA47CC06B1 /* Pods-OKTableViewLiaison_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OKTableViewLiaison_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		EC3542E4E117CD7DA8ABC110848F606B /* OKTableViewLiaison.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = OKTableViewLiaison.modulemap; sourceTree = "<group>"; };
+		ED66BD95C52B8F4DC105F21D6D06D3A5 /* OKTableViewHeightType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewHeightType.swift; sourceTree = "<group>"; };
 		EE05F59DD160A094DBF2160B64B860DC /* Pods-OKTableViewLiaison_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OKTableViewLiaison_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		EFA0E73D296F1AA8459DD1E42A98D65B /* Pods-OKTableViewLiaison_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OKTableViewLiaison_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		F302F04D66835CB1A1D8D549B1344639 /* Pods-OKTableViewLiaison_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OKTableViewLiaison_Tests-resources.sh"; sourceTree = "<group>"; };
-		F4F4CA26649ED4C795F31DC7DBB17C8A /* Pods_OKTableViewLiaison_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OKTableViewLiaison_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8DFC84727F0EC49B641A8153A0210F9 /* OKTableViewLiaison+UITableViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+UITableViewDelegate.swift"; sourceTree = "<group>"; };
-		F9213C72D0E30081D1918FF2F1A362FF /* OKTableViewLiaison+Row.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "OKTableViewLiaison+Row.swift"; sourceTree = "<group>"; };
-		FC1352AD2135988E00333D69 /* OKTableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKTableViewSection.swift; sourceTree = "<group>"; };
-		FC1BC3EB21389C26004F6144 /* OKTableViewRegistrar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OKTableViewRegistrar.swift; path = ../OKTableViewLiaison/Classes/Registration/OKTableViewRegistrar.swift; sourceTree = "<group>"; };
-		FC1BC3EC21389C26004F6144 /* OKTableViewRegistrar+Registration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "OKTableViewRegistrar+Registration.swift"; path = "../OKTableViewLiaison/Classes/Registration/OKTableViewRegistrar+Registration.swift"; sourceTree = "<group>"; };
-		FC72AA16213743560012C875 /* OKTableViewRegistrable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrable.swift; sourceTree = "<group>"; };
-		FE1BE17D09355A39E53BB24F87072C7A /* OKTableViewLiaison.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = OKTableViewLiaison.modulemap; sourceTree = "<group>"; };
-		FF7DE0837CB8ED8E07DA73C08E2FD087 /* OKTableViewRegistrationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKTableViewRegistrationType.swift; sourceTree = "<group>"; };
+		F4F4CA26649ED4C795F31DC7DBB17C8A /* Pods_OKTableViewLiaison_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OKTableViewLiaison_Tests.framework; path = "Pods-OKTableViewLiaison_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD085915CF131280259E2F5D3A3054FF /* OKPaginationTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OKPaginationTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,66 +152,81 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02DCFBBFAEEAA1BA7CBECE5538BF5B10 /* OKTableViewLiaison */ = {
+		0F72DA45B2382D5B680C8D2789700753 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				2DFF8F0D947EDFC1790B1FF38A8DBFCA /* Enums */,
-				2964D6DE373F259CE5C1E2A69FC21E4D /* Extensions */,
-				C6CB15394066C9675C9BCC6CE2E03AEA /* Liaison */,
-				F58836939040FF806E7B35DCE5C82630 /* Pod */,
-				CCCA99CDE40E13C49E8407ADF83667AB /* Protocols */,
-				FC72AA2221384F1E0012C875 /* Registration */,
-				5D79E4679494C64FFCFFFF6F9821199C /* Rows */,
-				34690C098A91DC6F8CF7E0259D2EC535 /* Sections */,
-				8C152C3B9E1C1E4DC001612EE2313AB1 /* Support Files */,
-				3345EA5DDCC5200FADDB2B78EF0A4193 /* Views */,
+				020AFF05F3807A251A7943034D88E9CF /* LICENSE */,
+				7FF7E4F66E271B63CC09D6C5B90E48F2 /* OKTableViewLiaison.podspec */,
+				DA845EA5B0A990E33F300699C8F7A3F3 /* README.md */,
 			);
-			name = OKTableViewLiaison;
-			path = ../..;
+			name = Pod;
 			sourceTree = "<group>";
 		};
-		2964D6DE373F259CE5C1E2A69FC21E4D /* Extensions */ = {
+		23C115980E4BB27F979388E567A44FCB /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D8E751CC2569A8D2BC0336671632CA21 /* Array+IndexPath.swift */,
-				988110A2FA354EDD69ABC921690EE2CE /* Array+SafeAccess.swift */,
+				A5E73B3484931D7F52926A5B4F20570C /* OKAnyTableViewRow.swift */,
+				EA244AD476A8BE37EC974B78CA5731C6 /* OKAnyTableViewSectionComponent.swift */,
+				5EA8619D6207995F85E470C76C99538E /* OKTableViewLiaisonPaginationDelegate.swift */,
+				269C166CFE3867BE02A95CBC3DD7EEEE /* OKTableViewRegistrable.swift */,
+			);
+			name = Protocols;
+			path = OKTableViewLiaison/Classes/Protocols;
+			sourceTree = "<group>";
+		};
+		3924831E73316B01C9A9DC9593F3B7FC /* Liaison */ = {
+			isa = PBXGroup;
+			children = (
+				7C255495566CF3206DBB3F64D6E407FA /* OKTableViewLiaison.swift */,
+				23D979C8D280B2993AE460A2A213A388 /* OKTableViewLiaison+Pagination.swift */,
+				4B4039B70D6D02B9DB9A8F65BEC512EC /* OKTableViewLiaison+Registration.swift */,
+				18C0D1BAC584C2E50A5EA34173A5C5F8 /* OKTableViewLiaison+Row.swift */,
+				8337A0F81495A72C63DC7827221CEC51 /* OKTableViewLiaison+Section.swift */,
+				579A07F803EFD3A366F215AE37660AAA /* OKTableViewLiaison+UITableViewDataSource.swift */,
+				A808E7BE6C13854F2F3333CCA7CA8FA9 /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift */,
+				8FA7D40FD43067FFF930E8513E0FE7B9 /* OKTableViewLiaison+UITableViewDelegate.swift */,
+			);
+			name = Liaison;
+			path = OKTableViewLiaison/Classes/Liaison;
+			sourceTree = "<group>";
+		};
+		3A867FD8148DBA38C215B33FF7121A68 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				17B62FABFB9324DA9CDD60A280A172CA /* Array+IndexPath.swift */,
+				D7B865F4930E42449D12E2A9E07AE044 /* Array+SafeAccess.swift */,
 			);
 			name = Extensions;
 			path = OKTableViewLiaison/Classes/Extensions;
 			sourceTree = "<group>";
 		};
-		2DFF8F0D947EDFC1790B1FF38A8DBFCA /* Enums */ = {
+		3E4C860FD6A56A187817ADF3A6FE2109 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				CA787EDE0A9AF27B47871C3853B27593 /* OKTableViewHeightType.swift */,
-				0CB40B7482723F2F846EEF4FAEBD087E /* OKTableViewPrefetchCommand.swift */,
-				FF7DE0837CB8ED8E07DA73C08E2FD087 /* OKTableViewRegistrationType.swift */,
-				7DD48FC81602C983B892C6105D85366A /* OKTableViewRowCommand.swift */,
-				B3C7BBAAC0CF8CF9ED383C04CF718E8F /* OKTableViewSectionComponentCommand.swift */,
-				43A395DE3DC673BE7CEE411D36B8581C /* OKTableViewSectionComponentDisplayOption.swift */,
-				7E46A4CABE1813D4987E1BD6FB6863A3 /* OKTableViewSectionComponentView.swift */,
+				ED66BD95C52B8F4DC105F21D6D06D3A5 /* OKTableViewHeightType.swift */,
+				86A7086190678C0AE4FF7DE0868CECCA /* OKTableViewPrefetchCommand.swift */,
+				213F3A6F1FE59A7CE148F711960F61E9 /* OKTableViewRegistrationType.swift */,
+				863A45D1B4B4DE866F56461909E0D2CF /* OKTableViewRowCommand.swift */,
+				2D2B52CF619CF6E36ED5F2DE26F0C1B6 /* OKTableViewSectionComponentCommand.swift */,
+				912F623877705916F908D5515E8DECB0 /* OKTableViewSectionComponentDisplayOption.swift */,
+				26C82B35F40181D9B021984E4164CF02 /* OKTableViewSectionComponentView.swift */,
 			);
 			name = Enums;
 			path = OKTableViewLiaison/Classes/Enums;
 			sourceTree = "<group>";
 		};
-		3345EA5DDCC5200FADDB2B78EF0A4193 /* Views */ = {
+		4371442ADA1186D30B5ABFFFC7E1204E /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				70A303DCE5E0C23A0CC4747C3549AC14 /* OKPaginationTableViewCell.swift */,
+				D6CD34F888801616BF9529738F2DABC8 /* Info.plist */,
+				EC3542E4E117CD7DA8ABC110848F606B /* OKTableViewLiaison.modulemap */,
+				9A05441999ED15CD13429ADF2B006275 /* OKTableViewLiaison.xcconfig */,
+				7C45F37109E6F7F464C92744D0890F60 /* OKTableViewLiaison-dummy.m */,
+				2DE54AA37FC0E05CB238EEDA2CA5C99A /* OKTableViewLiaison-prefix.pch */,
+				5E0940110C9DF8DE5EFFE030628E6F43 /* OKTableViewLiaison-umbrella.h */,
 			);
-			name = Views;
-			path = OKTableViewLiaison/Classes/Views;
-			sourceTree = "<group>";
-		};
-		34690C098A91DC6F8CF7E0259D2EC535 /* Sections */ = {
-			isa = PBXGroup;
-			children = (
-				FC1352AD2135988E00333D69 /* OKTableViewSection.swift */,
-				45107EDC7FCB13DCE30CF0C9F0F3DBF2 /* OKTableViewSectionComponent.swift */,
-			);
-			name = Sections;
-			path = OKTableViewLiaison/Classes/Sections;
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/OKTableViewLiaison";
 			sourceTree = "<group>";
 		};
 		45D198E82D14AC8C5328A6686DD284C4 /* Targets Support Files */ = {
@@ -223,16 +236,6 @@
 				BCC81612EF9B41EB38E3AEBDD9EC1A72 /* Pods-OKTableViewLiaison_Tests */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		5D79E4679494C64FFCFFFF6F9821199C /* Rows */ = {
-			isa = PBXGroup;
-			children = (
-				1B411223C9A0AE4D3EC8FFCACB4F421D /* OKPaginationTableViewRow.swift */,
-				72653247738D80D558234B3DB4CA408D /* OKTableViewRow.swift */,
-			);
-			name = Rows;
-			path = OKTableViewLiaison/Classes/Rows;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -246,18 +249,21 @@
 			);
 			sourceTree = "<group>";
 		};
-		8C152C3B9E1C1E4DC001612EE2313AB1 /* Support Files */ = {
+		81C50D88F423F83FB57330E152BE805F /* OKTableViewLiaison */ = {
 			isa = PBXGroup;
 			children = (
-				E721B607138F949A1BCFDE78139ADC9A /* Info.plist */,
-				FE1BE17D09355A39E53BB24F87072C7A /* OKTableViewLiaison.modulemap */,
-				7AF03249C83F365BD31EA59EA2DE5EEF /* OKTableViewLiaison.xcconfig */,
-				74E6A8AA40DC88B780CEC79F7A2BBB51 /* OKTableViewLiaison-dummy.m */,
-				652E4A441274D252B322C363D00FA92F /* OKTableViewLiaison-prefix.pch */,
-				6426368AA68672B5AF364931C3AC9CD0 /* OKTableViewLiaison-umbrella.h */,
+				3E4C860FD6A56A187817ADF3A6FE2109 /* Enums */,
+				3A867FD8148DBA38C215B33FF7121A68 /* Extensions */,
+				3924831E73316B01C9A9DC9593F3B7FC /* Liaison */,
+				0F72DA45B2382D5B680C8D2789700753 /* Pod */,
+				23C115980E4BB27F979388E567A44FCB /* Protocols */,
+				F09CC5D09F6DA83461C67B70EBBF4BA3 /* Rows */,
+				96B39813B5DDB2A0FB99466BAE43787D /* Sections */,
+				4371442ADA1186D30B5ABFFFC7E1204E /* Support Files */,
+				D40580483F351FD26A9405E5C44FAEDB /* Views */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/OKTableViewLiaison";
+			name = OKTableViewLiaison;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		90BCDD45CDB7CBBA0E46834E9D74ED2E /* Pods-OKTableViewLiaison_Example */ = {
@@ -276,6 +282,16 @@
 			);
 			name = "Pods-OKTableViewLiaison_Example";
 			path = "Target Support Files/Pods-OKTableViewLiaison_Example";
+			sourceTree = "<group>";
+		};
+		96B39813B5DDB2A0FB99466BAE43787D /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				30D66F24B9A57FDCF214702D2736890D /* OKTableViewSection.swift */,
+				908D2AA8B5AF2CE6E5E9B08FB4A2A931 /* OKTableViewSectionComponent.swift */,
+			);
+			name = Sections;
+			path = OKTableViewLiaison/Classes/Sections;
 			sourceTree = "<group>";
 		};
 		B9430FE1BD3BA932C2830EB8D7A74757 /* Products */ = {
@@ -314,33 +330,6 @@
 			path = "Target Support Files/Pods-OKTableViewLiaison_Tests";
 			sourceTree = "<group>";
 		};
-		C6CB15394066C9675C9BCC6CE2E03AEA /* Liaison */ = {
-			isa = PBXGroup;
-			children = (
-				352CADF3A564673CB859EAA37BF3BB1F /* OKTableViewLiaison.swift */,
-				02B090087810D716A2F940B1CD632DA7 /* OKTableViewLiaison+Pagination.swift */,
-				F9213C72D0E30081D1918FF2F1A362FF /* OKTableViewLiaison+Row.swift */,
-				86A691913FF7D14D0212D92EAB32BE10 /* OKTableViewLiaison+Section.swift */,
-				E8D005AF17B59B138EBACDC6A496D9F9 /* OKTableViewLiaison+UITableViewDataSource.swift */,
-				D9440DB5089AF1C2D17A5723BB15C9CC /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift */,
-				F8DFC84727F0EC49B641A8153A0210F9 /* OKTableViewLiaison+UITableViewDelegate.swift */,
-			);
-			name = Liaison;
-			path = OKTableViewLiaison/Classes/Liaison;
-			sourceTree = "<group>";
-		};
-		CCCA99CDE40E13C49E8407ADF83667AB /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				21C29E2CB2E396FC4972CF5FA36A17E1 /* OKAnyTableViewRow.swift */,
-				0F66785443E1C3F11B91C88AC269D6CC /* OKAnyTableViewSectionComponent.swift */,
-				013D6D701942D44FA434B4AE746BE9D9 /* OKTableViewLiaisonPaginationDelegate.swift */,
-				FC72AA16213743560012C875 /* OKTableViewRegistrable.swift */,
-			);
-			name = Protocols;
-			path = OKTableViewLiaison/Classes/Protocols;
-			sourceTree = "<group>";
-		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,31 +338,31 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		D40580483F351FD26A9405E5C44FAEDB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD085915CF131280259E2F5D3A3054FF /* OKPaginationTableViewCell.swift */,
+			);
+			name = Views;
+			path = OKTableViewLiaison/Classes/Views;
+			sourceTree = "<group>";
+		};
 		E111D39C8429175BA0C522426CFF2256 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				02DCFBBFAEEAA1BA7CBECE5538BF5B10 /* OKTableViewLiaison */,
+				81C50D88F423F83FB57330E152BE805F /* OKTableViewLiaison */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		F58836939040FF806E7B35DCE5C82630 /* Pod */ = {
+		F09CC5D09F6DA83461C67B70EBBF4BA3 /* Rows */ = {
 			isa = PBXGroup;
 			children = (
-				2C8203F23D3CD377E39EE29F3551D273 /* LICENSE */,
-				9E902CF4DDF71E06D78B2A3D88A0BD07 /* OKTableViewLiaison.podspec */,
-				3B928CDF2EE635B54E942CF0A14F9AD6 /* README.md */,
+				7DCE87A01D033E1A1C8105238BE92C5D /* OKPaginationTableViewRow.swift */,
+				0A2DC18B4FFDF043466C78108D02D445 /* OKTableViewRow.swift */,
 			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		FC72AA2221384F1E0012C875 /* Registration */ = {
-			isa = PBXGroup;
-			children = (
-				FC1BC3EB21389C26004F6144 /* OKTableViewRegistrar.swift */,
-				FC1BC3EC21389C26004F6144 /* OKTableViewRegistrar+Registration.swift */,
-			);
-			path = Registration;
+			name = Rows;
+			path = OKTableViewLiaison/Classes/Rows;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,7 +417,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A37160788B509CB856D9F38276471747 /* Build configuration list for PBXNativeTarget "OKTableViewLiaison" */;
 			buildPhases = (
-				72A517E37F73B698E910F5142B76CBDC /* Sources */,
+				20B4B576F72682791ACC2059578E348C /* Sources */,
 				CC9BF9EF74D56A5C33656B33DA4F2D57 /* Frameworks */,
 				4C6D3544BC46D2DB3B4D998982FAC3F3 /* Headers */,
 			);
@@ -488,6 +477,40 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		20B4B576F72682791ACC2059578E348C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97DCF7DE586A4D2EA71C8698C3E23D06 /* Array+IndexPath.swift in Sources */,
+				C6274F972AA587F0C57656F943CEA07D /* Array+SafeAccess.swift in Sources */,
+				F1BE169F4D95A2F68E6569BE03BF1E6F /* OKAnyTableViewRow.swift in Sources */,
+				84EAF6CE0F68A843DE7359CA03B2389D /* OKAnyTableViewSectionComponent.swift in Sources */,
+				28D984FD6BDC60CF3731DC4E0646E321 /* OKPaginationTableViewCell.swift in Sources */,
+				95057D4CCFF654B14C5A163C14DB232A /* OKPaginationTableViewRow.swift in Sources */,
+				E366A7142DFA3AB2FD71BB0B85EC5F09 /* OKTableViewHeightType.swift in Sources */,
+				AB3AE397C796B3F49D00643664A9C0DB /* OKTableViewLiaison+Pagination.swift in Sources */,
+				2BB79319FF430A428111FAEF672EFCBB /* OKTableViewLiaison+Registration.swift in Sources */,
+				82C6022E25E050EA65A3A6FD64DE9095 /* OKTableViewLiaison+Row.swift in Sources */,
+				1821D61BD3642EDBFA385DD8D6E1E09A /* OKTableViewLiaison+Section.swift in Sources */,
+				408742DA1C6542DEF0335FDB1FC8A367 /* OKTableViewLiaison+UITableViewDataSource.swift in Sources */,
+				D010A70D09DD02BFD3F44E8A29B0EB73 /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift in Sources */,
+				01A54590636017574CC1BB715722A341 /* OKTableViewLiaison+UITableViewDelegate.swift in Sources */,
+				5502415A0F16ABB1E2187C9E6AD99F10 /* OKTableViewLiaison-dummy.m in Sources */,
+				93858EB31695D7D4CF6502E2B8EE22BD /* OKTableViewLiaison.swift in Sources */,
+				B305966B81D1826BACD1EE3AFE2EE06B /* OKTableViewLiaisonPaginationDelegate.swift in Sources */,
+				785DFA84486C5125F4772424ED8E2930 /* OKTableViewPrefetchCommand.swift in Sources */,
+				21D9463C400797F8BB3A30DD13AB5161 /* OKTableViewRegistrable.swift in Sources */,
+				BEF97DD7964C1B5B338A35D8E4FF2CE8 /* OKTableViewRegistrationType.swift in Sources */,
+				BD688B0081D1A338CB08EB2509F7CB3D /* OKTableViewRow.swift in Sources */,
+				6B8FE8E1E16CDF08693290FADE91D8C5 /* OKTableViewRowCommand.swift in Sources */,
+				9E4FA4627057AABCDBB9BC6940AAB203 /* OKTableViewSection.swift in Sources */,
+				2D876D470C34A099E4E7911E90DC8C9F /* OKTableViewSectionComponent.swift in Sources */,
+				D7310603217967D387DC575F6844C790 /* OKTableViewSectionComponentCommand.swift in Sources */,
+				3DF03B23E046B8B64E8619F93C9D68FA /* OKTableViewSectionComponentDisplayOption.swift in Sources */,
+				ECD27295FC7D1D6CDBC8C03F30D7A723 /* OKTableViewSectionComponentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		44ECCD415BAC68F93F3E0A17510E97DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -501,41 +524,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2C71CC0D87F8F291307F07647C047E6 /* Pods-OKTableViewLiaison_Tests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		72A517E37F73B698E910F5142B76CBDC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FC1352AE2135988E00333D69 /* OKTableViewSection.swift in Sources */,
-				01B54344300D7209F67A346D72064BD6 /* Array+IndexPath.swift in Sources */,
-				BE81A2671D1B8FCE23D97FD9CD7B86BE /* Array+SafeAccess.swift in Sources */,
-				5867716CE10B28692659EA3A640BFF56 /* OKAnyTableViewRow.swift in Sources */,
-				A7E9DE850A028EAA29C0318077711DBD /* OKAnyTableViewSectionComponent.swift in Sources */,
-				72216124DA7B84721DC09883D71E9FE8 /* OKPaginationTableViewCell.swift in Sources */,
-				AD5DACB2354F1B1A530CC9ED9FE6891C /* OKPaginationTableViewRow.swift in Sources */,
-				C1378C7FCA09FC7448021927A7D51DBD /* OKTableViewHeightType.swift in Sources */,
-				71F6D85984412B1720E2B87AB600DAA4 /* OKTableViewLiaison+Pagination.swift in Sources */,
-				6A30FB635EEFF4A6F2B07E80CAFF5717 /* OKTableViewLiaison+Row.swift in Sources */,
-				F6E44F69CDEA987984C000254C37C772 /* OKTableViewLiaison+Section.swift in Sources */,
-				486D2ABC38A9F7439590D92C7F5C8F4C /* OKTableViewLiaison+UITableViewDataSource.swift in Sources */,
-				FC72AA17213743560012C875 /* OKTableViewRegistrable.swift in Sources */,
-				C92D28FA9C922F1859ECEEB0C933C8F5 /* OKTableViewLiaison+UITableViewDataSourcePrefetching.swift in Sources */,
-				FC1BC3ED21389C26004F6144 /* OKTableViewRegistrar.swift in Sources */,
-				A6F92D029A51784FFEA6202BC67D59BC /* OKTableViewLiaison+UITableViewDelegate.swift in Sources */,
-				90C0BF26F3D417BFCF0A1F11B37B98B6 /* OKTableViewLiaison-dummy.m in Sources */,
-				AA60C1B10768E526B0363F9425B67053 /* OKTableViewLiaison.swift in Sources */,
-				17EAAFFC9F2B142134A3D4B5F97C1A12 /* OKTableViewLiaisonPaginationDelegate.swift in Sources */,
-				456A6EDD76A7CC38F40E8D204F46DF7E /* OKTableViewPrefetchCommand.swift in Sources */,
-				FC1BC3EE21389C26004F6144 /* OKTableViewRegistrar+Registration.swift in Sources */,
-				6D41673076525ACB78F8B460D9CC15F2 /* OKTableViewRegistrationType.swift in Sources */,
-				79986A0365644909FE904C218033779B /* OKTableViewRow.swift in Sources */,
-				1B00905F83B948E1B26FE9047DAF6D26 /* OKTableViewRowCommand.swift in Sources */,
-				5D6BA4CC383BC7640B29AC16EFE24773 /* OKTableViewSectionComponent.swift in Sources */,
-				587094A5DF0C25F375029B0848784CA2 /* OKTableViewSectionComponentCommand.swift in Sources */,
-				CD1204377D1BF4EA8EB74B9FE83F4189 /* OKTableViewSectionComponentDisplayOption.swift in Sources */,
-				F38E71DD738F73B353F64E0FE99924C8 /* OKTableViewSectionComponentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,7 +680,7 @@
 		};
 		8C6443D0BE5496879D6728BD5A6A9558 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AF03249C83F365BD31EA59EA2DE5EEF /* OKTableViewLiaison.xcconfig */;
+			baseConfigurationReference = 9A05441999ED15CD13429ADF2B006275 /* OKTableViewLiaison.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -794,7 +782,7 @@
 		};
 		D895C7E2F6A484D623983737B47F5EE8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AF03249C83F365BD31EA59EA2DE5EEF /* OKTableViewLiaison.xcconfig */;
+			baseConfigurationReference = 9A05441999ED15CD13429ADF2B006275 /* OKTableViewLiaison.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

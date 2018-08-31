@@ -30,8 +30,13 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
     }
     
     // MARK: - OKTableViewRegistrable
-    public func register(with registrar: OKTableViewRegistrar) {
-        registrar.registerIfNeeded(registrationType: registrationType)
+    public func register(with tableView: UITableView) {
+        switch registrationType {
+        case let .class(identifier):
+            tableView.register(View.self, forHeaderFooterViewReuseIdentifier: identifier)
+        case let .nib(nib, identifier):
+            tableView.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
+        }
     }
 
     // MARK: - Commands
