@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol OKAnyTableViewRow: class, OKTableViewRegistrable {
+public protocol OKAnyTableViewRow: AnyObject, OKTableViewRegistrable {
     var height: CGFloat { get }
     var estimatedHeight: CGFloat { get }
     var editable: Bool { get }

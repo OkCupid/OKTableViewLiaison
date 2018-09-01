@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol OKAnyTableViewSectionComponent: class, OKTableViewRegistrable {
+public protocol OKAnyTableViewSectionComponent: AnyObject, OKTableViewRegistrable {
     var height: CGFloat { get }
     var estimatedHeight: CGFloat { get }
     var reuseIdentifier: String { get }
