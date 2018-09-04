@@ -11,7 +11,6 @@ import UIKit
 open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     
     public let model: Model
-    public let registrationType: OKTableViewRegistrationType<Cell>
     public var editingStyle: UITableViewCellEditingStyle
     public var movable: Bool
     public var editActions: [UITableViewRowAction]?
@@ -19,6 +18,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     public var deleteConfirmationTitle: String?
     public var deleteRowAnimation: UITableViewRowAnimation
     
+    private let registrationType: OKTableViewRegistrationType<Cell>
     private var commands = [OKTableViewRowCommand: (Cell, Model, IndexPath) -> Void]()
     private var heights = [OKTableViewHeightType: (Model) -> CGFloat]()
     private var prefetchCommands = [OKTableViewPrefetchCommand: (Model, IndexPath) -> Void]()
