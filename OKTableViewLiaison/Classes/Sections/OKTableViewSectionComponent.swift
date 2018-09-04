@@ -26,7 +26,6 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
         return view
     }
     
-    // MARK: - OKTableViewRegistrable
     public func register(with tableView: UITableView) {
         switch registrationType {
         case let .class(identifier):

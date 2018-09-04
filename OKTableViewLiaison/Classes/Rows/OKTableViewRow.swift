@@ -48,7 +48,6 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
         return cell
     }
     
-    // MARK: - OKTableViewRegistrable    
     public func register(with tableView: UITableView) {
         switch registrationType {
         case let .class(identifier):
