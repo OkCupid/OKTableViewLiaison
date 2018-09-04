@@ -6,8 +6,6 @@
 //  Copyright © 2018 Dylan Shine. All rights reserved.
 //
 
-import UIKit
-
 public enum OKTableViewSectionComponentDisplayOption {
     case none
     case header(component: OKAnyTableViewSectionComponent)
