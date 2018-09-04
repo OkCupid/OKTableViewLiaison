@@ -23,9 +23,9 @@ final public class OKTableViewLiaison: NSObject {
     var waitingForPaginatedResults = false
     
     public init(sections: [OKTableViewSection] = [],
-                paginationRow: OKAnyTableViewRow? = nil) {
+                paginationRow: OKAnyTableViewRow = OKPaginationTableViewRow()) {
         self.sections = sections
-        self.paginationSection = OKTableViewSection(rows: [paginationRow ?? OKPaginationTableViewRow()])
+        self.paginationSection = OKTableViewSection(rows: [paginationRow])
         super.init()
     }
     
