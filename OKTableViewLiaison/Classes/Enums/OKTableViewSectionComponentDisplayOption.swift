@@ -12,8 +12,7 @@ public enum OKTableViewSectionComponentDisplayOption {
     case none
     case header(component: OKAnyTableViewSectionComponent)
     case footer(component: OKAnyTableViewSectionComponent)
-    case both(headerComponent: OKAnyTableViewSectionComponent,
-        footerComponent: OKAnyTableViewSectionComponent)
+    case both(headerComponent: OKAnyTableViewSectionComponent, footerComponent: OKAnyTableViewSectionComponent)
     
     public var header: OKAnyTableViewSectionComponent? {
         switch self {
