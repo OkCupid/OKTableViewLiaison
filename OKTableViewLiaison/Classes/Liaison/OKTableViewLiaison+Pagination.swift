@@ -37,38 +37,33 @@ extension OKTableViewLiaison {
         }
     }
     
-    func hidePaginationSpinner(animated: Bool) {
+    func removePaginationSpinner(animated: Bool) {
         guard waitingForPaginatedResults else { return }
         waitingForPaginatedResults = false
-        
-        if animated {
-            deleteSection(at: sections.lastIndex, animation: .none)
-        } else {
-            sections.remove(at: sections.lastIndex)
-        }
+    
+        deleteSection(at: sections.lastIndex, animation: .none, animated: animated)
     }
     
-    func endPagination(rows: [OKAnyTableViewRow]) {
-        hidePaginationSpinner(animated: rows.isEmpty)
+    func endPagination(rows: [OKAnyTableViewRow], animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+        removePaginationSpinner(animated: rows.isEmpty)
         
         guard !rows.isEmpty,
             let lastSection = sections.last else { return }
         
         let firstNewIndexPath = IndexPath(row: lastSection.rows.count, section: sections.lastIndex)
-        sections[sections.lastIndex].append(rows: rows)
-        reloadData()
+        append(rows: rows, animation: animation, animated: animated)
         paginationDelegate?.paginationEnded(indexPath: firstNewIndexPath)
     }
     
-    func endPagination(sections: [OKTableViewSection]) {
-        hidePaginationSpinner(animated: sections.isEmpty)
+    func endPagination(sections: [OKTableViewSection], animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+        removePaginationSpinner(animated: sections.isEmpty)
+        
         guard !sections.isEmpty else { return }
         let firstNewIndexPath = IndexPath(row: 0, section: self.sections.count)
-        self.sections.append(contentsOf: sections)
-        reloadData()
+        append(sections: sections, animation: animation, animated: animated)
         paginationDelegate?.paginationEnded(indexPath: firstNewIndexPath)
     }
-    
+
     private func addPaginationSection() {
         let indexSet = IndexSet(integer: sections.count)
         sections.append(paginationSection)

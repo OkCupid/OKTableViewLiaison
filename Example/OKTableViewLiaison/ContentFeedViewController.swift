@@ -57,7 +57,7 @@ extension ContentFeedViewController: OKTableViewLiaisonPaginationDelegate {
             .map { PostTableViewSectionFactory.section(for: $0, tableView: tableView) }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.liaison.append(sections: sections)
+            self.liaison.append(sections: sections, animated: false)
         }
     }
     

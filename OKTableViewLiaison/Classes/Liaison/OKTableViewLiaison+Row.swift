@@ -12,7 +12,7 @@ public extension OKTableViewLiaison {
     public func append(rows: [OKAnyTableViewRow], to section: Int = 0, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
         if waitingForPaginatedResults {
-            endPagination(rows: rows)
+            endPagination(rows: rows, animation: animation, animated: animated)
             return
         }
         
