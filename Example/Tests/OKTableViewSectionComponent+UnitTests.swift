@@ -96,7 +96,7 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Test")
         
-        XCTAssert(view != nil)
+        XCTAssertNotNil(view)
     }
 
     func test_viewForTableViewInSection_returnsConfiguredViewForComponent() {

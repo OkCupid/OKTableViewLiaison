@@ -153,7 +153,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Test")
         
-        XCTAssert(cell != nil)
+        XCTAssertNotNil(cell)
     }
     
     func test_cellForTableViewAt_returnsConfiguredCellForRow() {
