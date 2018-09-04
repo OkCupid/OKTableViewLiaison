@@ -22,7 +22,7 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
     
     public func view(for tableView: UITableView, in section: Int) -> UITableViewHeaderFooterView? {
         
-        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: registrationType.identifier) as? View else { return nil }
+        let view = tableView.dequeue(View.self, with: reuseIdentifier)
         
         commands[.configuration]?(view, model, section)
         
@@ -33,7 +33,7 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
     public func register(with tableView: UITableView) {
         switch registrationType {
         case let .class(identifier):
-            tableView.register(View.self, forHeaderFooterViewReuseIdentifier: identifier)
+            tableView.register(View.self, with: identifier)
         case let .nib(nib, identifier):
             tableView.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
         }

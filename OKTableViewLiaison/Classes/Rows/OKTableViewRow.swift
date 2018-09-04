@@ -44,9 +44,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     // MARK: - Cell
     public func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: registrationType.identifier) as? Cell else {
-            fatalError("Failed to dequeue cell of type \(Cell.self).")
-        }
+        let cell = tableView.dequeue(Cell.self, with: reuseIdentifier)
         
         commands[.configuration]?(cell, model, indexPath)
         return cell
@@ -56,7 +54,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     public func register(with tableView: UITableView) {
         switch registrationType {
         case let .class(identifier):
-            tableView.register(Cell.self, forCellReuseIdentifier: identifier)
+            tableView.register(Cell.self, with: identifier)
         case let .nib(nib, identifier):
             tableView.register(nib, forCellReuseIdentifier: identifier)
         }
