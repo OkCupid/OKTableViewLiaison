@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/OkCupid/OkTableViewLiaison/3.0.0/Resources/logo.png" width=400 />
+  <img src="https://raw.githubusercontent.com/OkCupid/OKTableViewLiaison/3.0.0/Resources/logo.png" width=400 />
 </p>
 
 <p align="center">
