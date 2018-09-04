@@ -1,4 +1,6 @@
-# OKTableViewLiaison
+<p align="center">
+  <img src="https://raw.githubusercontent.com/OkCupid/OkTableViewLiaison/3.0.0/Resources/logo.png" width=400 />
+</p>
 
 <p align="center">
 <a href="https://travis-ci.org/OkCupid/OKTableViewLiaison">
