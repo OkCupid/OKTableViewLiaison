@@ -78,7 +78,7 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
     }
     
     public var reuseIdentifier: String {
-        return registrationType.identifier
+        return registrationType.reuseIdentifier
     }
     
     // MARK: - Private

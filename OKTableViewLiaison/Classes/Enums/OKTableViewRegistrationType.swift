@@ -9,22 +9,22 @@
 import UIKit
 
 public enum OKTableViewRegistrationType<T> {
-    case nib(nib: UINib, identifier: String)
-    case `class`(identifier: String)
+    case nib(nib: UINib, reuseIdentifier: String)
+    case `class`(reuseIdentifier: String)
     
     public static var defaultClassType: OKTableViewRegistrationType {
-        return .class(identifier: String(describing: T.self))
+        return .class(reuseIdentifier: String(describing: T.self))
     }
     
     public static var defaultNibType: OKTableViewRegistrationType {
         return .nib(nib: UINib(nibName: String(describing: T.self), bundle: .main),
-                    identifier: String(describing: T.self))
+                    reuseIdentifier: String(describing: T.self))
     }
     
-    var identifier: String {
+    var reuseIdentifier: String {
         switch self {
-        case .class(let identifier), .nib(_, let identifier):
-            return identifier
+        case .class(let reuseIdentifier), .nib(_, let reuseIdentifier):
+            return reuseIdentifier
         }
     }
 }

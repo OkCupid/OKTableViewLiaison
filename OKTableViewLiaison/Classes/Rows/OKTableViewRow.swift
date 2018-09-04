@@ -115,7 +115,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     }
     
     public var reuseIdentifier: String {
-        return registrationType.identifier
+        return registrationType.reuseIdentifier
     }
 
     // MARK: - Private
