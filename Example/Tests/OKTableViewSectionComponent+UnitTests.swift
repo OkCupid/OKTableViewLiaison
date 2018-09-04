@@ -21,7 +21,7 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         
         component.perform(command: .configuration, for: UITableViewHeaderFooterView(), in: 0)
         
-        XCTAssertEqual(set, true)
+        XCTAssertTrue(set)
     }
     
     func test_removeCommand_removesCommand() {
@@ -35,7 +35,7 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         component.remove(command: .configuration)
         component.perform(command: .configuration, for: UITableViewHeaderFooterView(), in: 0)
 
-        XCTAssertEqual(set, false)
+        XCTAssertFalse(set)
     }
     
     func test_setHeight_setsHeightWithClosure() {
@@ -125,7 +125,7 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         
         component.perform(command: .configuration, for: UIView(), in: 0)
         
-        XCTAssertEqual(configured, false)
+        XCTAssertFalse(configured)
     }
     
     func test_reuseIdentifier_returnsCorrectReuseIdentifierForRegistrationType() {

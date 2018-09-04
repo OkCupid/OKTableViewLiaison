@@ -21,7 +21,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
        
         row.perform(command: .configuration, for: UITableViewCell(), at: IndexPath())
         
-        XCTAssertEqual(set, true)
+        XCTAssertTrue(set)
     }
     
     func test_removeCommand_removesCommand() {
@@ -35,7 +35,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         row.remove(command: .configuration)
         row.perform(command: .configuration, for: UITableViewCell(), at: IndexPath())
         
-        XCTAssertEqual(set, false)
+        XCTAssertFalse(set)
     }
     
     func test_setHeight_setsHeightWithClosure() {
@@ -91,8 +91,8 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         row.perform(prefetchCommand: .prefetch, for: IndexPath())
         row.perform(prefetchCommand: .cancel, for: IndexPath())
 
-        XCTAssertEqual(prefetch, true)
-        XCTAssertEqual(cancel, true)
+        XCTAssertTrue(prefetch)
+        XCTAssertTrue(cancel)
     }
     
     func test_removePrefetchCommand_removesPreviouslySetPrefetchCommands() {
@@ -114,8 +114,8 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         row.perform(prefetchCommand: .prefetch, for: IndexPath())
         row.perform(prefetchCommand: .cancel, for: IndexPath())
         
-        XCTAssertEqual(prefetch, false)
-        XCTAssertEqual(cancel, false)
+        XCTAssertFalse(prefetch)
+        XCTAssertFalse(cancel)
     }
     
     func test_editable_returnsIfRowIsEditable() {
@@ -129,10 +129,10 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         let row3 = TestTableViewRow(editActions: [editAction])
         let row4 = TestTableViewRow()
         
-        XCTAssertEqual(row1.editable, true)
-        XCTAssertEqual(row2.editable, true)
-        XCTAssertEqual(row3.editable, true)
-        XCTAssertEqual(row4.editable, false)
+        XCTAssertTrue(row1.editable)
+        XCTAssertTrue(row2.editable)
+        XCTAssertTrue(row3.editable)
+        XCTAssertFalse(row4.editable)
     }
     
     func test_reuseIdentifier_returnsCorrectReuseIdentifierForRegistrationType() {
@@ -182,7 +182,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
             
         row.perform(command: .configuration, for: UITableViewCell(), at: IndexPath())
         
-        XCTAssertEqual(configured, false)
+        XCTAssertFalse(configured)
     }
 
 }

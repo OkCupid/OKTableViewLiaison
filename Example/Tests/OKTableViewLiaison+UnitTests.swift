@@ -255,7 +255,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         
         XCTAssertEqual(tableView.numberOfRows(inSection: 0), 1)
         XCTAssert(liaison.sections.first?.rows.last === row)
-        XCTAssertEqual(inserted, true)
+        XCTAssertTrue(inserted)
         XCTAssertEqual(actualIndexPath, expectedIndexPath)
     }
 
@@ -292,8 +292,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         XCTAssertEqual(tableView.numberOfRows(inSection: 0), 2)
         XCTAssert(liaison.sections.first?.rows.first === row1)
         XCTAssert(liaison.sections.first?.rows.last === row2)
-        XCTAssertEqual(insertedRow1, true)
-        XCTAssertEqual(insertedRow2, true)
+        XCTAssertTrue(insertedRow1)
+        XCTAssertTrue(insertedRow2)
         XCTAssertEqual(actualIndexPathRow1, expectedIndexPathRow1)
         XCTAssertEqual(actualIndexPathRow2, expectedIndexPathRow2)
     }
@@ -324,7 +324,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         XCTAssertEqual(tableView.numberOfRows(inSection: 0), 3)
         XCTAssert(liaison.sections.first?.rows.first === row3)
-        XCTAssertEqual(insertedRow, true)
+        XCTAssertTrue(insertedRow)
         XCTAssertEqual(actualIndexPathRow, expectedIndexPath)
     }
 
@@ -370,9 +370,9 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         XCTAssertEqual(tableView.numberOfRows(inSection: 0), 0)
         XCTAssertEqual(tableView.numberOfRows(inSection: 1), 0)
-        XCTAssertEqual(deletedRow1, true)
-        XCTAssertEqual(deletedRow2, true)
-        XCTAssertEqual(deletedRow3, true)
+        XCTAssertTrue(deletedRow1)
+        XCTAssertTrue(deletedRow2)
+        XCTAssertTrue(deletedRow3)
         XCTAssertEqual(actualIndexPathRow1, row1IndexPath)
         XCTAssertEqual(actualIndexPathRow2, row2IndexPath)
         XCTAssertEqual(actualIndexPathRow3, row3IndexPath)
@@ -400,7 +400,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         XCTAssertEqual(tableView.numberOfRows(inSection: 0), 1)
         XCTAssert(liaison.sections.first?.rows.last === row2)
-        XCTAssertEqual(deletedRow, true)
+        XCTAssertTrue(deletedRow)
         XCTAssertEqual(actualIndexPathRow, expectedIndexPath)
     }
 
@@ -431,8 +431,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let count = tableView.callCounts[.reloadRows]
 
         XCTAssertEqual(count, 1)
-        XCTAssertEqual(reloaded1, true)
-        XCTAssertEqual(reloaded2, true)
+        XCTAssertTrue(reloaded1)
+        XCTAssertTrue(reloaded2)
     }
     
     func test_reloadRow_reloadsRowInSection() {
@@ -455,8 +455,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let count = tableView.callCounts[.reloadRows]
         
         XCTAssertEqual(count, 1)
-        XCTAssertEqual(reloaded, true)
-        
+        XCTAssertTrue(reloaded)
     }
 
     func test_replaceRow_replaceRowInSection() {
@@ -483,8 +482,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         XCTAssertEqual(tableView.numberOfRows(inSection: 0), 1)
         XCTAssert(liaison.sections.first?.rows.first === row2)
-        XCTAssertEqual(deleted, true)
-        XCTAssertEqual(inserted, true)
+        XCTAssertTrue(deleted)
+        XCTAssertTrue(inserted)
 
     }
 
@@ -511,7 +510,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         
         XCTAssert(liaison.sections.first?.rows.first === row2)
         XCTAssert(liaison.sections.first?.rows.last === row1)
-        XCTAssertEqual(moved, true)
+        XCTAssertTrue(moved)
         XCTAssertEqual(actualDestination, destination)
 
     }
@@ -549,7 +548,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         XCTAssert(liaison.sections.first?.rows.first === row2)
         XCTAssertEqual(liaison.sections.last?.rows.count, 3)
         XCTAssert(liaison.sections.last?.rows.last === row1)
-        XCTAssertEqual(moved, true)
+        XCTAssertTrue(moved)
         XCTAssertEqual(actualDestination, destination)
     }
 
@@ -585,8 +584,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         
         XCTAssert(liaison.sections.first?.rows.first === row3)
         XCTAssert(liaison.sections.first?.rows.last === row1)
-        XCTAssertEqual(sourceMoved, true)
-        XCTAssertEqual(destinationMoved, true)
+        XCTAssertTrue(sourceMoved)
+        XCTAssertTrue(destinationMoved)
         XCTAssertEqual(swappedSourceIndexPath, destinationIndexPath)
         XCTAssertEqual(swappedDestinationIndexPath, sourceIndexPath)
 
@@ -630,8 +629,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         
         XCTAssert(liaison.sections.first?.rows.first === row4)
         XCTAssert(liaison.sections.last?.rows.last === row1)
-        XCTAssertEqual(sourceMoved, true)
-        XCTAssertEqual(destinationMoved, true)
+        XCTAssertTrue(sourceMoved)
+        XCTAssertTrue(destinationMoved)
         XCTAssertEqual(swappedSourceIndexPath, destinationIndexPath)
         XCTAssertEqual(swappedDestinationIndexPath, sourceIndexPath)
     }
@@ -698,11 +697,10 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row3Editable = liaison.tableView(tableView, canEditRowAt: IndexPath(row: 2, section: 0))
         let nonExistentRowEditable = liaison.tableView(tableView, canEditRowAt: IndexPath(row: 3, section: 0))
 
-        XCTAssertEqual(row1Editable, true)
-        XCTAssertEqual(row2Editable, true)
-        XCTAssertEqual(row3Editable, false)
-        XCTAssertEqual(nonExistentRowEditable, false)
-
+        XCTAssertTrue(row1Editable)
+        XCTAssertTrue(row2Editable)
+        XCTAssertFalse(row3Editable)
+        XCTAssertFalse(nonExistentRowEditable)
     }
 
     func test_tableViewCanMoveRow_correctlyReturnsWhetherRowIsMovable() {
@@ -716,9 +714,9 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row2Movable = liaison.tableView(tableView, canMoveRowAt: IndexPath(row: 1, section: 0))
         let nonExistentRowMovable = liaison.tableView(tableView, canMoveRowAt: IndexPath(row: 2, section: 0))
 
-        XCTAssertEqual(row1Movable, true)
-        XCTAssertEqual(row2Movable, false)
-        XCTAssertEqual(nonExistentRowMovable, false)
+        XCTAssertTrue(row1Movable)
+        XCTAssertFalse(row2Movable)
+        XCTAssertFalse(nonExistentRowMovable)
     }
 
     func test_tableViewCommitEditingStyle_performsEditingActionRowForIndexPath() {
@@ -745,8 +743,8 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             liaison.tableView(tableView, commit: .insert, forRowAt: IndexPath(row: 0, section: 0))
         }
 
-        XCTAssertEqual(deleted, true)
-        XCTAssertEqual(inserted, true)
+        XCTAssertTrue(deleted)
+        XCTAssertTrue(inserted)
         XCTAssertEqual(tableView.numberOfRows(inSection: 0), 1)
         XCTAssertEqual(liaison.sections.first?.rows.count, 1)
     }
@@ -772,7 +770,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             liaison.tableView(tableView, moveRowAt: IndexPath(row: 0, section: 0), to: IndexPath(row: 0, section: 1))
         }
 
-        XCTAssertEqual(moved, true)
+        XCTAssertTrue(moved)
         XCTAssertEqual(liaison.sections.first?.rows.count, 2)
         XCTAssert(liaison.sections.last?.rows.first === row1)
     }
@@ -796,7 +794,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
            indexPath = liaison.tableView(tableView, willSelectRowAt: expectedIndexPath)
         }
 
-        XCTAssertEqual(willSelect, true)
+        XCTAssertTrue(willSelect)
         XCTAssertEqual(indexPath, expectedIndexPath)
     }
 
@@ -816,7 +814,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             liaison.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         }
 
-        XCTAssertEqual(didSelected, true)
+        XCTAssertTrue(didSelected)
     }
 
     func test_willDeselectRow_performsWillDeselectCommand() {
@@ -837,7 +835,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             indexPath = liaison.tableView(tableView, willDeselectRowAt: expectedIndexPath)
         }
 
-        XCTAssertEqual(willDeselect, true)
+        XCTAssertTrue(willDeselect)
         XCTAssertEqual(indexPath, expectedIndexPath)
     }
 
@@ -857,7 +855,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             liaison.tableView(tableView, didDeselectRowAt: IndexPath(row: 0, section: 0))
         }
 
-        XCTAssertEqual(didDeselect, true)
+        XCTAssertTrue(didDeselect)
     }
 
     func test_targetIndexPathForMoveFromRowToProposed_correctlyMovesRow() {
@@ -898,7 +896,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let cell = UITableViewCell()
         liaison.tableView(tableView, willDisplay: cell, forRowAt: IndexPath(row: 0, section: 0))
 
-        XCTAssertEqual(willDisplay, true)
+        XCTAssertTrue(willDisplay)
     }
 
     func test_willDisplayCell_paginationDelegateGetsCalled() {
@@ -1003,7 +1001,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let cell = UITableViewCell()
         liaison.tableView(tableView, didEndDisplaying: cell, forRowAt: IndexPath(row: 0, section: 0))
 
-        XCTAssertEqual(didEndDisplaying, true)
+        XCTAssertTrue(didEndDisplaying)
     }
 
     func test_willBeginEditingRow_performsWillBeginEditingCommand() {
@@ -1022,7 +1020,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             liaison.tableView(tableView, willBeginEditingRowAt: IndexPath(row: 0, section: 0))
         }
 
-        XCTAssertEqual(willBeginEditing, true)
+        XCTAssertTrue(willBeginEditing)
     }
 
     func test_didEndEditingRow_performsDidEndEditingCommand() {
@@ -1040,7 +1038,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             liaison.tableView(tableView, didEndEditingRowAt: IndexPath(row: 0, section: 0))
         }
 
-        XCTAssertEqual(didEndEditing, true)
+        XCTAssertTrue(didEndEditing)
     }
 
     func test_didHighlightRow_performsDidHighlightRowCommand() {
@@ -1059,7 +1057,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             liaison.tableView(tableView, didHighlightRowAt: IndexPath(row: 0, section: 0))
         }
 
-        XCTAssertEqual(didHighlight, true)
+        XCTAssertTrue(didHighlight)
     }
 
     func test_didUnhighlightRow_performsDidUnhighlightRowCommand() {
@@ -1078,7 +1076,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             liaison.tableView(tableView, didUnhighlightRowAt: IndexPath(row: 0, section: 0))
         }
 
-        XCTAssertEqual(didUnhighlight, true)
+        XCTAssertTrue(didUnhighlight)
     }
 
     func test_viewForHeaderInSection_returnCorrectHeaderForSection() {
@@ -1178,9 +1176,9 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let row2ShouldIndent = liaison.tableView(tableView, shouldIndentWhileEditingRowAt: IndexPath(row: 1, section: 0))
         let nonExistentRowShouldIndent = liaison.tableView(tableView, shouldIndentWhileEditingRowAt: IndexPath(row: 2, section: 0))
 
-        XCTAssertEqual(row1ShouldIndent, true)
-        XCTAssertEqual(row2ShouldIndent, false)
-        XCTAssertEqual(nonExistentRowShouldIndent, false)
+        XCTAssertTrue(row1ShouldIndent)
+        XCTAssertFalse(row2ShouldIndent)
+        XCTAssertFalse(nonExistentRowShouldIndent)
     }
 
     func test_editingStyleForRow_correctlyReturnsEditingStyleForRow() {
@@ -1237,7 +1235,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
             liaison.tableView(tableView, accessoryButtonTappedForRowWith: IndexPath(row: 0, section: 0))
         }
 
-        XCTAssertEqual(accessoryButtonTapped, true)
+        XCTAssertTrue(accessoryButtonTapped)
     }
 
     func test_titleForDeleteConfirmationButton_returnsCorrectDeleteConfirmationTitleForRow() {
@@ -1388,7 +1386,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let view = UITableViewHeaderFooterView()
         liaison.tableView(tableView, willDisplayHeaderView: view, forSection: 0)
 
-        XCTAssertEqual(willDisplay, true)
+        XCTAssertTrue(willDisplay)
     }
 
     func test_willDisplayFooterView_performsWillDisplayFooterViewSectionCommand() {
@@ -1406,7 +1404,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let view = UITableViewHeaderFooterView()
         liaison.tableView(tableView, willDisplayFooterView: view, forSection: 0)
 
-        XCTAssertEqual(willDisplay, true)
+        XCTAssertTrue(willDisplay)
     }
 
     func test_didEndDisplayingHeaderView_performsDidEndDisplayingHeaderViewSectionCommand() {
@@ -1424,7 +1422,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let view = UITableViewHeaderFooterView()
         liaison.tableView(tableView, didEndDisplayingHeaderView: view, forSection: 0)
 
-        XCTAssertEqual(didEndDisplaying, true)
+        XCTAssertTrue(didEndDisplaying)
     }
 
     func test_didEndDisplayingFooterView_performsDidEndDisplayingFooterViewSectionCommand() {
@@ -1442,7 +1440,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         let view = UITableViewHeaderFooterView()
         liaison.tableView(tableView, didEndDisplayingFooterView: view, forSection: 0)
 
-        XCTAssertEqual(didEndDisplaying, true)
+        XCTAssertTrue(didEndDisplaying)
     }
 
     func test_prefetchRowsAtIndexPaths_performsPrefetchRowCommand() {
@@ -1457,7 +1455,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.append(section: section)
         liaison.tableView(tableView, prefetchRowsAt: [IndexPath(row: 0, section: 0)])
 
-        XCTAssertEqual(prefetch, true)
+        XCTAssertTrue(prefetch)
     }
 
     func test_cancelPrefetchingForRowsAtIndexPaths_performsPrefetchRowCommand() {
@@ -1472,7 +1470,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
         liaison.append(section: section)
         liaison.tableView(tableView, cancelPrefetchingForRowsAt: [IndexPath(row: 0, section: 0)])
 
-        XCTAssertEqual(cancel, true)
+        XCTAssertTrue(cancel)
     }
     
     func test_rowForIndexPath_returnsCorrectRow() {
