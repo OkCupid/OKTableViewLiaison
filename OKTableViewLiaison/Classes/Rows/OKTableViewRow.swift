@@ -43,9 +43,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     
     // MARK: - Cell
     public func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeue(Cell.self, with: reuseIdentifier)
-        
         commands[.configuration]?(cell, model, indexPath)
         return cell
     }

@@ -7,10 +7,7 @@
 
 import UIKit
 
-public protocol OKAnyTableViewSectionComponent: AnyObject, OKTableViewRegistrable {
-    var height: CGFloat { get }
-    var estimatedHeight: CGFloat { get }
-    var reuseIdentifier: String { get }
+public protocol OKAnyTableViewSectionComponent: OKTableViewContent {
     func perform(command: OKTableViewSectionComponentCommand, for view: UIView, in section: Int)
     func view(for tableView: UITableView, in section: Int) -> UITableViewHeaderFooterView?
 }

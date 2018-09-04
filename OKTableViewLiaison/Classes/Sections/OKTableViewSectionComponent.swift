@@ -21,11 +21,8 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
     }
     
     public func view(for tableView: UITableView, in section: Int) -> UITableViewHeaderFooterView? {
-        
         let view = tableView.dequeue(View.self, with: reuseIdentifier)
-        
         commands[.configuration]?(view, model, section)
-        
         return view
     }
     
@@ -95,7 +92,6 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
 public extension OKTableViewSectionComponent where Model == Void {
     
     public convenience init(registrationType: OKTableViewRegistrationType<View> = .defaultClassType) {
-        
         self.init((),
                   registrationType: registrationType)
     }
