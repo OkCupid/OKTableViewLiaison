@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol OKTableViewLiaisonPaginationDelegate: class {
+public protocol OKTableViewLiaisonPaginationDelegate: AnyObject {
     func isPaginationEnabled() -> Bool
     func paginationStarted(indexPath: IndexPath)
     func paginationEnded(indexPath: IndexPath)
