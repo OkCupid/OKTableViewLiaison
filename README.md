@@ -1,4 +1,6 @@
-# OKTableViewLiaison
+<p align="center">
+  <img src="https://raw.githubusercontent.com/OkCupid/OKTableViewLiaison/master/Resources/logo.png" width=500 />
+</p>
 
 <p align="center">
 <a href="https://travis-ci.org/OkCupid/OKTableViewLiaison">
@@ -64,7 +66,7 @@ In the event you would like to remove the tableView from the liaison, simply inv
 OKTableViewLiaison populates sections and rows using two main types:
 
 ### Section
-`class OKTableViewSection`
+`struct OKTableViewSection`
 
 To create a section for our tableView, create an instance of `OKTableViewSection` and add it to the liaison.
 
@@ -208,7 +210,7 @@ row.set(prefetchCommand: .cancel) { model, indexPath in
 ```
 
 ### Cell/View Registration
-`OKTableViewLiaison` handles cell & view registration for `UITableView` view reuse on your behalf utilizing your sections/rows `OKTableViewRegistrationType<T: UIView>`.
+`OKTableViewLiaison` handles cell & view registration for `UITableView` view reuse on your behalf utilizing your sections/rows `OKTableViewRegistrationType<T>`.
 
 `OKTableViewRegistrationType` tells the liaison whether your reusable view should be registered via a `Nib` or `Class`.
 

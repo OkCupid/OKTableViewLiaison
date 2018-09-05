@@ -11,7 +11,7 @@ import OKTableViewLiaison
 
 enum PostTableViewSectionFactory {
     
-    static func section(for post: Post, tableView: UITableView) -> PostTableViewSection {
+    static func section(for post: Post, tableView: UITableView) -> OKTableViewSection {
         let rows: [OKAnyTableViewRow] = [
             ImageTableViewRow(image: post.content, tableView: tableView),
             ActionButtonsTableViewRow(),
@@ -21,7 +21,9 @@ enum PostTableViewSectionFactory {
             TextTableViewRowFactory.timeRow(numberOfSeconds: post.timePosted)
         ]
         
-        return PostTableViewSection(user: post.user, rows: rows)
+        let header = PostTableViewSectionHeaderViewComponent(user: post.user)
+        
+        return OKTableViewSection(rows: rows, componentDisplayOption: .header(component: header))
     }
     
 }

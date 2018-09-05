@@ -8,24 +8,24 @@
 
 import UIKit
 
-final public class OKTableViewLiaison: NSObject {
+public final class OKTableViewLiaison: NSObject {
     
     weak var tableView: UITableView? {
-        didSet { syncSections() }
+        didSet { registerSections() }
     }
     
-    public internal(set) var sections = [OKTableViewSection]() {
-        didSet { syncSections() }
-    }
+    public internal(set) var sections = [OKTableViewSection]()
     
-    let paginationSection: OKPaginationTableViewSection
-    var waitingForPaginatedResults = false
     public weak var paginationDelegate: OKTableViewLiaisonPaginationDelegate?
-
+    
+    let paginationSection: OKTableViewSection
+    
+    var waitingForPaginatedResults = false
+    
     public init(sections: [OKTableViewSection] = [],
                 paginationRow: OKAnyTableViewRow = OKPaginationTableViewRow()) {
         self.sections = sections
-        self.paginationSection = OKPaginationTableViewSection(row: paginationRow)
+        self.paginationSection = OKTableViewSection(rows: [paginationRow])
         super.init()
     }
     
@@ -62,6 +62,7 @@ final public class OKTableViewLiaison: NSObject {
     }
     
     public func scroll(to indexPath: IndexPath, at scrollPosition: UITableViewScrollPosition = .none, animated: Bool = true) {
+        guard row(for: indexPath) != nil else { return }
         tableView?.scrollToRow(at: indexPath, at: scrollPosition, animated: animated)
     }
 
@@ -71,16 +72,8 @@ final public class OKTableViewLiaison: NSObject {
         tv.isEditing = !tv.isEditing
     }
     
-    public func section(for index: Int) -> OKTableViewSection? {
-        return sections.element(at: index)
-    }
-    
-    public func section(for indexPath: IndexPath) -> OKTableViewSection? {
-        return sections.element(at: indexPath.section)
-    }
-    
-    public func row(for indexPath: IndexPath) -> OKAnyTableViewRow? {
-        guard let section = section(for: indexPath) else { return nil }
+    func row(for indexPath: IndexPath) -> OKAnyTableViewRow? {
+        guard let section = sections.element(at: indexPath.section) else { return nil }
         
         return section.rows.element(at: indexPath.row)
     }
@@ -95,11 +88,8 @@ final public class OKTableViewLiaison: NSObject {
         }
     }
     
-    private func syncSections() {
-        sections.forEach {
-            if $0.tableView != tableView {
-                $0.tableView = tableView
-            }
-        }
+    private func registerSections() {
+        register(section: paginationSection)
+        register(sections: sections)
     }
 }

@@ -11,17 +11,6 @@ import XCTest
 
 final class OKTableViewSectionComponent_UnitTests: XCTestCase {
     
-    func test_registerViewTypeWithTableView_registersViewForSectionComponent() {
-        let tableView = UITableView()
-        
-        let component = TestTableViewSectionComponent()
-        component.registerViewType(with: tableView)
-        
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: component.reuseIdentifier)
-        
-        XCTAssert(view != nil)
-    }
-    
     func test_setCommand_setsCommandClosure() {
         let component = TestTableViewSectionComponent()
 
@@ -32,7 +21,7 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         
         component.perform(command: .configuration, for: UITableViewHeaderFooterView(), in: 0)
         
-        XCTAssertEqual(set, true)
+        XCTAssertTrue(set)
     }
     
     func test_removeCommand_removesCommand() {
@@ -46,7 +35,7 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         component.remove(command: .configuration)
         component.perform(command: .configuration, for: UITableViewHeaderFooterView(), in: 0)
 
-        XCTAssertEqual(set, false)
+        XCTAssertFalse(set)
     }
     
     func test_setHeight_setsHeightWithClosure() {
@@ -98,6 +87,17 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         
         XCTAssertEqual(component.estimatedHeight, 100)
     }
+    
+    func test_register_registersViewForSectionComponent() {
+        let component = TestTableViewSectionComponent(registrationType: .class(reuseIdentifier: "Test"))
+        let tableView = UITableView()
+        
+        component.register(with: tableView)
+        
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Test")
+        
+        XCTAssertNotNil(view)
+    }
 
     func test_viewForTableViewInSection_returnsConfiguredViewForComponent() {
         
@@ -108,7 +108,7 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         }
         
         let tableView = UITableView()
-        component.registerViewType(with: tableView)
+        component.register(with: tableView)
         
         let view = component.view(for: tableView, in: 0)
         
@@ -125,7 +125,16 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         
         component.perform(command: .configuration, for: UIView(), in: 0)
         
-        XCTAssertEqual(configured, false)
+        XCTAssertFalse(configured)
     }
     
+    func test_reuseIdentifier_returnsCorrectReuseIdentifierForRegistrationType() {
+        let component1 = TestTableViewSectionComponent(registrationType: .defaultClassType)
+        let component2 = TestTableViewSectionComponent()
+        let component3 = TestTableViewSectionComponent(registrationType: .class(reuseIdentifier: "Test"))
+        
+        XCTAssertEqual(component1.reuseIdentifier, String(describing: UITableViewHeaderFooterView.self))
+        XCTAssertEqual(component2.reuseIdentifier, String(describing: UITableViewHeaderFooterView.self))
+        XCTAssertEqual(component3.reuseIdentifier, "Test")
+    }
 }

@@ -6,8 +6,6 @@
 //  Copyright © 2018 Dylan Shine. All rights reserved.
 //
 
-import Foundation
-
 public enum OKTableViewPrefetchCommand {
     case cancel
     case prefetch

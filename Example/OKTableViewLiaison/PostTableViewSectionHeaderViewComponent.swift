@@ -18,6 +18,9 @@ final class PostTableViewSectionHeaderViewComponent: OKTableViewSectionComponent
         set(height: .height, 70)
     
         set(command: .configuration) { view, user, section in
+            view.backgroundView = UIView(frame: view.bounds)
+            view.backgroundView?.backgroundColor = .white
+            
             view.imageView.image = user.avatar
             view.imageView.layer.borderColor = UIColor.gray.cgColor
             view.imageView.layer.borderWidth = 1

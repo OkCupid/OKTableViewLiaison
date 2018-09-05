@@ -7,7 +7,7 @@
 
 import UIKit
 
-final public class OKPaginationTableViewRow: OKTableViewRow<OKPaginationTableViewCell, Void> {
+public final class OKPaginationTableViewRow: OKTableViewRow<OKPaginationTableViewCell, Void> {
     
     public init() {
         super.init(())
@@ -20,7 +20,5 @@ final public class OKPaginationTableViewRow: OKTableViewRow<OKPaginationTableVie
         set(command: .willDisplay) { cell, _, _ in
             cell.spinner.startAnimating()
         }
-        
     }
-    
 }

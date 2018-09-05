@@ -10,18 +10,6 @@ import XCTest
 @testable import OKTableViewLiaison
 
 final class OKTableViewRow_UnitTests: XCTestCase {
-
-    func test_registerCellTypeWithTableView_registersCellForRow() {
-        let tableView = UITableView()
-        
-        let row = TestTableViewRow()
-        
-        row.registerCellType(with: tableView)
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier)
-        
-        XCTAssert(cell != nil)
-    }
     
     func test_setCommand_setsCommandClosure() {
         let row = TestTableViewRow()
@@ -33,7 +21,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
        
         row.perform(command: .configuration, for: UITableViewCell(), at: IndexPath())
         
-        XCTAssertEqual(set, true)
+        XCTAssertTrue(set)
     }
     
     func test_removeCommand_removesCommand() {
@@ -47,7 +35,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         row.remove(command: .configuration)
         row.perform(command: .configuration, for: UITableViewCell(), at: IndexPath())
         
-        XCTAssertEqual(set, false)
+        XCTAssertFalse(set)
     }
     
     func test_setHeight_setsHeightWithClosure() {
@@ -103,8 +91,8 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         row.perform(prefetchCommand: .prefetch, for: IndexPath())
         row.perform(prefetchCommand: .cancel, for: IndexPath())
 
-        XCTAssertEqual(prefetch, true)
-        XCTAssertEqual(cancel, true)
+        XCTAssertTrue(prefetch)
+        XCTAssertTrue(cancel)
     }
     
     func test_removePrefetchCommand_removesPreviouslySetPrefetchCommands() {
@@ -126,8 +114,8 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         row.perform(prefetchCommand: .prefetch, for: IndexPath())
         row.perform(prefetchCommand: .cancel, for: IndexPath())
         
-        XCTAssertEqual(prefetch, false)
-        XCTAssertEqual(cancel, false)
+        XCTAssertFalse(prefetch)
+        XCTAssertFalse(cancel)
     }
     
     func test_editable_returnsIfRowIsEditable() {
@@ -141,24 +129,34 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         let row3 = TestTableViewRow(editActions: [editAction])
         let row4 = TestTableViewRow()
         
-        XCTAssertEqual(row1.editable, true)
-        XCTAssertEqual(row2.editable, true)
-        XCTAssertEqual(row3.editable, true)
-        XCTAssertEqual(row4.editable, false)
+        XCTAssertTrue(row1.editable)
+        XCTAssertTrue(row2.editable)
+        XCTAssertTrue(row3.editable)
+        XCTAssertFalse(row4.editable)
     }
     
     func test_reuseIdentifier_returnsCorrectReuseIdentifierForRegistrationType() {
         let row1 = TestTableViewRow(registrationType: .defaultClassType)
         let row2 = TestTableViewRow()
-        let row3 = TestTableViewRow(registrationType: .class(identifier: "Test"))
+        let row3 = TestTableViewRow(registrationType: .class(reuseIdentifier: "Test"))
         
         XCTAssertEqual(row1.reuseIdentifier, String(describing: UITableViewCell.self))
         XCTAssertEqual(row2.reuseIdentifier, String(describing: UITableViewCell.self))
         XCTAssertEqual(row3.reuseIdentifier, "Test")
     }
     
-    func test_cellForTableViewAt_returnsConfiguredCellForRow() {
+    func test_register_registersCellForRow() {
+        let row = TestTableViewRow(registrationType: .class(reuseIdentifier: "Test"))
+        let tableView = UITableView()
         
+        row.register(with: tableView)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Test")
+        
+        XCTAssertNotNil(cell)
+    }
+    
+    func test_cellForTableViewAt_returnsConfiguredCellForRow() {
         let row = TestTableViewRow()
         let string = "Test"
         row.set(command: .configuration) { (cell, _, indexPath) in
@@ -166,7 +164,8 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         }
         
         let tableView = UITableView()
-        row.registerCellType(with: tableView)
+        
+        row.register(with: tableView)
         
         let cell = row.cell(for: tableView, at: IndexPath())
         
@@ -183,7 +182,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
             
         row.perform(command: .configuration, for: UITableViewCell(), at: IndexPath())
         
-        XCTAssertEqual(configured, false)
+        XCTAssertFalse(configured)
     }
 
 }

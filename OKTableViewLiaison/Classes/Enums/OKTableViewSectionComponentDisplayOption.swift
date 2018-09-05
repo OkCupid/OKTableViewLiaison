@@ -6,18 +6,11 @@
 //  Copyright © 2018 Dylan Shine. All rights reserved.
 //
 
-import UIKit
-
 public enum OKTableViewSectionComponentDisplayOption {
     case none
     case header(component: OKAnyTableViewSectionComponent)
     case footer(component: OKAnyTableViewSectionComponent)
-    case both(headerComponent: OKAnyTableViewSectionComponent,
-        footerComponent: OKAnyTableViewSectionComponent)
-    
-    func registerComponentViews(with tableView: UITableView) {
-        [header, footer].forEach { $0?.registerViewType(with: tableView) }
-    }
+    case both(headerComponent: OKAnyTableViewSectionComponent, footerComponent: OKAnyTableViewSectionComponent)
     
     public var header: OKAnyTableViewSectionComponent? {
         switch self {
@@ -40,5 +33,4 @@ public enum OKTableViewSectionComponentDisplayOption {
             return nil
         }
     }
-    
 }

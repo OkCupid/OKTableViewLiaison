@@ -9,17 +9,33 @@ import Foundation
 
 open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>: OKAnyTableViewSectionComponent {
     
-    public init(_ model: Model, registrationType: OKTableViewRegistrationType<View> = .defaultClassType) {
-        self.model = model
-        self.registrationType = registrationType
-    }
-    
     public let model: Model
     
     private let registrationType: OKTableViewRegistrationType<View>
     private var commands = [OKTableViewSectionComponentCommand: (View, Model, Int) -> Void]()
     private var heights = [OKTableViewHeightType: (Model) -> CGFloat]()
+    
+    public init(_ model: Model, registrationType: OKTableViewRegistrationType<View> = .defaultClassType) {
+        self.model = model
+        self.registrationType = registrationType
+    }
+    
+    public func view(for tableView: UITableView, in section: Int) -> UITableViewHeaderFooterView? {
+        let view = tableView.dequeue(View.self, with: reuseIdentifier)
+        commands[.configuration]?(view, model, section)
+        return view
+    }
+    
+    public func register(with tableView: UITableView) {
+        switch registrationType {
+        case let .class(identifier):
+            tableView.register(View.self, with: identifier)
+        case let .nib(nib, identifier):
+            tableView.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
+        }
+    }
 
+    // MARK: - Commands
     public func perform(command: OKTableViewSectionComponentCommand, for view: UIView, in section: Int) {
         
         guard let view = view as? View else { return }
@@ -58,19 +74,11 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
     }
     
     public var reuseIdentifier: String {
-        return registrationType.identifier
+        return registrationType.reuseIdentifier
     }
     
-    public func view(for tableView: UITableView, in section: Int) -> UITableViewHeaderFooterView? {
-    
-        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) as? View else { return nil }
-        
-        commands[.configuration]?(view, model, section)
-        
-        return view
-    }
-    
-    public func calculate(height: OKTableViewHeightType) -> CGFloat {
+    // MARK: - Private
+    private func calculate(height: OKTableViewHeightType) -> CGFloat {
         switch height {
         case .height:
             return heights[.height]?(model) ?? UITableViewAutomaticDimension
@@ -78,22 +86,11 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
             return heights[.estimatedHeight]?(model) ?? heights[.height]?(model) ?? 0
         }
     }
-    
-    public func registerViewType(with tableView: UITableView) {
-        switch registrationType {
-        case let .class(identifier):
-            tableView.register(View.self, forHeaderFooterViewReuseIdentifier: identifier)
-        case let .nib(nib, identifier):
-            tableView.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
-        }
-    }
-    
 }
 
 public extension OKTableViewSectionComponent where Model == Void {
     
     public convenience init(registrationType: OKTableViewRegistrationType<View> = .defaultClassType) {
-        
         self.init((),
                   registrationType: registrationType)
     }

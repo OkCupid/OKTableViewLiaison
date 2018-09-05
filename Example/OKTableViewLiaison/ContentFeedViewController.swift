@@ -14,7 +14,7 @@ final class ContentFeedViewController: UIViewController {
     private let liaison = OKTableViewLiaison()
     private let refreshControl = UIRefreshControl()
     
-    private var initialSections: [PostTableViewSection] {
+    private var initialSections: [OKTableViewSection] {
         return Post.initialPosts()
             .map { PostTableViewSectionFactory.section(for: $0, tableView: tableView) }
     }
@@ -57,7 +57,7 @@ extension ContentFeedViewController: OKTableViewLiaisonPaginationDelegate {
             .map { PostTableViewSectionFactory.section(for: $0, tableView: tableView) }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.liaison.append(sections: sections)
+            self.liaison.append(sections: sections, animated: false)
         }
     }
     
