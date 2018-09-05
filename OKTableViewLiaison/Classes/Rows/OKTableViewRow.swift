@@ -8,21 +8,6 @@
 
 import UIKit
 
-public protocol OKAnyTableViewRow: class {
-    var height: CGFloat { get }
-    var estimatedHeight: CGFloat { get }
-    var editable: Bool { get }
-    var movable: Bool { get }
-    var editActions: [UITableViewRowAction]? { get }
-    var editingStyle: UITableViewCellEditingStyle { get }
-    var indentWhileEditing: Bool { get }
-    var deleteConfirmationTitle: String? { get }
-    var deleteRowAnimation: UITableViewRowAnimation { get }
-    func registerCellType(with tableView: UITableView)
-    func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
-    func perform(command: OKTableViewRowCommand, for cell: UITableViewCell, at indexPath: IndexPath)
-}
-
 open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     
     public let model: Model
@@ -32,10 +17,11 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     public var indentWhileEditing: Bool
     public var deleteConfirmationTitle: String?
     public var deleteRowAnimation: UITableViewRowAnimation
-    public var registrationType: OKTableViewRegistrationType
     
+    private let registrationType: OKTableViewRegistrationType<Cell>
     private var commands = [OKTableViewRowCommand: (Cell, Model, IndexPath) -> Void]()
     private var heights = [OKTableViewHeightType: (Model) -> CGFloat]()
+    private var prefetchCommands = [OKTableViewPrefetchCommand: (Model, IndexPath) -> Void]()
     
     public init(_ model: Model,
                 editingStyle: UITableViewCellEditingStyle = .none,
@@ -44,7 +30,7 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
                 indentWhileEditing: Bool = false,
                 deleteConfirmationTitle: String? = nil,
                 deleteRowAnimation: UITableViewRowAnimation = .automatic,
-                registrationType: OKTableViewRegistrationType = OKTableViewRow.defaultClassRegistrationType) {
+                registrationType: OKTableViewRegistrationType<Cell> = .defaultClassType) {
         self.model = model
         self.editingStyle = editingStyle
         self.movable = movable
@@ -57,15 +43,15 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     
     // MARK: - Cell
     public func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = dequeueCell(with: tableView)
+        let cell = tableView.dequeue(Cell.self, with: reuseIdentifier)
         commands[.configuration]?(cell, model, indexPath)
         return cell
     }
     
-    public func registerCellType(with tableView: UITableView) {
+    public func register(with tableView: UITableView) {
         switch registrationType {
         case let .class(identifier):
-            tableView.register(Cell.self, forCellReuseIdentifier: identifier)
+            tableView.register(Cell.self, with: identifier)
         case let .nib(nib, identifier):
             tableView.register(nib, forCellReuseIdentifier: identifier)
         }
@@ -73,14 +59,17 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     
     // MARK: - Commands
     public func perform(command: OKTableViewRowCommand, for cell: UITableViewCell, at indexPath: IndexPath) {
-        guard let cell = cell as? Cell else {
-            return
-        }
+        
+        guard let cell = cell as? Cell else { return }
         
         commands[command]?(cell, model, indexPath)
     }
     
-    public func set(command: OKTableViewRowCommand, with closure: @escaping ((Cell, Model, IndexPath) -> Void)) {
+    public func perform(prefetchCommand: OKTableViewPrefetchCommand, for indexPath: IndexPath) {
+        prefetchCommands[prefetchCommand]?(model, indexPath)
+    }
+    
+    public func set(command: OKTableViewRowCommand, with closure: @escaping (Cell, Model, IndexPath) -> Void) {
         commands[command] = closure
     }
     
@@ -88,17 +77,25 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
         commands[command] = nil
     }
     
-    public func set(height: OKTableViewHeightType, with closure: @escaping ((Model) -> CGFloat)) {
+    public func set(height: OKTableViewHeightType, _ closure: @escaping (Model) -> CGFloat) {
         heights[height] = closure
     }
     
-    public func set(height: OKTableViewHeightType, value: CGFloat) {
+    public func set(height: OKTableViewHeightType, _ value: CGFloat) {
         let closure: ((Model) -> CGFloat) = { _ -> CGFloat in return value }
         heights[height] = closure
     }
     
     public func remove(height: OKTableViewHeightType) {
         heights[height] = nil
+    }
+    
+    public func set(prefetchCommand: OKTableViewPrefetchCommand, with closure: @escaping (Model, IndexPath) -> Void) {
+        prefetchCommands[prefetchCommand] = closure
+    }
+    
+    public func remove(prefetchCommand: OKTableViewPrefetchCommand) {
+        prefetchCommands[prefetchCommand] = nil
     }
     
     // MARK: - Computed Properties
@@ -110,22 +107,15 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
         return calculate(height: .estimatedHeight)
     }
     
-    public var reuseIdentifier: String {
-        return registrationType.identifier
-    }
-    
     public var editable: Bool {
         return editingStyle != .none || editActions?.isEmpty == false
     }
+    
+    public var reuseIdentifier: String {
+        return registrationType.reuseIdentifier
+    }
 
     // MARK: - Private
-    private func dequeueCell(with tableView: UITableView) -> Cell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? Cell else {
-            fatalError("Failed to dequeue cell of type \(Cell.self).")
-        }
-        
-        return cell
-    }
     
     private func calculate(height: OKTableViewHeightType) -> CGFloat {
         return heights[height]?(model) ?? UITableViewAutomaticDimension
@@ -140,7 +130,7 @@ public extension OKTableViewRow where Model == Void {
                             indentWhileEditing: Bool = false,
                             deleteConfirmationTitle: String? = nil,
                             deleteRowAnimation: UITableViewRowAnimation = .automatic,
-                            registrationType: OKTableViewRegistrationType = OKTableViewRow.defaultClassRegistrationType) {
+                            registrationType: OKTableViewRegistrationType<Cell> = .defaultClassType) {
         
         self.init((),
                   editingStyle: editingStyle,
@@ -150,17 +140,5 @@ public extension OKTableViewRow where Model == Void {
                   deleteConfirmationTitle: deleteConfirmationTitle,
                   deleteRowAnimation: deleteRowAnimation,
                   registrationType: registrationType)
-    }
-}
-
-// MARK: - OKTableViewRegistrationType
-public extension OKTableViewRow {
-    
-    public static var defaultClassRegistrationType: OKTableViewRegistrationType {
-        return .defaultClassRegistration(for: Cell.self)
-    }
-    
-    public static var defaultNibRegistrationType: OKTableViewRegistrationType {
-        return .defaultNibRegistration(for: Cell.self)
     }
 }

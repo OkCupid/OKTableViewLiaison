@@ -10,21 +10,9 @@ import XCTest
 @testable import OKTableViewLiaison
 
 final class OKTableViewRow_UnitTests: XCTestCase {
-
-    func test_registerCellTypeWithTableView_registersCellForRow() {
-        let tableView = UITableView()
-        
-        let row = TestTableViewRow.create()
-        
-        row.registerCellType(with: tableView)
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier)
-        
-        XCTAssert(cell != nil)
-    }
     
     func test_setCommand_setsCommandClosure() {
-        let row = TestTableViewRow.create()
+        let row = TestTableViewRow()
         
         var set = false
         row.set(command: .configuration) { (_, _, _) in
@@ -33,7 +21,7 @@ final class OKTableViewRow_UnitTests: XCTestCase {
        
         row.perform(command: .configuration, for: UITableViewCell(), at: IndexPath())
         
-        XCTAssertEqual(set, true)
+        XCTAssertTrue(set)
     }
     
     func test_removeCommand_removesCommand() {
@@ -47,11 +35,11 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         row.remove(command: .configuration)
         row.perform(command: .configuration, for: UITableViewCell(), at: IndexPath())
         
-        XCTAssertEqual(set, false)
+        XCTAssertFalse(set)
     }
     
     func test_setHeight_setsHeightWithClosure() {
-        let row = TestTableViewRow.create()
+        let row = TestTableViewRow()
 
         row.set(height: .height) { (_) -> CGFloat in
             return 100
@@ -60,10 +48,10 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         XCTAssertEqual(row.height, 100)
     }
     
-    func test_setHeight_properlySetsHeightWithValue() {
+    func test_setHeight_setsHeightWithValue() {
         let row = TestTableViewRow()
         
-        row.set(height: .height, value: 100)
+        row.set(height: .height, 100)
         
         XCTAssertEqual(row.height, 100)
     }
@@ -77,14 +65,57 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     func test_removeHeight_removesAPreviouslySetHeight() {
         let row = TestTableViewRow()
         
-        row.set(height: .height, value: 100)
-        row.set(height: .estimatedHeight, value: 100)
+        row.set(height: .height, 100)
+        row.set(height: .estimatedHeight, 100)
         
         row.remove(height: .height)
         row.remove(height: .estimatedHeight)
         
         XCTAssertEqual(row.height, UITableViewAutomaticDimension)
         XCTAssertEqual(row.estimatedHeight, UITableViewAutomaticDimension)
+    }
+    
+    func test_setPrefetchCommand_setPrefetchCommandClosure() {
+        let row = TestTableViewRow()
+        
+        var prefetch = false
+        row.set(prefetchCommand: .prefetch) { _, _ in
+            prefetch = true
+        }
+        
+        var cancel = false
+        row.set(prefetchCommand: .cancel) { _, _ in
+            cancel = true
+        }
+        
+        row.perform(prefetchCommand: .prefetch, for: IndexPath())
+        row.perform(prefetchCommand: .cancel, for: IndexPath())
+
+        XCTAssertTrue(prefetch)
+        XCTAssertTrue(cancel)
+    }
+    
+    func test_removePrefetchCommand_removesPreviouslySetPrefetchCommands() {
+        let row = TestTableViewRow()
+        
+        var prefetch = false
+        row.set(prefetchCommand: .prefetch) { _, _ in
+            prefetch = true
+        }
+        
+        var cancel = false
+        row.set(prefetchCommand: .cancel) { _, _ in
+            cancel = true
+        }
+        
+        row.remove(prefetchCommand: .prefetch)
+        row.remove(prefetchCommand: .cancel)
+        
+        row.perform(prefetchCommand: .prefetch, for: IndexPath())
+        row.perform(prefetchCommand: .cancel, for: IndexPath())
+        
+        XCTAssertFalse(prefetch)
+        XCTAssertFalse(cancel)
     }
     
     func test_editable_returnsIfRowIsEditable() {
@@ -98,62 +129,60 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         let row3 = TestTableViewRow(editActions: [editAction])
         let row4 = TestTableViewRow()
         
-        XCTAssertEqual(row1.editable, true)
-        XCTAssertEqual(row2.editable, true)
-        XCTAssertEqual(row3.editable, true)
-        XCTAssertEqual(row4.editable, false)
+        XCTAssertTrue(row1.editable)
+        XCTAssertTrue(row2.editable)
+        XCTAssertTrue(row3.editable)
+        XCTAssertFalse(row4.editable)
     }
     
     func test_reuseIdentifier_returnsCorrectReuseIdentifierForRegistrationType() {
-        let row1 = TestTableViewRow(registrationType: .defaultClassRegistration(for: TestTableViewCell.self))
+        let row1 = TestTableViewRow(registrationType: .defaultClassType)
         let row2 = TestTableViewRow()
-        let row3 = TestTableViewRow(registrationType: .class(identifier: "Test"))
+        let row3 = TestTableViewRow(registrationType: .class(reuseIdentifier: "Test"))
         
-        XCTAssertEqual(row1.reuseIdentifier, String(describing: TestTableViewCell.self))
+        XCTAssertEqual(row1.reuseIdentifier, String(describing: UITableViewCell.self))
         XCTAssertEqual(row2.reuseIdentifier, String(describing: UITableViewCell.self))
         XCTAssertEqual(row3.reuseIdentifier, "Test")
     }
     
-    func test_cellForTableViewAt_returnsConfiguredCellForRow() {
+    func test_register_registersCellForRow() {
+        let row = TestTableViewRow(registrationType: .class(reuseIdentifier: "Test"))
+        let tableView = UITableView()
         
-        let row = TestTableViewRow.create()
+        row.register(with: tableView)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Test")
+        
+        XCTAssertNotNil(cell)
+    }
+    
+    func test_cellForTableViewAt_returnsConfiguredCellForRow() {
+        let row = TestTableViewRow()
         let string = "Test"
         row.set(command: .configuration) { (cell, _, indexPath) in
             cell.accessibilityIdentifier = string
         }
         
         let tableView = UITableView()
-        row.registerCellType(with: tableView)
+        
+        row.register(with: tableView)
         
         let cell = row.cell(for: tableView, at: IndexPath())
         
         XCTAssertEqual(cell.accessibilityIdentifier, string)
     }
     
-    func test_perform_performsCommands() {
-        let row = TestTableViewRow.create()
-        var configured = false
-        
-        row.set(command: .configuration) { (_, _, _) in
-            configured = true
-        }
-        
-        row.perform(command: .configuration, for: UITableViewCell(), at: IndexPath())
-        
-        XCTAssertEqual(configured, true)
-    }
-    
     func test_perform_ignoresCommandPerformanceForIncorrectCellType() {
         let row = OKTableViewRow<TestTableViewCell, Void>()
         var configured = false
         
-        row.set(command: .configuration) { (_, _, _) in
+        row.set(command: .configuration) { _, _, _ in
             configured = true
         }
             
         row.perform(command: .configuration, for: UITableViewCell(), at: IndexPath())
         
-        XCTAssertEqual(configured, false)
+        XCTAssertFalse(configured)
     }
 
 }

@@ -6,8 +6,6 @@
 //  Copyright © 2018 Dylan Shine. All rights reserved.
 //
 
-import Foundation
-
 extension Array {
     
     func element(at index: Int) -> Element? {
@@ -16,6 +14,14 @@ extension Array {
         }
         
         return self[index]
+    }
+
+    var lastIndex: Index {
+        guard !isEmpty else {
+            return 0
+        }
+
+        return count - 1
     }
     
 }

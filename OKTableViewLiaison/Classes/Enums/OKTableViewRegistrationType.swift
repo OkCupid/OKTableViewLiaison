@@ -8,23 +8,23 @@
 
 import UIKit
 
-public enum OKTableViewRegistrationType {
-    case nib(nib: UINib, identifier: String)
-    case `class`(identifier: String)
+public enum OKTableViewRegistrationType<T> {
+    case nib(nib: UINib, reuseIdentifier: String)
+    case `class`(reuseIdentifier: String)
     
-    public static func defaultClassRegistration<T: UIView>(for view: T.Type) -> OKTableViewRegistrationType {
-        return .class(identifier: String(describing: view.self))
+    public static var defaultClassType: OKTableViewRegistrationType {
+        return .class(reuseIdentifier: String(describing: T.self))
     }
     
-    public static func defaultNibRegistration<T: UIView>(for view: T.Type) -> OKTableViewRegistrationType {
-        return .nib(nib: view.nib,
-                    identifier: String(describing: view.self))
+    public static var defaultNibType: OKTableViewRegistrationType {
+        return .nib(nib: UINib(nibName: String(describing: T.self), bundle: .main),
+                    reuseIdentifier: String(describing: T.self))
     }
     
-    public var identifier: String {
+    var reuseIdentifier: String {
         switch self {
-        case .class(let identifier), .nib(_, let identifier):
-            return identifier
+        case .class(let reuseIdentifier), .nib(_, let reuseIdentifier):
+            return reuseIdentifier
         }
     }
 }

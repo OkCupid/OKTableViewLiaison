@@ -14,13 +14,9 @@ final class ContentFeedViewController: UIViewController {
     private let liaison = OKTableViewLiaison()
     private let refreshControl = UIRefreshControl()
     
-    private var initialSections: [OKAnyTableViewSection] {
+    private var initialSections: [OKTableViewSection] {
         return Post.initialPosts()
-            .map(section(for:))
-    }
-    
-    private func section(for post: Post) -> PostTableViewSection {
-        return PostTableViewSectionFactory.section(for: post, width: tableView.frame.width)
+            .map { PostTableViewSectionFactory.section(for: $0, tableView: tableView) }
     }
 
     override func viewDidLoad() {
@@ -28,15 +24,18 @@ final class ContentFeedViewController: UIViewController {
         
         refreshControl.addTarget(self, action: #selector(refreshSections), for: .valueChanged)
         tableView.addSubview(refreshControl)
-
+        
         liaison.paginationDelegate = self
         liaison.liaise(tableView: tableView)
-        
-        liaison.append(sections: initialSections)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        liaison.append(sections: initialSections, animated: false)
     }
     
     @objc private func refreshSections() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.liaison.clearSections(replacedBy: self.initialSections, animated: false)
             self.refreshControl.endRefreshing()
         }
@@ -55,10 +54,10 @@ extension ContentFeedViewController: OKTableViewLiaisonPaginationDelegate {
         liaison.scroll(to: indexPath)
         
         let sections = Post.paginatedPosts()
-            .map(section(for:))
+            .map { PostTableViewSectionFactory.section(for: $0, tableView: tableView) }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.liaison.append(sections: sections)
+            self.liaison.append(sections: sections, animated: false)
         }
     }
     

@@ -9,16 +9,4 @@
 import UIKit
 @testable import OKTableViewLiaison
 
-final class TestTableViewRow: OKTableViewRow<UITableViewCell, Void> {
-    
-    static func create() -> TestTableViewRow {
-        
-        return TestTableViewRow((),
-                                editingStyle: .none,
-                                movable: false,
-                                deleteConfirmationTitle: "Delete",
-                                registrationType: TestTableViewRow.defaultClassRegistrationType)
-        
-    }
-    
-}
+final class TestTableViewRow: OKTableViewRow<UITableViewCell, Void> {}

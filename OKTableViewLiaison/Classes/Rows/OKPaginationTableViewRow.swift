@@ -7,20 +7,18 @@
 
 import UIKit
 
-final public class OKPaginationTableViewRow: OKTableViewRow<OKPaginationTableViewCell, Void> {
+public final class OKPaginationTableViewRow: OKTableViewRow<OKPaginationTableViewCell, Void> {
     
     public init() {
         super.init(())
         
-        set(command: .configuration) { (cell, _, _) in
+        set(command: .configuration) { cell, _, _ in
             cell.backgroundColor = .clear
             cell.contentView.backgroundColor = .clear
         }
         
-        set(command: .willDisplay) { (cell, _, _) in
+        set(command: .willDisplay) { cell, _, _ in
             cell.spinner.startAnimating()
         }
-        
     }
-    
 }

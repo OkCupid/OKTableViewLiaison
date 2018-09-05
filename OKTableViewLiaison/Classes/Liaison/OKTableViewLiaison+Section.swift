@@ -9,25 +9,21 @@ import UIKit
 
 public extension OKTableViewLiaison {
     
-    public func append(sections: [OKAnyTableViewSection], animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func append(sections: [OKTableViewSection], animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         
-        if isShowingPaginationSpinner {
-            endPagination(sections: sections)
+        if waitingForPaginatedResults {
+            endPagination(sections: sections, animation: animation, animated: animated)
             return
         }
         
-        guard !sections.isEmpty else {
-            return
-        }
-        
-        sections.forEach {
-            $0.tableView = tableView
-        }
+        guard !sections.isEmpty else { return }
         
         let lowerBound = self.sections.count
-        let upperBound = lowerBound + sections.count - 1
+        let upperBound = lowerBound + sections.lastIndex
         let indexSet = IndexSet(integersIn: lowerBound...upperBound)
+        
         self.sections.append(contentsOf: sections)
+        register(sections: sections)
         
         performTableViewUpdates(animated: animated) {
             tableView?.insertSections(indexSet, with: animation)
@@ -35,27 +31,43 @@ public extension OKTableViewLiaison {
         
     }
     
-    public func append(section: OKAnyTableViewSection, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func append(section: OKTableViewSection, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
         append(sections: [section], animation: animation, animated: animated)
     }
     
-    public func insert(section: OKAnyTableViewSection, at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
-        section.tableView = tableView
+    public func insert(sections: [OKTableViewSection], startingAt index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+        guard !sections.isEmpty else { return }
+
+        let indexRange = (index...(index + sections.count))
+        
+        zip(sections, indexRange)
+            .forEach { section, index in
+                self.sections.insert(section, at: index)
+        }
+
+        register(sections: sections)
+        let indexSet = IndexSet(integersIn: indexRange)
+        performTableViewUpdates(animated: animated) {
+            tableView?.insertSections(indexSet, with: animation)
+        }
+    }
+    
+    public func insert(section: OKTableViewSection, at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+        
         sections.insert(section, at: index)
+        register(section: section)
         
         performTableViewUpdates(animated: animated) {
             tableView?.insertSections(IndexSet(integer: index), with: animation)
         }
-        
     }
     
     public func emptySection(at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
-        guard let section = sections.element(at: index) else {
-            return
-        }
         
-        let indexPaths = section.rowIndexPaths(for: index)
-        section.removeAllRows()
+        guard sections.indices.contains(index) else { return }
+        
+        let indexPaths = sections[index].rowIndexPaths(for: index)
+        sections[index].removeAllRows()
         
         performTableViewUpdates(animated: animated) {
             tableView?.deleteRows(at: indexPaths, with: animation)
@@ -64,6 +76,7 @@ public extension OKTableViewLiaison {
     }
     
     public func deleteSection(at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+        
         sections.remove(at: index)
         
         performTableViewUpdates(animated: animated) {
@@ -71,10 +84,11 @@ public extension OKTableViewLiaison {
         }
     }
     
-    public func replaceSection(at index: Int, with section: OKAnyTableViewSection, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func replaceSection(at index: Int, with section: OKTableViewSection, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+
         sections.remove(at: index)
-        section.tableView = tableView
         sections.insert(section, at: index)
+        register(section: section)
         
         performTableViewUpdates(animated: animated) {
             tableView?.deleteSections(IndexSet(integer: index), with: animation)
@@ -89,6 +103,7 @@ public extension OKTableViewLiaison {
     }
     
     public func moveSection(at: Int, to: Int, with animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+        
         let section = sections.remove(at: at)
         sections.insert(section, at: to)
         
@@ -97,15 +112,13 @@ public extension OKTableViewLiaison {
         }
     }
     
-    public func clearSections(replacedBy sections: [OKAnyTableViewSection] = [],
+    public func clearSections(replacedBy sections: [OKTableViewSection] = [],
                               animation: UITableViewRowAnimation = .automatic,
                               animated: Bool = true) {
         
-        guard !self.sections.isEmpty else {
-            return
-        }
+        guard !self.sections.isEmpty else { return }
         
-        let sectionsRange = 0...self.sections.count - 1
+        let sectionsRange = 0...self.sections.lastIndex
         let indexSet = IndexSet(integersIn: sectionsRange)
         
         self.sections.removeAll()
@@ -115,5 +128,16 @@ public extension OKTableViewLiaison {
         }
         
         append(sections: sections, animation: animation, animated: animated)
+    }
+    
+    public func swapSection(at source: Int, with destination: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+        
+        guard sections.indices.contains(source) && sections.indices.contains(destination) else { return }
+        sections.swapAt(source, destination)
+        
+        performTableViewUpdates(animated: animated) {
+            tableView?.moveSection(source, toSection: destination)
+            tableView?.moveSection(destination, toSection: source)
+        }
     }
 }

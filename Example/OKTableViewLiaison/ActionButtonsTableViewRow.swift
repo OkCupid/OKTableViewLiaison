@@ -12,9 +12,9 @@ import OKTableViewLiaison
 final class ActionButtonsTableViewRow: OKTableViewRow<ActionButtonsTableViewCell, Void> {
     
     init() {
-        super.init((), registrationType: ActionButtonsTableViewRow.defaultNibRegistrationType)
+        super.init((), registrationType: .defaultNibType)
         
-        set(height: .height, value: 30)
+        set(height: .height, 30)
         set(command: .configuration) { cell, _, _ in
             cell.likeButton.setTitle("❤️", for: .normal)
             cell.commentButton.setTitle("💬", for: .normal)
