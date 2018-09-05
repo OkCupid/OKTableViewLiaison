@@ -8,7 +8,7 @@
 
 import UIKit
 
-final public class OKTableViewLiaison: NSObject {
+public final class OKTableViewLiaison: NSObject {
     
     weak var tableView: UITableView? {
         didSet { registerSections() }
