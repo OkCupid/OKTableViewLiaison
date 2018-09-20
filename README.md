@@ -30,7 +30,7 @@ We use the latest and greatest open source version of `master` in the OkCupid ap
 
 ## Requirements
 
-- Xcode 9.0+
+- Xcode 10.0+
 - iOS 9.0+
 
 ## Installation
@@ -80,7 +80,7 @@ or
 ```swift
 let section = OKTableViewSection()
 
-liaison.append(sections: [section])
+liaison.append(section: section)
 ```
 
 ### Supplementary Section Views
