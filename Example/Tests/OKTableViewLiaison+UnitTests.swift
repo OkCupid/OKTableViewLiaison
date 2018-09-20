@@ -1139,7 +1139,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         XCTAssertEqual(row1Height, 100)
         XCTAssertEqual(row2Height, 200)
-        XCTAssertEqual(row3Height, UITableViewAutomaticDimension)
+        XCTAssertEqual(row3Height, UITableView.automaticDimension)
     }
 
     func test_estimatedHeightForRow_properlySetsEstimatedHeightsForRows() {
@@ -1162,7 +1162,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         XCTAssertEqual(row1Height, 100)
         XCTAssertEqual(row2Height, 200)
-        XCTAssertEqual(row3Height, UITableViewAutomaticDimension)
+        XCTAssertEqual(row3Height, UITableView.automaticDimension)
     }
 
     func test_shouldIndentWhileEditingRow_correctlyReturnsIfRowShouldIndentWhileBeingEdited() {
@@ -1277,7 +1277,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         XCTAssertEqual(section1Height, 100)
         XCTAssertEqual(section2Height, 200)
-        XCTAssertEqual(section3Height, UITableViewAutomaticDimension)
+        XCTAssertEqual(section3Height, UITableView.automaticDimension)
     }
     
     func test_estimatedHeightForHeader_properlySetsEstimatedHeightsForSectionHeaders() {
@@ -1335,7 +1335,7 @@ final class OKTableViewLiaison_UnitTests: XCTestCase {
 
         XCTAssertEqual(section1Height, 100)
         XCTAssertEqual(section2Height, 200)
-        XCTAssertEqual(section3Height, UITableViewAutomaticDimension)
+        XCTAssertEqual(section3Height, UITableView.automaticDimension)
     }
     
     func test_estimatedHeightForFooter_properlySetsEstimatedHeightsForSectionFooters() {

@@ -61,7 +61,7 @@ public final class OKTableViewLiaison: NSObject {
         reloadRows(at: indexPaths)
     }
     
-    public func scroll(to indexPath: IndexPath, at scrollPosition: UITableViewScrollPosition = .none, animated: Bool = true) {
+    public func scroll(to indexPath: IndexPath, at scrollPosition: UITableView.ScrollPosition = .none, animated: Bool = true) {
         guard row(for: indexPath) != nil else { return }
         tableView?.scrollToRow(at: indexPath, at: scrollPosition, animated: animated)
     }

@@ -44,7 +44,7 @@ extension OKTableViewLiaison {
         deleteSection(at: sections.lastIndex, animation: .none, animated: animated)
     }
     
-    func endPagination(rows: [OKAnyTableViewRow], animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    func endPagination(rows: [OKAnyTableViewRow], animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         removePaginationSpinner(animated: rows.isEmpty)
         
         guard !rows.isEmpty,
@@ -55,7 +55,7 @@ extension OKTableViewLiaison {
         paginationDelegate?.paginationEnded(indexPath: firstNewIndexPath)
     }
     
-    func endPagination(sections: [OKTableViewSection], animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    func endPagination(sections: [OKTableViewSection], animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         removePaginationSpinner(animated: sections.isEmpty)
         
         guard !sections.isEmpty else { return }

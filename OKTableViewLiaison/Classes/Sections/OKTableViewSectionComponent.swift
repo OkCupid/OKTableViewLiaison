@@ -81,7 +81,7 @@ open class OKTableViewSectionComponent<View: UITableViewHeaderFooterView, Model>
     private func calculate(height: OKTableViewHeightType) -> CGFloat {
         switch height {
         case .height:
-            return heights[.height]?(model) ?? UITableViewAutomaticDimension
+            return heights[.height]?(model) ?? UITableView.automaticDimension
         case .estimatedHeight:
             return heights[.estimatedHeight]?(model) ?? heights[.height]?(model) ?? 0
         }

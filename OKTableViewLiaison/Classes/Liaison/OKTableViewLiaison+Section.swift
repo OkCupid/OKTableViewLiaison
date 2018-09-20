@@ -9,7 +9,7 @@ import UIKit
 
 public extension OKTableViewLiaison {
     
-    public func append(sections: [OKTableViewSection], animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func append(sections: [OKTableViewSection], animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         
         if waitingForPaginatedResults {
             endPagination(sections: sections, animation: animation, animated: animated)
@@ -31,11 +31,11 @@ public extension OKTableViewLiaison {
         
     }
     
-    public func append(section: OKTableViewSection, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func append(section: OKTableViewSection, animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         append(sections: [section], animation: animation, animated: animated)
     }
     
-    public func insert(sections: [OKTableViewSection], startingAt index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func insert(sections: [OKTableViewSection], startingAt index: Int, animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         guard !sections.isEmpty else { return }
 
         let indexRange = (index...(index + sections.count))
@@ -52,7 +52,7 @@ public extension OKTableViewLiaison {
         }
     }
     
-    public func insert(section: OKTableViewSection, at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func insert(section: OKTableViewSection, at index: Int, animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         
         sections.insert(section, at: index)
         register(section: section)
@@ -62,7 +62,7 @@ public extension OKTableViewLiaison {
         }
     }
     
-    public func emptySection(at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func emptySection(at index: Int, animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         
         guard sections.indices.contains(index) else { return }
         
@@ -75,7 +75,7 @@ public extension OKTableViewLiaison {
         
     }
     
-    public func deleteSection(at index: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func deleteSection(at index: Int, animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         
         sections.remove(at: index)
         
@@ -84,7 +84,7 @@ public extension OKTableViewLiaison {
         }
     }
     
-    public func replaceSection(at index: Int, with section: OKTableViewSection, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func replaceSection(at index: Int, with section: OKTableViewSection, animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
 
         sections.remove(at: index)
         sections.insert(section, at: index)
@@ -96,13 +96,13 @@ public extension OKTableViewLiaison {
         }
     }
     
-    public func reloadSection(at index: Int, with animation: UITableViewRowAnimation = .automatic) {
+    public func reloadSection(at index: Int, with animation: UITableView.RowAnimation = .automatic) {
         tableView?.beginUpdates()
         tableView?.reloadSections(IndexSet(integer: index), with: animation)
         tableView?.endUpdates()
     }
     
-    public func moveSection(at: Int, to: Int, with animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func moveSection(at: Int, to: Int, with animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         
         let section = sections.remove(at: at)
         sections.insert(section, at: to)
@@ -113,7 +113,7 @@ public extension OKTableViewLiaison {
     }
     
     public func clearSections(replacedBy sections: [OKTableViewSection] = [],
-                              animation: UITableViewRowAnimation = .automatic,
+                              animation: UITableView.RowAnimation = .automatic,
                               animated: Bool = true) {
         
         guard !self.sections.isEmpty else { return }
@@ -130,7 +130,7 @@ public extension OKTableViewLiaison {
         append(sections: sections, animation: animation, animated: animated)
     }
     
-    public func swapSection(at source: Int, with destination: Int, animation: UITableViewRowAnimation = .automatic, animated: Bool = true) {
+    public func swapSection(at source: Int, with destination: Int, animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         
         guard sections.indices.contains(source) && sections.indices.contains(destination) else { return }
         sections.swapAt(source, destination)
