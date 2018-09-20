@@ -58,8 +58,8 @@ final class OKTableViewRow_UnitTests: XCTestCase {
     
     func test_setHeight_returnsAutomaticDimensionForSelfSizingRow() {
         let row = TestTableViewRow()
-        XCTAssertEqual(row.height, UITableViewAutomaticDimension)
-        XCTAssertEqual(row.estimatedHeight, UITableViewAutomaticDimension)
+        XCTAssertEqual(row.height, UITableView.automaticDimension)
+        XCTAssertEqual(row.estimatedHeight, UITableView.automaticDimension)
     }
     
     func test_removeHeight_removesAPreviouslySetHeight() {
@@ -71,8 +71,8 @@ final class OKTableViewRow_UnitTests: XCTestCase {
         row.remove(height: .height)
         row.remove(height: .estimatedHeight)
         
-        XCTAssertEqual(row.height, UITableViewAutomaticDimension)
-        XCTAssertEqual(row.estimatedHeight, UITableViewAutomaticDimension)
+        XCTAssertEqual(row.height, UITableView.automaticDimension)
+        XCTAssertEqual(row.estimatedHeight, UITableView.automaticDimension)
     }
     
     func test_setPrefetchCommand_setPrefetchCommandClosure() {

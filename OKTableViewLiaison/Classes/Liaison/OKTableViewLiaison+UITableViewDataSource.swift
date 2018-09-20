@@ -34,7 +34,7 @@ extension OKTableViewLiaison: UITableViewDataSource {
         return row(for: indexPath)?.movable ?? false
     }
     
-    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             guard let row = row(for: indexPath) else { return }
