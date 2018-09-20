@@ -23,14 +23,14 @@ alt="Pods Version">
 &#127744; | Closure based API for section and row configuration
 &#128196; | Built-in paging functionality
 &#9989;   | Unit Tested
-&#128036; | Written in Swift 4.1
+&#128036; | Written in Swift 4.2
 
 `OKTableViewLiaison` is 🔨 with &#10084;&#65039; by [📱 @ OkCupid](https://tech.okcupid.com).
 We use the latest and greatest open source version of `master` in the OkCupid app.
 
 ## Requirements
 
-- Xcode 9.0+
+- Xcode 10.0+
 - iOS 9.0+
 
 ## Installation
@@ -80,7 +80,7 @@ or
 ```swift
 let section = OKTableViewSection()
 
-liaison.append(sections: [section])
+liaison.append(section: section)
 ```
 
 ### Supplementary Section Views
@@ -107,7 +107,7 @@ header.set(height: .height) { user -> CGFloat in
 header.set(height: .estimatedHeight, 125)
 ```
 
-In the event a height is not provided for a section component, the liaison will assume the supplementary view is self sizing and return a `.height` of `UITableViewAutomaticDimension`. Make sure you provide an `.estimatedHeight` to avoid layout complications.
+In the event a height is not provided for a section component, the liaison will assume the supplementary view is self sizing and return a `.height` of `UITableView.automaticDimension`. Make sure you provide an `.estimatedHeight` to avoid layout complications.
 
 The `OKTableViewSectionComponent ` views can be customized using `func set(command: OKTableViewSectionComponentCommand, with closure: @escaping (View, Model, Int) -> Void)` at all the following lifecycle events:
 
@@ -163,7 +163,7 @@ row.set(height: .height) { model -> CGFloat in
 }
 ```
 
-In the event a height is not provided, the liaison will assume the cell is self sizing and return `UITableViewAutomaticDimension`.
+In the event a height is not provided, the liaison will assume the cell is self sizing and return `UITableView.automaticDimension`.
 
 The `OKTableViewRow` can be customized using `func set(command: OKTableViewRowCommand, with closure: @escaping (Cell, Model, IndexPath) -> Void) ` at all the following lifecycle events:
 

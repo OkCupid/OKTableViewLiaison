@@ -65,7 +65,7 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
     
     func test_setHeight_returnsAutomaticDimensionForSelfSizingView() {
         let component = TestTableViewSectionComponent()
-        XCTAssertEqual(component.height, UITableViewAutomaticDimension)
+        XCTAssertEqual(component.height, UITableView.automaticDimension)
         XCTAssertEqual(component.estimatedHeight, 0)
     }
     
@@ -77,7 +77,7 @@ final class OKTableViewSectionComponent_UnitTests: XCTestCase {
         component.remove(height: .height)
         component.remove(height: .estimatedHeight)
 
-        XCTAssertEqual(component.height, UITableViewAutomaticDimension)
+        XCTAssertEqual(component.height, UITableView.automaticDimension)
         XCTAssertEqual(component.estimatedHeight, 0)
     }
     

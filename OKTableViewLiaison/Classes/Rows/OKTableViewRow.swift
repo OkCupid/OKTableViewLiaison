@@ -11,12 +11,12 @@ import UIKit
 open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     
     public let model: Model
-    public var editingStyle: UITableViewCellEditingStyle
+    public var editingStyle: UITableViewCell.EditingStyle
     public var movable: Bool
     public var editActions: [UITableViewRowAction]?
     public var indentWhileEditing: Bool
     public var deleteConfirmationTitle: String?
-    public var deleteRowAnimation: UITableViewRowAnimation
+    public var deleteRowAnimation: UITableView.RowAnimation
     
     private let registrationType: OKTableViewRegistrationType<Cell>
     private var commands = [OKTableViewRowCommand: (Cell, Model, IndexPath) -> Void]()
@@ -24,12 +24,12 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     private var prefetchCommands = [OKTableViewPrefetchCommand: (Model, IndexPath) -> Void]()
     
     public init(_ model: Model,
-                editingStyle: UITableViewCellEditingStyle = .none,
+                editingStyle: UITableViewCell.EditingStyle = .none,
                 movable: Bool = false,
                 editActions: [UITableViewRowAction]? = nil,
                 indentWhileEditing: Bool = false,
                 deleteConfirmationTitle: String? = nil,
-                deleteRowAnimation: UITableViewRowAnimation = .automatic,
+                deleteRowAnimation: UITableView.RowAnimation = .automatic,
                 registrationType: OKTableViewRegistrationType<Cell> = .defaultClassType) {
         self.model = model
         self.editingStyle = editingStyle
@@ -118,18 +118,18 @@ open class OKTableViewRow<Cell: UITableViewCell, Model>: OKAnyTableViewRow {
     // MARK: - Private
     
     private func calculate(height: OKTableViewHeightType) -> CGFloat {
-        return heights[height]?(model) ?? UITableViewAutomaticDimension
+        return heights[height]?(model) ?? UITableView.automaticDimension
     }
 }
 
 public extension OKTableViewRow where Model == Void {
     
-    public convenience init(editingStyle: UITableViewCellEditingStyle = .none,
+    public convenience init(editingStyle: UITableViewCell.EditingStyle = .none,
                             movable: Bool = false,
                             editActions: [UITableViewRowAction]? = nil,
                             indentWhileEditing: Bool = false,
                             deleteConfirmationTitle: String? = nil,
-                            deleteRowAnimation: UITableViewRowAnimation = .automatic,
+                            deleteRowAnimation: UITableView.RowAnimation = .automatic,
                             registrationType: OKTableViewRegistrationType<Cell> = .defaultClassType) {
         
         self.init((),

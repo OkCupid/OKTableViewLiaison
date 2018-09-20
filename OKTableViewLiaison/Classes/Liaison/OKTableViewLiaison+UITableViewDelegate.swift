@@ -75,18 +75,18 @@ extension OKTableViewLiaison: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return row(for: indexPath)?.height ?? UITableViewAutomaticDimension
+        return row(for: indexPath)?.height ?? UITableView.automaticDimension
     }
     
     public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return row(for: indexPath)?.estimatedHeight ?? UITableViewAutomaticDimension
+        return row(for: indexPath)?.estimatedHeight ?? UITableView.automaticDimension
     }
     
     public func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return row(for: indexPath)?.indentWhileEditing ?? false
     }
     
-    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return row(for: indexPath)?.editingStyle ?? .none
     }
     
@@ -103,11 +103,11 @@ extension OKTableViewLiaison: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return sections.element(at: section)?.calculate(height: .height, for: .header) ?? UITableViewAutomaticDimension
+        return sections.element(at: section)?.calculate(height: .height, for: .header) ?? UITableView.automaticDimension
     }
     
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return sections.element(at: section)?.calculate(height: .height, for: .footer) ?? UITableViewAutomaticDimension
+        return sections.element(at: section)?.calculate(height: .height, for: .footer) ?? UITableView.automaticDimension
     }
     
     public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {

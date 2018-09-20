@@ -33,12 +33,12 @@ enum TextTableViewRowFactory {
             cell.contentTextLabel.numberOfLines = 0
             cell.selectionStyle = .none
             
-            let mediumAttributes: [NSAttributedStringKey: Any] = [
+            let mediumAttributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 13, weight: .medium),
                 .foregroundColor: UIColor.black
             ]
             
-            let regularAttributes: [NSAttributedStringKey: Any] = [
+            let regularAttributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 13),
                 .foregroundColor: UIColor.black
             ]
