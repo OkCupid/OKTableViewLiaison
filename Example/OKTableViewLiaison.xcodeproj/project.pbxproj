@@ -347,7 +347,6 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 886ZPWDXTP;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -654,7 +653,7 @@
 			baseConfigurationReference = 23269C76472F62EBE85FEF6A /* Pods-OKTableViewLiaison_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 886ZPWDXTP;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OKTableViewLiaison/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -670,7 +669,7 @@
 			baseConfigurationReference = F6351EA9623B9FC2F8F18E5E /* Pods-OKTableViewLiaison_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 886ZPWDXTP;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OKTableViewLiaison/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
