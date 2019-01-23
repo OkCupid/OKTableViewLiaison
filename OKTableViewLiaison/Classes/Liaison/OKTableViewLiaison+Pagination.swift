@@ -44,14 +44,15 @@ extension OKTableViewLiaison {
         deleteSection(at: sections.lastIndex, animation: .none, animated: animated)
     }
     
-    func endPagination(rows: [OKAnyTableViewRow], animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
+    func endPagination(rows: [OKAnyTableViewRow], to section: Int, animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         removePaginationSpinner(animated: rows.isEmpty)
         
         guard !rows.isEmpty,
             let lastSection = sections.last else { return }
         
         let firstNewIndexPath = IndexPath(row: lastSection.rows.count, section: sections.lastIndex)
-        append(rows: rows, animation: animation, animated: animated)
+
+        append(rows: rows, to: section, animation: animation, animated: animated)
         paginationDelegate?.paginationEnded(indexPath: firstNewIndexPath)
     }
     

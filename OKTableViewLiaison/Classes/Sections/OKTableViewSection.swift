@@ -5,7 +5,7 @@
 //  Created by Dylan Shine on 8/28/18.
 //
 
-import Foundation
+import UIKit
 
 public struct OKTableViewSection {
     

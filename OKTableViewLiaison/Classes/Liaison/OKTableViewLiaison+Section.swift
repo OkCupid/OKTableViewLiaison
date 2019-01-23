@@ -77,6 +77,8 @@ public extension OKTableViewLiaison {
     
     public func deleteSection(at index: Int, animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         
+        guard sections.indices.contains(index) else { return }
+        
         sections.remove(at: index)
         
         performTableViewUpdates(animated: animated) {
@@ -86,6 +88,8 @@ public extension OKTableViewLiaison {
     
     public func replaceSection(at index: Int, with section: OKTableViewSection, animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
 
+        guard sections.indices.contains(index) else { return }
+        
         sections.remove(at: index)
         sections.insert(section, at: index)
         register(section: section)
@@ -104,6 +108,8 @@ public extension OKTableViewLiaison {
     
     public func moveSection(at: Int, to: Int, with animation: UITableView.RowAnimation = .automatic, animated: Bool = true) {
         
+        guard sections.indices.contains(at) else { return }
+    
         let section = sections.remove(at: at)
         sections.insert(section, at: to)
         
@@ -116,15 +122,15 @@ public extension OKTableViewLiaison {
                               animation: UITableView.RowAnimation = .automatic,
                               animated: Bool = true) {
         
-        guard !self.sections.isEmpty else { return }
-        
-        let sectionsRange = 0...self.sections.lastIndex
-        let indexSet = IndexSet(integersIn: sectionsRange)
-        
-        self.sections.removeAll()
-        
-        performTableViewUpdates(animated: animated) {
-            tableView?.deleteSections(indexSet, with: animation)
+        if !self.sections.isEmpty {
+            let sectionsRange = 0...self.sections.lastIndex
+            let indexSet = IndexSet(integersIn: sectionsRange)
+            
+            self.sections.removeAll()
+            
+            performTableViewUpdates(animated: animated) {
+                tableView?.deleteSections(indexSet, with: animation)
+            }
         }
         
         append(sections: sections, animation: animation, animated: animated)
