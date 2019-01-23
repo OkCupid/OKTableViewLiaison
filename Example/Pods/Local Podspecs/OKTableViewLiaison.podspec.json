@@ -1,6 +1,6 @@
 {
   "name": "OKTableViewLiaison",
-  "version": "3.0.0",
+  "version": "3.1.3",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -13,11 +13,11 @@
   },
   "source": {
     "git": "https://github.com/okcupid/OKTableViewLiaison.git",
-    "tag": "3.0.0"
+    "tag": "3.1.3"
   },
   "platforms": {
     "ios": "9.0"
   },
   "source_files": "OKTableViewLiaison/Classes/**/*",
-  "swift_version": "4.1"
+  "swift_version": "4.2"
 }
