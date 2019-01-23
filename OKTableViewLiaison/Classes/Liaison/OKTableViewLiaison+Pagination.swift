@@ -51,7 +51,8 @@ extension OKTableViewLiaison {
             let lastSection = sections.last else { return }
         
         let firstNewIndexPath = IndexPath(row: lastSection.rows.count, section: sections.lastIndex)
-        append(rows: rows, animation: animation, animated: animated)
+
+        append(rows: rows, to: sections.lastIndex, animation: animation, animated: animated)
         paginationDelegate?.paginationEnded(indexPath: firstNewIndexPath)
     }
     
