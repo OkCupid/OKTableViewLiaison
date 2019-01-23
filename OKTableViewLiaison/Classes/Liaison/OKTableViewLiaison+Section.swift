@@ -122,15 +122,15 @@ public extension OKTableViewLiaison {
                               animation: UITableView.RowAnimation = .automatic,
                               animated: Bool = true) {
         
-        guard !self.sections.isEmpty else { return }
-        
-        let sectionsRange = 0...self.sections.lastIndex
-        let indexSet = IndexSet(integersIn: sectionsRange)
-        
-        self.sections.removeAll()
-        
-        performTableViewUpdates(animated: animated) {
-            tableView?.deleteSections(indexSet, with: animation)
+        if !self.sections.isEmpty {
+            let sectionsRange = 0...self.sections.lastIndex
+            let indexSet = IndexSet(integersIn: sectionsRange)
+            
+            self.sections.removeAll()
+            
+            performTableViewUpdates(animated: animated) {
+                tableView?.deleteSections(indexSet, with: animation)
+            }
         }
         
         append(sections: sections, animation: animation, animated: animated)
